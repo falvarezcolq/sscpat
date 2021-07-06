@@ -78,7 +78,7 @@ LOCAL_APPS = [
     # "sscpat.users.apps.UsersConfig",
     "sscpat.sscpat.apps.SSCPATConfig",
     # Your stuff: custom apps go here
-    "frontend",
+    # "frontend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

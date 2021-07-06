@@ -15,7 +15,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("", include("sscpat.sscpat.urls")),
-    path("", include("frontend.urls")),
+    # path("", include("frontend.urls")),
     # path("users/", include("sscpat.users.urls", namespace="users")),
     # path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
