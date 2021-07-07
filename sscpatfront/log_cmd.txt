@@ -1,0 +1,500 @@
+   15  ls
+   16  cd dev
+   17  cd projects
+   18  cd test
+   19  ls
+   20  cd test_cuckie_cutter/
+   21  cd blog
+   22  docker-compose -f local.yml up
+   23  docker-compose -f local.yml up
+   24  docker-compose -f local.yml up
+   25  docker-compose -f local.yml down
+   26  cd redis_1
+   27  cd /Users/falv/Dev/projects/test/test_cuckie_cutter/blog
+   28  docker ps
+   29  docker-compose -f local.yml ps
+   30  docker-compose -f local.yml down
+   31  export COMPOSE_FILE=local.yml
+   32  docker-compose ps
+   33  docker rm -f blog_django_1
+   34  docker-compose run —rm —service-ports django
+   35  docker-compose run -rm -service-ports django
+   36  docker-compose run —-rm —-service-ports django
+   37  docker-compose run —rm —-service-ports django
+   38  docker-compose run -rm —-service-ports django
+   39  docker-compose run --rm —-service-ports django
+   40  docker-compose -f local.yml run --rm --service-ports django
+   41  docker-compose down
+   42  docker rm -f blog_django_1
+   43  docker-compose -f local.yml run --rm --service-ports django
+   44  docker-compose down
+   45  pwd
+   46  docker-compose -f local.yml up
+   47  docker-machine
+   48  cd ..
+   49  cd .
+   50  cd ..
+   51  docker-machine --version
+   52  curl -L https://github.com/docker/machine/releases/download/v0.16.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine &&   chmod +x /usr/local/bin/docker-machine
+   53  docker-machine ls
+   54  docker-compose ps
+   55  ls
+   56  cd ..
+   57  cd sistema_de_seguimiento_de_proyectos_pytho_react/
+   58  cd sscpat/
+   59  docker-compose ps
+   60  docker-machine
+   61  docker-machine ls
+   62  docker-compose down
+   63  docker-compose ps
+   64  docker-compose -f local.yml ps
+   65  docker-compose -f local.yml ps
+   66  docker container ls
+   67  docker container ls
+   68  docker-compose -f local.yml run --rm django python manage.py makemigrations
+   69  ls
+   70  cd /Users/falv/Dev/projects/test/test_cuckie_cutter/blog
+   71  docker-compose -f local.yml run --rm django python manage.py makemigrations
+   72  docker-compose -f local.yml run --rm django python manage.py createsuperuser
+   73  top
+   74  top
+   75  cd ..
+   76  cd ..
+   77  cd ..
+   78  ls
+   79  cd sscpat/
+   80  ls
+   81  cd
+   82  cd /Users/falv/Dev/projects/test/test_cuckie_cutter/blog
+   83  cd ..
+   84  cd ..
+   85  cd ..
+   86  sis_sscpat
+   87  mkdir sistema_de_seguimiento_de_proyectos_pytho_react
+   88  cd sistema_de_seguimiento_de_proyectos_pytho_react/
+   89  cookiecutter https://github.com/pydanny/cookiecutter-django
+   90  ls
+   91  cd sscppat
+   92  cd sscpat/
+   93  ls
+   94  git init
+   95  git status
+   96  git add .
+   97  git commit -m "initial commit"
+   98  ls
+   99  docker-compose -f local.yml build
+  100  pwd
+  101  docker-compose -f local.yml up
+  102  docker-compose -f local.yml up
+  103  docker-compose -f local.yml up
+  104  npm start
+  105  ls
+  106  npm build
+  107  npm start
+  108  npm build
+  109  npm test
+  110  npm run build
+  111  ls
+  112  cd sscpat/
+  113  ls
+  114  cd sscpat/
+  115  ls
+  116  ls
+  117  cd ..
+  118  ls
+  119  npm start
+  120  npm start
+  121  npm start
+  122  npm start
+  123  npm start
+  124  npm start
+  125  npm start
+  126  npm start
+  127  npm start
+  128  npm start
+  129  npm start
+  130  npm start
+  131  npm start
+  132  npm start
+  133  npm start
+  134  npm install --save-dev css-loader
+  135  npm start
+  136  npm start
+  137  npm install --save-dev style-loader css-loader
+  138  npm install --save-dev style-loader css-loader
+  139  npm start
+  140  npm start
+  141  npm start
+  142  npm start
+  143  npm start
+  144  npm start
+  145  git status
+  146  git add .
+  147  git commit -m " test migration incomplete"
+  148  git branch
+  149  git log
+  150  git checkout aeac0b01f27e9918e3d8a70c35db57082f42ee8a
+  151  git checkout -b "add_react_version_2"
+  152  git status
+  153  git add .
+  154  git commit -m 
+  155  git branch
+  156  npm i react react-dom
+  157  npm i -D @babel/preset-react @babel/preset-env @babel/core babel-loader @babel/plugin-proposal-class-properties
+  158  npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin path
+  159  npm install style-loader css-loader file-loader
+  160  npm start
+  161  npm start
+  162  npm start
+  163  npm start
+  164  npm dev
+  165  npm dev
+  166  npm run deev
+  167  npm run dev
+  168  npm install
+  169  npm install
+  170  npm start
+  171  npm start
+  172  npm start
+  173  npm start
+  174  npm i -D babel-core babel-polyfill babel-preset-es2015 babel-preset-stage-0 babel-loader
+  175  npm audi
+  176  npm audit
+  177  npm start
+  178  npm start
+  179  npm start
+  180  npm uninstall babel-polyfill
+  181  npm start
+  182  npm install --save-dev babel-plugin-transform-runtime
+  183  npm start
+  184  npm start
+  185  npm install --save-dev babel-plugin-transform-runtime
+  186  npm install --save-dev babel-plugin-transform-runtime
+  187  npm start
+  188  npm uninstall babel-preset-es2015
+  189  npm uninstall babel-preset-stage-0
+  190  npm start
+  191  npm start
+  192  npm i --save-dev @babel/plugin-transform-runtime
+  193  uninstall react-google-font-loader
+  194  npm uninstall react-google-font-loader
+  195  npm start
+  196  npm install react-google-font-loader
+  197  npm start
+  198  npm start
+  199  ls
+  200  npm start
+  201  lsa
+  202  la
+  203  ls
+  204  source venv/bin/activate
+  205  python manage.py runserver 0.0.0.0:8082
+  206  cd leadmanager/
+  207  ls
+  208  python manage.py runserver 0.0.0.0:8082
+  209  cd Dev/projects/test
+  210  git clone https://gitlab.com/FedeG/django-react-workshop.git
+  211  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  212  docker exec -it workshop pip install -r requirements.txt
+  213  docker exec -it workshop pip install -r requirements-dev.txt
+  214  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  215  docker ps
+  216  docker ps -a
+  217  docker rm workshop
+  218  docker ps -a
+  219  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  220  docker ps -a
+  221  docker exec -it workshop pip install -r requirements.txt
+  222  docker exec -it workshop pip install -r requirements-dev.txt
+  223  cd django-react-workshop/
+  224  docker exec -it workshop pip install -r requirements.txt
+  225  docker exec -it workshop pip install -r requirements.txt
+  226  docker exec -it workshop pip install -r requirements-dev.txt
+  227   workshop
+  228  docker ps
+  229  docker rm -f workshop
+  230  python3 -m venv venv
+  231  source venv/bin/activate
+  232  ls
+  233  cd ..
+  234  cd django-react-workshop/
+  235  cd workshop/
+  236  ls
+  237  cd ..
+  238  pip install -r requirements.txt
+  239  pip install -r requirements-dev.txt
+  240  npm install yarn --global
+  241  cd workshop/front
+  242  npm install
+  243  ls
+  244  cd ..
+  245  cd ..
+  246  cd workshop/
+  247  python manage.py runserver
+  248  python manage.py migrate
+  249  python manage.py runserver
+  250  cd ..
+  251  deactivate
+  252  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  253  docker exec -it workshop pip install -r requirements.txt
+  254  docker exec -it workshop pip install -r requirements-dev.txt
+  255  docker run -d -it --name workshopjs -v $PWD:/src -p 3000:3000 --workdir /src/workshop/front node:8 bash
+  256  docker exec -it workshopjs npm install yarn --global
+  257  docker exec -it workshopjs npm install yarn --global
+  258  ls
+  259  ls -la
+  260  cd workshop/front/
+  261  ls
+  262  rm -rf node_modules/
+  263  cd ..
+  264  cd ..
+  265  docker exec -it workshopjs npm install yarn --global
+  266  docker ps
+  267  docker rm -f workshopjs
+  268  docker run -d -it --name workshopjs -v $PWD:/src -p 3000:3000 --workdir /src/workshop/front node:8 bash
+  269  docker exec -it workshopjs npm install yarn --global
+  270  cd ..
+  271  rm -rf django-react-workshop/
+  272  docker rm -f workshop
+  273  docker rm -f workshopjs
+  274  git clone https://gitlab.com/FedeG/django-react-workshop.git
+  275  cd django-react-workshop/
+  276  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  277  docker exec -it workshop pip install -r requirements.txt
+  278  docker exec -it workshop pip install -r requirements.txt
+  279  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  280  docker exec -it workshop pip install -r requirements.txt
+  281  docker rm -f workshop/
+  282  docker volume ls
+  283  docker volume ls | grep workshop | q
+  284  docker volume ls | grep workshop 
+  285  docker volume ls -a | grep workshop 
+  286  docker volume prune
+  287  docker run -d -it --name workshop -v $PWD:/src -p 8000:8000 --workdir /src python:3.6 bash
+  288  docker exec -it workshop pip install -r requirements.txt
+  289  docker exec -it workshop pip install -r requirements-dev.txt
+  290  docker run -d -it --name workshopjs -v $PWD:/src -p 3000:3000 --workdir /src/workshop/front node:8 bash
+  291  docker exec -it workshopjs npm install yarn --global
+  292  ls
+  293  code .
+  294  docker run -d -it --name workshopjs -v $PWD:/src -p 3000:3000 --workdir /src/workshop/front node:8 bash
+  295  docker rm -f 021de160418870de4a1d6d4cd3b7fc6b94d65bc2ccc536f1b26bb35936c61d67
+  296  docker run -d -it --name workshopjs -v $PWD:/src -p 3000:3000 --workdir /src/workshop/front node:8 bash
+  297  docker exec -it workshopjs npm install yarn --global
+  298  docker exec -it workshopjs yarn install
+  299  docker ps
+  300  docker restart workshop
+  301  docker restart workshopjs
+  302  docker exec -it workshop ./workshop/manage.py runserver 0.0.0.0:8000
+  303  docker exec -it workshop ./workshop/manage.py runserver 0.0.0.0:8000
+  304  docker exec -it workshop ./workshop/manage.py runserver migrate
+  305  docker exec -it workshop ./workshop/manage.py migrate
+  306  cd ..
+  307  mkdir test_ddocker
+  308  rm =rf test_ddocker/
+  309  rm -rf test_ddocker/
+  310  mkadir test_docker
+  311  mkdir test_docker
+  312  cd test_docker
+  313  ls
+  314  docker container run nginx
+  315  docker ps -a
+  316  docker run --name nginx -p 80:80 nginxxx
+  317  docker run --name nginx -p 80:80 nginx
+  318  vim Dockerfile
+  319  vim Dockerfile
+  320  vim index.html
+  321  docker images
+  322  docker build -t simple-nginx
+  323  docker build -t simple-nginx .
+  324  docker images
+  325  docker run -it -p 8080:80 --rm --name simple-nginx-running-app simple-nginx
+  326  docker run -it -p 80:80 --rm --name simple-nginx-running-app simple-nginx
+  327  docker run -it -p 8080:80 --rm --name simple-nginx-running-app simple-nginx
+  328  ls
+  329  code .
+  330  ls
+  331  curl http:127.0.0.1
+  332  curl http://127.0.0.1
+  333  cd aws
+  334  ls
+  335  cd grindhoodinc/
+  336  ls
+  337  cd virginia/
+  338  l
+  339  ls
+  340  ssh -i gh-keys-prod.pem root@54.144.81.36
+  341  ssh -i "gh-keys-prod.pem" root@54.144.81.36
+  342  ssh -i "gh-keys-prod.pem" root@54.144.81.36
+  343  ssh -i "gh-keys-prod.pem" root@54.144.81.36
+  344  cd aws/grindhoodinc/virginia/
+  345  ls
+  346  ssh -i "gh-keys-prod.pem" root@54.144.81.36
+  347  ssh -i "gh-keys-prod.pem" ubuntu@54.144.81.36
+  348  docker build 
+  349  docker build --help
+  350  docker build -t react_sscpat:dev
+  351  docker build -t reactsscpat:dev
+  352  docker build -t reactsscpat:dev .
+  353  docker build -t reactsscpat:dev .
+  354  docker build -t reactsscpat:dev .
+  355  COPY package.json ./
+  356  COPY package-lock.json ./
+  357  docker build -t reactsscpat:dev .
+  358  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     sample:dev
+  359  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     react_sscpat:dev
+  360  docker images
+  361  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     reactsscpat:dev
+  362  docker build -t reactsscpat:dev .
+  363  docker images
+  364  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     reactsscpat:dev
+  365  docker ps
+  366  docker rm -f admiring_rosalind
+  367  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     reactsscpat:dev
+  368  docker rm -f admiring_rosalind
+  369  docker ps
+  370  docker -it charming_grothendieck bash
+  371  docker exec -it charming_grothendieck bash
+  372  docker ps
+  373  docker exec -it 630110ba1a40 bash
+  374  docker exec -it 630110ba1a40 bash
+  375  docker exec -ti 630110ba1a40 sh
+  376  docker stop charming_grothendieck
+  377  docker ps
+  378  docker up
+  379  docker images
+  380  docker ps -a
+  381  docker build -t reactsscpat:dev .
+  382  docker ps
+  383  docker ps -a
+  384  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     react_sscpat:dev
+  385  docker run     -itd     --rm     -v ${PWD}:/app     -v /app/node_modules     -p 3001:3000     -e CHOKIDAR_USEPOLLING=true     reactsscpat:dev
+  386  docker ps
+  387  docker rm -f  gifted_khorana
+  388  cd site1/
+  389  docker-compose build
+  390  lss
+  391  ls
+  392  docker-compose build
+  393  docker-compose build
+  394  docker-compose build
+  395  docker-compose build
+  396  docker-compose build
+  397  docker-compose build
+  398  docker-compose build
+  399  docker-compose build
+  400  docker-compose build
+  401  docker-compose build
+  402  docker-compose build
+  403  docker-compose build
+  404  docker-compose build
+  405  docker-compose build
+  406  docker image ls
+  407  docker image ls
+  408  docker-compose build
+  409  docker-compose up -d
+  410  docker-compose up -d
+  411  docker-compose build
+  412  docker-compose up -d
+  413  docker ps
+  414   cd ..
+  415  mkdir site2
+  416  cd site
+  417  cd site2
+  418  vim docker-compose.yml
+  419  vim index.html
+  420  docker-compose build
+  421  docker-compose up -d
+  422  docker ps 
+  423  cd ..
+  424  mkdir proxy
+  425  cd proxi
+  426  cd proxy
+  427  touch Dockerfile
+  428  touch backend-not-found.html
+  429  touch default.conf
+  430  touch docker-compose.yml
+  431  mkdir includes
+  432  mkdir ssl
+  433  cd includes/
+  434  ls
+  435  touch proxy.conf
+  436  touch ssl.conf
+  437  openssl
+  438  cd ..
+  439  ls
+  440  cd ssl/
+  441  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout site1.key -out site1.crt
+  442  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout site1.key -out site1.crt
+  443  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout site1.key -out site1.crt
+  444  LS
+  445  ls
+  446  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout site2.key -out site2.crt
+  447  vi /etc/hosts
+  448  sudo vi /etc/hosts
+  449  cd ..
+  450  cd ..
+  451  ls
+  452  cd proxy/
+  453  docker-compose build
+  454  docker-compose build
+  455  docker-compose build
+  456  docker-compose build
+  457  docker-compose build
+  458  docker-compose build
+  459  cd ..
+  460  docker ps
+  461  cd proxoi
+  462  cd proxi
+  463  cd proxy
+  464  docker ps
+  465  docker-compose build
+  466  docker-compose build
+  467  docker-compose build
+  468  docker-compose build
+  469  docker-compose build
+  470  docker-compose build
+  471  docker-compose up -d
+  472  docker-compose ps
+  473  docker ps
+  474  docker-compose ps
+  475  docker-compose up -d
+  476  docker ps -a
+  477  docker-compose up -d
+  478  docker ps -a
+  479  docker-compose up
+  480  cd ssl/
+  481  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout site2.key -out site2.crt
+  482  docker-compose up
+  483  docker-compose build
+  484  cd ..
+  485  docker-compose build
+  486  docker-compose up
+  487  docker ps
+  488  git status
+  489  git branch
+  490  docker ps -a
+  491  docker start xenodochial_buck
+  492  docker ps
+  493  docker ps xenodochial_buck
+  494  docker stop xenodochial_buck
+  495  docker-compose build
+  496  docker build ./
+  497  docker run -p 80:80 99881e39cb12
+  498  ssh fernando@192.168.1.5
+  499  docker ps
+  500  docker stop
+  501  docker stop 99881e39cb12
+  502  docker stop -f  99881e39cb12
+  503  docker rm -f 99881e39cb12
+  504  docker rm 99881e39cb12
+  505  docker rm -f brave_beaver
+  506  docker image ls
+  507  docker run reactsscpat
+  508  docker start reactsscpat
+  509  docker build
+  510  docker build --help
+  511  docker build -t sscpat_reactapp:latest
+  512  docker build -t sscpat_reactapp
+  513  docker build -t sscpatreactapp
+  514  history > log_cmd.txt
