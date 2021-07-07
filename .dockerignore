@@ -2,3 +2,5 @@
 !.coveragerc
 !.env
 !.pylintrc
+venv
+node_modules
