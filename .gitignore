@@ -339,3 +339,6 @@ sscpat/media/
 ### REACT js sscpatfront
 sscpatfront/node_modules
 sscpatfront/build
+
+### backups
+backups/
