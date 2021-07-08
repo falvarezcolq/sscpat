@@ -3,4 +3,5 @@
 !.env
 !.pylintrc
 venv
-node_modules
+sscpatfront/node_modules
+sscpatfront/build

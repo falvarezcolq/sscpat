@@ -6,6 +6,19 @@ volumes:
   production_traefik: {}
 
 services:
+  react:
+    build:
+      context: .
+      dockerfile: ./compose/production/react/Dockerfile
+    image: sscpat_production_react
+#    depends_on:
+#      - postgres
+#      - redis
+#    env_file:
+#      - ./.envs/.production/.django
+#      - ./.envs/.production/.postgres
+#    command: /start
+
   django: &django
     build:
       context: .
