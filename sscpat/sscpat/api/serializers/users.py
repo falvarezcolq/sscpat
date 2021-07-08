@@ -52,12 +52,6 @@ class UserModelSerializer(serializers.ModelSerializer):
 
 
 
-
-
-
-
-
-
 class UserSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

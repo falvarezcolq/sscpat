@@ -1,0 +1,673 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-08 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: sscpat/sscpat/admin.py:16
+msgid "Crendentials"
+msgstr "Credenciales"
+
+#: sscpat/sscpat/admin.py:18
+msgid "Personal info"
+msgstr "Informacion personal"
+
+#: sscpat/sscpat/admin.py:31
+msgid "Permissions"
+msgstr "Permisos"
+
+#: sscpat/sscpat/admin.py:36
+msgid "Important dates"
+msgstr "Control de fechas"
+
+#: sscpat/sscpat/admin.py:38
+msgid "Audit info"
+msgstr "Informacion de auditoría"
+
+#: sscpat/sscpat/api/serializers/tracingprogress.py:63
+#: sscpat/sscpat/api/serializers/tracingstudent.py:93
+msgid "the inscription project is not valid"
+msgstr "El proyecto inscrito no es válido"
+
+#: sscpat/sscpat/api/serializers/tracingprogressfile.py:46
+#: sscpat/sscpat/api/serializers/tracingstudentfile.py:48
+msgid "Cannot guess file type!"
+msgstr "No se puede deducir el tipo de archivo"
+
+#: sscpat/sscpat/api/serializers/tracingprogressfile.py:50
+#: sscpat/sscpat/api/serializers/tracingstudentfile.py:53
+msgid "Not accepted type file it must be a pdf format!"
+msgstr "Archivo no aceptado, el formato debe ser PDF"
+
+#: sscpat/sscpat/api/serializers/users.py:104
+msgid "Your current password is incorrect"
+msgstr "Tu contraseña actual es incorrecto"
+
+#: sscpat/sscpat/api/serializers/users.py:126
+msgid "User not valid"
+msgstr "Usuario no valido"
+
+#: sscpat/sscpat/api/serializers/users.py:133
+msgid "The username for user is not available"
+msgstr "El nombre de usuario no esta disponible"
+
+#: sscpat/sscpat/api/serializers/users.py:160
+msgid "No active account found with the given credentials"
+msgstr "Usuario o contraseña incorrectos"
+
+#: sscpat/sscpat/api/views/academicperiods.py:69
+#: sscpat/sscpat/api/views/institutions.py:70
+msgid ""
+"Some projects depends of this register, you can't delete until you delete "
+"all its dependencies"
+msgstr "Algunos proyectos depende de este registro, asegurese de eliminar los proyectos que dependen de este registro, para ser borrado"
+
+#: sscpat/sscpat/api/views/documents.py:70
+msgid ""
+"Some modalities depends of this register, you can't delete until you delete "
+"all its dependencies"
+msgstr "Existen modalidades de titulacion que depende de este registro, asegurese de eliminar cambiar la dependecia de este regitro, para borrar"
+
+#: sscpat/sscpat/api/views/modalities.py:209
+msgid ""
+"Some projects depends of this titulation modality, you can't delete until "
+"you delete all its dependencies"
+msgstr "Existem proyectos  que dependen de esta modalidad de titulación, no se puede borrar hasta eliminar sus dependencias"
+
+#: sscpat/sscpat/api/views/users.py:94
+msgid "password updated"
+msgstr "Contraseña actualizada"
+
+#: sscpat/sscpat/api/views/users.py:108
+msgid "Credentials Updated"
+msgstr "Credenciales actualizados"
+
+#: sscpat/sscpat/apps.py:7
+msgid "SSCPAT"
+msgstr ""
+
+#: sscpat/sscpat/models/academicperiods.py:15
+#: sscpat/sscpat/models/documents.py:24 sscpat/sscpat/models/file.py:23
+#: sscpat/sscpat/models/modalities.py:17 sscpat/sscpat/models/normative.py:18
+#: sscpat/sscpat/models/notificationtype.py:18
+#: sscpat/sscpat/models/tracingprogressfile.py:24
+#: sscpat/sscpat/models/tracingstudentfile.py:24
+msgid "title"
+msgstr "Titulo"
+
+#: sscpat/sscpat/models/academicperiods.py:16
+msgid "year"
+msgstr "Año"
+
+#: sscpat/sscpat/models/academicperiods.py:17
+msgid "semester"
+msgstr "Semestre"
+
+#: sscpat/sscpat/models/academicperiods.py:18
+msgid "Date initial"
+msgstr "Fecha de inicio"
+
+#: sscpat/sscpat/models/academicperiods.py:19
+msgid "Date end"
+msgstr "Fecha de finalización"
+
+#: sscpat/sscpat/models/academicprojets.py:15
+#: sscpat/sscpat/models/institutions.py:20
+msgid "name"
+msgstr "nombre"
+
+#: sscpat/sscpat/models/academicprojets.py:16
+#: sscpat/sscpat/models/documents.py:25 sscpat/sscpat/models/modalities.py:18
+#: sscpat/sscpat/models/tracingprogress.py:40
+#: sscpat/sscpat/models/tracingstudent.py:21
+msgid "description"
+msgstr "Descripción"
+
+#: sscpat/sscpat/models/documents.py:19
+msgid "Any moment"
+msgstr "Cualquier momento"
+
+#: sscpat/sscpat/models/documents.py:20
+msgid "At the end"
+msgstr "Al final"
+
+#: sscpat/sscpat/models/documents.py:21
+msgid "At the beginning"
+msgstr "En el inicio"
+
+#: sscpat/sscpat/models/documents.py:26
+msgid "time_send"
+msgstr "timpo de envío"
+
+#: sscpat/sscpat/models/file.py:24 sscpat/sscpat/models/normative.py:19
+#: sscpat/sscpat/models/tracingprogressfile.py:25
+#: sscpat/sscpat/models/tracingstudentfile.py:25
+msgid "format"
+msgstr "formato"
+
+#: sscpat/sscpat/models/file.py:25
+msgid "size"
+msgstr "tamaño"
+
+#: sscpat/sscpat/models/file.py:26 sscpat/sscpat/models/normative.py:20
+#: sscpat/sscpat/models/tracingprogressfile.py:26
+#: sscpat/sscpat/models/tracingstudentfile.py:26
+msgid "file path"
+msgstr "ruta"
+
+#: sscpat/sscpat/models/inscriptions.py:26
+msgid "under development "
+msgstr "bajo desarrollo"
+
+#: sscpat/sscpat/models/inscriptions.py:27
+#: sscpat/sscpat/models/tracingprogress.py:30 sscpat/sscpat/models/users.py:26
+msgid "Tutor"
+msgstr "Tutor"
+
+#: sscpat/sscpat/models/inscriptions.py:28 sscpat/sscpat/models/users.py:27
+msgid "external_tutor"
+msgstr "Tutor externo"
+
+#: sscpat/sscpat/models/inscriptions.py:35
+msgid "state"
+msgstr "Estado"
+
+#: sscpat/sscpat/models/inscriptions.py:40
+msgid "title of academic project"
+msgstr "Titulo del proyecto academico"
+
+#: sscpat/sscpat/models/inscriptions.py:41
+msgid "Description project"
+msgstr "Descripcion del proyecto"
+
+#: sscpat/sscpat/models/inscriptions.py:42
+msgid "date initial"
+msgstr "Fecha inicial"
+
+#: sscpat/sscpat/models/inscriptions.py:43
+msgid "date finalization"
+msgstr "Fecha de finalización"
+
+#: sscpat/sscpat/models/inscriptions.py:44
+msgid "date finalization old"
+msgstr "Fecha antigua de finalización"
+
+#: sscpat/sscpat/models/inscriptions.py:45
+msgid "date extended"
+msgstr "Fecha extendida"
+
+#: sscpat/sscpat/models/inscriptions.py:47
+#: sscpat/sscpat/models/modalityconfig.py:26
+msgid "month_duration"
+msgstr "Duracion en meses"
+
+#: sscpat/sscpat/models/inscriptions.py:48
+#: sscpat/sscpat/models/modalityconfig.py:27
+msgid "month_doration"
+msgstr ""
+
+#: sscpat/sscpat/models/inscriptions.py:49
+#: sscpat/sscpat/models/modalityconfig.py:28
+msgid "Has extention time"
+msgstr "Tiene extension de tiempo"
+
+#: sscpat/sscpat/models/inscriptions.py:50
+#: sscpat/sscpat/models/modalityconfig.py:29
+msgid "month extension"
+msgstr "Extension en meses"
+
+#: sscpat/sscpat/models/inscriptiontutors.py:21
+msgid "Internal tutor"
+msgstr "Tutor interno"
+
+#: sscpat/sscpat/models/inscriptiontutors.py:22
+#: sscpat/sscpat/models/tracingprogress.py:31
+msgid "External tutor"
+msgstr "Tutor externo"
+
+#: sscpat/sscpat/models/inscriptiontutors.py:27
+msgid "type tutor"
+msgstr "Tipo de tutor"
+
+#: sscpat/sscpat/models/institutions.py:21
+msgid "responsable"
+msgstr "Responsable "
+
+#: sscpat/sscpat/models/institutions.py:22 sscpat/sscpat/models/users.py:39
+#: sscpat/sscpat/models/users.py:40
+msgid "phone"
+msgstr "Telefono"
+
+#: sscpat/sscpat/models/institutions.py:23 sscpat/sscpat/models/users.py:41
+msgid "address"
+msgstr "Dirección"
+
+#: sscpat/sscpat/models/modalityconfig.py:25
+msgid "max author"
+msgstr "cantidad maxima de autores"
+
+#: sscpat/sscpat/models/modalityconfig.py:32
+msgid "has tutors"
+msgstr "Tiene tutor"
+
+#: sscpat/sscpat/models/modalityconfig.py:33
+msgid "has institution"
+msgstr "Tiene institución"
+
+#: sscpat/sscpat/models/modalityperiod.py:19
+msgid "file convocatory"
+msgstr "Archivo de convocatoria"
+
+#: sscpat/sscpat/models/notifications.py:33
+msgid "No thing"
+msgstr ""
+
+#: sscpat/sscpat/models/notifications.py:34
+msgid "Account created"
+msgstr "Cuenta creada"
+
+#: sscpat/sscpat/models/notifications.py:35
+msgid "Account add"
+msgstr "Cuenta agregada"
+
+#: sscpat/sscpat/models/notifications.py:36
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: sscpat/sscpat/models/notifications.py:37
+msgid "Project assigned"
+msgstr "Proyecto asignado"
+
+#: sscpat/sscpat/models/notifications.py:38
+msgid "progress uploaded"
+msgstr "Avance de proyecto subido"
+
+#: sscpat/sscpat/models/notifications.py:39
+msgid "review progress uploaded"
+msgstr "Revision del avance subido"
+
+#: sscpat/sscpat/models/notifications.py:40
+msgid "Institution report uploaded"
+msgstr "Reporte de la institucion subido"
+
+#: sscpat/sscpat/models/notificationtype.py:19
+msgid "message"
+msgstr "mensaje"
+
+#: sscpat/sscpat/models/tracingprogress.py:29
+msgid "Admin"
+msgstr ""
+
+#: sscpat/sscpat/models/tracingprogress.py:32
+msgid "institution report"
+msgstr ""
+
+#: sscpat/sscpat/models/tracingprogress.py:33
+msgid "Comment"
+msgstr ""
+
+#: sscpat/sscpat/models/tracingprogress.py:39
+msgid "type"
+msgstr ""
+
+#: sscpat/sscpat/models/tracingstudent.py:22
+msgid "progress number"
+msgstr ""
+
+#: sscpat/sscpat/models/tracingstudent.py:24
+msgid "is final document"
+msgstr ""
+
+#: sscpat/sscpat/models/userpictures.py:16
+msgid "current_profile picture"
+msgstr ""
+
+#: sscpat/sscpat/models/userpictures.py:17
+msgid " picture size large 1024x1024"
+msgstr ""
+
+#: sscpat/sscpat/models/userpictures.py:18
+msgid " picture size medium 400x400"
+msgstr ""
+
+#: sscpat/sscpat/models/userpictures.py:19
+msgid "picture size small 70x70"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:25
+msgid "Student"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:28
+msgid "admin"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:31
+msgid "last name 2"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:32
+msgid "Type"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:33
+msgid "CI"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:34
+msgid "RU"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:35
+msgid "ID_TUTOR"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:36
+msgid "Position"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:37
+msgid "academic_degree"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:38
+msgid "abbreviation"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:44
+msgid "email"
+msgstr ""
+
+#: sscpat/sscpat/models/users.py:47
+msgid "A user with  this email already exists."
+msgstr "¡Un usuario con este correo ya existe!"
+
+#: sscpat/sscpat/utils/exceptions.py:22
+msgid "Error request."
+msgstr "Error de solicitud"
+
+#: sscpat/templates/account/account_inactive.html:5
+#: sscpat/templates/account/account_inactive.html:8
+msgid "Account Inactive"
+msgstr "Cuenta inactiva"
+
+#: sscpat/templates/account/account_inactive.html:10
+msgid "This account is inactive."
+msgstr "Esta cuenta esta inactiva"
+
+#: sscpat/templates/account/email.html:7
+msgid "Account"
+msgstr "Cuenta"
+
+#: sscpat/templates/account/email.html:10
+msgid "E-mail Addresses"
+msgstr "Correo electrónico"
+
+#: sscpat/templates/account/email.html:13
+msgid "The following e-mail addresses are associated with your account:"
+msgstr ""
+
+#: sscpat/templates/account/email.html:27
+msgid "Verified"
+msgstr ""
+
+#: sscpat/templates/account/email.html:29
+msgid "Unverified"
+msgstr ""
+
+#: sscpat/templates/account/email.html:31
+msgid "Primary"
+msgstr ""
+
+#: sscpat/templates/account/email.html:37
+msgid "Make Primary"
+msgstr ""
+
+#: sscpat/templates/account/email.html:38
+msgid "Re-send Verification"
+msgstr ""
+
+#: sscpat/templates/account/email.html:39
+msgid "Remove"
+msgstr ""
+
+#: sscpat/templates/account/email.html:46
+msgid "Warning:"
+msgstr ""
+
+#: sscpat/templates/account/email.html:46
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+
+#: sscpat/templates/account/email.html:51
+msgid "Add E-mail Address"
+msgstr ""
+
+#: sscpat/templates/account/email.html:56
+msgid "Add E-mail"
+msgstr ""
+
+#: sscpat/templates/account/email.html:66
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr ""
+
+#: sscpat/templates/account/email_confirm.html:6
+#: sscpat/templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr ""
+
+#: sscpat/templates/account/email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: sscpat/templates/account/email_confirm.html:20
+msgid "Confirm"
+msgstr ""
+
+#: sscpat/templates/account/email_confirm.html:27
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: sscpat/templates/account/login.html:7 sscpat/templates/account/login.html:11
+#: sscpat/templates/account/login.html:44 sscpat/templates/base.html:68
+msgid "Sign In"
+msgstr ""
+
+#: sscpat/templates/account/login.html:16
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a>\n"
+"for a %(site_name)s account and sign in below:"
+msgstr ""
+
+#: sscpat/templates/account/login.html:26
+msgid "or"
+msgstr ""
+
+#: sscpat/templates/account/login.html:33
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"<a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+
+#: sscpat/templates/account/login.html:43
+msgid "Forgot Password?"
+msgstr ""
+
+#: sscpat/templates/account/logout.html:5
+#: sscpat/templates/account/logout.html:8
+#: sscpat/templates/account/logout.html:17 sscpat/templates/base.html:59
+msgid "Sign Out"
+msgstr ""
+
+#: sscpat/templates/account/logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr ""
+
+#: sscpat/templates/account/password_change.html:6
+#: sscpat/templates/account/password_change.html:9
+#: sscpat/templates/account/password_change.html:14
+#: sscpat/templates/account/password_reset_from_key.html:5
+#: sscpat/templates/account/password_reset_from_key.html:8
+#: sscpat/templates/account/password_reset_from_key_done.html:4
+#: sscpat/templates/account/password_reset_from_key_done.html:7
+msgid "Change Password"
+msgstr ""
+
+#: sscpat/templates/account/password_reset.html:7
+#: sscpat/templates/account/password_reset.html:11
+#: sscpat/templates/account/password_reset_done.html:6
+#: sscpat/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr ""
+
+#: sscpat/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: sscpat/templates/account/password_reset.html:21
+msgid "Reset My Password"
+msgstr ""
+
+#: sscpat/templates/account/password_reset.html:24
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: sscpat/templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: sscpat/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr ""
+
+#: sscpat/templates/account/password_reset_from_key.html:12
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: sscpat/templates/account/password_reset_from_key.html:18
+msgid "change password"
+msgstr ""
+
+#: sscpat/templates/account/password_reset_from_key.html:21
+#: sscpat/templates/account/password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr ""
+
+#: sscpat/templates/account/password_set.html:6
+#: sscpat/templates/account/password_set.html:9
+#: sscpat/templates/account/password_set.html:14
+msgid "Set Password"
+msgstr ""
+
+#: sscpat/templates/account/signup.html:6
+msgid "Signup"
+msgstr ""
+
+#: sscpat/templates/account/signup.html:9
+#: sscpat/templates/account/signup.html:19 sscpat/templates/base.html:64
+msgid "Sign Up"
+msgstr ""
+
+#: sscpat/templates/account/signup.html:11
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: sscpat/templates/account/signup_closed.html:5
+#: sscpat/templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr ""
+
+#: sscpat/templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed."
+msgstr ""
+
+#: sscpat/templates/account/verification_sent.html:5
+#: sscpat/templates/account/verification_sent.html:8
+#: sscpat/templates/account/verified_email_required.html:5
+#: sscpat/templates/account/verified_email_required.html:8
+msgid "Verify Your E-mail Address"
+msgstr ""
+
+#: sscpat/templates/account/verification_sent.html:10
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: sscpat/templates/account/verified_email_required.html:12
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+
+#: sscpat/templates/account/verified_email_required.html:16
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: sscpat/templates/account/verified_email_required.html:20
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+
+#: sscpat/templates/base.html:55
+msgid "My Profile"
+msgstr ""
+
+#: sscpat/users/apps.py:7
+msgid "Users"
+msgstr "Usuarios"
+
+#: sscpat/users/forms.py:16
+msgid "This username has already been taken."
+msgstr ""
+
+#: sscpat/users/models.py:9
+msgid "Name of User"
+msgstr ""
+
+#: sscpat/users/views.py:34
+msgid "Infos successfully updated"
+msgstr ""

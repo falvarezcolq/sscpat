@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+Grindhood
+
+Hi  {{ user.first_name }} {{ user.last_name }},
+You are ready to join the community for passionate people!
+All we need to do is make sure this is your email address.
+
+Verify your account, copy the follow link on your browser.
+
+{{ domain }}/api/v1/login/activate/{{ uid }}/{{ token }}/{{ language }}
+
+If you didn't create a Grindhood account, just delete this email and everithing will go to back to the way it was.
+
+{% endautoescape %}
