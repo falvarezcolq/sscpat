@@ -182,3 +182,26 @@ export const updateUserPassword = (credentials) => async (dispatch)=>{
         })
     return res
 }
+
+// Update user access
+
+export const updateUserAccess = (values) => async (dispatch) =>{
+    dispatch({type:MESSAGE_DEFAULT})
+    let config = await getAuthHeader()
+    const res = await axios
+        .post(Config.UpdateUserAccessApiUrl,values,config)
+        .then((res) => {
+            dispatch({
+                type:MESSAGE_SUCCESS,
+                payload:{detail:res.data.message}
+            });
+            return res.data
+          }).catch((err) =>{
+            return acceptErrors({
+                err:err,
+                dispatch:dispatch,
+                type:FORM_FAILED,
+            })
+        })
+    return res
+}

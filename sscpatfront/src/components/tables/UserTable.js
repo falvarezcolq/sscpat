@@ -152,7 +152,15 @@ class TutorTable extends React.Component {
                         <td>{getNameType(user.type)}</td>
                         <td>{new Date(user.created_at).toLocaleString()}</td>
                         <td>
-                          <Link to={Config.aUsersUrl+"/"+user.id} className="btn btn-sm btn-primary"> Editar</Link>
+                          <Link to={Config.aUsersUrl+"/"+user.id} className="" title="Editar información del usuario" style={{"paddingRight":"5px"}}> 
+                          <i class="material-icons">edit</i>
+                          </Link>
+
+                          <Link to={Config.aUsersUrl+"/"+user.id+"/password"} className={user.is_active ? "col-green" :"col-red"} title="Permiso de acceso al sistema"> 
+                            <i class="material-icons">security</i> 
+                            <span className="font-10"> {user.is_active ? "" : "Sin acceso"}</span>
+                          </Link>
+
                         </td>
                       </tr>
                     ))}

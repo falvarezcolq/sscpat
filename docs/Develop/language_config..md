@@ -17,7 +17,7 @@ Carpeta y archivos creados
 
 ```
 
-File django.po has the text to translate, you open this file and make this action
+File django.po has the text to translate, you should open this file and translate sentences
 
 ### Convert file django.po to binary for python interpreter
 ```
@@ -43,6 +43,7 @@ Comando en el entornos virtual
 >> python django-admin makemessages --locale es
 >> python django-admin compilemessages
 ```
+
 If we have a problem
 
 ```

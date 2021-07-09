@@ -1,4 +1,4 @@
-import React, { Component ,useEffect} from 'react';
+import React, { useEffect} from 'react';
 import { connect } from 'react-redux';
 import Config from "../../utils/Config";
 import { getNumberNotifications } from "../../actions/notifications";
@@ -9,10 +9,11 @@ const NotificationIcon = (props) => {
     const { notifications} = props
     useEffect(() => { 
         loadData();
+        // props.getNumberNotifications();
     }, []); 
     
     const loadData = async () => {
-        const res = await props.getNumberNotifications();
+        await props.getNumberNotifications();
     };
     
     return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { remove } from "../../actions/institutions";
+// import { remove } from "../../actions/institutions";
 
 const SelectForm = (props) => {
   const {
@@ -7,9 +7,9 @@ const SelectForm = (props) => {
     required,
     focus,
     value,
-    onBlur,
+    // onBlur,
     onChange,
-    onFocus,
+    // onFocus,
     touched,
     error,
     title,

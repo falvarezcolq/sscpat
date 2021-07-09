@@ -24,7 +24,7 @@ const FileComponent = (props) => {
                     : file.thumbnail
                 }
                 aria-hidden="true"
-                role="presentation"
+                alt="presentation"
                 data-mime-type="image/jpeg"
                 />
             </div>

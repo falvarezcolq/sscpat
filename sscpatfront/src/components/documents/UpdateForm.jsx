@@ -7,10 +7,10 @@ import SelectForm from "../../components/atoms/SelectForm";
  
 
 
-const initialValues = {  // data will be for ever strings
-  title: "",
-  description: "",
-};
+// const initialValues = {  // data will be for ever strings
+//   title: "",
+//   description: "",
+// };
 
 const validate = {
   title: {
@@ -38,7 +38,7 @@ const UpdateForm = (props) => {
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
     const value = type === "number" ? +newValue : newValue;
-    setValues({ ... values, [name]: value });
+    setValues({ ...values, [name]: value });
     const error = validateInput(name, value, validate[name]);
     setErrors({ ...errors, [name]: error });
   };

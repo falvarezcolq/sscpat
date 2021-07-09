@@ -3,12 +3,12 @@ import Spinner from "../atoms/Spinner";
 import { connect } from "react-redux";
 import { getInfo as get } from "../../actions/info";
 
-const initialValues = {
-  inscriptions: 0,
-  tutor: 0,
-  tracing_student: 0,
-  reviews_by_tutors: 0,
-};
+// const initialValues = {
+//   inscriptions: 0,
+//   tutor: 0,
+//   tracing_student: 0,
+//   reviews_by_tutors: 0,
+// };
 
 const Info = (props) => {
   const { info, get } = props;

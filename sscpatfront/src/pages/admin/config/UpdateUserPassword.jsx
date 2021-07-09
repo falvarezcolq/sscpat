@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import Alert from "../../../components/atoms/Alert";
 import UpdateUserPasswordForm from "../../../components/user/UpdateUserPasswordForm";
+import UpdateUserAccess from "../../../components/user/UpdateUserAccess";
 
 
 class UpdateUserPassword extends Component {
@@ -29,6 +30,8 @@ class UpdateUserPassword extends Component {
           </div>
         </div>
         <UpdateUserPasswordForm id={id} /> 
+
+        <UpdateUserAccess id={id}/>
       </section>
     );
   }

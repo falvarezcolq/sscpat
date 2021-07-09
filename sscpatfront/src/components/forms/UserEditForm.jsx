@@ -1,4 +1,4 @@
-import React, { useState,useParams,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 // import { addTutor, removeTutor, searchTutor } from "../../actions/tutors";
@@ -9,23 +9,23 @@ import Config from "../../utils/Config";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../../components/atoms/Spinner"
 
-const initialValues = {
-  username: "",
-  password: "",
-  type: "",
-  email: "",
-  first_name: "",
-  last_name: "",
-  last_name2: "",
-  CI: "",
-  RU: "",
-  ID_TUTOR: "",
-  position: "",
-  academic_degree: "",
-  abbreviation: "",
-  phone: "",
-  telf: "",
-};
+// const initialValues = {
+//   username: "",
+//   password: "",
+//   type: "",
+//   email: "",
+//   first_name: "",
+//   last_name: "",
+//   last_name2: "",
+//   CI: "",
+//   RU: "",
+//   ID_TUTOR: "",
+//   position: "",
+//   academic_degree: "",
+//   abbreviation: "",
+//   phone: "",
+//   telf: "",
+// };
 
 const validate = {
   username: {

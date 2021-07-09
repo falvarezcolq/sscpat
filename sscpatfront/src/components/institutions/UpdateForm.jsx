@@ -4,7 +4,7 @@ import { validateInput } from "../../utils/Validations";
 import { get,update} from "../../actions/institutions";
 import { useHistory } from "react-router-dom";
 import InputForm from "../atoms/InputForm";
-import {initialValues,validate } from "./states";
+import {validate } from "./states";
 import Spinner from "../atoms/Spinner";
 
 

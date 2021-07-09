@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { messageDefault } from "../../actions/messages";
 
 const AlertMessage = (props) => {
   const { messages, messageDefault } = props;
-
   const color = messages.color ? messages.color:'green';  
   const classNameAlert = "alert alert-dismissible  bg-"+color
   

@@ -1,5 +1,6 @@
 
 const initialRules={
+    is_boolean:false,
     is_required:false,
     integer:false,
     double:false,
@@ -30,6 +31,12 @@ export const validateInput = (fieldName, fieldValue,rules)=>{
     } 
 
     // console.log(`${fieldName} : ${typeof(fieldValue)} : ${fieldValue}`)
+
+    
+
+    if( state.is_boolean && typeof fieldValue !== "boolean"){
+      return `El valor no esta booleano`;
+    }
 
     fieldValue = ""+fieldValue;
 

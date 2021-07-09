@@ -44,12 +44,12 @@ const initialValues = {
 const validate = {
   title: {
     is_required: true,
-    max_length: 30,
+    max_length: 255,
     min_lenght: 2,
   },
   description: {
     is_required: false,
-    max_length: 1024,
+    max_length: 255,
   },
 };
 
@@ -65,8 +65,8 @@ const CreateForm = (props) => {
   const [uploadError, setUploadError] = useState(null);
 
   const [normatives, setNormatives] = useState([]);
-  const [modalityDocuments, setModalityDocuments] = useState([]);
-  const [inscriptionDocuments, setInscriptionDocuments] = useState([]);
+  // const [modalityDocuments, setModalityDocuments] = useState([]);
+  // const [inscriptionDocuments, setInscriptionDocuments] = useState([]);
 
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
@@ -689,7 +689,7 @@ const CreateForm = (props) => {
                       }
                     >
                       <label style={{ width: "80%" }} htmlFor="month_extension">
-                        month_extension
+                        Extensión de tiempo en meses
                       </label>
                       <input
                         type="number"

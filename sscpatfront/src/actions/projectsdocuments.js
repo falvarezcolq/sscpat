@@ -8,7 +8,7 @@ import {
   } from "./types";
 
 
-import {acceptErrors,acceptErrorsWhenIsDelete } from '../actions/messages';
+import { acceptErrors } from '../actions/messages';
 import Config from '../utils/Config';
 import {getAuthHeader } from  './headers';
 

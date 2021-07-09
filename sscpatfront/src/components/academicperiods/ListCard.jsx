@@ -3,40 +3,37 @@ import { connect } from "react-redux";
 import { list, remove } from "../../actions/academicsperiod";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
-
 import Modal from "../../components/atoms/Modal";
 import Spinner from "../atoms/Spinner";
+
+const initial_modal_data = {
+  title: "",
+  message: "",
+  cancel: null,
+  confirm: null,
+  accept: null,
+}
 
 const ListCard = (props) => {
   const { results } = props;
   const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState({
-    title: "",
-    message: "",
-    cancel: null,
-    confirm: null,
-    accept: null,
-  });
-  const [openModal, setOpenModal] = useState(false);
-  
   const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    loadTable();
-  }, []);
+  const [openModal, setOpenModal] = useState(false);
+  const [modal, setModal] = useState(initial_modal_data);
 
   const loadTable = async () => {
     await props.list();
     setLoading(false);
   };
 
+  useEffect(() => {
+    setLoading(true);
+    loadTable();
+  }, []);
+
   const deleteObj = async (obj) => {
     setIsDeleting(true);
     const res = await props.remove(obj.id);
-    console.log(res);
-    setIsDeleting(false);
-
     if (res) {
       setModal({
         title: "Restricción",
@@ -51,6 +48,7 @@ const ListCard = (props) => {
     } else {
       setOpenModal(false);
     }
+    setIsDeleting(false);
   };
 
   const removeObject = (id) => {
@@ -99,12 +97,11 @@ const ListCard = (props) => {
                 Periodo academico
                 <small>Indica el periodo que se esta trabajando</small>
               </h2>
-             
             </div>
 
             <div className="body">
               {loading ? (
-                <Spinner />
+                <div className="align-center"><Spinner /></div>
               ) : (
                 <div className="table-responsive">
                   {results.length === 0 ? (
@@ -205,8 +202,9 @@ const ListCard = (props) => {
               type="button"
               className="btn btn-success waves-effect"
               onClick={modal.confirm}
+              disabled={isDeleting}
             >
-              Confirmar
+              { isDeleting ? "Borrando..." : "Confirmar"}
             </button>
           )}
 

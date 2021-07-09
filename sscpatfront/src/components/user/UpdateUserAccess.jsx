@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
-import { getUser , updateUserPassword } from "../../actions/users";
+import { getUser , updateUserAccess } from "../../actions/users";
 import { useHistory } from "react-router-dom";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
+import RadioButton from "../atoms/RadioButton";
 
 const initialValues = {
   // data will be for ever strings
   user:0,
-  username: "",
-  new_password: "",
+  is_active: false,
 };
 
 const validate = {
-  username: {
-    is_required: true,
-    max_length: 60,
-    min_length: 5,
-  },
-  new_password: {
-    is_required: true,
-    max_length: 60,
-    min_length: 5,
+  is_active: {
+    is_boolean: true,
   },
 };
 
-const UpdateUserPasswordForm = (props) => {
+const UpdateUserAccess = (props) => {
   let user = props.results.find((user)=>user.id==props.id)
   const [values, setValues] = useState(null);
   const [errors, setErrors] = useState({});
@@ -35,25 +28,8 @@ const UpdateUserPasswordForm = (props) => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const onChange = (e) => {
-    const { name, value: newValue, type } = e.target;
-    const value = type === "number" ? +newValue : newValue;
-    setValues({ ...values, [name]: value });
-    const error = validateInput(name, value, validate[name]);
-    setErrors({ ...errors, [name]: error });
-  };
 
-  const onBlur = (e) => {
-    const { name, value } = e.target;
-    const error = validateInput(name, value, validate[name]);
-    setErrors({ ...errors, [name]: error });
-    setFocus({ ...focus, [name]: false });
-  };
 
-  const onFocus = (e) => {
-    setFocus({ ...focus, [e.target.name]: true });
-    setTouched({ ...touched, [e.target.name]: true });
-  };
 
   const formValidation = () => {
     const formValidate = Object.keys(values).reduce(
@@ -108,15 +84,16 @@ const UpdateUserPasswordForm = (props) => {
     setTouched(serverErrorValidate.touched);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmitAccess = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading(true); 
     formSubmit();
   };
 
   const formSubmit = async () => {
     if (formValidation()) {
-      const res = await props.updateUserPassword(values);
+      console.log("hrllo")
+      const res = await props.updateUserAccess(values);
       if (res) {
         if (!res.message){
           loadErrorForm(res);
@@ -131,9 +108,8 @@ const UpdateUserPasswordForm = (props) => {
     user = await props.getUser(id)
     setValues({
       user:user.id,
-      username:user.username,
-      new_password:"",
-      object:user
+      is_active:user.is_active,
+      object:user   
     })
   }
 
@@ -141,15 +117,18 @@ const UpdateUserPasswordForm = (props) => {
     if(user){
       setValues({
         user:user.id,
-        username:user.username,
-        new_password:"",
-        object:user,  
-      })
+        is_active:user.is_active,
+        object:user
+      })  
     }else{
       loadingData()
     }
   }, [])
 
+  const onChangeRadioButton = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: !values[name] });
+  };
 
 
   return (
@@ -157,76 +136,43 @@ const UpdateUserPasswordForm = (props) => {
       <div className="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2  col-md-8 col-lg-offset-3 col-lg-6">
         <div className="card">
           <div className="header">
-            <h2>Actualizar credenciales del Usuario: 
-              <strong>
+            <h2>Permiso de acceso al sistema: 
+             
               { values ? " "+values.object.first_name +" "+values.object.last_name +" "+values.object.last_name2 : "" }
-              </strong>
+              <small> Otorga o restringe acceso al sistema de un usuario</small>
             </h2>
           </div>
 
           <div className="body">
             { !values ? <div className="align-center" ><Spinner/></div>:
             
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmitAccess}>
               <div className="row">
-                <div className="col-lg-12">
-                  <div className="align-center bg-primary">
-                    <div className="color-name">Actualizar</div>
-                  </div>
-                </div>
+                
+                <div
+                  className="col-lg-12 col-md-12"
+                  style={{ marginBottom: "0" }}
+                >
+                  <RadioButton
+                    name="is_active"
+                    value={values.is_active}
+                    onChangeRadioButton={onChangeRadioButton}
+                  >
+                   Acceso del usuario al sistema
+                  </RadioButton>
 
-
-                <div className="col-md-12 col-lg-12">
-                  <InputForm
-                    type="username"
-                    name="username"
-                    required={true}
-                    focus={focus.username}
-                    placeholder="Nombre de usuario... "
-                    value={values.username}
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    touched={touched.username}
-                    error={errors.username}
-                    title="Nombre de usuario"
-                  />
-                </div>
-
-                <div className="col-md-12 col-lg-12">
-                  <InputForm
-                    type="password"
-                    name="new_password"
-                    required={true}
-                    focus={focus.new_password}
-                    placeholder="Contraseña nueva..."
-                    value={values.new_password}
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    touched={touched.new_password}
-                    error={errors.new_password}
-                    title="Contraseña  nueva"
-                  />
+                  {errors.is_active ?  errors.is_active :""}
                 </div>
                   <div className="col-md-12 col-lg-12 aling-center">
-                    <button
-                      type="button"
-                      className="btn btn-default "
-                      onClick={history.goBack}
-                    >Regresar
-                    </button>
                     <button
                       type="submit"
                       className="btn btn-primary pull-right"
                       disabled={loading}
                     >
-                      {loading ? 
-                      <>"Actualizando..." 
-                      </> : "Actualizar"}
+                      {loading ? "Guardando..." : "Guardar"}
                     </button>
                   </div>
-              </div>
+              </div>  
             </form>
             }
           </div>
@@ -237,12 +183,13 @@ const UpdateUserPasswordForm = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  results: state.users.results,
+  results: state.users.results ,
+  // object: state.documents.object
 });
 
 const mapDispatchToProps = {
-  updateUserPassword,
+  updateUserAccess,
   getUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserPasswordForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserAccess);

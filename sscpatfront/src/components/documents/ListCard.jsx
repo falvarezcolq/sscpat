@@ -205,7 +205,7 @@ const ListCard = (props) => {
               className="btn btn-success waves-effect"
               onClick={modal.confirm}
             >
-              Confirmar
+              {isDeleting ? "Eliminando...":"Confirmar"}
             </button>
           )}
 

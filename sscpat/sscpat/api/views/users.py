@@ -26,6 +26,7 @@ from sscpat.sscpat.api.serializers.users import (
     UpdatePasswordUserSerializer,
     TokenObtainPairSerializer, # login
     UserSignUpSerializer, # ResgisterUser
+    UpdateUserAccessSerializer
 )
 
 
@@ -106,6 +107,20 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer.save()
         response_data = {
             "message": _('Credentials Updated')
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+
+
+    @action(detail=False, methods=['post'])
+    def updateuseraccess(self, request):
+        """ User update password """
+        serializer = UpdateUserAccessSerializer(
+            data=request.data,
+            context={"user": request.user})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        response_data = {
+            "message": _('Access Updated')
         }
         return Response(response_data, status=status.HTTP_200_OK)
 

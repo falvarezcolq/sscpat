@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { connect , useSelector} from "react-redux";
+import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
 import { get,update} from "../../actions/academicsperiod";
 import { useHistory } from "react-router-dom";
 
 
 
-const initialValues = {  // data will be for ever strings
-  title: "",
-  year: "",
-  semester: "1",
-  date_init: "" ,
-  date_end: "" ,
-};
+// const initialValues = {  // data will be for ever strings
+//   title: "",
+//   year: "",
+//   semester: "1",
+//   date_init: "" ,
+//   date_end: "" ,
+// };
 
 const validate = {
   title: {
@@ -54,7 +54,7 @@ const UpdateForm = (props) => {
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
     const value = type === "number" ? +newValue : newValue;
-    setValues({ ... values, [name]: value });
+    setValues({ ...values, [name]: value });
     const error = validateInput(name, value, validate[name]);
     setErrors({ ...errors, [name]: error });
   };

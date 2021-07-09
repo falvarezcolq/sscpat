@@ -44,6 +44,7 @@ class UserModelSerializer(serializers.ModelSerializer):
             "phone",
             "telf",
             "address",
+            "is_active",
             "created_at",
 
     ]
@@ -149,6 +150,26 @@ class UpdatePasswordUserSerializer(serializers.Serializer):
         user.set_password(new_password)
         user.save()
 
+
+
+class UpdateUserAccessSerializer(serializers.Serializer):
+    """Logout serializer"""
+
+    user = serializers.IntegerField()
+    is_active  = serializers.BooleanField()
+
+    def validate_user(self, data):
+        self.user = User.objects.get(pk=data, active=True)
+        if self.user is None:
+            raise ValidationError(_('User not valid'))
+        return data
+
+    def save(self):
+        data = self.validated_data
+        user_id = data['user']
+        is_active = data['is_active']
+        self.user.is_active=is_active
+        self.user.save()
 
 
 
