@@ -6,11 +6,10 @@ import {
     FORM_NOT_LOADING,
     FORM_SUCCESS,
     GET_USERS,
-    // MESSAGE_DANGER,
+    DELETE_USER,
     MESSAGE_DEFAULT,
     MESSAGE_SUCCESS } from './types';
-import { acceptErrors } from './messages';
-
+import { acceptErrors, acceptErrorsWhenIsDelete } from './messages';
 import {getAuthHeader } from  './headers';
 
 
@@ -161,6 +160,8 @@ export const updatePassword = (credentials) => async (dispatch)=>{
     return res
 }
 
+
+
 // UPDATE USER 
 export const updateUserPassword = (credentials) => async (dispatch)=>{  
     dispatch({type:MESSAGE_DEFAULT})
@@ -184,7 +185,6 @@ export const updateUserPassword = (credentials) => async (dispatch)=>{
 }
 
 // Update user access
-
 export const updateUserAccess = (values) => async (dispatch) =>{
     dispatch({type:MESSAGE_DEFAULT})
     let config = await getAuthHeader()
@@ -205,3 +205,31 @@ export const updateUserAccess = (values) => async (dispatch) =>{
         })
     return res
 }
+
+
+// REMOVE USER
+export const removeUser = (id) => async(dispatch) =>{
+    
+    dispatch({type:MESSAGE_DEFAULT})
+    const config = await getAuthHeader()
+    const res = await axios
+        .delete(Config.UserApiUrl+id+"/",config)
+        .then((res) => {
+          dispatch({
+              type:MESSAGE_SUCCESS,
+              payload:{ detail: `El usuario fue borrado con exito` }
+          })
+          dispatch({
+            type:DELETE_USER,
+            payload:id
+          })    
+        }).catch((err)=>{
+            console.log(err)
+            return acceptErrorsWhenIsDelete({
+              err:err,
+              dispatch:dispatch,
+              type:FORM_FAILED,
+            })
+        })
+    return res
+    }

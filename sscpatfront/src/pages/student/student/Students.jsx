@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Alert from "../../../components/atoms/Alert";
 import StudentTable from "../../../components/tables/StudentTable";
-
+import AlertMessage from "../../../components/atoms/AlertMessage";
 class Students extends Component {
 
 //   static propTypes = {
@@ -16,11 +16,7 @@ class Students extends Component {
     
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+       <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">
@@ -41,14 +37,7 @@ class Students extends Component {
              <div className="body"> 
                <StudentTable/>
             
-                {messages.payload && messages.payload.detail ? (
-                  <Alert
-                    message={messages.payload.detail}
-                    color={messages.color}
-                  />
-                ) : (
-                  ""
-                )}
+                <AlertMessage/>
               </div>
             </div>
           </div>

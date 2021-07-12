@@ -112,7 +112,6 @@ class InscriptionViewSet(mixins.CreateModelMixin,
     def perform_create(self, serializer):
         data = self.request.data
         user = self.request.user
-
         instance = serializer.save()
         assign_project_notification(inscription_id=instance.id,user_action_id=user.id)
 
@@ -197,6 +196,15 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                 except Tutor.DoesNotExist:
                     pass
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # if instance :
+        #     return Response({'detail': _(
+        #         "Some modalities depends of this register, you can't delete until you delete all its dependencies")},
+        #                     status=status.HTTP_400_BAD_REQUEST)
+
+        self.perform_destroy(instance, request.user)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
     @action(detail=True,methods=["GET"])

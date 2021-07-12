@@ -126,7 +126,6 @@ const ListCard = (props) => {
                             <th>Descripcion</th>
                             <th>Tiempo de entrega</th>
                             <th>Registrado</th>
-                           
                             <th>Opciones</th>
                           </tr>
                         </thead>

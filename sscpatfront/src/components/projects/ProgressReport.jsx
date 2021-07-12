@@ -12,10 +12,10 @@ import {
 } from "../../actions/helper";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
-import HeaderDropdown from "../../components/atoms/HeaderDropdown";
+// import HeaderDropdown from "../../components/atoms/HeaderDropdown";
 import Modal from "../../components/atoms/Modal";
 import ProgressUpdateForm from "./ProgresUpdateForm";
-import tracingprogress from "../../store/reducers/tracingprogress";
+// import tracingprogress from "../../store/reducers/tracingprogress";
 import TextCheck from "../../components/atoms/TextCheck";
 
 const ProgresCard = (props) => {

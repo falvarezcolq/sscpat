@@ -29,8 +29,9 @@ class UserAdmin(auth_admin.UserAdmin):
                                          "telf"
                                          )}),
         (_('Permissions'), {
-            'fields': ('is_active', 'is_staff', 'is_superuser'
+            'fields': ('is_active', 'is_staff', 'is_superuser',
                        # , 'groups', 'user_permissions'
+                       'active'
                        ),
         }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined',)}),
@@ -78,6 +79,14 @@ class DocumentAdmin(AdminModelConfig):
 class ModalityAdmin(AdminModelConfig):
     readonly_fields = ["created_at", "updated_at", "deleted_at",
                        "created_by", "updated_by", "deleted_by", ]
+
+
+
+@admin.register(Inscription)
+class ModalityAdmin(AdminModelConfig):
+    readonly_fields = ["created_at", "updated_at", "deleted_at",
+                       "created_by", "updated_by", "deleted_by", ]
+
 # @admin.register(Species)
 # class SpeciesAdmin(admin.ModelAdmin):
 #     pass

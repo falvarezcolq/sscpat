@@ -1,6 +1,6 @@
 
 import React from "react";
-import AuthHandler from "./AuthHandler";
+// import AuthHandler from "./AuthHandler";
 import Config from "./Config";
 import PrivateRoute from "./PrivateRoute";
 import HomeComponent from "../pages/admin/HomeComponent";

@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
 import ListCard from "../../../components/documents/ListCard";
-// import CreateForm from "../../../components/documents/CreateForm";
-
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 
 class Documents extends Component {
@@ -24,13 +21,8 @@ class Documents extends Component {
         
         {/* <CreateForm /> */}
 
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
-
         
+        <AlertMessage/>
         <ListCard />
    
       </section>

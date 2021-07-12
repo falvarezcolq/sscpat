@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
 import { getUser , updateUserAccess } from "../../actions/users";
 import { useHistory } from "react-router-dom";
-import InputForm from "../atoms/InputForm";
+// import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
 import RadioButton from "../atoms/RadioButton";
 

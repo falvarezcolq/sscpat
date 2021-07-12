@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 15:34+0000\n"
+"POT-Creation-Date: 2021-07-09 22:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,11 @@ msgstr "Informacion personal"
 msgid "Permissions"
 msgstr "Permisos"
 
-#: sscpat/sscpat/admin.py:36
+#: sscpat/sscpat/admin.py:37
 msgid "Important dates"
 msgstr "Control de fechas"
 
-#: sscpat/sscpat/admin.py:38
+#: sscpat/sscpat/admin.py:39
 msgid "Audit info"
 msgstr "Informacion de auditoría"
 
@@ -53,19 +53,20 @@ msgstr "No se puede deducir el tipo de archivo"
 msgid "Not accepted type file it must be a pdf format!"
 msgstr "Archivo no aceptado, el formato debe ser PDF"
 
-#: sscpat/sscpat/api/serializers/users.py:104
+#: sscpat/sscpat/api/serializers/users.py:105
 msgid "Your current password is incorrect"
 msgstr "Tu contraseña actual es incorrecto"
 
-#: sscpat/sscpat/api/serializers/users.py:126
+#: sscpat/sscpat/api/serializers/users.py:127
+#: sscpat/sscpat/api/serializers/users.py:164
 msgid "User not valid"
 msgstr "Usuario no valido"
 
-#: sscpat/sscpat/api/serializers/users.py:133
+#: sscpat/sscpat/api/serializers/users.py:134
 msgid "The username for user is not available"
 msgstr "El nombre de usuario no esta disponible"
 
-#: sscpat/sscpat/api/serializers/users.py:160
+#: sscpat/sscpat/api/serializers/users.py:181
 msgid "No active account found with the given credentials"
 msgstr "Usuario o contraseña incorrectos"
 
@@ -74,27 +75,49 @@ msgstr "Usuario o contraseña incorrectos"
 msgid ""
 "Some projects depends of this register, you can't delete until you delete "
 "all its dependencies"
-msgstr "Algunos proyectos depende de este registro, asegurese de eliminar los proyectos que dependen de este registro, para ser borrado"
+msgstr ""
+"Algunos proyectos depende de este registro, asegurese de eliminar los "
+"proyectos que dependen de este registro, para ser borrado"
 
 #: sscpat/sscpat/api/views/documents.py:70
 msgid ""
 "Some modalities depends of this register, you can't delete until you delete "
 "all its dependencies"
-msgstr "Existen modalidades de titulacion que depende de este registro, asegurese de eliminar cambiar la dependecia de este regitro, para borrar"
+msgstr ""
+"Existen modalidades de titulacion que depende de este registro, asegurese de "
+"eliminar cambiar la dependecia de este regitro, para borrar"
 
 #: sscpat/sscpat/api/views/modalities.py:209
 msgid ""
 "Some projects depends of this titulation modality, you can't delete until "
 "you delete all its dependencies"
-msgstr "Existem proyectos  que dependen de esta modalidad de titulación, no se puede borrar hasta eliminar sus dependencias"
+msgstr ""
+"Existem proyectos  que dependen de esta modalidad de titulación, no se puede "
+"borrar hasta eliminar sus dependencias"
 
-#: sscpat/sscpat/api/views/users.py:94
+#: sscpat/sscpat/api/views/users.py:97
 msgid "password updated"
 msgstr "Contraseña actualizada"
 
-#: sscpat/sscpat/api/views/users.py:108
+#: sscpat/sscpat/api/views/users.py:111
 msgid "Credentials Updated"
 msgstr "Credenciales actualizados"
+
+#: sscpat/sscpat/api/views/users.py:125
+#, fuzzy
+#| msgid "Credentials Updated"
+msgid "Access Updated"
+msgstr "Credenciales actualizados"
+
+#: sscpat/sscpat/api/views/users.py:134
+msgid "You cant delete your own accont"
+msgstr "Usted no puede borrar su propia cuenta por seguridad, contancte al encargado de sistemas, por algun problema.   "
+
+#: sscpat/sscpat/api/views/users.py:139 sscpat/sscpat/api/views/users.py:145
+#: sscpat/sscpat/api/views/users.py:151
+msgid ""
+"You cant delete this user, because he have some projects that depends on it"
+msgstr "No se puede borrar el usuario, el tiene proyectos que dependen de el"
 
 #: sscpat/sscpat/apps.py:7
 msgid "SSCPAT"

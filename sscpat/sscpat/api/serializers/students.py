@@ -1,5 +1,4 @@
 """User Serializer"""
-
 # Django
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate
@@ -15,8 +14,6 @@ from sscpat.sscpat.models import Student,Inscription
 
 # Serializer
 from sscpat.sscpat.api.serializers.inscriptions import InscriptionModelSerializer,InscriptionStatiticsModelSerializer
-
-
 
 # utlis
 # from datetime import timedelta
@@ -49,7 +46,6 @@ class StudentModelSerializer(ModelSerializer):
 
 
 class StudentListModelSerializer(ModelSerializer):
-
     current_project = SerializerMethodField()
     state_project = SerializerMethodField()
     progress_project = SerializerMethodField()
@@ -57,22 +53,22 @@ class StudentListModelSerializer(ModelSerializer):
     total_current = SerializerMethodField()
 
     def get_current_project(self,student):
-        inscription = student.projects.filter(state=Inscription.UNDER_DEVELOPMENT).last()
+        inscription = student.projects.filter(state=Inscription.UNDER_DEVELOPMENT,active=True).last()
         if inscription:
             return InscriptionStatiticsModelSerializer(inscription).data
         return None
 
-
     def get_state_project(self,student):
         return 0
+
     def get_progress_project(self,student):
         return 0
+
     def get_total(self,student):
-        return student.projects.count()
+        return student.projects.filter(active=True).count()
 
     def get_total_current(self,obj):
         return 0
-
 
     class Meta:
         model = Student
@@ -93,14 +89,12 @@ class StudentListModelSerializer(ModelSerializer):
             "telf",
             "created_at",
             "type",
-
             "current_project",
             "state_project",
             "progress_project",
             "total",
             "total_current",
         ]
-
 
 class StudentMinimalListModelSerializer(ModelSerializer):
 
@@ -114,12 +108,3 @@ class StudentMinimalListModelSerializer(ModelSerializer):
             "CI",
             "RU",
         ]
-
-
-
-
-
-
-
-
-

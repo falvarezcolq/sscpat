@@ -71,7 +71,7 @@ class StudentManager(models.Manager):
         return super().get_queryset(*args,**kwargs).filter(type=User.STUDENT)
 
 class Student(User):
-    objects = StudentManager()s
+    objects = StudentManager()
     class Meta:
         proxy=True
 

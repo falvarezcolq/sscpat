@@ -42,18 +42,20 @@ from sscpat.sscpat.actions.notifications import  create_welcome_notification
 
 from sscpat.sscpat.pagination import CustomPagination
 
-User = get_user_model()
 
+from sscpat.sscpat.models.users import User
+from sscpat.sscpat.models.inscriptions import Inscription
+from django.utils import timezone
 
 class UserViewSet(mixins.RetrieveModelMixin,
                   mixins.ListModelMixin,
                   mixins.UpdateModelMixin,
+                  mixins.DestroyModelMixin,
                   viewsets.GenericViewSet):
     """User viewset """
     queryset =  User.objects.filter(active=True)
     serializer_class = UserModelSerializer
     pagination_class = CustomPagination
-
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
     ordering = ('last_name',)
     ordering_fields = ('last_name', 'created_at')
@@ -63,7 +65,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
     def get_permissions(self):
         """Assign permissions based on action."""
         print(self.action)
-        if self.action in ['signup', 'updateuserpassword','list']:
+        if self.action in ['signup', 'updateuserpassword','list','updateuseraccess','destroy']:
             permissions = [IsAuthenticated,IsAccountAdmin,]
 
         elif self.action in ['updatepassword']:
@@ -123,6 +125,43 @@ class UserViewSet(mixins.RetrieveModelMixin,
             "message": _('Access Updated')
         }
         return Response(response_data, status=status.HTTP_200_OK)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        if instance == request.user:
+            return Response({'detail': _(
+                "You cant delete your own accont")},
+                status=status.HTTP_400_BAD_REQUEST)
+
+        if instance.projects.filter(active=True).count() > 0:
+            return Response({'detail': _(
+                "You cant delete this user, "
+                "because he have some projects that depends on it")},
+                status=status.HTTP_400_BAD_REQUEST)
+
+        if Inscription.objects.filter(tutors=instance.id,active=True).count() > 0:
+            return Response({'detail': _(
+                "You cant delete this user, "
+                "because he have some projects that depends on it")},
+                status=status.HTTP_400_BAD_REQUEST)
+
+        if Inscription.objects.filter(external_tutors=instance.id, active=True).count() > 0:
+            return Response({'detail': _(
+                "You cant delete this user, "
+                "because he have some projects that depends on it")},
+                status=status.HTTP_400_BAD_REQUEST)
+
+
+        self.perform_destroy(instance, request.user)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def perform_destroy(self, instance, user):
+        instance.active = False
+        instance.deleted_at = timezone.now()
+        instance.deleted_by = user.id
+        instance.is_active=False
+        instance.save()
 
 
 

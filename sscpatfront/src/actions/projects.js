@@ -46,7 +46,7 @@ export const add = (obj) => async (dispatch) => {
   return res;
 };
 
-// Remove tutor
+// Remove  PROJECT
 export const remove = (id) => async (dispatch) => {
   dispatch({ type: MESSAGE_DEFAULT });
   const config = await getAuthHeader();
@@ -228,3 +228,6 @@ export const getDocuments = (id) => async (dispatch) => {
     });
   return res;
 };
+
+
+

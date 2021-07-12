@@ -4,7 +4,7 @@ import { list } from "../../actions/projects";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 import { validateInput } from "../../utils/Validations";
-import Modal from "../../components/atoms/Modal";
+// import Modal from "../../components/atoms/Modal";
 import { LabelStatus } from "../../components/atoms/LabelStatus";
 import InputForm from "../atoms/InputForm";
 import SelectForm from "../atoms/SelectForm";
@@ -30,21 +30,21 @@ const validate = {
   },
 };
 
-const modalValues = {
-  title: "",
-  message: "",
-  cancel: null,
-  confirm: null,
-  accept: null,
-};
+// const modalValues = {
+//   title: "",
+//   message: "",
+//   cancel: null,
+//   confirm: null,
+//   accept: null,
+// };
 
 const ListCard = (props) => {
   const url = Config.ProjectsApiUrl;
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [openModal, setOpenModal] = useState(false);
-  const [modal, setModal] = useState(modalValues);
-  const [isDeleting, setIsDeleting] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [modal, setModal] = useState(modalValues);
+  // const [isDeleting, setIsDeleting] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const ListCard = (props) => {
   };
 
   const percentBar = (progress) => {
-    const percentage = progress > 12 ? 100 : progress == 0 ? 10 : (progress / 12) * 100;
+    const percentage = progress > 12 ? 100 : progress === 0 ? 10 : (progress / 12) * 100;
 
     return (
       <>
@@ -134,7 +134,7 @@ const ListCard = (props) => {
         >
           <div
             className={
-              progress == 0 ? "progress-bar bg-orange" : "progress-bar bg-green"
+              progress === 0 ? "progress-bar bg-orange" : "progress-bar bg-green"
             }
             style={{ width: percentage + "%" }}
           >
@@ -331,7 +331,7 @@ const ListCard = (props) => {
         </div>
       </div>
 
-      <Modal open={openModal}>
+      {/* <Modal open={openModal}>
         <div className="modal-header">
           <h4 className="modal-title" id="defaultModalLabel">
             {modal.title}
@@ -369,8 +369,8 @@ const ListCard = (props) => {
             </button>
           )}
         </div>
-      </Modal>
-    </>
+      </Modal> */}
+    </> 
   );
 };
 

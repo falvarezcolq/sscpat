@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { list , listAdd, notificationsWereRead } from "../../actions/notifications";
-import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
-
-import NavPagination from "../tables/NavPagination";
 import Spinner from "../atoms/Spinner";
 import NotificationText from "./NotificationText";
 import { getDateTime } from "../../actions/helper";
@@ -14,25 +11,12 @@ const initialValues = {
   size: 20,
 };
 
-const validate = {
-  search: {
-    max_length: 50,
-  },
-  size: {
-    integer: true,
-    max_integer: 100,
-    min_integer: 1,
-  },
-};
-
-
-
 const ListCard = (props) => {
 
   const {notifications} = props
   const url = Config.NotificationApiUrl;
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});s
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -41,7 +25,6 @@ const ListCard = (props) => {
   }, []);
 
   const loadData = async () => {
-    console.log(values);
     await props.list(url, values);
     setLoading(false);
     await props.notificationsWereRead();
@@ -53,12 +36,12 @@ const ListCard = (props) => {
     setLoading(false);
   };
  
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (Object.values(errors).every((t) => t === null)) {
-      props.list(url, values);
-    }
-  };
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (Object.values(errors).every((t) => t === null)) {
+  //     props.list(url, values);
+  //   }
+  // };
 
   const loadMoreNotifications = async ()=>{
     setLoading(true);

@@ -127,7 +127,6 @@ body {
   /* padding: 10px; */
 }
 
-
 .file-link{
   text-decoration: none;
   outline: none;
@@ -190,4 +189,18 @@ body {
 
 .notification-link{
   width: 100%;
+}
+
+.item-link{
+  padding: 7px 18px;
+  color: #666;
+  transition: all 0.5s;
+  font-size: 14px;
+  line-height: 25px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.item-link:hover{
+ background-color: #eee ;
 }

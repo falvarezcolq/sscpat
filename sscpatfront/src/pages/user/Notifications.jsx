@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import Alert from "../../components/atoms/Alert";
-import UpdatePasswordForm from "../../components/user/UpdatePasswordForm";
+// import Alert from "../../components/atoms/Alert";
+// import UpdatePasswordForm from "../../components/user/UpdatePasswordForm";
 import AlertMessage from "../../components/atoms/AlertMessage";
 import ListCard from "../../components/notifications/ListCard";
 

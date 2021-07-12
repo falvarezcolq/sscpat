@@ -87,7 +87,7 @@ const CreateForm = (props) => {
   };
 
   const onChangeRadioButton = (e) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     setValues({ ...values, [name]: !values[name] });
   };
 
@@ -111,7 +111,7 @@ const CreateForm = (props) => {
   };
   /** Remove files on list files */
   const removeFile = (name) => {
-    setNormatives(normatives.filter((f) => f.name != name));
+    setNormatives(normatives.filter((f) => f.name !== name));
   };
 
   const formValidation = () => {
@@ -404,6 +404,8 @@ const CreateForm = (props) => {
                           <i className="material-icons">attach_file</i>  Subir archivo
                         </span>
                       </label>
+                      <br />
+                      {uploadError && (  <span className="col-red"> {uploadError}</span>)}
                     </div>
 
                     {normatives.map((file, index) => (

@@ -3,26 +3,26 @@ import { connect } from "react-redux";
 import { getDocuments } from "../../actions/projects";
 import {addFile} from "../../actions/projectsdocuments";
 import Spinner from "../atoms/Spinner";
-import pdf_image from "../../img/pdf_icon.png";
+// import pdf_image from "../../img/pdf/_icon.png";
 
 import {
   getDateTime,
   getDate,
-  getTypeTracing,
-  getTypeFile,
-  getNameMonth,
+  // getTypeTracing,
+  // getTypeFile,
+  // getNameMonth,
 } from "../../actions/helper";
-import { Link } from "react-router-dom";
-import Config from "../../utils/Config";
-import HeaderDropdown from "../../components/atoms/HeaderDropdown";
+// import { Link } from "react-router-dom";
+// import Config from "../../utils/Config";
+// import HeaderDropdown from "../../components/atoms/HeaderDropdown";
 import Modal from "../../components/atoms/Modal";
 import ProgressUpdateForm from "./ProgresUpdateForm";
-import tracingprogress from "../../store/reducers/tracingprogress";
+// import tracingprogress from "../../store/reducers/tracingprogress";
 import TextCheck from "../../components/atoms/TextCheck";
-import { get } from "../../actions/documents";
-import FileComponent from "../atoms/FileComponent";
+// import { get } from "../../actions/documents";
+// import FileComponent from "../atoms/FileComponent";
 import UploadFileForm from "../projectsdocument/UploadFileForm";
-import Test from "../atoms/Test";
+// import Test from "../atoms/Test";
 
 const ProjectDocumentsDetail = (props) => {
   const { project_id, documents,initialDocuments ,addFile } = props;

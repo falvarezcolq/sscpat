@@ -68,8 +68,7 @@ const UpdateForm = (props) => {
   const [normatives, setNormatives] = useState([]);
   const [files,setFiles]=useState([]);
   const [deleted, setDeleted]=useState([]);
-  const [modalityDocuments, setModalityDocuments] = useState([]);
-  const [inscriptionDocuments, setInscriptionDocuments] = useState([]);
+
 
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
@@ -88,7 +87,7 @@ const UpdateForm = (props) => {
   };
 
   const onChangeRadioButton = (e) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     setValues({ ...values, [name]: !values[name] });
   };
 
@@ -100,7 +99,7 @@ const UpdateForm = (props) => {
 
 
   const uploadFile = (e) => {
-    const file = e.target.  files[0];
+    const file = e.target.files[0];
     console.log(file);
     if (file) {
       if ("application/pdf" === file.type) {
@@ -114,11 +113,11 @@ const UpdateForm = (props) => {
   };
   /** Remove files on list files */
   const removeFile = (name) => {
-    setNormatives(normatives.filter((f) => f.name != name));
+    setNormatives(normatives.filter((f) => f.name !== name));
   };
 
   const removeFileOnFiles = (id) => {
-    setFiles(files.filter((f) => f.id != id));
+    setFiles(files.filter((f) => f.id !== id));
     setDeleted([...deleted,id])
   };
 
@@ -416,6 +415,8 @@ const UpdateForm = (props) => {
                           <i className="material-icons">attach_file</i>  Subir archivo
                         </span>
                       </label>
+                      <br />
+                      {uploadError && (  <span className="col-red"> {uploadError}</span>)}
                     </div>
 
                     {files.map((file, index) => (

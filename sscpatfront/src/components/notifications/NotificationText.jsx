@@ -3,19 +3,19 @@ import { getNameMonth } from "../../actions/helper";
 import Config from "../../utils/Config";
 import {Link} from "react-router-dom";
 
-const NOTHING = "0";
-const ACCOUNT_CREATED = "1";
-const ACCOUNT_ADD = "2";
+// const NOTHING = "0";
+// const ACCOUNT_CREATED = "1";
+// const ACCOUNT_ADD = "2";
 const WELCOME = "3";
 const PROJECT_ASSIGNED = "4";
 const PROJECT_ASSIGNED_TO_TUTOR = "5";
 const PROGRESS_PROJECT_UPLOADED = "6";
 const TRACING_PROGRESS_UPLOADED = "7";
-const INSTITUTION_REPORT_UPLOADED = "8";
+// const INSTITUTION_REPORT_UPLOADED = "8";
 
-const ADMIN = "ADMIN";
+// const ADMIN = "ADMIN";
 const INTERNAL_TUTOR = "INTERNAL_TUTOR";
-const EXTERNAL_TUTOR = "EXTERNAL_TUTOR";
+// const EXTERNAL_TUTOR = "EXTERNAL_TUTOR";
 const INSTITUTION_REPORT = "INSTITUTION_REPORT";
 const COMMENT = "COMMENT";
 
@@ -27,8 +27,8 @@ const NotificationText = (props) => {
     inscription,
     tracing_student,
     tracing_progress,
-    format,
-    is_read,
+    // format,
+    // is_read,
   } = notification;
 
   const name_user = (
@@ -81,23 +81,23 @@ const NotificationText = (props) => {
       );
 
     case TRACING_PROGRESS_UPLOADED:
-      if (tracing_progress.typetracing == COMMENT) {
+      if (tracing_progress.typetracing === COMMENT) {
         return ( <Link  to={Config.aProgressUrl +"/"+ tracing_student.id } className="notification-link">
         
                 <strong>{name_user_action}</strong> ha comentado el avance del proyecto <strong>{inscription.title_academic_project}</strong>
                 </Link>);
-      } else  if (tracing_progress.typetracing == INSTITUTION_REPORT) {
+      } else  if (tracing_progress.typetracing === INSTITUTION_REPORT) {
           return ( <Link  to={Config.aProgressUrl +"/"+ tracing_student.id } className="notification-link">
                     <strong>{name_user_action}</strong> ha subido informe de la institución, al mes de <strong>{getNameMonth(tracing_student.month)}</strong>, proyecto:  <strong>{inscription.title_academic_project}</strong>
             </Link>);
       }
-        else  if (tracing_progress.typetracing == INTERNAL_TUTOR) {
+        else  if (tracing_progress.typetracing === INTERNAL_TUTOR) {
             
         return ( <Link  to={Config.aProgressUrl +"/"+ tracing_student.id } className="notification-link">
             <strong>{name_user_action}</strong> ha subido revision como tutor, al mes de <strong>{getNameMonth(tracing_student.month)}</strong>, proyecto:  <strong>{inscription.title_academic_project}</strong>
         </Link>);
       }
-      else  if (tracing_progress.typetracing == INSTITUTION_REPORT) {
+      else  if (tracing_progress.typetracing === INSTITUTION_REPORT) {
        return ( <Link  to={Config.aProgressUrl +"/"+ tracing_student.id } className="notification-link">
                 <strong>{name_user_action}</strong> ha subido informe como tutor, al mes de <strong>{getNameMonth(tracing_student.month)}</strong>, proyecto:  <strong>{inscription.title_academic_project}</strong>
               </Link>);

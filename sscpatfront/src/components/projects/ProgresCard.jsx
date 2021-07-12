@@ -34,17 +34,17 @@ const ProgresCard = (props) => {
     setLoading(false);
   };
 
-  const iconDone = (bool) => {
-    return bool ? (
-      <i className="material-icons col-green" title="completado">
-        done
-      </i>
-    ) : (
-      <i className="material-icons col-orange" title="No realizado">
-        error_outline
-      </i>
-    );
-  };
+  // const iconDone = (bool) => {
+  //   return bool ? (
+  //     <i className="material-icons col-green" title="completado">
+  //       done
+  //     </i>
+  //   ) : (
+  //     <i className="material-icons col-orange" title="No realizado">
+  //       error_outline
+  //     </i>
+  //   );
+  // };
 
   const openEditModal = (id) => {
     setModal({

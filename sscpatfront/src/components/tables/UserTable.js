@@ -1,14 +1,24 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getNameType } from "../../actions/helper";
-import { listUsers } from "../../actions/users";
+import { listUsers,removeUser } from "../../actions/users";
 import NavPagination from "./NavPagination";
 import Config from "../../utils/Config";
 import PropTypes from "prop-types";
 import { validateInput } from "../../utils/Validations";
-
+import InputForm from "../atoms/InputForm";
+import Spinner from "../atoms/Spinner";
+import Modal from "../atoms/Modal";
   
+const initialValues = {
+  search: "",
+  size: 10,
+  type: "",
+  ordering: null,
+  page: 1,
+};
+
 const validate = {
   search: {
     max_length: 50,
@@ -20,97 +30,126 @@ const validate = {
   },
 };
 
-class TutorTable extends React.Component {
-  static propTypes = {
-    users: PropTypes.object.isRequired,
+
+const modalValues = {
+  title: "",
+  message: "",
+  cancel: null,
+  confirm: null,
+  accept: null,
+};
+
+const TutorTable = (props) => {
+  const { users ,listUsers, removeUser} = props;
+  const { results, size } = users;
+
+  const url = Config.UserApiUrl;
+
+  const [values, setValues] = useState(initialValues);
+  const [errors, setErrors] = useState({});
+  const [openModal, setOpenModal] = useState(false);
+  const [modal, setModal] = useState(modalValues);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loadingTable, setLoadingTable] = useState(false);
+ 
+
+  useEffect(() => {
+    loadTable();
+  }, []);
+
+  const loadTable = async () => {
+    setLoadingTable(true);
+    loadData(url,null);
   };
 
-  state = {
-    search: "",
-    size: 10,
-    type: "",
-    ordering:null,
-    page:1
+  const loadData = async (url,value) => {
+    await listUsers(url,value);
+    setLoadingTable(false);
   };
 
-  errors = {};
-
-  onChange = (e) => {
+  const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
     const value = type === "number" ? +newValue : newValue;
-    this.setState({ [name]: value });
+    setValues({ ...values, [name]: value });
     const error = validateInput(name, value, validate[name]);
-    this.errors={...this.errors,[name]:error }
+    setErrors({ ...errors, [name]: error });
   };
 
-  componentDidMount() {
-    this.props.listUsers(Config.UserApiUrl);
-  }
-
-  onSubmit=(e)=>{
-    e.preventDefault()
-    if (Object.values(this.errors).every((t) => t === null)) {
-      this.props.listUsers(Config.UserApiUrl,this.state);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (Object.values(errors).every((t) => t === null)) {
+      setLoadingTable(true)
+      loadData(url,values);
     }
-  }
+  };
 
-  render() {
-    const users = this.props.users;
-    const { results, size } = users;
+  const removeObject = (id) => {
+    const obj = results.find((obj) => obj.id === id);
+    setModal({
+      title: "¿Borrar usuario del sistema?",
+      message: (<p>Confirmar que desea eliminar el usuario <strong>{obj.first_name + " " + obj.last_name + " " +obj.last_name2} </strong></p>),
+      cancel: setOpenModal.bind(this, false),
+      confirm: deleteObj.bind(this, obj),
+    });
+    setOpenModal(true);
+  };
+
+  const deleteObj = async (obj) => {
+    setIsDeleting(true);
+    const res = await removeUser(obj.id);
+    setIsDeleting(false);
+    if (res) {
+      setModal({
+        title: "Restricción",
+        message: (<>
+          <p>No se puede eliminar el Usuario: <strong>{obj.first_name + " " + obj.last_name + " " +obj.last_name2}</strong></p>
+          <p style={{color:"red"}}>{res.detail}</p>
+          </>),
+        cancel: null,   
+        confirm: null,  
+        accept: setOpenModal.bind(this, false),
+      });
+    } else {
+      setOpenModal(false);
+    }
+  };
+
     return (
+      <>
       <div className="row">
-        <form onSubmit={this.onSubmit}>
-        <div className="col-lg-6">
-          <div className="form-group">
-            <label>Buscar</label>
-            <div className="form-line">
-              <input
-                type="text"
-                className="form-control"
-                name="search"
-                placeholder="Buscar..."
-                onChange={this.onChange}
-                value={this.state.search}
-              ></input>
-            </div>
-            {this.errors.search ? (
-              <label id="search-error" className="error" htmlFor="search">
-                {this.errors.search}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
+        <form onSubmit={onSubmit}>
+        <div className="col-md-6 col-lg-8 m-0 p-0">
+          <InputForm
+            name="search"
+            value={values.search}
+            error={errors.search}
+            placeholder="Buscar tutor.. "
+            onChange={onChange}
+            title="Buscar:"
+            touched={true}
+          />
         </div>
-        <div className="col-lg-2">
-          <div className="form-group">
-            <label>Cantidad</label>
-            <div className="form-line">
-              <input
-                type="number"
-                className="form-control"
-                name="size"
-                onChange={this.onChange}
-                value={this.state.size}
-              ></input>
-            </div>
-            {this.errors.size ? (
-              <label id="size-error" className="error" htmlFor="username">
-                {this.errors.size}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
+        <div className="col-md-4 col-lg-2 m-0 p-0">
+                <InputForm
+                  type="number"
+                  name="size"
+                  value={values.size}
+                  touched={true}
+                  error={errors.size}
+                  placeholder="Cantidad"
+                  onChange={onChange}
+                  title="Cantidad"
+                />
         </div>
-        <div className="col-lg-2">
+
+        <div className="col-md-4 col-lg-2 m-0 p-0">
           <div className="form-group">
             <label htmlFor="type">Tipo de usuario</label>
             <select
               name="type"
               className="form-control show-tick"
               tabIndex="-98"
-              onChange={this.onChange}
+              onChange={onChange}
             >
               <option value="">Todos</option>
               <option value="ADMIN">Administrador</option>
@@ -120,7 +159,7 @@ class TutorTable extends React.Component {
             </select>
           </div>
         </div>
-        <div className="col-lg-2">
+        <div className="col-md-4 col-lg-2 m-0 p-0">
           <div className="form-group">
             <button type="submit" className="btn btn-primary pt-20">
               Buscar
@@ -128,7 +167,12 @@ class TutorTable extends React.Component {
           </div>
         </div>
         </form>
-        <div className="col-lg-12">
+
+        {loadingTable ? (
+          <div className="align-center"><Spinner /> </div>
+        ) : (
+
+        <div className="col-md-12 col-lg-12 m-0 p-0">
           <div className="table-responsive">
             {results.length === 0 ? (
               <h2> No hay usuarios </h2>
@@ -161,6 +205,13 @@ class TutorTable extends React.Component {
                             <span className="font-10"> {user.is_active ? "" : "Sin acceso"}</span>
                           </Link>
 
+                            <button
+                              className="btn-link col-grey"
+                              onClick={removeObject.bind(this, user.id)}
+                              title="Borrar"
+                            >
+                              <i className="material-icons">delete</i>
+                            </button>
                         </td>
                       </tr>
                     ))}
@@ -168,15 +219,56 @@ class TutorTable extends React.Component {
                 </table>
                 <NavPagination
                   context={users.context}
-                  loadList={this.props.listUsers}
+                  loadList={listUsers}
                 />
               </>
             )}
           </div>
         </div>
+        )}
       </div>
+
+      <Modal open={openModal}>
+        <div className="modal-header">
+          <h4 className="modal-title" id="defaultModalLabel">
+            {modal.title}
+          </h4>
+        </div>
+        <div className="modal-body">{modal.message}</div>
+        <div className="modal-footer">
+          {modal.cancel && (
+            <button
+              type="button"
+              className="btn btn-link waves-effect pull-left"
+              onClick={modal.cancel}
+            >
+              Cancelar
+            </button>
+          )}
+
+          {modal.confirm && (
+            <button
+              type="button"
+              className="btn btn-success waves-effect"
+              onClick={modal.confirm}
+            >
+              {isDeleting ? "Eliminando...":"Confirmar"}
+            </button>
+          )}
+
+          {modal.accept && (
+            <button
+              type="button"
+              className="btn btn-primary waves-effect"
+              onClick={modal.accept}
+            >
+              Aceptar
+            </button>
+          )}
+        </div>
+      </Modal>
+      </>
     );
-  }
 }
 
 const mapStateToProps = (state) => ({
@@ -185,6 +277,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   listUsers,
+  removeUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TutorTable);

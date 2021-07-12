@@ -65,23 +65,23 @@ const ListCard = (props) => {
     setOpenModal(true);
   };
 
-  const showDetail = (id) => {
-    const obj = results.find((obj) => obj.id === id);
-    setModal({
-      title: "Modalidad de Titulación",
-      message: (
-        <p>
-          Modalidad de titulación: {obj.title} <br />
-          Descripción: {obj.description} <br />
-          Creado en {new Date(obj.created_at).toLocaleDateString("es-ES")}
-        </p>
-      ),
-      cancel: null,
-      confirm: null,
-      accept: setOpenModal.bind(this, false),
-    });
-    setOpenModal(true);
-  };
+  // const showDetail = (id) => {
+  //   const obj = results.find((obj) => obj.id === id);
+  //   setModal({
+  //     title: "Modalidad de Titulación",
+  //     message: (
+  //       <p>
+  //         Modalidad de titulación: {obj.title} <br />
+  //         Descripción: {obj.description} <br />
+  //         Creado en {new Date(obj.created_at).toLocaleDateString("es-ES")}
+  //       </p>
+  //     ),
+  //     cancel: null,
+  //     confirm: null,
+  //     accept: setOpenModal.bind(this, false),
+  //   });
+  //   setOpenModal(true);
+  // };
 
   return (
     <>
@@ -195,8 +195,9 @@ const ListCard = (props) => {
               type="button"
               className="btn btn-success waves-effect"
               onClick={modal.confirm}
+              disabled={isDeleting}
             >
-              Confirmar
+              {isDeleting ? "Borrando.. ":"Comfirmar"}
             </button>
           )}
 

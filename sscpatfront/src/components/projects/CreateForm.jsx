@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect , } from "react-redux";
-import { validateInput } from "../../utils/Validations";
+// import { validateInput } from "../../utils/Validations";
 // import { add } from "../../actions/documents"; 
 import {getStudent } from '../../actions/students'
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Form from './Form';
-import students from "../../store/reducers/students";
+// import students from "../../store/reducers/students";
 
 
 

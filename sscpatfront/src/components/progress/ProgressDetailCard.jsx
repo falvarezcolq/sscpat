@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetails as get } from "../../actions/tracingstudent";
 import Config from "../../utils/Config";
-import HeaderDropdown from "../atoms/HeaderDropdown";
+// import HeaderDropdown from "../atoms/HeaderDropdown";
 import { LabelStatus } from "../atoms/LabelStatus";
 import Spinner from "../atoms/Spinner";
 import { getNameMonth, getDateTime, getTypeFile } from "../../actions/helper";
@@ -11,15 +11,16 @@ import pdf_image from '../../img/pdf_icon.png';
 
 const DetailCard = (props) => {
   const { id , progress} = props;
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => { 
+    // setLoading(true)
     loadData();
   }, []); 
 
   const loadData = async () => {
     const res = await props.get(id);
-    setLoading(false);
+    // setLoading(false);
   };
 
   const iconDone = (bool) => {
