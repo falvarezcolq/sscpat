@@ -37,15 +37,15 @@ const DetailCard = (props) => {
   
   if (!progress || progress.id != id) {
     
-    return ( <div className="row clearfix">
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div className="card">
-      <div className="body align-center">
-      <Spinner/>
+      return ( <div className="row clearfix">
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div className="card">
+        <div className="body align-center">
+        <Spinner/>
+        </div>
+        </div>
       </div>
       </div>
-    </div>
-    </div>
       
     );   
   }

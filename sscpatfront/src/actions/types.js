@@ -1,4 +1,4 @@
-
+// not found
 export const NOT_FOUND = "NOT_FOUND";
 
 // Messages

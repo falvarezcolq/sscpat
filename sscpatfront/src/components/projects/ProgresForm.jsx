@@ -159,7 +159,7 @@ const ProgresForm = (props) => {
             </button>
           </div>
         </div>
-      ) : (
+      ) : ( 
         <div className="card animated fadeIn">
           <div className="header">
             Entrega de avance correspondiente al mes de:
