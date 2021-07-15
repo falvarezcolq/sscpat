@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetails as get } from "../../actions/tracingstudent";
@@ -19,7 +19,7 @@ const DetailCard = (props) => {
   }, []); 
 
   const loadData = async () => {
-    const res = await props.get(id);
+    await props.get(id);
     // setLoading(false);
   };
 
@@ -36,7 +36,18 @@ const DetailCard = (props) => {
   };
   
   if (!progress || progress.id != id) {
-    return <Spinner />;   
+    
+    return ( <div className="row clearfix">
+    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div className="card">
+      <div className="body align-center">
+      <Spinner/>
+      </div>
+      </div>
+    </div>
+    </div>
+      
+    );   
   }
 
   return (  
@@ -227,7 +238,6 @@ const DetailCard = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  
   progress: state.tracingstudent.object,
 });
 

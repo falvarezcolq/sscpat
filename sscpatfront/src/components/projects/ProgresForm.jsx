@@ -28,7 +28,7 @@ const validate = {
 };
 
 const ProgresForm = (props) => {
-  const { project_id, results, add, get, update } = props;
+  const { project_id, add, } = props;
 
   let progressValues = {
     ...initialValues,

@@ -6,11 +6,11 @@ import Alert from "../../../components/atoms/Alert";
 
 import { getTutor } from "../../../actions/tutors";
 
-import CardTutor from "../../../components/tutors/CardTutor";
-import ListCard from "../../../components/projects/ListCard";
+// import CardTutor from "../../../components/tutors/CardTutor";
+// import ListCard from "../../../components/projects/ListCard";
 import ProgresCard from "../../../components/projects/ProgresCard";
 import DetailCard from "../../../components/projects/DetailCard";
-import HistoryCard from "../../../components/projects/HistoryCard";
+// import HistoryCard from "../../../components/projects/HistoryCard";
 
 class ProjectsDetail extends Component {
   componentDidMount() {
@@ -34,9 +34,9 @@ class ProjectsDetail extends Component {
               <ProgresCard />
             </div>
 
-            <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            {/* <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
               <HistoryCard />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

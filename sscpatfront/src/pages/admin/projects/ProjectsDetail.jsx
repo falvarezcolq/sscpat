@@ -3,22 +3,19 @@ import { withRouter } from "react-router";
 import {Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
+
 
 import { getTutor } from "../../../actions/tutors";
-
-import CardTutor  from "../../../components/tutors/CardTutor";
-import ListCard from "../../../components/projects/ListCard";
 import ProgresCard from "../../../components/projects/ProgresCard";
 import DetailCard from "../../../components/projects/DetailCard";
-import HistoryCard from "../../../components/projects/HistoryCard";
+// import HistoryCard from "../../../components/projects/HistoryCard";
 // import SelectForm from "../../../components/atoms/SelectForm";
 
 import ProgresForm from "../../../components/projects/ProgresForm";
 import { UNDER_DEVELOPMENT } from "../../../actions/types";
 import AuthHandler from "../../../utils/AuthHandler";
 import AlertMessage from "../../../components/atoms/AlertMessage";
-import ProgressReport from "../../../components/projects/ProgressReport";
+
 import Config from "../../../utils/Config";
 
 
@@ -62,9 +59,9 @@ class ProjectsDetail extends Component {
               <ProgresCard project_id={id} />
             </div>
               
-            <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            {/* <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
               <HistoryCard />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

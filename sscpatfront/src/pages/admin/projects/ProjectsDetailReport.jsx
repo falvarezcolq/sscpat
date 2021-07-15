@@ -2,34 +2,33 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
+// import Alert from "../../../components/atoms/Alert";
 
 import { getTutor } from "../../../actions/tutors";
 
-import CardTutor  from "../../../components/tutors/CardTutor";
-import ListCard from "../../../components/projects/ListCard";
-import ProgresCard from "../../../components/projects/ProgresCard";
+// import CardTutor  from "../../../components/tutors/CardTutor";
+// import ListCard from "../../../components/projects/ListCard";
+// import ProgresCard from "../../../components/projects/ProgresCard";
 import DetailCard from "../../../components/projects/DetailCard";
-import HistoryCard from "../../../components/projects/HistoryCard";
+// import HistoryCard from "../../../components/projects/HistoryCard";
 // import SelectForm from "../../../components/atoms/SelectForm";
 
-import ProgresForm from "../../../components/projects/ProgresForm";
-import { UNDER_DEVELOPMENT } from "../../../actions/types";
-import AuthHandler from "../../../utils/AuthHandler";
-import AlertMessage from "../../../components/atoms/AlertMessage";
+// import ProgresForm from "../../../components/projects/ProgresForm";
+// import { UNDER_DEVELOPMENT } from "../../../actions/types";
+// import AuthHandler from "../../../utils/AuthHandler";
+// import AlertMessage from "../../../components/atoms/AlertMessage";
 import ProgressReport from "../../../components/projects/ProgressReport";
 
 
 class ProjectsDetail extends Component {
 
-  componentDidMount() {
-    // const id = this.props.match.params.id;
-    // this.props.getTutor(id);
-  }
+  // componentDidMount() {
+  //   // const id = this.props.match.params.id;
+  //   // this.props.getTutor(id);
+  // }
 
   render() {
     const id = this.props.match.params.id;
-    const { messages ,project} = this.props;
     return (
       <section className="content">
         <div className="container-fluid">

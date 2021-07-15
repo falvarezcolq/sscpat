@@ -18,7 +18,7 @@ const initial_modal_data ={
   title: "",
   message: "",
   cancel: null,
-  confirm: null,
+  confirm: null,  
   accept: null,
 }
 

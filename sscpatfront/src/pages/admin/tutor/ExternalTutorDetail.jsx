@@ -9,7 +9,7 @@ import { get as getTutor } from "../../../actions/externaltutors";
 
 import CardTutor from "../../../components/tutors/CardTutor";
 import ListCard from "../../../components/tutors/ListCard";
-import Config from "../../../utils/Config";
+// import Config from "../../../utils/Config";
 
 class ExternalTutorDetail extends Component {
   //   static propTypes = {

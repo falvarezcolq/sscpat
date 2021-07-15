@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { getNameMonth } from "../../actions/helper";
+// import { getNameMonth } from "../../actions/helper";
 import SelectedName from "../../components/atoms/SelectedName";
 import {
-  formGeneralValidation,
+  // formGeneralValidation,
   validateInput,
   loadGeneralErrorForm,
 } from "../../utils/Validations";
@@ -11,8 +11,8 @@ import { add, get, update } from "../../actions/tracingprogress";
 import Spinner from "../atoms/Spinner";
 import { ADMIN, EXTERNAL_TUTOR, STUDENT, TUTOR } from "../../actions/types";
 import { ACCEPTED_FILES } from "../../actions/types";
-import InputForm from "../../components/atoms/InputForm";
-import { compose } from "redux";
+// import InputForm from "../../components/atoms/InputForm";
+// import { compose } from "redux";
 
 
 
@@ -86,8 +86,7 @@ const optionValues = {
 };
 
 const TracingProgressForm = (props) => {
-  const { progress_id, results, add, get, update, auth, tracingstudent } =
-    props;
+  const { progress_id, add, auth, tracingstudent } = props;
   let tracingProgressValues = {
     ...initialValues,
     tracingstudent: progress_id,
@@ -177,7 +176,7 @@ const TracingProgressForm = (props) => {
 
   /** Remove files on list files */
   const removeFile = (name) => {
-    setFiles(files.filter((f) => f.name != name));
+    setFiles(files.filter((f) => f.name !== name));
   };
 
   const onChangeSelect = (e) => {
@@ -198,7 +197,7 @@ const TracingProgressForm = (props) => {
     const { name, value } = e.target;
     let input = formValues.find((input) => input.name === name )
     input.value=value
-    setFormValues(formValues.map((obj) => obj.id == input.id? input:obj))
+    setFormValues(formValues.map((obj) => obj.id === input.id? input:obj))
   };
 
   const onBlur = (e) => {
@@ -265,7 +264,7 @@ const TracingProgressForm = (props) => {
   const createDescription = () =>{
      let text =""
      formValues.map(input => {
-       if(input.value != ""){
+       if(input.value !== ""){
          text +=  input.title + ": \n" + "  - "+ input.value + "\n\n" ;
        }
      })
@@ -275,8 +274,8 @@ const TracingProgressForm = (props) => {
   const insertFiles = () => {
     const f = new FormData();
     f.append("tracingstudent", values.tracingstudent);
-    f.append("description",  values.typetracing == optionValues.tutor_form ? createDescription(): values.description);
-    f.append("typetracing", values.typetracing == optionValues.tutor_form ? optionValues.tutor : values.typetracing );
+    f.append("description",  values.typetracing === optionValues.tutor_form ? createDescription(): values.description);
+    f.append("typetracing", values.typetracing === optionValues.tutor_form ? optionValues.tutor : values.typetracing );
     for (let index = 0; index < files.length; index++) {
       f.append(`files[${index}]`, files[index]);
     }

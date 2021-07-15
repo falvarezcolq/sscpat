@@ -1,19 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const HistoryCard = (props) => {
+const HistoryCard = (props) => {  
     return (
         <div className="card">
                   <div className="header">
                     
-                    <h3>
+                    {/* <h3>
                       Ultima entrega <strong>5 Marzo</strong> 
                       <br/>
                       <small>Observacion del tutor</small>
                     
-                    </h3>
+                    </h3> */}
 
-                    <ul className="header-dropdown m-r--5">
+                    {/* <ul className="header-dropdown m-r--5">
                       <li className="dropdown m-l-10">
                         <a
                           href="#"
@@ -43,11 +43,12 @@ const HistoryCard = (props) => {
                           </li>
                         </ul>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                   <div className="body">
                     lorem Lorem Ipsum es simplemente el texto de relleno de las imprentas 
-                    y archivos de texto. Lorem Ipsum  ..<a href="#">Ver</a>
+                    y archivos de texto. Lorem Ipsum  ..
+                    {/* <a href="#">Ver</a> */}
                   </div>
     </div>
    

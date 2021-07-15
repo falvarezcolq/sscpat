@@ -106,7 +106,7 @@ const ProgresCard = (props) => {
                       </Link>
                     </td>
                   </tr>
-                  {progress.tracingprogress.length == 0 && (
+                  {progress.tracingprogress.length === 0 && (
                     <tr>
                       <td>
                         {progress.require_tutor_review && (
@@ -196,7 +196,7 @@ const ProgresCard = (props) => {
                   {progress.tracingprogress.length > 0 &&
                     progress.tracingprogress.map((tracing, index) => (
                       <tr key={index}>
-                        {index == 0 && (
+                        {index === 0 && (
                           <td rowSpan={"" + progress.tracingprogress.length}>
                             {progress.require_tutor_review && (
                               <TextCheck check={progress.reviewed_by_tutor}>

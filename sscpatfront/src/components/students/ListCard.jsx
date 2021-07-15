@@ -12,6 +12,7 @@ import { list as listModalities } from "../../actions/modalities";
 import { list as listAcademicPeriods } from "../../actions/academicsperiod";
 import NavPagination from "../tables/NavPagination";
 import Spinner from "../../components/atoms/Spinner";
+import AuthHandler from "../../utils/AuthHandler";
 
 const initialValues = {
   // search: "",
@@ -48,7 +49,7 @@ const ListCard = (props) => {
   const [errors, setErrors] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [modal, setModal] = useState(modalValues);
-  const [isDeleting, setIsDeleting] = useState(false);
+  // const [isDeleting, setIsDeleting] = useState(false);
   const [loadingTable, setLoadingTable] = useState(false);
   const [filter, setFilter] = useState(false);
 
@@ -69,22 +70,22 @@ const ListCard = (props) => {
     loadData();
   };
 
-  const deleteObj = async (obj) => {
-    setIsDeleting(true);
-    const res = await props.remove(obj.id);
-    setIsDeleting(false);
-    if (res) {
-      setModal({
-        title: "Restricción",
-        message: `No se puede eliminar  ${obj.title}`,
-        cancel: null,
-        confirm: null,
-        accept: setOpenModal.bind(this, false),
-      });
-    } else {
-      setOpenModal(false);
-    }
-  };
+  // const deleteObj = async (obj) => {
+  //   // setIsDeleting(true);
+  //   const res = await props.remove(obj.id);
+  //   // setIsDeleting(false);
+  //   if (res) {
+  //     setModal({
+  //       title: "Restricción",
+  //       message: `No se puede eliminar  ${obj.title}`,
+  //       cancel: null,
+  //       confirm: null,
+  //       accept: setOpenModal.bind(this, false),
+  //     });
+  //   } else {
+  //     setOpenModal(false);
+  //   }
+  // };
 
   // const removeObject = (id) => {
   //   const obj = projects.results.find((obj) => obj.id === id);
@@ -275,18 +276,26 @@ const ListCard = (props) => {
                       <div className="align-center">
                         <Spinner />
                       </div>
-                    ) : projects.results.length === 0 ? (
+                    ) : projects.results.length === 0 ? 
+                    
+                    
+                    
+                    (
+
+                    
                       <h4>
                         {" "}
                         El estudiante no tiene proyecto a elaborar {" "}
-                        <Link
-                          className="btn btn-xs btn-warning"
-                          to={Config.aProjectsNewUrl + student.id}
-                        >
-                          Asignar proyecto
-                        </Link>
+                        {AuthHandler.isAdmin()  && 
+                          <Link
+                            className="btn btn-xs btn-warning"
+                            to={Config.aProjectsNewUrl + student.id}
+                          >
+                            Asignar proyecto
+                          </Link>
+                          }
                       </h4>
-                    ) : (
+                    )  : (
                       <>
                         <table className="table table-hover">
                           <thead>

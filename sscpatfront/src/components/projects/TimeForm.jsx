@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { getNameMonth } from "../../actions/helper";
-import SelectedName from "../../components/atoms/SelectedName";
+// import { getNameMonth } from "../../actions/helper";
+// import SelectedName from "../../components/atoms/SelectedName";
 import {
-  formGeneralValidation,
+  // formGeneralValidation,
   validateInput,
-  loadGeneralErrorForm,
+  // loadGeneralErrorForm,
 } from "../../utils/Validations";
 import { get, patch } from "../../actions/projects";
 import Spinner from "../atoms/Spinner";
-import { ACCEPTED_FILES } from "../../actions/types";
-import SelectForm from "../atoms/SelectForm";
+// import { ACCEPTED_FILES } from "../../actions/types";
+// import SelectForm from "../atoms/SelectForm";
 import AlertMessage from "../atoms/AlertMessage";
 import InputForm from "../atoms/InputForm";
 
-var today = new Date();
+// var today = new Date();
 const initialValues = {
   date_init: null,
   date_end: null,
   extended: null,
-};
+};  
 
 const validate = {};
 
@@ -39,10 +39,10 @@ const TimeForm = (props) => {
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
-  const onChangeSelect = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  };
+  // const onChangeSelect = (e) => {
+  //   const { name, value } = e.target;
+  //   setValues({ ...values, [name]: value });
+  // };
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -89,7 +89,7 @@ const TimeForm = (props) => {
   }, []);
 
   const loadData = async () => {
-    if (!(object && object.id == project_id)) {
+    if (!(object && object.id === project_id)) {
       const new_values = await get(project_id);
       setValues({ 
         date_init: new_values.date_init ,
@@ -147,15 +147,21 @@ const TimeForm = (props) => {
                 </div>
 
                
+                {loading && 
                 <div className="col-lg-12 align-center">
-                  <AlertMessage />
+                    <Spinner/>
+                </div>
+                }
+
+                <div className="col-lg-12 align-center">
+                    <AlertMessage/>
                 </div>
 
                 <div className="col-lg-12 align-center">
-                  <button className="btn btn-primary" type="submit">
-                    {" "}
-                    Guardar
-                  </button>
+                    <button 
+                    className="btn btn-primary" 
+                    type="submit"
+                    disabled={loading}> {loading? "Guardando.. ": "Guardar"}</button>
                 </div>
               </form>
             </div>

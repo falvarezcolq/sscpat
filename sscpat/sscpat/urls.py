@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import  TokenRefreshView
 
 
 from sscpat.sscpat.api.views import *
+from sscpat.sscpat import views
 
 
 router = DefaultRouter()
@@ -40,6 +41,7 @@ router.register("notifications",viewset=NotificationsViewSet)
 
 
 urlpatterns = [
+    path('',views.init_page),
     path('api/', include(router.urls)),
     path('api/auth/login/', TokenObtainPairView.as_view(),name="gettoken"),
     path('api/auth/refresh/', TokenRefreshView.as_view(),name="refreshtoken"),

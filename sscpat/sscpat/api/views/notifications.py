@@ -53,7 +53,7 @@ class NotificationsViewSet(
     ordering = ('-created_at',)
     ordering_fields = ('created_at')
     search_fields = ('user','inscription')
-    filterset_fields = ['type','inscription']
+    # filterset_fields = ['type','inscription']
 
     def get_permissions(self):
         """Assign permissions based on action."""

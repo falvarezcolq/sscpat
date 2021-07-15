@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
-
+import AlertMessage from "../../../components/atoms/AlertMessage";
 import { getStudent } from "../../../actions/students";
-
 import CardStudent from "../../../components/students/CardStudent";
 import ListCard from "../../../components/students/ListCard";
 import AuthHandler from "../../../utils/AuthHandler";
@@ -39,11 +37,7 @@ class StudentDetail extends Component {
 
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+        <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">

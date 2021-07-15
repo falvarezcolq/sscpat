@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
 // import StudentTable from "../../../components/tables/StudentTable";
 import AuthHandler from "../../../utils/AuthHandler";
-import StundentByTutors from "../../../components/students/StudentByTutors";
+// import StundentByTutors from "../../../components/students/StudentByTutors";
 
 import ListCard from "../../../components/tutors/ListCard";
 import { getTutor } from "../../../actions/tutors";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 class ListProjects extends Component {
   state = {
@@ -25,15 +25,10 @@ class ListProjects extends Component {
   };
 
   render() {
-    const messages = this.props.messages;
-    const id = AuthHandler.getUserId();
+  
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+       <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">

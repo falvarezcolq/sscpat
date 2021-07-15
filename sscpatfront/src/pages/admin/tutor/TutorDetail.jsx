@@ -3,12 +3,13 @@ import { withRouter } from "react-router";
 
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
+
 
 import { getTutor } from "../../../actions/tutors";
 
 import CardTutor from "../../../components/tutors/CardTutor";
 import ListCard from "../../../components/tutors/ListCard";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 class TutorDetail extends Component {
   //   static propTypes = {
@@ -36,16 +37,9 @@ class TutorDetail extends Component {
   };
 
   render() {
-    const messages = this.props.messages;
-    const { tutor } = this.props.tutors;
-
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+        <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">

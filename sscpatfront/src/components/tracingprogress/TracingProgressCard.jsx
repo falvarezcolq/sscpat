@@ -57,9 +57,9 @@ const TracingProgressCard = (props) => {
                           ? pdf_image
                           : file.thumbnail
                       }
-                      aria-hidden="true"
-                      role="presentation"
-                      data-mime-type="image/jpeg"
+                     
+                      alt="presentation"
+                    
                     />
                   </div>
                   <div class="text-link">

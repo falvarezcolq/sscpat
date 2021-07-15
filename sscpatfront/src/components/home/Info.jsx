@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Spinner from "../atoms/Spinner";
 import { connect } from "react-redux";
 import { getInfo as get } from "../../actions/info";
+import Config from "../../utils/Config";
 
-// const initialValues = {
-//   inscriptions: 0,
-//   tutor: 0,
-//   tracing_student: 0,
-//   reviews_by_tutors: 0,
-// };
 
 const Info = (props) => {
   const { info, get } = props;
@@ -25,18 +21,28 @@ const Info = (props) => {
   };
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className="row clearfix">
+        <div className="col-lg-12">
+          <div className="align-center">
+            <Spinner/>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="row clearfix">
       <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <Link to={Config.aProjectsUrl} className="btn-link">
+        
         <div className="info-box bg-pink hover-expand-effect">
           <div className="icon">
             <i className="material-icons">playlist_add_check</i>
           </div>
           <div className="content">
-            <div className="text">Proyectos academicos</div>
+            <div className="text">Proyectos académicos</div>
             <div
               className="number count-to"
               data-from="0"
@@ -48,6 +54,7 @@ const Info = (props) => {
             </div>
           </div>
         </div>
+        </Link>
       </div>
       <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div className="info-box bg-cyan hover-expand-effect">

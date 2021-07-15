@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 // import { getNameType } from "../../actions/helper";
 import { listStudentsByTutors as list } from "../../actions/students";
 import NavPagination from "../tables/NavPagination";
 import Config from "../../utils/Config";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { validateInput } from "../../utils/Validations";
 import { Link } from "react-router-dom";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
-import PercentBar from "../../components/atoms/PercentBar";
+// import PercentBar from "../../components/atoms/PercentBar";
 
 const initialValues = {
 //   search: "",
@@ -43,13 +43,14 @@ const StundentByTutors = (props) => {
   const url = Config.StudentApiUrl + id+"/bytutors/"
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [openModal, setOpenModal] = useState(false);
-  const [modal, setModal] = useState(modalValues);
-  const [isDeleting, setIsDeleting] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [modal, setModal] = useState(modalValues);
+  // const [isDeleting, setIsDeleting] = useState(false);
   const [loadingTable, setLoadingTable] = useState(false);
-  const [filter, setFilter] = useState(false);
+  // const [filter, setFilter] = useState(false);
 
-  const toggleFilter = () => setFilter(!filter);
+  // const toggleFilter = () => setFilter(!filter);
+  
   useEffect(() => {
     loadTable();
   }, []);

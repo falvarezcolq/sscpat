@@ -1,9 +1,9 @@
 import React, { useState , useEffect } from "react";
 import { connect } from "react-redux";
-import { getNameMonth } from "../../actions/helper";
+// import { getNameMonth } from "../../actions/helper";
 import SelectedName from "../../components/atoms/SelectedName";
 import {
-  formGeneralValidation,
+  // formGeneralValidation,
   validateInput,
   loadGeneralErrorForm,
 } from "../../utils/Validations";

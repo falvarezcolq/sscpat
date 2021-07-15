@@ -24,7 +24,6 @@ class CurrentProject extends Component {
   };
 
   render() {
-    const messages = this.props.messages;
     const student = this.state.student
 
     if( student && student.current_project){

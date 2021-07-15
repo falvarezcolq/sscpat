@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
 
 import { getTutor } from "../../../actions/tutors";
 
@@ -16,7 +15,6 @@ class ProjectsTimeExtended extends Component {
 
   render() {
     const id = this.props.match.params.id;
-    const { messages } = this.props;
     return (
       <section className="content">
         <div className="container-fluid">

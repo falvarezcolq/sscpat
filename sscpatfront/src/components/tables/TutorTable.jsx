@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { listTutors } from "../../actions/tutors";
 import NavPagination from "./NavPagination";
 import Config from "../../utils/Config";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { validateInput } from "../../utils/Validations";
 import { Link } from "react-router-dom";
 import InputForm from "../atoms/InputForm";
@@ -43,13 +43,13 @@ const TutorTable = (props) => {
   const url_detail = url == Config.ExternalTutorApiUrl ? Config.aETutorUrl : Config.aTutorUrl; 
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [openModal, setOpenModal] = useState(false);
-  const [modal, setModal] = useState(modalValues);
-  const [isDeleting, setIsDeleting] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [modal, setModal] = useState(modalValues);
+  // const [isDeleting, setIsDeleting] = useState(false);
   const [loadingTable, setLoadingTable] = useState(false);
-  const [filter, setFilter] = useState(false);
+  // const [filter, setFilter] = useState(false);
 
-  const toggleFilter = () => setFilter(!filter);
+  // const toggleFilter = () => setFilter(!filter);
   useEffect(() => {
     loadTable();
   }, []);

@@ -28,10 +28,10 @@ const validate = {
 };
 
 const ProgresUpdateForm = (props) => {
-  const { project_id, progress_id, results, add, get, update,cancel } = props;
+  const { project_id, progress_id, get, update,cancel } = props;
 
   let progressValues = {
-    ...initialValues,
+    ...initialValues,   
     inscription: project_id,
   };
   const [values, setValues] = useState(progressValues);

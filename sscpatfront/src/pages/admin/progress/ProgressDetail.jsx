@@ -51,9 +51,9 @@ class ProgressDetail extends Component {
               <ListTracingProgressComponent progress_id={id} />
             </div>
 
-            <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            {/* <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
               <HistoryCard />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
