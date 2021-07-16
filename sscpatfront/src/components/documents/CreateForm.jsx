@@ -4,6 +4,7 @@ import { validateInput } from "../../utils/Validations";
 import { add } from "../../actions/documents";
 import { useHistory } from "react-router-dom";
 import SelectForm from "../../components/atoms/SelectForm";
+import AlertMessage from "../atoms/AlertMessage";
 
 const initialValues = {
   // data will be for ever strings
@@ -251,6 +252,10 @@ const CreateForm = (props) => {
                   
                   </SelectForm>
 
+                </div>
+
+                <div className="col-md-12 col-lg-12 align-center">
+                      <AlertMessage/>
                 </div>
 
                 <div className="col-md-12 col-lg-12 aling-center">

@@ -56,7 +56,7 @@ const Form = (props) => {
 
   const onChangePeriod = (e) => {
     const { name, value  } = e.target;
-    const a_period = props.academicperiods.find((ap) => ap.id == value )
+    const a_period = props.academicperiods.find((ap) => ap.id+"" === value+"" )
     
     const date_init = a_period ? a_period.date_init :null;
     const date_end  = a_period ? a_period.date_end:null;
@@ -163,7 +163,7 @@ const Form = (props) => {
 
   useEffect(() => {
     loadingData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadingData = () => {
     console.log("loading selects");
@@ -221,7 +221,7 @@ const Form = (props) => {
     setValues({ ...values, [name]: value });
     const error = validateInput(name, value, validate[name]);
     setErrors({ ...errors, [name]: error });
-    const mod = props.modalities.find((m) => m.id == value);
+    const mod = props.modalities.find((m) => m.id+"" === value+"");
     setModality(mod);
   };
 

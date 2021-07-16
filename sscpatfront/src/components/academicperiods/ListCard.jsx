@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect,} from "react-redux";
 import { list, remove } from "../../actions/academicsperiod";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
@@ -16,6 +16,7 @@ const initial_modal_data = {
 
 const ListCard = (props) => {
   const { results } = props;
+  
   const [loading, setLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -28,8 +29,8 @@ const ListCard = (props) => {
 
   useEffect(() => {
     setLoading(true);
-    loadTable();
-  }, []);
+    loadTable() ;
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps 
 
   const deleteObj = async (obj) => {
     setIsDeleting(true);

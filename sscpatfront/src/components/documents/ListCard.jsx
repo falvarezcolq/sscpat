@@ -14,7 +14,7 @@ const ListCard = (props) => {
   useEffect(() => {
     setLoading(true);
     loadTable();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadTable = async () => {
     await props.list();

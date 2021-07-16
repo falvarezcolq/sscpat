@@ -164,7 +164,7 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
     if(!values){
       loadUser(id)
     }
-  }, [])
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps 
 
 
   const loadUser= async (id)=>{

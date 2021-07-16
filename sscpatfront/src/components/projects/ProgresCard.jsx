@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { list } from "../../actions/tracingstudent";
 import Spinner from "../atoms/Spinner";
-import { getNameMonth, getDateTime, getTypeFile } from "../../actions/helper";
+import { getNameMonth, getDateTime, getTypeFile, filePath } from "../../actions/helper";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 import HeaderDropdown from "../../components/atoms/HeaderDropdown";
@@ -27,7 +27,7 @@ const ProgresCard = (props) => {
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     await props.list(project_id);
@@ -71,7 +71,7 @@ const ProgresCard = (props) => {
     <>
       {results.length > 0 ? (
         results.map((progress) => (
-          <div className="card">
+          <div className="card" key={progress.id}>
             <div className="header">
               <h2>
                 <Link to={Config.aProgressUrl + "/" + progress.id}>
@@ -159,13 +159,13 @@ const ProgresCard = (props) => {
                     <div key={file.id}>
                       <div className="link-container">
                         <a
-                          class="file-link"
-                          href={file.path}
+                          className="file-link"
+                          href={filePath(file.path)}
                           title={file.title}
-                        >
-                          <div class="image-link">
+                        > 
+                          <div className="image-link">
                             <img
-                              class=""
+                              className=""
                               src={
                                 file.format === "application/pdf"
                                   ? pdf_image
@@ -174,12 +174,13 @@ const ProgresCard = (props) => {
                               aria-hidden="true"
                               role="presentation"
                               data-mime-type="image/jpeg"
+                              alt=""
                             />
                           </div>
-                          <div class="text-link">
-                            <div class="text-link-title">{file.title}</div>
-                            <div class="">
-                              <div class="">{getTypeFile(file.format)}</div>
+                          <div className="text-link">
+                            <div className="text-link-title">{file.title}</div>
+                            <div className="">
+                              <div className="">{getTypeFile(file.format)}</div>
                             </div>
                           </div>
                         </a>

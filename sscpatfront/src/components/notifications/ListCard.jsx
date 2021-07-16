@@ -15,14 +15,14 @@ const ListCard = (props) => {
 
   const {notifications} = props
   const url = Config.NotificationApiUrl;
-  const [values, setValues] = useState(initialValues);
+  const [values ] = useState(initialValues);
   // const [errors, setErrors] = useState({});s
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     await props.list(url, values);

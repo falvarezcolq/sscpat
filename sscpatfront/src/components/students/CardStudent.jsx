@@ -12,7 +12,7 @@ const percentBar = (current_project, id) => {
     return  <Link  className="btn btn-xs btn-warning"  to={Config.aProjectsNewUrl + id}> Asignar proyecto</Link>;
   }
 
-  const percentage = current_project.progress == 0 ? 10 : (current_project.progress / 12) * 100;
+  const percentage = current_project.progress === 0 ? 10 : (current_project.progress / 12) * 100;
   
   return (
     <>
@@ -22,7 +22,7 @@ const percentBar = (current_project, id) => {
       >
         <div
           className={
-            current_project.progress == 0 ?
+            current_project.progress === 0 ?
             "progress-bar bg-red":
             "progress-bar bg-green"
           }
@@ -67,7 +67,7 @@ export default function CardTutor({ student }) {
           <div className="body">
             <div className="row">
               <div className="col-lg-2 col-md-2">
-                <img className="img-responsive thumbnail" src={imageProfile} />
+                <img className="img-responsive thumbnail" src={imageProfile} alt="" />
               </div>
               <div className="col-lg-10 col-md-10">
                 <h2>

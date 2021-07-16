@@ -11,13 +11,13 @@ const FileComponent = (props) => {
     return (
         <div className="link-container">
             <a
-            class="file-link"
+            className="file-link"
             href={file.path}
             title={file.title}
             >
-            <div class="image-link">
+            <div className="image-link">
                 <img
-                class=""
+                className=""
                 src={
                     file.format === "application/pdf"
                     ? pdf_image
@@ -28,12 +28,12 @@ const FileComponent = (props) => {
                 data-mime-type="image/jpeg"
                 />
             </div>
-            <div class="text-link">
-                <div class="text-link-title">
+            <div className="text-link">
+                <div className="text-link-title">
                 {file.title}
                 </div>
-                <div class="">
-                    <div class="">
+                <div className="">
+                    <div className="">
                         {getTypeFile(file.format)}
                     </div>
                 </div>

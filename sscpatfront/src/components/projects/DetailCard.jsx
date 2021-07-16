@@ -12,8 +12,6 @@ import Modal from "../atoms/Modal";
 
 
 
-
-
 const initial_modal_data ={
   title: "",
   message: "",
@@ -54,7 +52,6 @@ const DetailCard = (props) => {
   };
 
   const removeProject = (id) => {
-    console.log("test")
     const obj = project
     setModal({
       title: "¿Eliminar el proyecto?",
@@ -69,11 +66,12 @@ const DetailCard = (props) => {
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, []);
+  }, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
-    if ( !project || project.id+"" !== id ){
-      const res = await props.get(id);
+    if ( !project || project.id+"" !== id +""){
+      
+      await props.get(id);
     }
     setLoading(false);
   };
@@ -82,7 +80,8 @@ const DetailCard = (props) => {
     return <Spinner />;
   }
 
-  if (project.id+"" !== id ) {
+  if (project.id+"" !== id +"") {
+   
     return <Spinner />;
   }
 
@@ -91,6 +90,7 @@ const DetailCard = (props) => {
     <div className="row clearfix">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div className="card">
+          {loading ? <Spinner/>:
           <div className="header bg-indigo">
             <h1>Título: {project.title_academic_project} </h1>
             <h2 className="pull-right">
@@ -154,7 +154,7 @@ const DetailCard = (props) => {
                   to={Config.aProjectsDocumentUrl + project.id}
                   className="link-extended-time"
                 >
-                   <i class="material-icons">description</i>
+                   <i className="material-icons">description</i>
                   Documentos del proyecto
                 </Link>
             </span>
@@ -203,6 +203,7 @@ const DetailCard = (props) => {
               }
             </HeaderDropdown>
           </div>
+           }
         </div>
       </div>
     </div>

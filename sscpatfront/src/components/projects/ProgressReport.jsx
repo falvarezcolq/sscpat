@@ -13,43 +13,43 @@ import {
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 // import HeaderDropdown from "../../components/atoms/HeaderDropdown";
-import Modal from "../../components/atoms/Modal";
-import ProgressUpdateForm from "./ProgresUpdateForm";
+  // import Modal from "../../components/atoms/Modal";
+  // import ProgressUpdateForm from "./ProgresUpdateForm";
 // import tracingprogress from "../../store/reducers/tracingprogress";
 import TextCheck from "../../components/atoms/TextCheck";
 
 const ProgresCard = (props) => {
   const { project_id, results } = props;
   const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState({
-    title: "",
-    message: "",
-    cancel: null,
-    confirm: null,
-    accept: null,
-  });
+  // const [modal, setModal] = useState({
+  //   title: "",
+  //   message: "",
+  //   cancel: null,
+  //   confirm: null,
+  //   accept: null,
+  // });
 
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     await props.list(project_id);
     setLoading(false);
   };
 
-  const openEditModal = (id) => {
-    setModal({
-      progress_id: id,
-      cancel: setOpenModal.bind(this, false),
-      confirm: null,
-      accept: null,
-    });
-    setOpenModal(true);
-  };
+  // const openEditModal = (id) => {
+  //   setModal({
+  //     progress_id: id,
+  //     cancel: setOpenModal.bind(this, false),
+  //     confirm: null,
+  //     accept: null,
+  //   });
+  //   setOpenModal(true);
+  // };
 
   if (loading) {
     return (
@@ -153,29 +153,30 @@ const ProgresCard = (props) => {
                           <div key={file.id}>
                             <div className="link-container">
                               <a
-                                class="file-link"
+                                className="file-link"
                                 href={file.path}
                                 title={file.title}
                               >
-                                <div class="image-link">
+                                <div className="image-link">
                                   <img
-                                    class=""
+                                    className=""
                                     src={
                                       file.format === "application/pdf"
                                         ? pdf_image
                                         : file.thumbnail
                                     }
-                                    aria-hidden="true"
-                                    role="presentation"
-                                    data-mime-type="image/jpeg"
+                                    alt=""
+                                    // aria-hidden="true"
+                                    // role="presentation"
+                                    // data-mime-type="image/jpeg"
                                   />
                                 </div>
-                                <div class="text-link">
-                                  <div class="text-link-title">
+                                <div className="text-link">
+                                  <div className="text-link-title">
                                     {file.title}
                                   </div>
-                                  <div class="">
-                                    <div class="">
+                                  <div className="">
+                                    <div className="">
                                       {getTypeFile(file.format)}
                                     </div>
                                   </div>
@@ -242,29 +243,30 @@ const ProgresCard = (props) => {
                               <div key={file.id}>
                                 <div className="link-container">
                                   <a
-                                    class="file-link"
+                                    className="file-link"
                                     href={file.path}
                                     title={file.title}
                                   >
-                                    <div class="image-link">
+                                    <div className="image-link">
                                       <img
-                                        class=""
+                                        className=""
                                         src={
                                           file.format === "application/pdf"
                                             ? pdf_image
                                             : file.thumbnail
                                         }
-                                        aria-hidden="true"
-                                        role="presentation"
-                                        data-mime-type="image/jpeg"
+                                        alt=""
+                                        // aria-hidden="true"
+                                        // role="presentation"
+                                        // data-mime-type="image/jpeg"
                                       />
                                     </div>
-                                    <div class="text-link">
-                                      <div class="text-link-title">
+                                    <div className="text-link">
+                                      <div className="text-link-title">
                                         {file.title}
                                       </div>
-                                      <div class="">
-                                        <div class="">
+                                      <div className="">
+                                        <div className="">
                                           {getTypeFile(file.format)}
                                         </div>
                                       </div>
@@ -298,7 +300,7 @@ const ProgresCard = (props) => {
                           </small>
                         </td>
                         <td>
-                          {tracing.description != "" && (
+                          {tracing.description !== "" && (
                             <div style={{ whiteSpace: "pre-wrap" }}>
                               {tracing.description}
                             </div>
@@ -309,29 +311,30 @@ const ProgresCard = (props) => {
                             <div key={file.id}>
                               <div className="link-container">
                                 <a
-                                  class="file-link"
+                                  className="file-link"
                                   href={file.path}
                                   title={file.title}
                                 >
-                                  <div class="image-link">
+                                  <div className="image-link">
                                     <img
-                                      class=""
+                                      className=""
                                       src={
                                         file.format === "application/pdf"
                                           ? pdf_image
                                           : file.thumbnail
                                       }
-                                      aria-hidden="true"
-                                      role="presentation"
-                                      data-mime-type="image/jpeg"
+                                      // aria-hidden="true"
+                                      // role="presentation"
+                                      // data-mime-type="image/jpeg"
+                                      alt=""
                                     />
                                   </div>
-                                  <div class="text-link">
-                                    <div class="text-link-title">
+                                  <div className="text-link">
+                                    <div className="text-link-title">
                                       {file.title}
                                     </div>
-                                    <div class="">
-                                      <div class="">
+                                    <div className="">
+                                      <div className="">
                                         {getTypeFile(file.format)}
                                       </div>
                                     </div>
@@ -351,7 +354,7 @@ const ProgresCard = (props) => {
           <h5> El proyecto aún no tiene avances </h5>
         )}
       </div>
-      <Modal open={openModal}>
+      {/* <Modal open={openModal}>
         {modal.progress_id && (
           <ProgressUpdateForm
             project_id={project_id}
@@ -359,7 +362,7 @@ const ProgresCard = (props) => {
             cancel={() => setOpenModal(false)}
           />
         )}
-      </Modal>
+      </Modal> */}
     </>
   );
 };

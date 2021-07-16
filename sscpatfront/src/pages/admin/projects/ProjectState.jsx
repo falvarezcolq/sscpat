@@ -2,28 +2,25 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
+// import Alert from "../../../components/atoms/Alert";
 
 import { getTutor } from "../../../actions/tutors";
 
-import CardTutor  from "../../../components/tutors/CardTutor";
-import ListCard from "../../../components/projects/ListCard";
-import ProgresCard from "../../../components/projects/ProgresCard";
-import DetailCard from "../../../components/projects/DetailCard";
-import HistoryCard from "../../../components/projects/HistoryCard";
+// import CardTutor  from "../../../components/tutors/CardTutor";
+// import ListCard from "../../../components/projects/ListCard";
+// import ProgresCard from "../../../components/projects/ProgresCard";
+// import DetailCard from "../../../components/projects/DetailCard";
+// import HistoryCard from "../../../components/projects/HistoryCard";
 // import SelectForm from "../../../components/atoms/SelectForm";
 
-import ProgresForm from "../../../components/projects/ProgresForm";
+// import ProgresForm from "../../../components/projects/ProgresForm";
 import StateForm from "../../../components/projects/StateForm";
 
 class ProjectState extends Component {
-  componentDidMount() {
-    const id = this.props.match.params.id;
-  }
 
   render() {
     const id = this.props.match.params.id;
-    const { messages } = this.props;
+   
     return (
       <section className="content">
         <div className="container-fluid">
@@ -35,7 +32,7 @@ class ProjectState extends Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button>
               Proyectos academicos </h2>
           </div>

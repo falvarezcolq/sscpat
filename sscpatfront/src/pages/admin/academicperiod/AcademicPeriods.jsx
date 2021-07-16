@@ -25,7 +25,7 @@ class AcademicPeriods extends Component {
        
         <div className="container-fluid">
           <div className="block-header">
-            <h2>Periodos academicos</h2>
+            <h2>Periodos académicos</h2>
           </div>
         </div>
 

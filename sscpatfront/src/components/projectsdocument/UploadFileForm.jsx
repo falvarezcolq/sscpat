@@ -85,7 +85,7 @@ const UploadFileForm = (props) => {
     if (formValidation()) {
       let res;
       const requestValues = insertFiles();
-      if (type == "document"){
+      if (type === "document"){
         res = await addFile(projectdocument_id, requestValues);
       }else{
         res = await addFileInit(projectdocument_id, requestValues);

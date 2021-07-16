@@ -1,4 +1,4 @@
 
-const HOST = "http://api.sscpat.test"
+const HOST = "http://apisscpat.aeumsa.com"
 
 export default HOST;

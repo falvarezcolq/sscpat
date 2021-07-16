@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
 import { add } from "../../actions/academicsperiod";
+import AlertMessage from "../atoms/AlertMessage";
 
 
 const initialValues = {  // data will be for ever strings
@@ -319,6 +320,9 @@ const CreateForm = (props) => {
                       ""
                     )}
                   </div>
+                </div>
+                <div className="col-md-12 col-lg-12 align-center">
+                      <AlertMessage/>
                 </div>
                 <div className="col-md-12 col-lg-12 align-center">
                   <button

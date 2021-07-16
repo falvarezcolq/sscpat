@@ -34,7 +34,7 @@ const optionValues = {
 };
 
 const TracingProgressUpdateForm = (props) => {
-  const { progress_id,tracing_progress_id, cancel, results, add, get, update, auth } = props;
+  const { progress_id,tracing_progress_id, cancel, get, update, auth } = props;
   let tracingProgressValues = {
     ...initialValues,
     tracingstudent: progress_id,
@@ -115,11 +115,11 @@ const TracingProgressUpdateForm = (props) => {
 
   /** Remove files on list files */
   const removeFile = (name) => {
-    setFiles(files.filter((f) => f.name != name));
+    setFiles(files.filter((f) => f.name !== name));
   };
 
   const removeServerFiles = (name) =>{
-    setServerFiles(serverFiles.filter((file)=> file.title != name));
+    setServerFiles(serverFiles.filter((file)=> file.title+"" !== name+""));
   }
 
   
@@ -229,7 +229,7 @@ const TracingProgressUpdateForm = (props) => {
   useEffect(() => {
    setShowForm(false)
    loadData()
-  }, [tracing_progress_id])
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData= async ()=>{
     let res =  await get(progress_id,tracing_progress_id)

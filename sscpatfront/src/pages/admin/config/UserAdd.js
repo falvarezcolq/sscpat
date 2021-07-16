@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 // import { addTutor, removeTutor, searchTutor } from "../../../actions/tutors";
 import UserNewForm from '../../../components/forms/UserNewForm';
-import Alert from '../../../components/atoms/Alert';
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 class UserAdd extends React.Component {
   // static propTypes = {};
@@ -13,13 +13,7 @@ class UserAdd extends React.Component {
 
     return (
       <section className="content">
-         { messages.payload && messages.payload.detail? (
-            <Alert message={messages.payload.detail} 
-                      color={messages.color} />
-           
-          ) : (
-            ""
-          )}
+         <AlertMessage/>
           
         <div className="container-fluid">
           <div className="block-header">
@@ -29,7 +23,7 @@ class UserAdd extends React.Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button>Agregar Nuevo Usuario </h2>
           </div>
         </div>
@@ -46,13 +40,6 @@ class UserAdd extends React.Component {
 
               <div className="body">
                 <UserNewForm/>
-                { messages.payload && messages.payload.detail? (
-                  <Alert message={messages.payload.detail} 
-                            color={messages.color} />
-                
-                ) : (
-                  ""
-                )}
               </div>
             </div>
           </div>

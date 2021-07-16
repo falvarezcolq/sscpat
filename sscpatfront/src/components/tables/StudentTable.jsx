@@ -63,7 +63,7 @@ class StundentTable extends React.Component {
       return  <Link  className="btn btn-xs btn-warning"  to={Config.aProjectsNewUrl + id}> Asignar proyecto</Link>;
     }
 
-    const percentage = current_project.progress == 0 ? 10 : (current_project.progress / 12) * 100;
+    const percentage = current_project.progress === 0 ? 10 : (current_project.progress / 12) * 100;
     
     return (
       <>
@@ -73,7 +73,7 @@ class StundentTable extends React.Component {
         >
           <div
             className={
-              current_project.progress == 0 ?
+              current_project.progress === 0 ?
               "progress-bar bg-red":
               "progress-bar bg-green"
             }
@@ -88,7 +88,7 @@ class StundentTable extends React.Component {
 
   render() {
     const students = this.props.students;
-    const { results, size } = students;
+    const { results } = students;
     return (
       <div className="row">
         <form onSubmit={this.onSubmit}>

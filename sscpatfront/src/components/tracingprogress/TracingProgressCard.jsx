@@ -1,5 +1,5 @@
 import React from "react";
-import { getDateTime, getTypeTracing, getTypeFile } from "../../actions/helper";
+import { getDateTime, getTypeTracing, getTypeFile, filePath } from "../../actions/helper";
 import pdf_image from "../../img/pdf_icon.png";
 import HeaderDropdown from  "../../components/atoms/HeaderDropdown";
 
@@ -35,7 +35,7 @@ const TracingProgressCard = (props) => {
                 </li>
         </HeaderDropdown>
       </div>
-      { tracingprogress.description!="" &&
+      { tracingprogress.description !== "" &&
       
       <div className="body">
         <div className="row">
@@ -48,10 +48,10 @@ const TracingProgressCard = (props) => {
           {tracingprogress.files.map((file) => (
             <div key={file.id}>
               <div className="link-container">
-                <a class="file-link" href={file.path} title={file.title}>
-                  <div class="image-link">
+                <a className="file-link" href={filePath(file.path)} title={file.title}>
+                  <div className="image-link">
                     <img
-                      class=""
+                      className=""
                       src={
                         file.format === "application/pdf"
                           ? pdf_image
@@ -62,10 +62,10 @@ const TracingProgressCard = (props) => {
                     
                     />
                   </div>
-                  <div class="text-link">
-                    <div class="text-link-title">{file.title}</div>
-                    <div class="">
-                      <div class="">{getTypeFile(file.format)}</div>
+                  <div className="text-link">
+                    <div className="text-link-title">{file.title}</div>
+                    <div className="">
+                      <div className="">{getTypeFile(file.format)}</div>
                     </div>
                   </div>
                 </a>

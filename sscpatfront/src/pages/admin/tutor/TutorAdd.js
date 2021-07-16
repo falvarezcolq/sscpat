@@ -11,9 +11,7 @@ class TutorAdd extends React.Component {
   state = {
     query: "",
   };
-  constructor(props) {
-    super(props);
-  }
+ 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = (e) => {

@@ -25,10 +25,10 @@ import UploadFileForm from "../projectsdocument/UploadFileForm";
 // import Test from "../atoms/Test";
 
 const ProjectDocumentsDetail = (props) => {
-  const { project_id, documents,initialDocuments ,addFile } = props;
+  const { project_id, documents,initialDocuments  } = props;
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [modal, setModal] = useState({
+  const [modal ] = useState({
     title: "",
     message: "",
     cancel: null,
@@ -39,7 +39,7 @@ const ProjectDocumentsDetail = (props) => {
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     await props.getDocuments(project_id);
@@ -67,7 +67,7 @@ const ProjectDocumentsDetail = (props) => {
       </div>
     );
   }
-  console.log(documents)
+
   return (
     <>
       <div className="card">

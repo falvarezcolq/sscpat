@@ -26,7 +26,7 @@ entryPoints:
 http:
   routers:
     react-router:
-      rule: "Host(`sscpat.test`)"
+      rule: "Host(`sscpat.aeumsa.com`)"
       entryPoints:
         - web
       #      middlewares:
@@ -35,7 +35,7 @@ http:
       service: react
 
     web-router:
-      rule: "Host(`api.sscpat.test`)"
+      rule: "Host(`apisscpat.aeumsa.com`)"
       entryPoints:
         - web
 #      middlewares:
@@ -56,7 +56,7 @@ http:
 
 #    flower-secure-router:
     flower-router:
-      rule: "Host(`api.sscpat.test`)"
+      rule: "Host(`apisscpat.aeumsa.com`)"
       entryPoints:
         - flower
       service: flower

@@ -13,8 +13,6 @@ const initialValues = {
   state: "CONCLUDED_SUCCESSFULLY",
 };
 
-const validate = {};
-
 const StateForm = (props) => {
   const { project_id, object ,get, patch } = props;
 
@@ -23,8 +21,6 @@ const StateForm = (props) => {
       state: object ? object.state:"CONCLUDED_SUCCESSFULLY",
   }
   const [values, setValues] = useState(project);
-  // const [errors, setErrors] = useState({});
-  // const [focus, setFocus] = useState({});
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
@@ -32,11 +28,6 @@ const StateForm = (props) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-
-//   const formValidation = () => {
-//     const generalValidate = formGeneralValidation(values, validate, setErrors);
-//     return generalValidate;
-//   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -46,8 +37,7 @@ const StateForm = (props) => {
 
   const formSubmit = async () => {
     // if (formValidation()) {
-      let res;
-      res = await patch(project_id, values);
+      await patch(project_id, values);
     //   if (res) {
     //     loadGeneralErrorForm(res, setErrors);
     //   }
@@ -58,10 +48,10 @@ const StateForm = (props) => {
   useEffect(() => {
       setShowForm(false)
       loadData()
-  }, [])
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async()=>{
-      if ( !(object && object.id == project_id)){
+      if ( !(object && object.id+"" === project_id+"")){
           const new_values = await get(project_id);
           setValues({state:new_values.state});
       }

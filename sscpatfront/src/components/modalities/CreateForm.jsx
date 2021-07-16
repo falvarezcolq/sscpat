@@ -281,7 +281,7 @@ const CreateForm = (props) => {
 
   useEffect(() => {
     props.listDocuments();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
 

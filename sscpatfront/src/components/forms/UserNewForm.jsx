@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
 import { addUser } from "../../actions/users";
 import InputForm from "../../components/atoms/InputForm";
+import AlertMessage from "../atoms/AlertMessage";
 
 const initialValues = {
   username: "",
@@ -628,6 +629,9 @@ const UserNewForm = ({ isLoading, addUser }) => {
              error={errors.address}
              title="Dirección"
           />
+        </div>
+        <div className="col-lg-12 align-center">
+          <AlertMessage/>
         </div>
 
         <div className="col-lg-12 align-center">

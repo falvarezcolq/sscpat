@@ -10,7 +10,7 @@ const NotificationIcon = (props) => {
     useEffect(() => { 
         loadData();
         // props.getNumberNotifications();
-    }, []); 
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps 
     
     const loadData = async () => {
         await props.getNumberNotifications();

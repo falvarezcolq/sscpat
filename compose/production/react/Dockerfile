@@ -6,7 +6,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./sscpatfront/package.json ./
 COPY ./sscpatfront/package-lock.json ./
 
-
 RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 COPY ./sscpatfront ./

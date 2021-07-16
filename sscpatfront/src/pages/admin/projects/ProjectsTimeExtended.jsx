@@ -8,11 +8,7 @@ import { getTutor } from "../../../actions/tutors";
 import TimeForm from "../../../components/projects/TimeForm";
 
 class ProjectsTimeExtended extends Component {
-  componentDidMount() {
-    const id = this.props.match.params.id;
-
-  }
-
+ 
   render() {
     const id = this.props.match.params.id;
     return (
@@ -26,7 +22,7 @@ class ProjectsTimeExtended extends Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button>
               Proyectos academicos </h2>
           </div>

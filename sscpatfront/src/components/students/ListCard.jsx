@@ -4,7 +4,7 @@ import { list } from "../../actions/projects";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 import { validateInput } from "../../utils/Validations";
-import Modal from "../../components/atoms/Modal";
+// import Modal from "../../components/atoms/Modal";
 import { LabelStatus } from "../../components/atoms/LabelStatus";
 import InputForm from "../atoms/InputForm";
 import SelectForm from "../atoms/SelectForm";
@@ -34,21 +34,21 @@ const validate = {
   },
 };
 
-const modalValues = {
-  title: "",
-  message: "",
-  cancel: null,
-  confirm: null,
-  accept: null,
-};
+// const modalValues = {
+//   title: "",
+//   message: "",
+//   cancel: null,
+//   confirm: null,
+//   accept: null,
+// };
 
 const ListCard = (props) => {
   const { student, projects } = props;
   const url = Config.ProjectsApiUrl + student.id + "/bystudents/";
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [openModal, setOpenModal] = useState(false);
-  const [modal, setModal] = useState(modalValues);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [modal, setModal] = useState(modalValues);
   // const [isDeleting, setIsDeleting] = useState(false);
   const [loadingTable, setLoadingTable] = useState(false);
   const [filter, setFilter] = useState(false);
@@ -57,7 +57,7 @@ const ListCard = (props) => {
 
   useEffect(() => {
     loadTable();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     await props.list(url);
@@ -278,8 +278,6 @@ const ListCard = (props) => {
                       </div>
                     ) : projects.results.length === 0 ? 
                     
-                    
-                    
                     (
 
                     
@@ -349,7 +347,7 @@ const ListCard = (props) => {
         </div>
       </div>
 
-      <Modal open={openModal}>
+      {/* <Modal open={openModal}>
         <div className="modal-header">
           <h4 className="modal-title" id="defaultModalLabel">
             {modal.title}
@@ -388,6 +386,7 @@ const ListCard = (props) => {
           )}
         </div>
       </Modal>
+     */}
     </>
   );
 };

@@ -236,7 +236,7 @@ const TracingProgressForm = (props) => {
         break;      
       
       case optionValues.tutor_form:
-        validForm = !formValues.every(input => input.value == "")
+        validForm = !formValues.every(input => input.value === "")
         message = "Ingresa al menos un punto de evaluación"
         break;
 
@@ -265,8 +265,9 @@ const TracingProgressForm = (props) => {
      let text =""
      formValues.map(input => {
        if(input.value !== ""){
-         text +=  input.title + ": \n" + "  - "+ input.value + "\n\n" ;
+         text +=  input.title + ": \n" + "  - " + input.value + "\n\n" ;
        }
+       return text
      })
      return text
   }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { validateInput } from "../../utils/Validations";
+// import { validateInput } from "../../utils/Vali/dations";
 // import { add } from "../../actions/documents";
 import { get } from "../../actions/projects";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Form from "./Form";
 
 const UpdateForm = (props) => {
@@ -18,7 +18,7 @@ const UpdateForm = (props) => {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="row clearfix">
@@ -26,7 +26,7 @@ const UpdateForm = (props) => {
         <div className="card">
           <div className="header">
             <h2>
-              Actualizar informacion del proyecto
+              Actualizar información del proyecto
               <small> </small>
             </h2>
           </div>

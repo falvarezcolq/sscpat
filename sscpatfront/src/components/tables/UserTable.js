@@ -5,7 +5,6 @@ import { getNameType } from "../../actions/helper";
 import { listUsers,removeUser } from "../../actions/users";
 import NavPagination from "./NavPagination";
 import Config from "../../utils/Config";
-import PropTypes from "prop-types";
 import { validateInput } from "../../utils/Validations";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
@@ -41,7 +40,7 @@ const modalValues = {
 
 const TutorTable = (props) => {
   const { users ,listUsers, removeUser} = props;
-  const { results, size } = users;
+  const { results } = users;
 
   const url = Config.UserApiUrl;
 
@@ -55,7 +54,7 @@ const TutorTable = (props) => {
 
   useEffect(() => {
     loadTable();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadTable = async () => {
     setLoadingTable(true);
@@ -197,11 +196,11 @@ const TutorTable = (props) => {
                         <td>{new Date(user.created_at).toLocaleString()}</td>
                         <td>
                           <Link to={Config.aUsersUrl+"/"+user.id} className="" title="Editar información del usuario" style={{"paddingRight":"5px"}}> 
-                          <i class="material-icons">edit</i>
+                          <i className="material-icons">edit</i>
                           </Link>
 
                           <Link to={Config.aUsersUrl+"/"+user.id+"/password"} className={user.is_active ? "col-green" :"col-red"} title="Permiso de acceso al sistema"> 
-                            <i class="material-icons">security</i> 
+                            <i className="material-icons">security</i> 
                             <span className="font-10"> {user.is_active ? "" : "Sin acceso"}</span>
                           </Link>
 

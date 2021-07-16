@@ -1,4 +1,5 @@
 import { ADMIN, TUTOR, EXTERNAL_TUTOR, STUDENT } from "./types";
+import HOST from "../utils/global";
 
 export const getNameType = (type) => {
   switch (type) {
@@ -82,14 +83,7 @@ export const getDateTime = (dateTime)=>{
 
 
 export const getDate = (datetimes)=>{
-  console.log(datetimes) 
-  
   const date =  new Date(datetimes)
-  console.log(
-    date.getDate() + " de " +
-    getNameMonth( date.getMonth() +1).toLocaleLowerCase() + " " +
-    date.getFullYear() 
-  )
   return (
     date.getDate() + " de " +
     getNameMonth( date.getMonth() +1).toLocaleLowerCase() + " " +
@@ -152,3 +146,10 @@ export const getTimeSendDocument = (time) => {
 
 
 
+
+export const filePath=(path)=>{
+    if(!path.includes(HOST)){
+      return HOST+path
+    }
+    return path;
+}

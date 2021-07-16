@@ -30,13 +30,13 @@ const validate = {
   },
 };
 
-const modalValues = {
-  title: "",
-  message: "",
-  cancel: null,
-  confirm: null,
-  accept: null,
-};
+// const modalValues = {
+//   title: "",
+//   message: "",
+//   cancel: null,
+//   confirm: null,
+//   accept: null,
+// };
 
 const StundentByTutors = (props) => {
   const { id,students} = props;
@@ -53,7 +53,7 @@ const StundentByTutors = (props) => {
   
   useEffect(() => {
     loadTable();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadTable = async () => {
     setLoadingTable(true);

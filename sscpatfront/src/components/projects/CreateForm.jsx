@@ -17,16 +17,15 @@ const CreateForm = (props) => {
 
   const loadData= async ()=>{
     const studentId = props.id
-    let est = props.results.find((obj) => obj.id==studentId)
+    let est = props.results.find((obj) => obj.id + "" === studentId+ "")
     if (!est ){
       est = await props.getStudent(studentId)
-      console.log(est)
     }
     setStudent(est)
   }
   useEffect(()=>{
    loadData()
-  },[])
+  },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="row clearfix">

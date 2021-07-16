@@ -31,7 +31,7 @@ class UserEdit extends React.Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button>Actualizar información del usuario</h2>
           </div>
         </div>

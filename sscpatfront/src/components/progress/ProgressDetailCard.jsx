@@ -16,7 +16,7 @@ const DetailCard = (props) => {
   useEffect(() => { 
     // setLoading(true)
     loadData();
-  }, []); 
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps 
 
   const loadData = async () => {
     await props.get(id);
@@ -35,7 +35,7 @@ const DetailCard = (props) => {
     );
   };
   
-  if (!progress || progress.id != id) {
+  if (!progress || progress.id+"" !== id+"") {
     
       return ( <div className="row clearfix">
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -201,25 +201,25 @@ const DetailCard = (props) => {
                   <div key={file.id}>
                     <div className="link-container">
                     <a
-                      class="file-link"
+                      className="file-link"
                       href={file.path}
                       title={file.title}
                     >
-                      <div class="image-link">
+                      <div className="image-link">
                         <img
-                           class=""
+                           className=""
                           src={file.format === 'application/pdf' ? pdf_image : file.thumbnail }
                           aria-hidden="true"
-                          role="presentation"
+                          alt="presentation"
                           data-mime-type="image/jpeg"
                         />
                       </div>
-                      <div class="text-link">
-                        <div class="text-link-title">
+                      <div className="text-link">
+                        <div className="text-link-title">
                           {file.title}
                         </div>
-                        <div class="">
-                          <div class="">{getTypeFile(file.format)}</div>
+                        <div className="">
+                          <div className="">{getTypeFile(file.format)}</div>
                         </div>
                       </div>
                     </a>

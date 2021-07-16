@@ -28,7 +28,7 @@ class DocumentsUpdate extends Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button> Instituci&oacute;n</h2> 
           </div>
         </div>

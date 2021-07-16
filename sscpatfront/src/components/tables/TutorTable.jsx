@@ -30,17 +30,17 @@ const validate = {
   },
 };
 
-const modalValues = {
-  title: "",
-  message: "",
-  cancel: null,
-  confirm: null,
-  accept: null,
-};
+// const modalValues = {
+//   title: "",
+//   message: "",
+//   cancel: null,
+//   confirm: null,
+//   accept: null,
+// };
 
 const TutorTable = (props) => {
   const { tutors, url} = props;
-  const url_detail = url == Config.ExternalTutorApiUrl ? Config.aETutorUrl : Config.aTutorUrl; 
+  const url_detail = url === Config.ExternalTutorApiUrl ? Config.aETutorUrl : Config.aTutorUrl; 
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   // const [openModal, setOpenModal] = useState(false);
@@ -52,7 +52,7 @@ const TutorTable = (props) => {
   // const toggleFilter = () => setFilter(!filter);
   useEffect(() => {
     loadTable();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadTable = async () => {
     setLoadingTable(true);

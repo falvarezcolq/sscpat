@@ -71,7 +71,7 @@ const ProgresForm = (props) => {
   };
   /** Remove files on list files */
   const removeFile = (name) => {
-    setFiles(files.filter((f) => f.name != name));
+    setFiles(files.filter((f) => f.name !== name));
   };
 
   const onChangeSelect = (e) => {

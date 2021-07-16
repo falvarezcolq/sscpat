@@ -24,7 +24,7 @@ class UpdatePassword extends Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button>Contraseña</h2> 
           </div>
         </div>

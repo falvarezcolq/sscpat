@@ -48,6 +48,7 @@ import ProjectsTimeExtended from "../pages/admin/projects/ProjectsTimeExtended";
 import ProjectsDetailReport from "../pages/admin/projects/ProjectsDetailReport";
 import ProjectsDocument from "../pages/admin/projects/ProjectsDocument";
 import Notifications from "../pages/user/Notifications";
+import Reports from "../pages/admin/Reports/Reports";
 
 
 const RoutesAdmin = () => {
@@ -344,6 +345,14 @@ const RoutesAdmin = () => {
         activepage="5"
         activepage2="55"
         page={InstitutionsUpdate}
+      />
+
+      <PrivateRoute
+        exact
+        path={Config.aReportsUrl}
+        activepage="6"
+        activepage2="0"
+        page={Reports}
       />
 
       

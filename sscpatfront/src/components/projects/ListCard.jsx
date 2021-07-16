@@ -50,7 +50,7 @@ const ListCard = (props) => {
   useEffect(() => {
     setLoading(true);
     loadTable();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadTable = async () => {
     console.log(values);

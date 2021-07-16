@@ -140,17 +140,17 @@ const UpdateForm = (props) => {
 
 
   const loadingData = async () =>{
-    const id = props.id;
-    const object = await props.get(id)
-    setValues(object)
+    if(!values){
+      const id = props.id;
+      const object = await props.get(id)
+      setValues(object)
+    }
   }
 
 
   useEffect(() => {
-    if(!values){
-      loadingData()
-    }
-  }, [])
+    loadingData()
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps 
 
   
   if (!values){

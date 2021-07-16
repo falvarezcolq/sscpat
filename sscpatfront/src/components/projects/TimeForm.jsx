@@ -74,8 +74,7 @@ const TimeForm = (props) => {
 
   const formSubmit = async () => {
     // if (formValidation()) {
-    let res;
-    res = await patch(project_id, values);
+    await patch(project_id, values);
     //   if (res) {
     //     loadGeneralErrorForm(res, setErrors);
     //   }
@@ -86,7 +85,7 @@ const TimeForm = (props) => {
   useEffect(() => {
     setShowForm(false);
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     if (!(object && object.id === project_id)) {

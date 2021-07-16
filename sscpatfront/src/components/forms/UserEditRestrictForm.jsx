@@ -167,7 +167,7 @@ const UserEditResctrictForm = ({
     if (!values) {
       loadUser(id);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadUser = async (id) => {
     const user = await getUser(id);

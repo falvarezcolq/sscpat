@@ -117,7 +117,7 @@ const UpdateForm = (props) => {
     if(!values){
       loadingData()
     }
-  }, [])
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps 
 
   
   return (

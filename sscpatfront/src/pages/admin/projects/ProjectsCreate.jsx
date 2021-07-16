@@ -26,7 +26,7 @@ class ProjectsCreate extends Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button> Inscribir estudiante a una modalidad de titulacion </h2>
           </div>
         </div>

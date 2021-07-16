@@ -41,7 +41,7 @@ export default function CardTutor({ tutor }) {
           <div className="body">
             <div className="row">
               <div className="col-lg-2 col-md-2">
-                <img className="img-responsive thumbnail" src={imageProfile} />
+                <img className="img-responsive thumbnail" src={imageProfile} alt=""/>
               </div>
               <div className="col-lg-10 col-md-10">
                 <h2>

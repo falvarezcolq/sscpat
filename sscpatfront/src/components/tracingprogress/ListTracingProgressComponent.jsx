@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { list } from "../../actions/tracingprogress";
 import Spinner from "../atoms/Spinner";
-import { getNameMonth, getDateTime } from "../../actions/helper";
-import { Link } from "react-router-dom";
-import Config from "../../utils/Config";
+// import { getNameMonth, getDateTime } from "../../actions/helper";
+// import { Link } from "react-router-dom";
+// import Config from "../../utils/Config";
 import TracingProgressCard from "./TracingProgressCard";
 import Modal from "../../components/atoms/Modal";
 import TracingProgressUpdateForm  from  "./TracingProgressUpdateForm";
@@ -38,7 +38,7 @@ const ListTracingProgressComponent = (props) => {
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadData = async () => {
     await props.list(progress_id);

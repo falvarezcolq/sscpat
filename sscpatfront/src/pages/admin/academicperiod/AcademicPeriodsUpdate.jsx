@@ -27,7 +27,7 @@ class AcademicPeriodsUpdate extends Component {
                 onClick={this.props.history.goBack}
                 title="Volver atras"
               >
-                <i class="material-icons">arrow_back</i>
+                <i className="material-icons">arrow_back</i>
               </button> 
               Periodos academicos</h2>
           </div>
