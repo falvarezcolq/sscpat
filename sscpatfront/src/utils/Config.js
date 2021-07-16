@@ -97,11 +97,8 @@ class Config{
 
     static aProgressUrl                     ="/avance";
     static aProgressIdUrl                   ="/avance/:id";
-
     static aNotificationUrl                 ="/notificaciones"
-    
-    static aReportsUrl                      ="/informes";
-
+    static aReportsUrl                      ="/reportes";
     static tHomeUrl="/tutor/";
     static tStudentsUrl="/tutor/estudiantes";
     static tStudentAdvanceUrl="/tutor/estudiantes/avance";

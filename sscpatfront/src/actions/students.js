@@ -57,10 +57,10 @@ export const listStudents =
         params: params,
       };
     }
-    console.log(url);
+  
     try {
       await axios.get(url, config).then((res) => {
-        console.log("success");
+      
         //   dispatch({type:FORM_SUCCESS})
         dispatch({
           type: GET_STUDENTS,
@@ -116,10 +116,10 @@ export const listStudentsByTutors =
       };
     }
     
-    console.log(url);
+ 
     try {
       await axios.get(url, config).then((res) => {
-        console.log("success");
+       
         dispatch({
           type: GET_STUDENTS,
           payload: res.data,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 import StudentTable from "../../../components/tables/StudentTable";
 
 class Students extends Component {
@@ -11,14 +11,10 @@ class Students extends Component {
 //   };
 
   render() {
-    const messages = this.props.messages;
+    
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+        <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">
@@ -31,22 +27,14 @@ class Students extends Component {
             <div className="card">
               <div className="header">
                 <h2>
-                  Estudiante 
+                  Estudiante
                   <small></small>
                 </h2>
               </div>
 
              <div className="body"> 
                <StudentTable/>
-            
-                {messages.payload && messages.payload.detail ? (
-                  <Alert
-                    message={messages.payload.detail}
-                    color={messages.color}
-                  />
-                ) : (
-                  ""
-                )}
+               <AlertMessage/>
               </div>
             </div>
           </div>

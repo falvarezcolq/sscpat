@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
 import { updatePassword } from "../../actions/users";
@@ -125,7 +125,7 @@ const UpdatePasswordForm = (props) => {
 
   // const loadingData = async () =>{
   //   const id = props.id;
-  //   console.log(id)
+
   //   const object = await props.get(id)
   //   setValues(object)
   // }

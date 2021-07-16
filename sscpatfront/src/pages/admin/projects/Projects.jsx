@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
 import ListCard from "../../../components/projects/ListCard";
-import TutorTable from "../../../components/tables/TutorTable";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 class Projects extends Component {
   render() {
-    const messages = this.props.messages;
+  
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+        <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">

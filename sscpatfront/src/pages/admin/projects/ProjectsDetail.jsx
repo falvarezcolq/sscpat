@@ -28,7 +28,7 @@ class ProjectsDetail extends Component {
 
   render() {
     const id = this.props.match.params.id;
-    const { messages ,project} = this.props;
+    const {project} = this.props;
     return (
       <section className="content">
         <div className="container-fluid">

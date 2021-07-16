@@ -181,7 +181,6 @@ const TracingProgressForm = (props) => {
 
   const onChangeSelect = (e) => {
     const { name, value } = e.target;
-    console.log(value);
     setValues({ ...values, [name]: value });
   };
 
@@ -218,7 +217,7 @@ const TracingProgressForm = (props) => {
     let message = "";
     let messageFile = "";
 
-    console.log(values);
+   
     switch (values.typetracing) {
       case optionValues.admin:
         validForm = values.description !== "";
@@ -265,7 +264,7 @@ const TracingProgressForm = (props) => {
      let text =""
      formValues.map(input => {
        if(input.value !== ""){
-         text +=  input.title + ": \n" + "  - " + input.value + "\n\n" ;
+         text +=  input.title + ": \n" + "  - " + input.value + "\n\n" ;  // eslint-disable-line
        }
        return text
      })
@@ -294,7 +293,7 @@ const TracingProgressForm = (props) => {
       let res;
       const requestValues = insertFiles();
       res = await add(progress_id, requestValues);
-      console.log(res)
+
       if (res) {
         loadGeneralErrorForm(res, setErrors);
       } else {

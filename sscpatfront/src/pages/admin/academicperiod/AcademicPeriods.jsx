@@ -17,7 +17,6 @@ class AcademicPeriods extends Component {
   }
 
   render() {
-    const { abierto } = this.state;
     const messages = this.props.messages;
     return (
       <>

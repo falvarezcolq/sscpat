@@ -129,7 +129,7 @@ const ListCard = (props) => {
     e.preventDefault();
     if (Object.values(errors).every((t) => t === null)) {
       props.list(url, values);
-      console.log(values);
+     
     }
   };
 

@@ -17,12 +17,12 @@ class StudentAdd extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const query = this.state.query;
-    console.log(query);
+   
     this.props.searchTutor(query);
   };
 
   render() {
-    console.log(this.props);
+   
     return (
       <section className="content">
         <div className="container-fluid">

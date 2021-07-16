@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
+
 
 import { getTutor } from "../../../actions/tutors";
 
 // import CardTutor from "../../../components/tutors/CardTutor";
 import ProgressDetailCard from "../../../components/progress/ProgressDetailCard";
-import DetailCard from "../../../components/projects/DetailCard";
-import HistoryCard from "../../../components/projects/HistoryCard";
+// import DetailCard from "../../../components/projects/DetailCard";
+// import HistoryCard from "../../../components/projects/HistoryCard";
 // import SelectForm from "../../../components/atoms/SelectForm";
 
 import TracingProgressForm from "../../../components/tracingprogress/TracingProgressForm";
@@ -24,7 +24,7 @@ class ProgressDetail extends Component {
 
   render() {
     const id = this.props.match.params.id;
-    const { messages } = this.props;
+    
     return (
       <section className="content">
         <div className="container-fluid">

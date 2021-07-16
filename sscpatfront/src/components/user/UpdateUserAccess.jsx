@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
 import { getUser , updateUserAccess } from "../../actions/users";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 // import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
 import RadioButton from "../atoms/RadioButton";
 
-const initialValues = {
-  // data will be for ever strings
-  user:0,
-  is_active: false,
-};
+// const initialValues = {
+//   // data will be for ever strings
+//   user:0,
+//   is_active: false,
+// };
 
 const validate = {
   is_active: {
@@ -20,13 +20,13 @@ const validate = {
 };
 
 const UpdateUserAccess = (props) => {
-  let user = props.results.find((user)=>user.id==props.id)
+  let user = props.results.find((user)=>user.id===props.id)
   const [values, setValues] = useState(null);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-  const [focus, setFocus] = useState({});
+  // const [focus, setFocus] = useState({});
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
 
 
 
@@ -92,7 +92,7 @@ const UpdateUserAccess = (props) => {
 
   const formSubmit = async () => {
     if (formValidation()) {
-      console.log("hrllo")
+     
       const res = await props.updateUserAccess(values);
       if (res) {
         if (!res.message){
@@ -123,10 +123,10 @@ const UpdateUserAccess = (props) => {
     }else{
       loadingData()
     }
-  }, [])
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onChangeRadioButton = (e) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     setValues({ ...values, [name]: !values[name] });
   };
 

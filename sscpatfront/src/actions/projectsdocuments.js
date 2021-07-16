@@ -25,7 +25,7 @@ export const addFile = (id,obj) => async (dispatch) =>{
     const res = await axios
         .post(url, obj ,config)
         .then((res) => {
-          console.log(res.data)
+    
           dispatch({
               type:MESSAGE_SUCCESS,
               payload:{detail: <p>El archivo <strong>{res.data.file.title} </strong>  se agrego al documento <strong>{res.data.document.title} </strong> </p> }
@@ -54,7 +54,7 @@ export const addFileInit = (id,obj) => async (dispatch) =>{
     const res = await axios
         .post(url, obj ,config)
         .then((res) => {
-          console.log(res.data)
+          
           dispatch({
               type:MESSAGE_SUCCESS,
               payload:{detail: <p>El archivo <strong>{res.data.file.title} </strong>  se agrego al documento <strong>{res.data.document.title} </strong> </p> }

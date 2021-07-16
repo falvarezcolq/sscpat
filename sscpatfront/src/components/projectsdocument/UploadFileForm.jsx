@@ -19,7 +19,7 @@ const UploadFileForm = (props) => {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+
     if (file) {
       if (file.type === "application/pdf") {
         setNewFile(file);
@@ -83,12 +83,14 @@ const UploadFileForm = (props) => {
 
   const formSubmit = async () => {
     if (formValidation()) {
-      let res;
+      // let res;
       const requestValues = insertFiles();
       if (type === "document"){
-        res = await addFile(projectdocument_id, requestValues);
+        // res =
+        await addFile(projectdocument_id, requestValues);
       }else{
-        res = await addFileInit(projectdocument_id, requestValues);
+        // res =
+        await addFileInit(projectdocument_id, requestValues);
       }
       
       // if (res) {

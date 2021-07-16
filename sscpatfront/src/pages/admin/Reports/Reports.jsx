@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 class Reports extends Component {
   render() {
-    const messages = this.props.messages;
     return (
       <>
       <section className="content">

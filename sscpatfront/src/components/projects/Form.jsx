@@ -69,7 +69,7 @@ const Form = (props) => {
       });
     const error = validateInput(name, value, validate[name]);
     setErrors({ ...errors, [name]: error });
-    console.log(values)
+ 
   };
   const onBlur = (e) => {
     const { name, value } = e.target;
@@ -166,7 +166,6 @@ const Form = (props) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadingData = () => {
-    console.log("loading selects");
     props.minimalListTutors();
     props.listModalities();
     props.listAcademicPeriods();

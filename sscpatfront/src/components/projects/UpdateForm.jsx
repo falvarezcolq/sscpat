@@ -12,7 +12,6 @@ const UpdateForm = (props) => {
   const loadData = async () => {
     const projectId = props.id;
     const proj = await props.get(projectId);
-    console.log(proj);
     setProject(proj)
   };
 

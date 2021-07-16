@@ -6,12 +6,12 @@ import { useHistory } from "react-router-dom";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
 
-const initialValues = {
-  // data will be for ever strings
-  user:0,
-  username: "",
-  new_password: "",
-};
+// const initialValues = {
+//   // data will be for ever strings
+//   user:0,
+//   username: "",
+//   new_password: "",
+// };
 
 const validate = {
   username: {
@@ -27,7 +27,7 @@ const validate = {
 };
 
 const UpdateUserPasswordForm = (props) => {
-  let user = props.results.find((user)=>user.id==props.id)
+  let user = props.results.find((user)=>user.id===props.id)
   const [values, setValues] = useState(null);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});

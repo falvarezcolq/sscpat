@@ -4,7 +4,7 @@ import { list } from "../../actions/projects";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 import { validateInput } from "../../utils/Validations";
-import Modal from "../../components/atoms/Modal";
+// import Modal from "../../components/atoms/Modal";
 import { LabelStatus } from "../../components/atoms/LabelStatus";
 import InputForm from "../atoms/InputForm";
 import SelectForm from "../atoms/SelectForm";
@@ -33,22 +33,22 @@ const validate = {
   },
 };
 
-const modalValues = {
-  title: "",
-  message: "",
-  cancel: null,
-  confirm: null,
-  accept: null,
-};
+// const modalValues = {
+//   title: "",
+//   message: "",
+//   cancel: null,
+//   confirm: null,
+//   accept: null,
+// };
 
 const ListCard = (props) => {
   const {tutor, projects } = props  
   const url = Config.ProjectsApiUrl+tutor.id+"/bytutors/"
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [openModal, setOpenModal] = useState(false);
-  const [modal, setModal] = useState(modalValues);
-  const [isDeleting, setIsDeleting] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [modal, setModal] = useState(modalValues);
+  // const [isDeleting, setIsDeleting] = useState(false);
   const [loadingTable, setLoadingTable] = useState(false);
   const [filter,setFilter]=useState(false)
 
@@ -71,22 +71,22 @@ const ListCard = (props) => {
   };
 
   
-  const deleteObj = async (obj) => {
-    setIsDeleting(true);
-    const res = await props.remove(obj.id);
-    setIsDeleting(false);
-    if (res) {
-      setModal({
-        title: "Restricción",
-        message: `No se puede eliminar  ${obj.title}`,
-        cancel: null,
-        confirm: null,
-        accept: setOpenModal.bind(this, false),
-      });
-    } else {
-      setOpenModal(false);
-    }
-  };
+  // const deleteObj = async (obj) => {
+  //   setIsDeleting(true);
+  //   const res = await props.remove(obj.id);
+  //   setIsDeleting(false);
+  //   if (res) {
+  //     setModal({
+  //       title: "Restricción",
+  //       message: `No se puede eliminar  ${obj.title}`,
+  //       cancel: null,
+  //       confirm: null,
+  //       accept: setOpenModal.bind(this, false),
+  //     });
+  //   } else {
+  //     setOpenModal(false);
+  //   }
+  // };
 
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
@@ -100,12 +100,12 @@ const ListCard = (props) => {
     e.preventDefault();
     if (Object.values(errors).every((t) => t === null)) {
       props.list(url, values);
-      console.log(values);
+     
     }
   };
 
   const percentBar = (progress) => {
-    const percentage = progress > 12 ? 100 : progress == 0 ? 10 : (progress / 12) * 100;
+    const percentage = progress > 12 ? 100 : progress === 0 ? 10 : (progress / 12) * 100;
 
     return (
       <>
@@ -115,7 +115,7 @@ const ListCard = (props) => {
         >
           <div
             className={
-              progress == 0 ? "progress-bar bg-orange" : "progress-bar bg-green"
+              progress === 0 ? "progress-bar bg-orange" : "progress-bar bg-green"
             }
             style={{ width: percentage + "%" }}
           >
@@ -324,7 +324,7 @@ const ListCard = (props) => {
         </div>
       </div>
 
-      <Modal open={openModal}>
+      {/* <Modal open={openModal}>
         <div className="modal-header">
           <h4 className="modal-title" id="defaultModalLabel">
             {modal.title}
@@ -363,6 +363,7 @@ const ListCard = (props) => {
           )}
         </div>
       </Modal>
+     */}
     </>
   );
 };

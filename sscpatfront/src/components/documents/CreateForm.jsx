@@ -128,7 +128,7 @@ const CreateForm = (props) => {
 
   // const loadingData = async () =>{
   //   const id = props.id;
-  //   console.log(id)
+  // 
   //   const object = await props.get(id)
   //   setValues(object)
   // }

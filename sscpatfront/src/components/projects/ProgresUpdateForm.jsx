@@ -56,7 +56,7 @@ const ProgresUpdateForm = (props) => {
 
   const loadData= async ()=>{
     let res =  await get(project_id,progress_id)
-    console.log(res)
+  
     setValues({
       ...values,
       description: res.description,
@@ -71,7 +71,7 @@ const ProgresUpdateForm = (props) => {
   //** actions for upload files */
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+   
     if (file) {
       if (ACCEPTED_FILES.includes(file.type)) {
         setFiles([...files, file]);
@@ -134,7 +134,7 @@ const ProgresUpdateForm = (props) => {
     for (let index = 0; index < files.length; index++) {
       f.append(`files[${index}]`, files[index]);
     }
-    // console.log(f)
+
     return f;
     
   };

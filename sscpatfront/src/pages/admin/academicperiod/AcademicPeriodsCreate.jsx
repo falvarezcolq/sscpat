@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Alert from "../../../components/atoms/Alert";
-import ListCard from "../../../components/academicperiods/ListCard";
+// import ListCard from "../../../components/academicperiods/ListCard";
 import CreateForm from "../../../components/academicperiods/CreateForm";
 
 

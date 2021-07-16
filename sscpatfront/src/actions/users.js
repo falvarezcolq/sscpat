@@ -60,7 +60,7 @@ export const listUsers = (url=Config.UserApiUrl,params=null) => async (dispatch)
     }
     
     // const body = user;
-    console.log(url)
+   
     try{
         await axios
         .get(url,config)
@@ -224,7 +224,7 @@ export const removeUser = (id) => async(dispatch) =>{
             payload:id
           })    
         }).catch((err)=>{
-            console.log(err)
+           
             return acceptErrorsWhenIsDelete({
               err:err,
               dispatch:dispatch,

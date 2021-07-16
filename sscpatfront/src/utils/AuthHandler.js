@@ -63,7 +63,7 @@ class AuthHandler {
         var token = this.getAccessToken();
         var tokenArray = token.split(".");
         var jwt = JSON.parse(atob(tokenArray[1]))
-        console.log(jwt)
+       
         return jwt.user_id;
     } 
 

@@ -9,7 +9,7 @@ class Documents extends Component {
 
 
   render() {
-    const messages = this.props.messages;
+   
     return (
       <>
       <section className="content">

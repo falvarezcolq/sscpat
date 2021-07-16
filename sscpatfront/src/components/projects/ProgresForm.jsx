@@ -57,7 +57,7 @@ const ProgresForm = (props) => {
   //** actions for upload files */
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+   
     if (file) {
       if (ACCEPTED_FILES.includes(file.type)) {
         setFiles([...files, file]);

@@ -100,7 +100,7 @@ const UpdateForm = (props) => {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+  
     if (file) {
       if ("application/pdf" === file.type) {
         setNormatives([...normatives, file]);

@@ -9,7 +9,7 @@ import { get } from "../../../actions/academicsperiod";
 class AcademicPeriodsUpdate extends Component {
   
   render() {
-    const { messages,object } = this.props; 
+    const { messages } = this.props; 
     const id = this.props.match.params.id;
 
     return (

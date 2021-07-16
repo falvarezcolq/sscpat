@@ -9,7 +9,7 @@ class ModalitiesCreate extends Component {
   
   render() {
     const { messages } = this.props; 
-    const id = this.props.match.params.id;
+   
 
     return (
       <section className="content">

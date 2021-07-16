@@ -91,7 +91,7 @@ export const list = (url=ConfigUrl,params=null) => async (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err)
+     
       // return acceptErrors({
       //   err: err,
       //   dispatch: dispatch,

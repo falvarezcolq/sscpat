@@ -98,7 +98,7 @@ const CreateForm = (props) => {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+
     if (file) {
       if ("application/pdf" === file.type) {
         setNormatives([...normatives, file]);
@@ -228,7 +228,6 @@ const CreateForm = (props) => {
 
   // const loadingData = async () =>{
   //   const id = props.id;
-  //   console.log(id)
   //   const object = await props.get(id)
   //   setValues(object)
   // }
