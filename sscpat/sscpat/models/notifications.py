@@ -50,7 +50,9 @@ class Notification(SSCPATModel):
     is_read = models.BooleanField(default=False)
 
 
-    # manager = NotificationManager()
+    # manager = Notificati
+    #
+    # onManager()
     class Meta:
         verbose_name = "Notification"
         verbose_name_plural = "Notifications"

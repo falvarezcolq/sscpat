@@ -23,7 +23,7 @@ docker-compose -f production.yml run --rm django python manage.py createsuperuse
 ```
 
 user: admin
-pass: aeumsa123$
+pass: aeumsa123$git 
 
 ### Update user on admin django
 enter to  http://apisscpat.aeumsa.com/Un1XeDjB27DC9JBMdG9CO9qc97D9Zbaz/
