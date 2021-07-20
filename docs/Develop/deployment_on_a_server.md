@@ -8,11 +8,25 @@
 
 ## Run project
 ### download
+
+### copy envs
+Create files with the content proporcionated from .envs/.production on local
+```shell script
+cd .envs
+mkdir .production
+cd .production
+
+vim .django
+vim .postgres
+vim .react
+
+```
+
 ### Build containers
-```cmd
-docker-compose -f production.yml build
-docker-compose -f production.yml run --rm django python manage.py migrate
-docker-compose -f production.yml up
+```shell script
+sudo docker-compose -f production.yml build
+sudo docker-compose -f production.yml run --rm django python manage.py migrate
+sudo docker-compose -f production.yml up
 ```
 
 
@@ -23,7 +37,7 @@ docker-compose -f production.yml run --rm django python manage.py createsuperuse
 ```
 
 user: admin
-pass: aeumsa123$git 
+pass: aeumsa123$
 
 ### Update user on admin django
 enter to  http://apisscpat.aeumsa.com/Un1XeDjB27DC9JBMdG9CO9qc97D9Zbaz/
