@@ -29,22 +29,22 @@ http:
       rule: "Host(`sscpat.aeumsa.com`)"
       entryPoints:
         - web
-      middlewares:
-        - redirect
-        - csrf
+#      middlewares:
+#        - redirect
+#        - csrf
       service: react
 
 
-    react-secure-router:
-      rule: "Host(`sscpat.aeumsa.com`)"
-      entryPoints:
-        - web-secure
-      middlewares:
-        - csrf
-      service: react
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
+#    react-secure-router:
+#      rule: "Host(`sscpat.aeumsa.com`)"
+#      entryPoints:
+#        - web-secure
+#      middlewares:
+#        - csrf
+#      service: react
+#      tls:
+#        # https://docs.traefik.io/master/routing/routers/#certresolver
+#        certResolver: letsencrypt
 
     web-router:
       rule: "Host(`apisscpat.aeumsa.com`)"
