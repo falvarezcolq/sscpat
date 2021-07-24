@@ -6,22 +6,22 @@ entryPoints:
     # http
     address: ":80"
 
-#  web-secure:
-#    # https
-#    address: ":443"
+  web-secure:
+    # https
+    address: ":443"
 
   flower:
     address: ":5555"
 
-#certificatesResolvers:
-#  letsencrypt:
-#    # https://docs.traefik.io/master/https/acme/#lets-encrypt
-#    acme:
-#      email: "falvarezcolq@gmail.com"
-#      storage: /etc/traefik/acme/acme.json
-#      # https://docs.traefik.io/master/https/acme/#httpchallenge
-#      httpChallenge:
-#        entryPoint: web
+certificatesResolvers:
+  letsencrypt:
+    # https://docs.traefik.io/master/https/acme/#lets-encrypt
+    acme:
+      email: "aeumsa.tech@gmail.com"
+      storage: /etc/traefik/acme/acme.json
+      # https://docs.traefik.io/master/https/acme/#httpchallenge
+      httpChallenge:
+        entryPoint: web
 
 http:
   routers:
@@ -29,52 +29,63 @@ http:
       rule: "Host(`sscpat.aeumsa.com`)"
       entryPoints:
         - web
-      #      middlewares:
-      #        - redirect
-      #        - csrf
+      middlewares:
+        - redirect
+        - csrf
       service: react
+
+
+  react-secure-router:
+    rule: "Host(`sscpat.aeumsa.com`)"
+    entryPoints:
+      - web-secure
+    middlewares:
+      - csrf
+    service: react
+    tls:
+      # https://docs.traefik.io/master/routing/routers/#certresolver
+      certResolver: letsencrypt
 
     web-router:
       rule: "Host(`apisscpat.aeumsa.com`)"
       entryPoints:
         - web
-#      middlewares:
-#        - redirect
-#        - csrf
+      middlewares:
+        - redirect
+        - csrf
       service: django
 
-#    web-secure-router:
-#      rule: "Host(`sscpat.adm.edu.bo`)"
-#      entryPoints:
-#        - web-secure
-#      middlewares:
-#        - csrf
-#      service: django
-#      tls:
-#        # https://docs.traefik.io/master/routing/routers/#certresolver
-#        certResolver: letsencrypt
+    web-secure-router:
+      rule: "Host(`apisscpat.aeumsa.com`)"
+      entryPoints:
+        - web-secure
+      middlewares:
+        - csrf
+      service: django
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
 
-#    flower-secure-router:
-    flower-router:
+    flower-secure-router:
       rule: "Host(`apisscpat.aeumsa.com`)"
       entryPoints:
         - flower
       service: flower
-#      tls:
-#        # https://docs.traefik.io/master/routing/routers/#certresolver
-#        certResolver: letsencrypt
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
 
-#  middlewares:
-#    redirect:
-#      # https://docs.traefik.io/master/middlewares/redirectscheme/
-#      redirectScheme:
-#        scheme: https
-#        permanent: true
-#    csrf:
-#      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
-#      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
-#      headers:
-#        hostsProxyHeaders: ["X-CSRFToken"]
+  middlewares:
+    redirect:
+      # https://docs.traefik.io/master/middlewares/redirectscheme/
+      redirectScheme:
+        scheme: https
+        permanent: true
+    csrf:
+      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
+      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
+      headers:
+        hostsProxyHeaders: ["X-CSRFToken"]
 
   services:
     django:
