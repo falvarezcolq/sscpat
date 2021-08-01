@@ -52,7 +52,7 @@ from sscpat.sscpat.actions.notifications import (
     assign_project_to_tutor_notification,
 )
 
-
+from sscpat.taskapp.tasks import send_assign_project_to_student,send_assign_project_to_tutor
 
 class InscriptionViewSet(mixins.CreateModelMixin,
                             mixins.RetrieveModelMixin,
@@ -94,6 +94,7 @@ class InscriptionViewSet(mixins.CreateModelMixin,
         instance = self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         data =  InscriptionCompleteModelSerializer(instance).data
+
         return Response(data, status=status.HTTP_201_CREATED, headers=headers)
 
     @staticmethod
@@ -123,7 +124,9 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                     t = Tutor.objects.get(id=tutor['id'],active=True)
                     instance.tutors.add(t)
                     assign_project_to_tutor_notification(inscription_id=instance.id, tutor_id=t.id, user_action_id=user.id)
+                    send_assign_project_to_tutor.delay(inscription_pk=instance.id,tutor_pk=t.id)
                 except Tutor.DoesNotExist:
+
                     pass
 
         if 'external_tutors' in data:
@@ -134,6 +137,7 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                     instance.external_tutors.add(t)
                     assign_project_to_tutor_notification(inscription_id=instance.id, tutor_id=t.id,
                                                          user_action_id=user.id)
+                    send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=t.id)
                 except Tutor.DoesNotExist:
                     pass
 
@@ -149,12 +153,12 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                                                deadline_date= self.get_date(instance.date_init,instance.date_end,document.time_send),
                                                )
 
-        # when the project is created other user's projects will be closed
+        # when the project is created other self user's projects will be closed
         Inscription.objects.filter(student=instance.student,
                                    state=Inscription.UNDER_DEVELOPMENT
                            ).exclude(pk=instance.pk).update(state=Inscription.ABANDONED)
 
-
+        send_assign_project_to_student.delay(inscription_pk=instance.id)
 
 
         return instance

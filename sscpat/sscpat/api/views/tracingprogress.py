@@ -32,7 +32,6 @@ from sscpat.sscpat.api.serializers.tracingprogress import (
 
 # Utils
 import filetype
-
 from sscpat.sscpat.utils import viewsets,mixins
 
 # Permissions
@@ -42,6 +41,7 @@ from sscpat.sscpat.pagination import CustomPagination
 from sscpat.sscpat.actions.notifications import (
     tracing_of_progress_notification,
 )
+from sscpat.taskapp.tasks import  send_uploaded_tracing_progress
 
 class TracingProgressViewSet(mixins.CreateModelMixin,
                             mixins.RetrieveModelMixin,
@@ -85,11 +85,26 @@ class TracingProgressViewSet(mixins.CreateModelMixin,
     def get_queryset(self):
         return TracingProgress.objects.filter(tracingstudent=self.tracingstudent,active=True)
 
+    @staticmethod
+    def send_email_notification(instance,user_action):
+
+        inscription = instance.tracingstudent.inscription
+
+        if inscription.student != user_action:
+            send_uploaded_tracing_progress.delay(tracing_progress_pk=instance.pk,user_pk=inscription.student.pk)
+
+        for tutor in inscription.tutors.filter(active=True).exclude(pk=user_action.pk):
+            send_uploaded_tracing_progress.delay(tracing_progress_pk=instance.pk, user_pk=tutor.pk)
+
+        for tutor in inscription.external_tutors.filter(active=True).exclude(pk=user_action.pk):
+            send_uploaded_tracing_progress.delay(tracing_progress_pk=instance.pk, user_pk=tutor.pk)
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        self.send_email_notification(instance, request.user)
         return Response(TracingProgressCompleteModelSerializer(instance).data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):

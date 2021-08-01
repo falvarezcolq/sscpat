@@ -45,7 +45,7 @@ from sscpat.sscpat.pagination import CustomPagination
 from sscpat.sscpat.actions.notifications import (
     progress_upload_notification
 )
-
+from sscpat.taskapp.tasks import send_uploaded_tracing_student
 
 class TracingStudentViewSet(mixins.CreateModelMixin,
                             mixins.RetrieveModelMixin,
@@ -87,17 +87,30 @@ class TracingStudentViewSet(mixins.CreateModelMixin,
     def get_queryset(self):
         return TracingStudent.objects.filter(inscription=self.inscription,active=True)
 
+    @staticmethod
+    def send_emal_notifications(instance,user_action):
+        """ this function send ascincrnous email"""
+        inscription = instance.inscription
+        if inscription.student != user_action:
+            send_uploaded_tracing_student.delay(tracing_student_pk=instance.pk, user_pk=inscription.student.pk)
+
+        for tutor in inscription.tutors.filter(active=True).exclude(pk=user_action.pk):
+            send_uploaded_tracing_student.delay(tracing_student_pk=instance.pk, user_pk=tutor.pk)
+
+        for tutor in inscription.external_tutors.filter(active=True).exclude(pk=user_action.pk):
+            send_uploaded_tracing_student.delay(tracing_student_pk=instance.pk, user_pk=tutor.pk)
+
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.perform_create(serializer)
+        self.send_emal_notifications(instance,request.user)
         headers = self.get_success_headers(serializer.data)
         return Response(TracingStudentCompleteModelSerializer(instance).data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):
         instance = serializer.save()
-
-        data = self.request.data
         files=[]
         for key in self.request.data:
             if 'files' in  key:

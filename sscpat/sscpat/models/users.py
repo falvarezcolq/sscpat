@@ -63,6 +63,13 @@ class User(SSCPATModel,AbstractUser):
             self.last_name2,
         )
 
+    def abbr_full_name(self):
+        return "{} {} {} {}".format(
+            self.abbreviation,
+            self.first_name,
+            self.last_name,
+            self.last_name2,
+        )
 
 
 class StudentManager(models.Manager):
@@ -80,6 +87,14 @@ class Student(User):
             self.type = User.STUDENT
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        """Return first name and last name"""
+        return "{} {} {}".format(
+            self.first_name,
+            self.last_name,
+            self.last_name2,
+        )
+
 
 class TutorManager(models.Manager):
     def get_queryset(self,*args,**kwargs):
@@ -95,6 +110,14 @@ class Tutor(User):
             self.type = User.TUTOR
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        """Return first name and last name"""
+        return "{} {} {}".format(
+            self.first_name,
+            self.last_name,
+            self.last_name2,
+        )
+
 
 class ExternalTutorManager(models.Manager):
     def get_queryset(self,*args,**kwargs):
@@ -109,6 +132,14 @@ class ExternalTutor(User):
         if not self.pk:
             self.type = User.TUTOR
         return super().save(*args, **kwargs)
+
+    def __str__(self):
+        """Return first name and last name"""
+        return "{} {} {}".format(
+            self.first_name,
+            self.last_name,
+            self.last_name2,
+        )
 #
 #
 class AdminManager(models.Manager):
@@ -126,3 +157,11 @@ class Admin(User):
         if not self.pk:
             self.type = User.ADMIN
         return super().save(*args, **kwargs)
+
+    def __str__(self):
+        """Return first name and last name"""
+        return "{} {} {}".format(
+            self.first_name,
+            self.last_name,
+            self.last_name2,
+        )

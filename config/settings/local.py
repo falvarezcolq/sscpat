@@ -4,7 +4,7 @@ from .base import env
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = True
+DEBUG = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
@@ -72,3 +72,25 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
        'http://localhost:3000',
 )
+
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY",
+    default="LPRQsIBH0grYxkxkfsY2T2oWBB4niGw4aMANT1Hahljivk3NwszFjW9KK3ZWXyl9",
+)
+
+
+DEFAULT_FROM_EMAIL = env(
+    "DJANGO_DEFAULT_FROM_EMAIL", default="SSCPAT <noreply@aeumsa.com>"
+)
+
+# SMTP_USER=env("SMTP_USER")
+# SMTP_PASSWORD=env("SMTP_PASSWORD")
+# SMTP_URL=env("SMTP_URL")
+# SMTP_PORT=env.int("SMTP_PORT")
+
+
+EMAIL_HOST = env("SMTP_URL")
+EMAIL_HOST_USER = env("SMTP_USER")
+EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD")
+EMAIL_PORT = env.int("SMTP_PORT")
+EMAIL_USE_TLS = True

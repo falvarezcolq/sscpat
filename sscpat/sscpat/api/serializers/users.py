@@ -78,9 +78,6 @@ class UserSignUpSerializer(serializers.ModelSerializer):
     def create(self, data):
         """Handle user and profile creation."""
         user = User.objects.create_user(**data)
-        send_welcome_email(user_pk=user.pk)
-
-
         return user
 
 

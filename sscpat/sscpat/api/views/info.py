@@ -11,6 +11,8 @@ from sscpat.sscpat.api.serializers.desktop import SomeInfoSerializer
 from sscpat.sscpat.models import Inscription,User,TracingProgress,TracingStudent
 
 import json
+from sscpat.taskapp.tasks import send_assign_project_to_student,send_welcome_email
+
 
 class InfoView(APIView):
 
@@ -28,11 +30,14 @@ class InfoView(APIView):
                TracingProgress.objects.filter(active=True, typetracing=TracingProgress.EXTERNAL_TUTOR).count()
 
     def get(self,request):
+        # send_assign_project_to_student.delay(inscription_pk=1)
+        send_welcome_email.delay(user_pk=2)
         data={
-            "inscriptions": self.get_inscriptions(),
-            'tutor':self.get_tutors(),
-            "tracing_student":self.get_tracing_students(),
-            "reviews_by_tutors":self.get_reviews_by_tutors(),
+            "test":"test"
+            # "inscriptions": self.get_inscriptions(),
+            # 'tutor':self.get_tutors(),
+            # "tracing_student":self.get_tracing_students(),
+            # "reviews_by_tutors":self.get_reviews_by_tutors(),
         }
         return Response(data)
 

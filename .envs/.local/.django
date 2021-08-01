@@ -3,7 +3,7 @@
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
 # Redis
-# ------------------------------------------------------------------------------
+# ----------------------------------            --------------------------------------------
 REDIS_URL=redis://redis:6379/0
 
 # Celery
@@ -13,3 +13,16 @@ REDIS_URL=redis://redis:6379/0
 CELERY_FLOWER_USER=vURUMyWzMcVacEAlnqkWeZWjeSCvOgiJ
 CELERY_FLOWER_PASSWORD=qDz9Is0zTdQ6q3TuXc3z0XMGhPXr7hYzMPgKV3yftuKXT0U4KTxlrwLTh6Ozkj9j
 
+
+
+# AWS
+# ------------------------------------------------------------------------------
+DJANGO_AWS_ACCESS_KEY_ID=
+DJANGO_AWS_SECRET_ACCESS_KEY=
+
+
+# smtp aws
+SMTP_USER=AKIAWH2NIYTHMRVK7GLF
+SMTP_PASSWORD=BFOQJRxGp03XjtE3F1BZD43JvQN/+eVkNLDKQ0Bx7sFu
+SMTP_URL=email-smtp.us-east-1.amazonaws.com
+SMTP_PORT=587

@@ -46,6 +46,7 @@ from sscpat.sscpat.pagination import CustomPagination
 from sscpat.sscpat.models.users import User
 from sscpat.sscpat.models.inscriptions import Inscription
 from django.utils import timezone
+from sscpat.taskapp.tasks import send_welcome_email
 
 class UserViewSet(mixins.RetrieveModelMixin,
                   mixins.ListModelMixin,
@@ -81,6 +82,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         create_welcome_notification(user_id=user.pk, user_action_id=request.user.pk)
+        send_welcome_email.delay(user_pk=user.pk)
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
 

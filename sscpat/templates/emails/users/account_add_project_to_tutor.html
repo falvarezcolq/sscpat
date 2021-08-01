@@ -1,0 +1,304 @@
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911|Share+Tech"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="margin: auto; width: fit-content !important">
+    <div style="padding: 5px; background: #1862ac; border-radius: 5px">
+      <div style="background-color: #fff; padding: 20px; border-radius: 5px">
+        <!-- <img style="text-align: center; max-width: 100%; border-radius: 30px; display: block; margin-left: auto; margin-right: auto;" src="https://cristopherav.files.wordpress.com/2015/10/email-icon.png"/> -->
+
+        <div
+          style="
+            background-color: #35d;
+            text-align: center;
+            width: 100%;
+            color: #fff;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            font-weight: 600;
+            font-size: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+          "
+        >
+          SSCPAT
+          <br />
+          <small style="font-family: cursive; margin: 10px; font-size: medium"
+            >Sistema de Seguimiento y Control de Proyectos Acad&eacute;micos de
+            titulaci&oacute;n</small
+          >
+        </div>
+        <h4 style="font-weight: 400">
+          Estimado Sr(a), 
+          <br>
+          {{ tutor.abbr_full_name }}
+          <br />
+          Se le asign&oacute; un nuevo proyecto acad&eacute;mico bajo su tutor&iacute;a
+        </h4>
+        <table style="width: 100%">
+          <tbody>
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                T&iacute;tulo
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{ inscription.title_academic_project }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Modalidad
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{ inscription.modality.title }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Gesti&oacute;n
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{ inscription.academic_period.title }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Fecha de inicio
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{ date_init }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Fecha de finalizaci&oacute;n
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{ date_end }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table style="width: 100%">
+          <tbody>
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Autor
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+               {{student.get_full_name }}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Tutor(es)
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{tutors}}
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                style="
+                  background: #607d8b;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border: 1px solid #c1c3d1;
+                  padding: 10px;
+                  color: #ffffff;
+                "
+              >
+                Tutor(es) externo(s)
+              </td>
+              <td
+                style="
+                  background: #ffffff;
+                  text-align: left;
+                  vertical-align: middle;
+                  font-size: 14px;
+                  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                  border-bottom: 1px solid #c1c3d1;
+                  padding: 10px;
+                "
+              >
+                {{ external_tutors }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>
+          Enlace al sistema
+          <a href="https://sscpat.aeumsa.com">https://sscpat.aeumsa.com/</a>
+        </h4>
+
+        <p style="text-align: center">
+          Carrera de Administraci&oacute;n de Empresas - Universidad Mayor de
+          San &Aacute;ndres
+        </p>
+        <p style="text-align: center; font-size: 12px">
+          SSCPAT 2021 Derechos reservados.<br /><br />
+          Este correo es informativo, favor no responder a esta direccion de
+          correo, ya que no se encuentra habilitada para recibir mensajes.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

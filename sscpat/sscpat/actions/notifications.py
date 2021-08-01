@@ -11,6 +11,7 @@ from sscpat.sscpat.models import (
     TracingProgress,
 )
 import datetime
+from sscpat.taskapp.tasks import  send_uploaded_tracing_student
 
 # ACCOUNT_CREATED = "1"
 # ACCOUNT_ADD = "2"
@@ -84,6 +85,7 @@ def progress_upload_notification(tracingstudent_id,user_action_id):
                 tracing_student=tracingstudent
             )
 
+
         # send notifications to tutor of project
         for tutor in inscription.tutors.all():
             if tutor != user_action:
@@ -94,6 +96,8 @@ def progress_upload_notification(tracingstudent_id,user_action_id):
                     inscription=inscription,
                     tracing_student = tracingstudent
                 )
+
+
         # send notification to external tutors of project
         for tutor in inscription.external_tutors.all():
             if tutor != user_action:
@@ -128,6 +132,7 @@ def tracing_of_progress_notification(tracingprogress_id, user_action_id):
                 tracing_student=tracingstudent,
                 tracing_progress=tracingprogress,
             )
+
 
         for tutor in inscription.tutors.all():
             if tutor != user_action:
