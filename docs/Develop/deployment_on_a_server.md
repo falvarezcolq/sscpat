@@ -36,6 +36,12 @@ sudo docker-compose -f production.yml up
 docker-compose -f production.yml run --rm django python manage.py createsuperuser
 ```
 
+### Update database with migrate
+```shell script
+sudo docker-compose -f production.yml run --rm django python manage.py makemigrations
+sudo docker-compose -f production.yml run --rm django python manage.py migrate
+```
+
 user: admin
 pass: aeumsa123$
 
