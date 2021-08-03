@@ -43,38 +43,39 @@ def send_email(subject, content,emailSend):
         print(e)
 
 
-def gen_verification_token(user):
-    """Create JWT token that the user can use to verify its account."""
-    exp_date = timezone.now() + timedelta(days=3)
-    payload = {
-        'user': user.username,
-        'exp': int(exp_date.timestamp()),
-        'type': 'email_confirmation'
-    }
-    token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
-    return token.decode()
+    # def gen_verification_token(user):
+    #     """Create JWT token that the user can use to verify its account."""
+    #     exp_date = timezone.now() + timedelta(days=3)
+    #     payload = {
+    #         'user': user.username,
+    #         'exp': int(exp_date.timestamp()),
+    #         'type': 'email_confirmation'
+    #     }
+    #     token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+    #     return token.decode()
 
-def send_confirmation_email(user_pk):
-    """Send account verification link to given user."""
-    user = User.objects.get(pk=user_pk)
-    verification_token = gen_verification_token(user)
-    subject = 'Welcome @{}! Verify your account to start using Comparte Ride'.format(user.username)
-    from_email = 'Comparte Ride <noreply@comparteride.com>'
-    content = render_to_string(
-        'emails/users/account_verification.html',
-        {'token': verification_token, 'user': user}
-    )
-    msg = EmailMultiAlternatives(subject, content, from_email, [user.email])
-    msg.attach_alternative(content, "text/html")
-    msg.send()
+# def send_confirmation_email(user_pk):
+#     """Send account verification link to given user."""
+#     user = User.objects.get(pk=user_pk)
+#     verification_token = gen_verification_token(user)
+#     subject = 'Welcome @{}! Verify your account to start using Comparte Ride'.format(user.username)
+#     from_email = 'Comparte Ride <noreply@comparteride.com>'
+#     content = render_to_string(
+#         'emails/users/account_verification.html',
+#         {'token': verification_token, 'user': user}
+#     )
+#     msg = EmailMultiAlternatives(subject, content, from_email, [user.email])
+#     msg.attach_alternative(content, "text/html")
+#     msg.send()
 
 
 @task(name='send_welcome_email', max_retries=3)
 def send_welcome_email(user_pk):
     """Send welcome email to new user"""
     time.sleep(3)
+
     user = User.objects.get(pk=user_pk)
-    subject = 'Bienvenido {}! Has sido registrado en el sistema de  seguimiento y' \
+    subject = '¡Bienvenido {}! Has sido registrado en el sistema de  seguimiento y' \
               ' control de proyectos academicos de titulación'.format(str(user))
 
     content = render_to_string(
@@ -87,7 +88,7 @@ def send_welcome_email(user_pk):
 
 @task(name='send_assign_project_to_student', max_retries=3)
 def send_assign_project_to_student(inscription_pk):
-
+    """Assign project to student"""
     time.sleep(3)
     inscription = Inscription.objects.get(pk=inscription_pk)
     student = inscription.student
@@ -115,7 +116,7 @@ def send_assign_project_to_student(inscription_pk):
 
 @task(name='send_assign_project_to_tutor', max_retries=3)
 def send_assign_project_to_tutor(inscription_pk,tutor_pk):
-
+    """Assign priject to tutor"""
     time.sleep(3)
     inscription = Inscription.objects.get(pk=inscription_pk)
     tutor = User.objects.get(pk=tutor_pk)
