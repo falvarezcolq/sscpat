@@ -1,21 +1,27 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path,re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework.authtoken.views import obtain_auth_token
+from django.views.static import serve
+
 
 urlpatterns = [
-    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    # path(
-    #     "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    # ),
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path(
+        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("", include("sscpat.sscpat.urls")),
-    # path("", include("frontend.urls")),
+
+    # images
+
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+
     # path("users/", include("sscpat.users.urls", namespace="users")),
     # path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
@@ -23,10 +29,12 @@ urlpatterns = [
 # API URLS
 urlpatterns += [
     # API base url
-    # path("api/", include("config.api_router")),
+    # figpath("api/", include("con.api_router")),
     # # DRF auth token
     # path("auth-token/", obtain_auth_token),
+
 ]
+
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

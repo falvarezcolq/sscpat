@@ -4,12 +4,13 @@ from .base import env
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = False
-# https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+DEBUG = True
+# https://docs.djangop  roject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     default="LPRQsIBH0grYxkxkfsY2T2oWBB4niGw4aMANT1Hahljivk3NwszFjW9KK3ZWXyl9",
 )
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
@@ -41,7 +42,7 @@ INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
 INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
-MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
+# MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
 DEBUG_TOOLBAR_CONFIG = {
     "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
@@ -73,10 +74,7 @@ CORS_ORIGIN_WHITELIST = (
        'http://localhost:3000',
 )
 
-SECRET_KEY = env(
-    "DJANGO_SECRET_KEY",
-    default="LPRQsIBH0grYxkxkfsY2T2oWBB4niGw4aMANT1Hahljivk3NwszFjW9KK3ZWXyl9",
-)
+
 
 
 DEFAULT_FROM_EMAIL = env(
@@ -88,9 +86,3 @@ DEFAULT_FROM_EMAIL = env(
 # SMTP_URL=env("SMTP_URL")
 # SMTP_PORT=env.int("SMTP_PORT")
 
-
-EMAIL_HOST = env("SMTP_URL")
-EMAIL_HOST_USER = env("SMTP_USER")
-EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD")
-EMAIL_PORT = env.int("SMTP_PORT")
-EMAIL_USE_TLS = True

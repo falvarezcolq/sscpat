@@ -47,5 +47,5 @@ urlpatterns = [
     path('api/auth/refresh/', TokenRefreshView.as_view(),name="refreshtoken"),
     path('api/auth/datasession/', DataSessionApiView.as_view(),name="datasession"),
     path('api/info/',InfoView.as_view(),name="info")
-    # url("api/",include(router.urls))
+
     ]

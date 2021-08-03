@@ -309,3 +309,10 @@ REST_FRAMEWORK = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+
+EMAIL_HOST = env("SMTP_URL")
+EMAIL_HOST_USER = env("SMTP_USER")
+EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD")
+EMAIL_PORT = env.int("SMTP_PORT")
+EMAIL_USE_TLS = True

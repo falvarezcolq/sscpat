@@ -106,7 +106,7 @@ class Config{
     static tProjectsUrl="/tutor/proyectosasignados";
 
 
-    static sHomeUrl="/home/";
+    static sHomeUrl="/home/";   
     static sProjectUrl="/myproject";
     // static sProjectRevisionsUrl="/project/revisions";
     // static sNewAdvanceUrl="/project/nuevoavance";
