@@ -11,6 +11,7 @@ import {
   FORM_FAILED,
   // GET_ACADEMIC_PERIOD,
   GET_DOCUMENT_PROJECT,
+  DATE_MONTHS,
 } from "./types";
 
 import { acceptErrors, acceptErrorsWhenIsDelete } from "../actions/messages";
@@ -231,3 +232,26 @@ export const getDocuments = (id) => async (dispatch) => {
 
 
 
+
+// GET months of develop for project
+export const getMonths = (id) => async (dispatch) => {
+  dispatch({ type: MESSAGE_DEFAULT });
+  const config = await getAuthHeader();
+  const res = await axios
+    .get(ConfigUrl + id + "/months_of_work/", config)
+    .then((res) => {
+      dispatch({
+        type: DATE_MONTHS,
+        payload: res.data,
+      });
+      return res.data;
+    })
+    .catch((err) => {
+      return acceptErrors({
+        err: err,
+        dispatch: dispatch,
+        type: FORM_FAILED,
+      });
+    });
+  return res;
+};

@@ -6,7 +6,7 @@ import Config from "../../utils/Config";
 // import HeaderDropdown from "../atoms/HeaderDropdown";
 import { LabelStatus } from "../atoms/LabelStatus";
 import Spinner from "../atoms/Spinner";
-import { getNameMonth, getDateTime, getTypeFile } from "../../actions/helper";
+import { getNameDateMonth, getDateTime, getTypeFile } from "../../actions/helper";
 import pdf_image from '../../img/pdf_icon.png';
 
 const DetailCard = (props) => {
@@ -114,7 +114,7 @@ const DetailCard = (props) => {
           <div className="header">
             <h2 style={{ color: "#1967d2" }}>
               Avance nro: <strong>{progress.number}</strong> correspondiente al
-              mes de <strong>{getNameMonth(progress.month)}</strong>
+              mes de <strong>{getNameDateMonth(progress.date_month)}</strong>
               <br />
               <small>
                 {getDateTime(progress.created_at)}

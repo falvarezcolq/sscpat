@@ -38,6 +38,7 @@ from sscpat.sscpat.api.serializers.inscriptiondocuments import InscriptionInitia
 # Utils
 
 from sscpat.sscpat.utils import viewsets,mixins
+from sscpat.sscpat.utils.helper import get_date_months
 import datetime
 
 
@@ -225,6 +226,17 @@ class InscriptionViewSet(mixins.CreateModelMixin,
         return Response(data)
 
 
+
+
+    @action(detail=True,methods=["GET"])
+    def months_of_work(self,request, *args, **kwargs):
+        """ this method get all of documents """
+        inscription = self.get_object()
+
+        data = {
+            'months': get_date_months(inscription.date_init,inscription.date_end)
+        }
+        return Response(data)
 
 
 

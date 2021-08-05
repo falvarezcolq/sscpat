@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { list } from "../../actions/tracingstudent";
 import Spinner from "../atoms/Spinner";
-import { getNameMonth, getDateTime, getTypeFile, filePath } from "../../actions/helper";
+import { getNameDateMonth, getDateTime, getTypeFile, filePath } from "../../actions/helper";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 import HeaderDropdown from "../../components/atoms/HeaderDropdown";
@@ -77,7 +77,7 @@ const ProgresCard = (props) => {
                 <Link to={Config.aProgressUrl + "/" + progress.id}>
                   Entrega de avance nro: <strong>{progress.number}</strong>{" "}
                   correspondiente al mes de{" "}
-                  <strong>{getNameMonth(progress.month)}</strong>
+                  <strong>{getNameDateMonth(progress.date_month)}</strong>
                   <br />
                   <small>
                     {getDateTime(progress.created_at)}

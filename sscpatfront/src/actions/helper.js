@@ -46,7 +46,17 @@ export const getNameMonth = (month) => {
     default:
       return "";
   }
-};
+};  
+
+export const  getNameDateMonth = (date_month) =>{
+  if (!date_month){
+    return ""
+  }
+  const date = date_month.split("-")
+  return (
+    getNameMonth( Number(date[1]) )+ " " + date[0] 
+  )
+}
 
 
 
@@ -135,7 +145,6 @@ export const getTimeSendDocument = (time) => {
     case 0 :
       return "Al inicio";
 
-      
     default:
       if (time > 0 ){
         return `A los ${time} dias del inicio del proyecto`;
@@ -143,8 +152,6 @@ export const getTimeSendDocument = (time) => {
       return "";
   }
 }
-
-
 
 
 export const filePath=(path)=>{

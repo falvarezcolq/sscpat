@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { getNameMonth } from "../../actions/helper";
+import { getNameDateMonth } from "../../actions/helper";
 import SelectedName from "../../components/atoms/SelectedName";
 import {
   formGeneralValidation,
@@ -10,12 +10,13 @@ import {
 import { add, get, update } from "../../actions/tracingstudent";
 import Spinner from "../atoms/Spinner";
 import { ACCEPTED_FILES } from "../../actions/types";
+import { getMonths } from "../../actions/projects";
 
 var today = new Date();
 const initialValues = {
   inscription: 0,
-  description: "",
-  month: today.getMonth() + 1,
+  description:  "",
+  date_month: today.getFullYear()+"-"+((today.getMonth() + 1)<10? "0":"")+(today.getMonth() + 1)+"-01",
   is_final_document: false,
 };
 
@@ -28,7 +29,7 @@ const validate = {
 };
 
 const ProgresUpdateForm = (props) => {
-  const { project_id, progress_id, get, update,cancel } = props;
+  const { project_id, progress_id, get, update,cancel,date_months} = props;
 
   let progressValues = {
     ...initialValues,   
@@ -43,17 +44,6 @@ const ProgresUpdateForm = (props) => {
   const [loading, setLoading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
 
-  const months = [];
-  for (let index = 1; index <= 12; index++) {
-    months.push(
-      <option key={index} value={index}>
-        {" "}
-        {getNameMonth(index)}
-      </option>
-    );
-  }
-
-
   const loadData= async ()=>{
     let res =  await get(project_id,progress_id)
   
@@ -61,7 +51,7 @@ const ProgresUpdateForm = (props) => {
       ...values,
       description: res.description,
       is_final_document:res.is_final_document,
-      month:res.month,
+      date_month:res.date_month,
     })
     setServerFiles(res.files)
     setFiles([]);
@@ -127,7 +117,7 @@ const ProgresUpdateForm = (props) => {
     const f = new FormData();
     f.append("inscription", values.inscription);
     f.append("description", values.description);
-    f.append("month", values.month);
+    f.append("date_month", values.date_month);
     f.append("is_final_document", values.is_final_document);
     f.append("deleted",JSON.stringify(deleted)) ;
 
@@ -176,14 +166,20 @@ const ProgresUpdateForm = (props) => {
           <div className="header">
             Entrega de avance correspondiente al mes de:
             <select
-              id="month"
-              name="month"
+              id="date_month"
+              name="date_month"
               title="Mes de avance"
               className="select-month"
-              value={values.month}
+              value={values.date_month}
               onChange={onChangeSelect}
             >
-              {months}
+              {date_months.map((date,index)=>(
+                <option key={index} value={date}>
+                       {" "}
+                       {getNameDateMonth(date)}
+                       
+                </option>
+              ))}
             </select>
           </div>
 
@@ -287,12 +283,14 @@ const ProgresUpdateForm = (props) => {
 
 const mapStateToProps = (state) => ({
   results: state.tracingstudent.results,
+  date_months: state.projects.date_months,
 });
 
 const mapDispatchToProps = {
   add,
   get,
   update,
+  getMonths,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProgresUpdateForm);

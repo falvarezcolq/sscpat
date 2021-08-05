@@ -8,6 +8,7 @@ import {
   GET_DOCUMENT_PROJECT,
   UPDATE_DOCUMENT_LIST,
   UPDATE_DOCUMENT_INSCRIPTION_LIST,
+  DATE_MONTHS,
 } from "../../actions/types";
 
 const initialState = {
@@ -22,11 +23,12 @@ const initialState = {
   list: [],
   documentList:[],
   initialDocumentList:[],
+  date_months:[]
 };
 
-export default function externaltutors(state = initialState, action) {
+export default function projects(state = initialState, action) {
   switch (action.type) {
-    case ADD_PROJECT:
+    case ADD_PROJECT: 
       return {
         ...state,
         results: [action.payload, ...state.results],
@@ -89,6 +91,12 @@ export default function externaltutors(state = initialState, action) {
         initialDocumentList : state.initialDocumentList.map((obj) => {
           return obj.id === action.payload.id ? action.payload : obj;
         }),
+      };
+
+    case DATE_MONTHS:
+      return {
+        ...state,
+        date_months:[...action.payload.months],
       };
     default:
       return state;

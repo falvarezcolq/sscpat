@@ -48,10 +48,10 @@ class ProjectsDetail extends Component {
           <DetailCard id={id} />
 
           <div className="row">
-            <dov className="col-lg-12">
+            <div className="col-lg-12">
            
             <ProgressReport project_id={id}/>
-            </dov>
+            </div>
           </div>
 
           
