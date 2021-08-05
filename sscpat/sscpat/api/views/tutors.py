@@ -27,6 +27,8 @@ from sscpat.sscpat.api.serializers.tutors import (
     TutorMinimalListModelSerializer,
 )
 
+from sscpat.sscpat.api.serializers.report_tutors import TutorDelayProjectsSerializer
+
 
 
 # Utils
@@ -96,3 +98,27 @@ class TutorListViewSet(mixins.RetrieveModelMixin,
         return [p() for p in permissions]
 
 
+
+
+class TutorReportListViewSet(mixins.RetrieveModelMixin,
+                       mixins.ListModelMixin,
+                      viewsets.GenericViewSet):
+    """User viewset """
+    queryset =  Tutor.objects.filter(active=True)
+    serializer_class = TutorDelayProjectsSerializer
+    # pagination_class = CustomPagination
+
+    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
+    ordering = ('last_name',)
+    ordering_fields = ('last_name', 'created_at')
+    search_fields = ('first_name','last_name','last_name2')
+    # filterset_fields = ['type']
+
+    def get_permissions(self):
+        """Assign permissions based on action."""
+
+        if self.action in ['list']:
+            permissions = [IsAuthenticated,IsAccountAdmin,]
+        else:
+            permissions = [IsAuthenticated]
+        return [p() for p in permissions]

@@ -15,6 +15,7 @@ from rest_framework.serializers import (
 from sscpat.sscpat.models import Tutor,Inscription,TracingProgress,TracingStudent
 from rest_framework.exceptions import ValidationError
 
+
 # jwt
 from rest_framework_simplejwt.serializers import TokenObtainSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -81,8 +82,6 @@ class TutorListSerializer(ModelSerializer):
                 if last_tracingstudent.tracingprogress.filter(active=True, user=tutor ).count() == 0:
                     pending_review = pending_review + 1
 
-
-
         return pending_review
 
 
@@ -129,9 +128,3 @@ class TutorMinimalListModelSerializer(ModelSerializer):
             "academic_degree",
             "abbreviation",
     ]
-
-
-
-
-
-

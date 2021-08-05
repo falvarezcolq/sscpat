@@ -56,6 +56,7 @@ class TracingStudentModelSerializer(ModelSerializer):
             "description",
             "number",
             "month",
+            "date_month",
             "is_final_document",
             "require_tutor_review",
             "reviewed_by_tutor",
@@ -126,6 +127,7 @@ class TracingStudentWithFileModelSerializer(ModelSerializer):
             "description",
             "number",
             "month",
+            "date_month",
             "is_final_document",
             "require_tutor_review",
             "reviewed_by_tutor",
@@ -178,6 +180,7 @@ class TracingStudentCompleteModelSerializer(ModelSerializer):
             "description",
             "number",
             "month",
+            "date_month",
             "is_final_document",
             "require_tutor_review",
             "reviewed_by_tutor",
@@ -191,8 +194,6 @@ class TracingStudentCompleteModelSerializer(ModelSerializer):
             "created_at",
             "created_by"
             ]
-
-
 
     def get_created_by(self, obj):
         if not obj.created_by:
@@ -215,4 +216,5 @@ class TracingStudentShortDetailModelSerializer(ModelSerializer):
             "description",
             "number",
             "month",
+            "date_month",
             ]
