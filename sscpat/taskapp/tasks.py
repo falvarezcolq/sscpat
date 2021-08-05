@@ -30,7 +30,7 @@ import time
 
 def send_email(subject, content,emailSend):
     emailToSend = []
-    emailToSend.append('aeumsa.tech@gmail.com')
+    emailToSend.append('aeumsa.tec  h@gmail.com')
     # emailToSend.append(emailSend)
     from_email = 'Carrera de Administración de Empresas UMSA <noreply@aeumsa.com>'
 
@@ -74,9 +74,9 @@ def send_welcome_email(user_pk):
     """Send welcome email to new user"""
     time.sleep(3)
 
-    user = User.objects.get(pk=user_pk)
+    user = User .objects.get(pk=user_pk)
     subject = '¡Bienvenido {}! Has sido registrado en el sistema de  seguimiento y' \
-              ' control de proyectos academicos de titulación'.format(str(user))
+              ' control de proyectos academicos de titulación'.format(user.first_name)
 
     content = render_to_string(
         'emails/users/account_new_user_welcome.html',
