@@ -7,7 +7,7 @@ from .students import StudentViewSet,StudentListViewSet,StudentByTutorViewSet
 from .academicperiods import AcademicPeriodViewSet
 from .documents import DocumentViewSet
 from .modalities import ModalityViewSet
-from .inscriptions import InscriptionViewSet,InscriptionByTutorsViewSet,InscriptionByStudentViewSet
+from .inscriptions import InscriptionViewSet,InscriptionByTutorsViewSet,InscriptionByStudentViewSet, InscriptionReportViewSet
 from .institutions import InstitutionViewSet
 from .tracingstudent import TracingStudentViewSet,TracingStudentDetailViewSet,TracingStudentReportViewSet
 from .tracingstudentfile import TracingStudentFileViewSet

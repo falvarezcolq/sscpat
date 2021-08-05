@@ -31,6 +31,7 @@ from sscpat.sscpat.api.serializers.inscriptions import (
     InscriptionModelSerializer,
     InscriptionCompleteModelSerializer,
 )
+from sscpat.sscpat.api.serializers.report_inscriptions import InscriptionReportModelSerializer
 from sscpat.sscpat.api.serializers.institutions import InstitutionModelSerializer
 from sscpat.sscpat.api.serializers.inscriptiondocuments import InscriptionInitialDocumentModelSerializer,InscriptionDocumentModelSerializer
 
@@ -225,14 +226,10 @@ class InscriptionViewSet(mixins.CreateModelMixin,
         }
         return Response(data)
 
-
-
-
     @action(detail=True,methods=["GET"])
     def months_of_work(self,request, *args, **kwargs):
         """ this method get all of documents """
         inscription = self.get_object()
-
         data = {
             'months': get_date_months(inscription.date_init,inscription.date_end)
         }
@@ -314,6 +311,24 @@ class InscriptionByStudentViewSet(
 
 
 
+class InscriptionReportViewSet(mixins.ListModelMixin,
+                               viewsets.GenericViewSet):
+    """User viewset """
+    queryset =  Inscription.objects.filter(active=True,state=Inscription.UNDER_DEVELOPMENT)
+    serializer_class = InscriptionReportModelSerializer
+    pagination_class = CustomPagination
+
+    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
+    ordering = ('title_academic_project','-created_at',)
+    ordering_fields = ('title_academic_project', 'created_at')
+    search_fields = ('title_academic_project',)
+    filterset_fields = ['academic_period','modality','state']
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     """Verify that the circle exists."""
+    #     student_id = kwargs['student_id']
+    #     self.student = get_object_or_404(Student, pk=student_id)
+    #     return super(InscriptionByStudentViewSet, self).dispatch(request, *args, **kwargs)
 
 
 
