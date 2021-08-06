@@ -2,9 +2,9 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import AlertMessage from "../../../components/atoms/AlertMessage";
-import ReportTutorTable from "../../../components/reports/ReportTutorTable";
+import ReportInscriptionTable from "../../../components/reports/ReportInscriptionTable";
 
-class TutorsReport extends Component {
+class InscriptionReport extends Component {
   render() {
     return (
       <section className="content">
@@ -20,7 +20,7 @@ class TutorsReport extends Component {
               >
                 <i className="material-icons">arrow_back</i>
               </button>
-              Reporte de tutores y proyectos{" "}
+              Reporte de proyectos y estudiantes
             </h2>
           </div>
         </div>
@@ -30,17 +30,16 @@ class TutorsReport extends Component {
             <div className="card">
               <div className="header">
                 <h2>
-                  Reporte de tutores
+                  Reporte de proyectos
                   <small>
-                    La lista muestra si los tutores tienen alguna revision
-                    pendiente de los proyectos asignados bajo su tutoría{" "}
+                    La lista es un reporte actual del estado de avance de los proyectos
                   </small>
                 </h2>
                 {/* <Link to={Config.aTutorNewUrl} className="btn btn-default pull-right m-t--25"> + Agregar tutor interno</Link> */}
               </div>
 
               <div className="body">
-                <ReportTutorTable />
+                <ReportInscriptionTable />
               </div>
             </div>
           </div>
@@ -56,4 +55,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TutorsReport);
+export default connect(mapStateToProps, mapDispatchToProps)(InscriptionReport);

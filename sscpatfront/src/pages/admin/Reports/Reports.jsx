@@ -24,7 +24,8 @@ class Reports extends Component {
               </div>
       
               <div className="body">
-               <Link to={Config.aReportsTutorsUrl}>Seguimiento proyectos acad&eacute;micos por los docentes</Link>
+               <br /><Link to={Config.aReportsTutorsUrl}>Seguimiento proyectos acad&eacute;micos por los docentes</Link>
+               <br /><Link to={Config.aReportsProjectsUrl}>Seguimiento al avance de proyectos </Link>
               </div>
             </div>
           </div>

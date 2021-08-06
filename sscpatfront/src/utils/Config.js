@@ -29,7 +29,8 @@ class Config{
     static InfoApiUrl = HOST + "/api/info/"
 
     static ReportTutorApiUrl = HOST + "/api/tutorsreport/"
-    
+    static ReportInscriptionApiUrl = HOST + "/api/inscriptionsreport/"
+
     // static TypeReportApiUrl = HOST + "/api/typereports/"
     // static ReportApiUrl = HOST + "/api/reports/"
     // static FileReportApiUrl = HOST + "/api/filereports/"

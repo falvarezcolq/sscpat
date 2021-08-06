@@ -16,8 +16,9 @@ import projects from './projects';
 import tracingstudent from './tracingstudent';
 import tracingprogress from './tracingprogress';
 import info from './info';
-import notifications from "./notifications"
+import notifications from "./notifications";
 import report_tutors from './report_tutors';
+import report_inscriptions from "./report_inscriptions";
 
 
 export default combineReducers({
@@ -38,4 +39,5 @@ export default combineReducers({
     info,
     notifications,
     report_tutors,
+    report_inscriptions,
 })
