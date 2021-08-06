@@ -28,6 +28,8 @@ class Config{
     static NotificationApiUrl = HOST + "/api/notifications/"
     static InfoApiUrl = HOST + "/api/info/"
 
+    static ReportTutorApiUrl = HOST + "/api/tutorsreport/"
+    
     // static TypeReportApiUrl = HOST + "/api/typereports/"
     // static ReportApiUrl = HOST + "/api/reports/"
     // static FileReportApiUrl = HOST + "/api/filereports/"
@@ -99,6 +101,12 @@ class Config{
     static aProgressIdUrl                   ="/avance/:id";
     static aNotificationUrl                 ="/notificaciones"
     static aReportsUrl                      ="/reportes";
+    static aReportsTutorsUrl                      ="/reportes/tutores";
+    static aReportsETutorsUrl                      ="/reportes/tutores_externos/";
+    static aReportsProjectsUrl                      ="/reportes/proyectos";
+
+
+
     static tHomeUrl="/tutor/";
     static tStudentsUrl="/tutor/estudiantes";
     static tStudentAdvanceUrl="/tutor/estudiantes/avance";

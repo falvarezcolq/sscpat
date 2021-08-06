@@ -29,7 +29,7 @@ class TutorDelayProjectsSerializer(ModelSerializer):
         under_development = projects.count()
         progress = 0
         review = 0
-        pending_review = 0
+
 
         for project in projects:
             progress = progress + project.tracingstudents.filter(active=True).count()
@@ -39,7 +39,7 @@ class TutorDelayProjectsSerializer(ModelSerializer):
             "under_development":under_development,
             "progress":progress,
             "review":review,
-            "pending_review":pending_review,
+            "pending_review":(progress - review),
         }
         return data
 

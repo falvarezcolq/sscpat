@@ -2,9 +2,8 @@ import React from 'react'
 
 const PercentBar = (total, peding_review)  => {
     if (total === 0) {
-        return (
-            
-          <span>Sin proyectos actuales </span>
+        return ( 
+          <span>sin pendientes</span>
         );
       }
       let percentage = ((total - peding_review) / total) * 100;

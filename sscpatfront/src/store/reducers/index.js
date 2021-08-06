@@ -17,6 +17,7 @@ import tracingstudent from './tracingstudent';
 import tracingprogress from './tracingprogress';
 import info from './info';
 import notifications from "./notifications"
+import report_tutors from './report_tutors';
 
 
 export default combineReducers({
@@ -36,4 +37,5 @@ export default combineReducers({
     tracingprogress,
     info,
     notifications,
+    report_tutors,
 })

@@ -185,7 +185,7 @@ const ProgresForm = (props) => {
                        {getNameDateMonth(date)}
                        
                 </option>
-              ))}s
+              ))}
             </select>
           </div>
 

@@ -98,15 +98,13 @@ class TutorListViewSet(mixins.RetrieveModelMixin,
         return [p() for p in permissions]
 
 
-
-
 class TutorReportListViewSet(mixins.RetrieveModelMixin,
                        mixins.ListModelMixin,
                       viewsets.GenericViewSet):
     """User viewset """
     queryset =  Tutor.objects.filter(active=True)
     serializer_class = TutorDelayProjectsSerializer
-    # pagination_class = CustomPagination
+    pagination_class = CustomPagination
 
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
     ordering = ('last_name',)
@@ -118,7 +116,7 @@ class TutorReportListViewSet(mixins.RetrieveModelMixin,
         """Assign permissions based on action."""
 
         if self.action in ['list']:
-            permissions = [IsAuthenticated,IsAccountAdmin,]
+            permissions = [IsAuthenticated, IsAccountAdmin,]
         else:
             permissions = [IsAuthenticated]
         return [p() for p in permissions]

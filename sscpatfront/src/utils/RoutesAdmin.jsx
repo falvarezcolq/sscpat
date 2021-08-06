@@ -49,6 +49,7 @@ import ProjectsDetailReport from "../pages/admin/projects/ProjectsDetailReport";
 import ProjectsDocument from "../pages/admin/projects/ProjectsDocument";
 import Notifications from "../pages/user/Notifications";
 import Reports from "../pages/admin/Reports/Reports";
+import TutorsReport from "../pages/admin/Reports/TutorsReport";
 
 
 const RoutesAdmin = () => {
@@ -353,6 +354,14 @@ const RoutesAdmin = () => {
         activepage="6"
         activepage2="0"
         page={Reports}
+      />
+
+      <PrivateRoute
+        exact
+        path={Config.aReportsTutorsUrl}
+        activepage="6"
+        activepage2="0"
+        page={TutorsReport}
       />
 
       
