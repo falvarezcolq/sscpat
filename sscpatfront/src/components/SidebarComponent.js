@@ -115,20 +115,32 @@ class Sidebar extends React.Component {
             </div>
           </div>
 
-          <div className="menu">
+          <div className="menu"
+          //  style={{
+           
+          //   overflow: "scroll",
+          
+          // }}  
+          >
             <div
               className="slimScrollDiv"
               style={{
                 position: "relative",
-                overflow: "hidden",
+                overflow: "scroll",  
                 width: "auto",
+                // height:"auto",
+                height: "70% " ,
               }}
             >
               <ul
                 className="list"
                 style={{
                   overflow: "hidden",
+                  // overflow: "scroll",
+
                   width: "auto",
+                  height:"auto",
+                  // height: "20%",
                 }}
               >
                 <li className="header">Navegación principal</li>
@@ -143,36 +155,7 @@ class Sidebar extends React.Component {
                 ))}
               </ul>
 
-              <div
-                className="slimScrollBar"
-                style={{
-                  background: "rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%",
-                  width: "4px",
-                  position: "absolute",
-                  top: "0px",
-                  opacity: "0.4",
-                  display: "none",
-                  borderRadius: "0px",
-                  zIndex: "99",
-                  right: "1px",
-                  height: "68.753px",
-                }}
-              ></div>
-              <div
-                className="slimScrollRail"
-                style={{
-                  width: "4px",
-                  height: "100%",
-                  position: "absolute",
-                  top: "0px",
-                  display: "none",
-                  borderRadius: "0px",
-                  background: "rgb(51, 51, 51) none repeat scroll 0% 0%",
-                  opacity: "0.2",
-                  zIndex: "90",
-                  right: "1px",
-                }}
-              ></div>
+               
             </div>
           </div>
 
@@ -182,7 +165,7 @@ class Sidebar extends React.Component {
               <Link to={Config.HomeUrl}>
                 SSCPAT. ADMINISTRACIÓN DE EMPRESAS
               </Link>
-              .
+              . 
             </div>
             <div className="version">
               <b>Version: </b> 1.0.0
