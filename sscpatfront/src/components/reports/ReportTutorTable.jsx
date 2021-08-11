@@ -160,7 +160,12 @@ const ReportTutorTable = (props) => {
                             <td>{user.pending_reviews.progress}</td>
                             <td>{user.pending_reviews.review}</td>
                             <td>{user.pending_reviews.pending_review}</td>
-                            <td>{user.delay_project.inscription ? user.delay_project.inscription.title_academic_project:""}  
+                            <td>{user.delay_project.inscription ? (
+                               <Link to={Config.aProjectsUrl+"/"+user.delay_project.inscription.id}>
+                               {user.delay_project.inscription.title_academic_project}
+                                <br /> <small> {user.delay_project.modality.title}</small>
+                              </Link>  
+                            ):""}  
                             <br />
                             {user.delay_project.days>0 ? (
                               <span className="col-red"> <strong>{user.delay_project.days}</strong> días sin revisión</span>

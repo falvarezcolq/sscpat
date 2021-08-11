@@ -135,7 +135,7 @@ const ReportInscriptionTable = (props) => {
                         {projects.results.map((project) => (
                           <tr key={projects.id}>
                             <td>
-                              <Link to={Config.aProjectsUrl+"/"+projects.id}>
+                              <Link to={Config.aProjectsUrl+"/"+project.id}>
                                 {project.title_academic_project}
                                 <br /> <small> {project.modality.title}</small>
                               </Link>

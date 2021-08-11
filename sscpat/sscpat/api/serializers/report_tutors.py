@@ -14,6 +14,7 @@ from rest_framework.exceptions import ValidationError
 # Serializers
 from sscpat.sscpat.api.serializers.inscriptions import InscriptionShortDetailModelSerializer
 from sscpat.sscpat.api.serializers.tracingstudent import TracingStudentShortDetailModelSerializer
+from sscpat.sscpat.api.serializers.modalities import ModalityModelSerializer
 
 
 
@@ -45,7 +46,6 @@ class TutorDelayProjectsSerializer(ModelSerializer):
 
     def get_delay_project(self,tutor):
         projects = tutor.tutor_projects.filter(active=True, state=Inscription.UNDER_DEVELOPMENT)
-
         max_day = 0
         delay_proyect = None
         delay_tracingstudent = None
@@ -60,6 +60,7 @@ class TutorDelayProjectsSerializer(ModelSerializer):
 
         data = {
             "inscription":InscriptionShortDetailModelSerializer(delay_proyect).data if delay_proyect else None,
+            "modality" : ModalityModelSerializer(delay_proyect.modality).data if delay_proyect else None,
             "tracingstudent":TracingStudentShortDetailModelSerializer(delay_tracingstudent).data if delay_tracingstudent else None,
             "days":max_day,
         }
