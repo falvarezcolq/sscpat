@@ -25,7 +25,7 @@ export const report = (url=Config.ReportTutorApiUrl,params=null) => async (dispa
           params:params
       }
   }
-  console.log(url);
+
 
   try{
       await axios

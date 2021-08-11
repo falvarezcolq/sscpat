@@ -12,7 +12,7 @@ import {getAuthHeader } from  './headers';
 
 
 
-// LIST USERS 
+// LIST PROJECTS
 export const report = (url=Config.ReportInscriptionApiUrl,params=null) => async (dispatch)=>{
     
   dispatch({type:MESSAGE_DEFAULT})

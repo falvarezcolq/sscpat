@@ -103,7 +103,7 @@ class Config{
     static aNotificationUrl                 ="/notificaciones"
     static aReportsUrl                      ="/reportes";
     static aReportsTutorsUrl                      ="/reportes/tutores";
-    static aReportsETutorsUrl                      ="/reportes/tutores_externos/";
+    static aReportsETutorsUrl                      ="/reportes/tutores_externos";
     static aReportsProjectsUrl                      ="/reportes/proyectos";
 
 

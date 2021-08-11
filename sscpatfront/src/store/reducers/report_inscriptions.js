@@ -16,7 +16,7 @@ const initialState = {
   list:[],
 };
 
-export default function report_inscription(state = initialState, action) {
+export default function report_inscriptions(state = initialState, action) {
   switch (action.type) {
   
     case GET_INSCRIPTIONS_REPORT:
