@@ -18,6 +18,7 @@ from sscpat.sscpat.api.serializers.modalities import ModalityModelSerializer
 from sscpat.sscpat.utils.helper import get_date_months
 
 from datetime import datetime,date
+
 class InscriptionReportModelSerializer(ModelSerializer):
 
     student = UserModelSerializer(many=False)

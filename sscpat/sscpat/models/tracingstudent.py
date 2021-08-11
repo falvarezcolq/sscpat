@@ -24,7 +24,7 @@ class TracingStudent(SSCPATModel):
     description = models.CharField(_("description"),max_length=255,blank=True,default="")
     number = models.IntegerField(_("progress number"),default=1)
     month = models.PositiveIntegerField(null=True)
-    date_month = models.DateField(_("date uploaded"),null=True,)
+    date_month = models.DateField(_("date uploaded"),null=True)
     is_final_document = models.BooleanField(_("is final document"), default=False)
     require_tutor_review = models.BooleanField(default=False)
     reviewed_by_tutor = models.BooleanField(default=False)
