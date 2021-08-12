@@ -116,18 +116,17 @@ class Sidebar extends React.Component {
           </div>
 
           <div className="menu"
-          //  style={{
-           
-          //   overflow: "scroll",
-          
-          // }}  
+           style={{
+             position: "relative",
+             height: "90% " ,
+            }}  
           >
             <div
               className="slimScrollDiv"
               style={{
-                position: "relative",
+                position: "absolute",
                 overflow: "scroll",  
-                width: "auto",
+                width: "100%",
                 // height:"auto",
                 height: "70% " ,
               }}
@@ -135,9 +134,9 @@ class Sidebar extends React.Component {
               <ul
                 className="list"
                 style={{
+                  
                   overflow: "hidden",
                   // overflow: "scroll",
-
                   width: "auto",
                   height:"auto",
                   // height: "20%",
@@ -154,8 +153,6 @@ class Sidebar extends React.Component {
                   />
                 ))}
               </ul>
-
-               
             </div>
           </div>
 

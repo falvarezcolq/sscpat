@@ -153,6 +153,10 @@ def send_uploaded_tracing_student(tracing_student_pk,user_pk):
 
     subject = '¡Un nuevo avance ha sido subido a '  + inscription.academic_period.title +' '+ inscription.title_academic_project+' !'
 
+    text_date_month = "{} {}".format(
+        months[str(tracing_student.date_month.month)] if tracing_student.date_month else "",
+        tracing_student.date_month.year if tracing_student else ""
+    )
     content = render_to_string(
         'emails/users/progress_project_uploaded.html',
         {
@@ -160,7 +164,7 @@ def send_uploaded_tracing_student(tracing_student_pk,user_pk):
             'user':user,
             'user_action':user_action,
             'inscription':inscription,
-            'month':months[str(tracing_student.month)],
+            'month': text_date_month,
         }
     )
     send_email(subject, content, user.email)
@@ -178,6 +182,10 @@ def send_uploaded_tracing_progress(tracing_progress_pk,user_pk):
 
     subject = '¡El proyecto '  + inscription.academic_period.title +' '+ inscription.title_academic_project+'  ha sido revisado o comentado!'
 
+    text_date_month = "{} {}".format(
+        months[str(tracing_student.date_month.month)] if tracing_student.date_month else "",
+        tracing_student.date_month.year if tracing_student else ""
+    )
     content = render_to_string(
         'emails/users/review_progress_project_uploaded.html',
         {
@@ -186,7 +194,7 @@ def send_uploaded_tracing_progress(tracing_progress_pk,user_pk):
             'user':user,
             'user_action':user_action,
             'inscription':inscription,
-            'month':months[str(tracing_student.month)],
+            'month':text_date_month,
         }
     )
     send_email(subject, content, user.email)
