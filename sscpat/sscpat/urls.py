@@ -49,8 +49,9 @@ urlpatterns = [
     path('api/auth/refresh/', TokenRefreshView.as_view(),name="refreshtoken"),
     path('api/auth/datasession/', DataSessionApiView.as_view(),name="datasession"),
     path('api/info/',InfoView.as_view(),name="info"),
-    path('api/search/tutor/',SearchTutorFromServer.as_view(),name="search"),
-    path('api/search/tutor/add/', AddTutorFromServer.as_view(), name="search"),
-
+    path('api/search/tutor/',SearchTutorFromServer.as_view(),name="search_tutor"),
+    path('api/search/tutor/add/', AddTutorFromServer.as_view(), name="add_tutor"),
+    path('api/search/student/',SearchStudentFromServer.as_view(),name="search_student"),
+    path('api/search/student/add/', AddStudentFromServer.as_view(), name="add_student"),
 
 ]

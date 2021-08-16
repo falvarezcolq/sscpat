@@ -4,44 +4,17 @@ import {
   FORM_FAILED,
   GET_STUDENTS,
   GET_STUDENT,
+  STUDENT_ADDED,
+  STUDENT_SEARCH,
+  MESSAGE_SUCCESS,
+  
 } from "./types";
 
 import { acceptErrors } from "./messages";
 import Config from "../utils/Config";
 import { getAuthHeader } from "./headers";
 
-// // Search
-// export const searchTutor = (q) => (dispatch, getState) => {
-//   const tutorList = getState().tutors.tutorList;
 
-//   dispatch({
-//     type: TUTOR_SEARCH,
-//     payload: tutorList.filter((tutor) => (
-//         tutor.first_name.includes(q) ||
-//         tutor.last_name.includes(q) ||
-//         tutor.last_name2.includes(q) ||
-//         tutor.ci.includes(q))),
-//   });
-// };
-
-// export const addTutor = (id) => (dispatch, getState) =>{
-//     const tutorList = getState().tutors.tutorList;
-//     console.log(tutorList.filter((tutor) => tutor.id === id))
-//     console.log(id)
-//     console.log("que paso aqui")
-//     dispatch({
-//       type: TUTOR_ADDED,
-//       payload: tutorList.filter((tutor) => tutor.id === id)[0],
-//     });
-// }
-
-// // Remove tutor
-// export const removeTutor = (id) => (dispatch) =>{
-//     dispatch({
-//       type: TUTOR_REMOVED,
-//       payload: id,
-//     });
-// }
 
 // LIST STUDENTS
 export const listStudents =
@@ -134,3 +107,57 @@ export const listStudentsByTutors =
       });
     }
   };
+
+
+
+
+// GET FROM API GENERAL SERVER
+export const getStudentServer = (obj) => async (dispatch)=>{
+  dispatch({type:MESSAGE_DEFAULT})
+  let config = await getAuthHeader()
+  const res = await axios
+      .post(Config.SearchStudentApiUrl,obj,config)
+      .then((res) => {
+        dispatch({
+            type:STUDENT_SEARCH,
+            payload:res.data
+        });
+        return res.data
+      }).catch((err) =>{
+        return acceptErrors({
+            err:err,
+            dispatch:dispatch,
+            type:FORM_FAILED,
+        })
+    })
+  return res
+}
+
+
+// ADD  NEW USER FROM SERVER 
+export const addStudent = (key) => async (dispatch, getState) =>{
+  const studentSearch = getState().students.studentSearch;
+  dispatch({type:MESSAGE_DEFAULT})
+  const obj = {key : key}
+  let config = await getAuthHeader()
+  const res = await axios
+      .post(Config.SearchStudentApiUrl+"add/",obj,config)
+      .then((res) => {
+        dispatch({
+          type:MESSAGE_SUCCESS,
+          payload:{detail: <p>El estudiante  <strong> </strong>  fue agregado con éxito </p> }
+        })
+        dispatch({
+          type: STUDENT_ADDED,  
+          payload: studentSearch,
+        }); 
+        return res.data
+      }).catch((err) =>{
+        return acceptErrors({
+            err:err,
+            dispatch:dispatch,
+            type:FORM_FAILED,
+        })
+    })
+  return res
+}

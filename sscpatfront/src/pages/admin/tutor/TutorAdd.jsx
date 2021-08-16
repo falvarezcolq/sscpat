@@ -7,6 +7,8 @@ import {
   getTutorServer as searchTutor,
 } from "../../../actions/tutors";
 import Modal from "../../../components/atoms/Modal";
+import Spinner from "../../../components/atoms/Spinner";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 class TutorAdd extends React.Component {
   static propTypes = {
@@ -15,68 +17,94 @@ class TutorAdd extends React.Component {
   };
   state = {
     search: "",
-    modal:{
+    loadingSearch: false,
+    loadingSave: false,
+    modal: {
       title: "",
       message: "",
       cancel: null,
       confirm: null,
       accept: null,
-      open:false,
-    }
+      open: false,
+    },
   };
 
-  closeModal = () => this.setState(
-    { ...this.state,
-      modal:{
+  closeModal = () =>
+    this.setState({
+      ...this.state,
+      modal: {
         title: "",
         message: "",
         cancel: null,
         confirm: null,
         accept: null,
-        open:false,
-      }
+        open: false,
+      },
     });
 
-  onChange = (e) => this.setState(
-    {...this.state,
-     [e.target.name]: e.target.value 
-    });
+  setLoadingSearch = (value) =>
+    this.setState({ ...this.state, loadingSearch: value });
 
-  onSubmit = (e) => {
+  setLoadingSave = (value) =>
+    this.setState({ ...this.state, loadingSave: value });
+
+  onChange = (e) =>
+    this.setState({ ...this.state, [e.target.name]: e.target.value });
+
+  onSubmit = async (e) => {
     e.preventDefault();
     const search = this.state.search;
-    this.props.searchTutor(this.state);
+    this.setLoadingSearch(true);
+    await this.props.searchTutor(this.state);
+    this.setLoadingSearch(false);
   };
 
-  action_confirm = (key) =>{
-    this.props.addTutor(key)
-    this.closeModal()
-  }
+  action_confirm = async (key) => {
+    this.setState({
+      ...this.state,
+      loadingSave:true,
+      modal: {
+        title: "",
+        message: "",
+        cancel: null,
+        confirm: null,
+        accept: null,
+        open: false,
+      },
+    })
+   
+    await this.props.addTutor(key);
+  
+    this.setLoadingSave(false);
+  };
 
-
-  show_confirm = (tutor_data) =>{
-    const {user,key} = tutor_data
-    this.setState(
-      { ...this.state,
-        modal:{
-          title: "Confirmar agregar Tutor desde el servidor central",
-          message:  (<> Confirmar agregar al tutor:
-            <p style={{color:"blue"}}> {user.first_name +" "+user.last_name+" "+user.last_name2}</p>
-            </>),
-          cancel:  this.closeModal,
-          confirm: this.action_confirm.bind(this,key),
-          accept: null,
-          open:true,
-        }
-      }
-    )
-  }
-
-
+  show_confirm = (tutor_data) => {
+    const { user, key } = tutor_data;
+    this.setState({
+      ...this.state,
+      modal: {
+        title: "Confirmar agregar Tutor desde el servidor central",
+        message: (
+          <>
+            {" "}
+            Confirmar agregar al tutor:
+            <p style={{ color: "blue" }}>
+              {" "}
+              {user.first_name + " " + user.last_name + " " + user.last_name2}
+            </p>
+          </>
+        ),
+        cancel: this.closeModal,
+        confirm: this.action_confirm.bind(this, key),
+        accept: null,
+        open: true,
+      },
+    });
+  };
 
   render() {
     // tutorSearch = {};
-    const modal  = this.state.modal;
+    const modal = this.state.modal;
     return (
       <section className="content">
         <div className="container-fluid">
@@ -84,6 +112,8 @@ class TutorAdd extends React.Component {
             <h2>Agregar Tutor desde el sistema principal</h2>
           </div>
         </div>
+
+        <AlertMessage />
 
         <div className="row clearfix">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -123,7 +153,11 @@ class TutorAdd extends React.Component {
                 </div>
               </div>
               <div className="body table-responsive">
-                {this.props.tutorSearch ? (
+                {this.state.loadingSearch ? (
+                  <div className="align-center">
+                    <Spinner />
+                  </div>
+                ) : this.props.tutorSearch ? (
                   this.props.tutorSearch.value > 0 ? (
                     <table className="table table-hover">
                       <thead>
@@ -148,12 +182,12 @@ class TutorAdd extends React.Component {
                             {this.props.tutorSearch.value == 1 && (
                               <button
                                 className="btn btn-default btn-xs"
-                                // onClick={this.props.addTutor.bind(
-                                //   this,
-                                //   this.props.tutorSearch.key
-                                // )}
-                                onClick={this.show_confirm.bind(this,this.props.tutorSearch)}
+                                onClick={this.show_confirm.bind(
+                                  this,
+                                  this.props.tutorSearch
+                                )}
                                 style={{ marginLeft: "10px" }}
+                                disabled={this.state.loadingSave}
                               >
                                 <b>+</b> Agregar
                               </button>
@@ -171,6 +205,23 @@ class TutorAdd extends React.Component {
                               >
                                 Usuario ya registrado en SSCPAT
                               </button>
+                            )}
+
+                            {this.state.loadingSave && (
+                              <div className="">
+                          
+                                <div className='preloader pl-size-sm'>
+                                  <div className="spinner-layer pl-white">
+                                    <div className="circle-clipper left">
+                                      <div className="circle"></div>
+                                    </div>
+                                    <div className="circle-clipper right">
+                                      <div className="circle"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                ...Registrando
+                              </div>
                             )}
                           </td>
                         </tr>
@@ -240,44 +291,44 @@ class TutorAdd extends React.Component {
         </div>
 
         <Modal open={modal.open}>
-        <div className="modal-header">
-          <h4 className="modal-title" id="defaultModalLabel">
-            {modal.title}
-          </h4>
-        </div>
-        <div className="modal-body">{modal.message}</div>
-        <div className="modal-footer">
-          {modal.cancel && (
-            <button
-              type="button"
-              className="btn btn-link waves-effect pull-left"
-              onClick={modal.cancel}
-            >
-              Cancelar
-            </button>
-          )}
+          <div className="modal-header">
+            <h4 className="modal-title" id="defaultModalLabel">
+              {modal.title}
+            </h4>
+          </div>
+          <div className="modal-body">{modal.message}</div>
+          <div className="modal-footer">
+            {modal.cancel && (
+              <button
+                type="button"
+                className="btn btn-link waves-effect pull-left"
+                onClick={modal.cancel}
+              >
+                Cancelar
+              </button>
+            )}
 
-          {modal.confirm && (
-            <button
-              type="button"
-              className="btn btn-success waves-effect"
-              onClick={modal.confirm}
-            >
-              {false ? "Registrando...":"Confirmar"}
-            </button>
-          )}
+            {modal.confirm && (
+              <button
+                type="button"
+                className="btn btn-success waves-effect"
+                onClick={modal.confirm}
+              >
+                {false ? "Registrando..." : "Confirmar"}
+              </button>
+            )}
 
-          {modal.accept && (
-            <button
-              type="button"
-              className="btn btn-primary waves-effect"
-              onClick={modal.accept}
-            >
-              Aceptar
-            </button>
-          )}
-        </div>
-      </Modal>
+            {modal.accept && (
+              <button
+                type="button"
+                className="btn btn-primary waves-effect"
+                onClick={modal.accept}
+              >
+                Aceptar
+              </button>
+            )}
+          </div>
+        </Modal>
       </section>
     );
   }

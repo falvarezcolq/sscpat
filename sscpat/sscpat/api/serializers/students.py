@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate
 from rest_framework.serializers import (
     ModelSerializer,
     SerializerMethodField,
+    Serializer,
+    CharField,
 )
 
 # models
@@ -81,7 +83,6 @@ class StudentListModelSerializer(ModelSerializer):
             "last_name2",
             "CI",
             "RU",
-            "ID_TUTOR",
             "position",
             "academic_degree",
             "abbreviation",
@@ -108,3 +109,12 @@ class StudentMinimalListModelSerializer(ModelSerializer):
             "CI",
             "RU",
         ]
+
+
+class StudentSearchSerializer(Serializer):
+    search = CharField(max_length=30)
+
+
+
+class StudentAddSerializer(Serializer):
+    key = CharField(max_length=256)

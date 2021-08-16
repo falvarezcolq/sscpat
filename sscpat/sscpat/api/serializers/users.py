@@ -66,7 +66,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
                 "type",
                 "CI",
                 "RU",
-                "ID_TUTOR",
+
                 "position",
                 "academic_degree",
                 "abbreviation",

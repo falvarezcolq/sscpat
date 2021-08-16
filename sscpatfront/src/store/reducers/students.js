@@ -1,9 +1,13 @@
 import {
   GET_STUDENT,
   GET_STUDENTS,
+  STUDENT_SEARCH,
+  STUDENT_ADDED,
 } from "../../actions/types";
 
 const initialState = {
+  studentSearch: {} ,
+  studentAddedList: [],
   next: null,
   previous: null,
   count: null,
@@ -16,28 +20,25 @@ const initialState = {
   list:[],
 };
 
+
 export default function students(state = initialState, action) {
   switch (action.type) {
-    // case STUDENT_ADDED:
-    //   return {
-    //     ...state,
-    //     tutorAddedList: [action.payload, ...state.tutorAddedList],
-    //   };
+    case STUDENT_ADDED:
+      return {
+        ...state,
+        studentSearch: {
+          ...state.studentSearch,
+          value:2
+        },
+        studentAddedList: [action.payload, ...state.studentAddedList],
+      };
 
-    // case STUDENT_REMOVED:
-    //   return {
-    //     ...state,
-    //     tutorAddedList: state.tutorAddedList.filter(
-    //       (tutor) => tutor.id !== action.payload
-    //     ),
-    //   };
-
-    // case STUDENT_SEARCH:
-    //   return {
-    //     ...state,
-    //     tutorSearch: action.payload,
-    //   };
-
+    case STUDENT_SEARCH:
+        return {
+          ...state,
+          studentSearch: action.payload,
+        };
+        
     case GET_STUDENTS:
       return {
         ...state,
