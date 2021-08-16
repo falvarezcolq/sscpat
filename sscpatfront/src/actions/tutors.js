@@ -5,10 +5,13 @@ import {
   // TUTOR_ALREADY_ADDED,
   TUTOR_REMOVED,
   TUTOR_SEARCH,
+  TUTOR_SEARCH_NOT_FOUND,
   MESSAGE_DEFAULT,
+  MESSAGE_SUCCESS,
   FORM_FAILED,
   GET_TUTOR,
   MINIMAL_LIST_TUTOR
+
 } from "./types";
 
 import { acceptErrors } from '../actions/messages';
@@ -17,29 +20,6 @@ import {getAuthHeader } from  './headers';
 
 
 
-// Search
-export const searchTutor = (q) => (dispatch, getState) => {
-  const tutorList = getState().tutors.tutorList;
-
-  dispatch({
-    type: TUTOR_SEARCH,
-    payload: tutorList.filter((tutor) => (
-        tutor.first_name.includes(q) ||
-        tutor.last_name.includes(q) ||
-        tutor.last_name2.includes(q) ||
-        tutor.ci.includes(q))),
-  });
-};
-
-
-  export const addTutor = (id) => (dispatch, getState) =>{
-      const tutorList = getState().tutors.tutorList;
-      console.log(tutorList.filter((tutor) => tutor.id === id))
-      dispatch({
-        type: TUTOR_ADDED,
-        payload: tutorList.filter((tutor) => tutor.id === id)[0],
-      }); 
-  }
 
 
 // Remove tutor
@@ -79,7 +59,6 @@ export const listTutors = (url=Config.TutorApiUrl,params=null) => async (dispatc
       })
       return null
   }catch(err) {
-        
       //   dispatch({ type:FORM_NOT_LOADING})
         return acceptErrors({
             err:err,
@@ -123,7 +102,6 @@ export const minimalListTutors = (url=Config.TutorListApiUrl,params=null) => asy
 
 // GET USERS 
 export const getTutor = (id) => async (dispatch)=>{
-
   dispatch({type:MESSAGE_DEFAULT})
   let config = await getAuthHeader()
   const res = await axios
@@ -133,6 +111,59 @@ export const getTutor = (id) => async (dispatch)=>{
             type:GET_TUTOR,
             payload:res.data
         });
+        return res.data
+      }).catch((err) =>{
+        return acceptErrors({
+            err:err,
+            dispatch:dispatch,
+            type:FORM_FAILED,
+        })
+    })
+  return res
+}
+
+
+// GET FROM API GENERAL SERVER
+export const getTutorServer = (obj) => async (dispatch)=>{
+  dispatch({type:MESSAGE_DEFAULT})
+  let config = await getAuthHeader()
+  const res = await axios
+      .post(Config.SearchTutorApiUrl,obj,config)
+      .then((res) => {
+       
+        dispatch({
+            type:TUTOR_SEARCH,
+            payload:res.data
+        });
+        return res.data
+      }).catch((err) =>{
+        return acceptErrors({
+            err:err,
+            dispatch:dispatch,
+            type:FORM_FAILED,
+        })
+    })
+  return res
+}
+
+
+// ADD  NEW USER FROM SERVER 
+export const addTutor = (key) => async (dispatch, getState) =>{
+  const tutorSearch = getState().tutors.tutorSearch;
+  dispatch({type:MESSAGE_DEFAULT})
+  const obj = {key : key}
+  let config = await getAuthHeader()
+  const res = await axios
+      .post(Config.SearchTutorApiUrl+"add/",obj,config)
+      .then((res) => {
+        dispatch({
+          type:MESSAGE_SUCCESS,
+          payload:{detail: <p>El tutor  <strong> </strong>  fue agregado con éxito </p> }
+        })
+        dispatch({
+          type: TUTOR_ADDED,  
+          payload: tutorSearch,
+        }); 
         return res.data
       }).catch((err) =>{
         return acceptErrors({

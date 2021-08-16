@@ -17,7 +17,6 @@ const Modal = (props) => {
         </div>
       </div>
       { open ? <div className="modal-backdrop fade in"></div>:"" }
-      
     </>
 
   );

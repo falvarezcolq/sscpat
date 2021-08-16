@@ -6,8 +6,7 @@ import AlertMessage from "../../../components/atoms/AlertMessage";
 
 class Documents extends Component {
 
-
-
+  
   render() {
    
     return (

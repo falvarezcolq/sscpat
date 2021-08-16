@@ -26,3 +26,9 @@ SMTP_USER=AKIAWH2NIYTHMRVK7GLF
 SMTP_PASSWORD=BFOQJRxGp03XjtE3F1BZD43JvQN/+eVkNLDKQ0Bx7sFu
 SMTP_URL=email-smtp.us-east-1.amazonaws.com
 SMTP_PORT=587
+
+# external server
+EXTERNAL_HOST=https://ssalab.aeumsa.com
+
+# cipher key
+CIPHER_KEY=JD21SQ0h6iiclkAdNd_0--ltxGFnN0HdsQExd7APDV0=

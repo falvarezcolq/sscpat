@@ -18,16 +18,20 @@ class UserAdmin(auth_admin.UserAdmin):
         (_('Personal info'), {'fields': ( "type",
                                          'first_name',
                                          'last_name',
+                                         'last_name2',
                                          'email',
                                          "CI",
                                          "RU",
-                                         "ID_TUTOR",
                                          "position",
                                          "academic_degree",
                                          "abbreviation",
                                          "phone",
-                                         "telf"
-                                         )}),
+                                         "telf",
+                                          "id_student",
+                                          "id_teacher",
+                                          "id_people",
+                                          "from_server",
+                                          )}),
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser',
                        # , 'groups', 'user_permissions'

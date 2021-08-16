@@ -1,6 +1,6 @@
 from .users import UserViewSet,TokenObtainPairView,DataSessionApiView
 from .userpictures import UserPictureViewSet
-from .tutors import TutorViewSet,TutorListViewSet,TutorReportListViewSet
+from .tutors import TutorViewSet,TutorListViewSet,TutorReportListViewSet,SearchTutorFromServer,AddTutorFromServer
 from .externaltutors import ExternalTutorViewSet, ExternalTutorListViewSet
 from .students import StudentViewSet,StudentListViewSet,StudentByTutorViewSet
 

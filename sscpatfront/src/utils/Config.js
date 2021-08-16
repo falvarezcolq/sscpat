@@ -9,6 +9,10 @@ class Config{
     static UpdatePasswordApiUrl = HOST + "/api/users/updatepassword/"
     static UpdateUserPasswordApiUrl = HOST + "/api/users/updateuserpassword/"
     static UpdateUserAccessApiUrl = HOST + "/api/users/updateuseraccess/"
+
+    static SearchTutorApiUrl = HOST + "/api/search/tutor/"
+    static SearchStudentApiUrl = HOST + "/api/search/student/"
+
     static TutorApiUrl = HOST + "/api/tutors/"
     static TutorListApiUrl = HOST + "/api/tutorslist/"
     static ExternalTutorApiUrl = HOST + "/api/etutors/"

@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate
 from rest_framework.serializers import (
     ModelSerializer,
     SerializerMethodField,
+    Serializer,
+    CharField,
 )
 
 # models
@@ -37,7 +39,6 @@ class TutorModelSerializer(ModelSerializer):
             "last_name2",
             "CI",
             "RU",
-            "ID_TUTOR",
             "position",
             "academic_degree",
             "abbreviation",
@@ -97,7 +98,7 @@ class TutorListSerializer(ModelSerializer):
             "last_name2",
             "CI",
             "RU",
-            "ID_TUTOR",
+
             "position",
             "academic_degree",
             "abbreviation",
@@ -128,3 +129,15 @@ class TutorMinimalListModelSerializer(ModelSerializer):
             "academic_degree",
             "abbreviation",
     ]
+
+
+class TutorSearchSerializer(Serializer):
+    search = CharField(max_length=30)
+
+
+
+class TutorAddSerializer(Serializer):
+    key = CharField(max_length=256)
+
+
+

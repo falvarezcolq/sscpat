@@ -19,8 +19,7 @@ class StudentAdd extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const query = this.state.query;
-   
-    this.props.searchTutor(query);
+    this.props.searchTutor(query);  
   };
 
   render() {
@@ -79,7 +78,7 @@ class StudentAdd extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.props.tutorSearch.map((tutor, index) => (
+                    {/* {this.props.tutorSearch.map((tutor, index) => (
                       <tr key={index}>
                         <th scope="row">{tutor.ci}</th>
                         <td>{tutor.first_name}</td>
@@ -94,7 +93,7 @@ class StudentAdd extends React.Component {
                           </button>
                         </td>
                       </tr>
-                    ))}
+                    ))} */}
                   </tbody>
                 </table>
               </div>

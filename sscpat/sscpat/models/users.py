@@ -32,7 +32,6 @@ class User(SSCPATModel,AbstractUser):
     type = models.CharField(_("Type"),max_length=50,choices=TYPE_USER,default=STUDENT)
     CI = models.CharField(_("CI"),max_length=255,unique=True)
     RU = models.CharField(_("RU"),max_length=255,blank=True,default="")
-    ID_TUTOR = models.CharField(_("ID_TUTOR"),max_length=255,blank=True,default="")
     position = models.CharField(_("Position"),max_length=255,blank=True,default="")
     academic_degree = models.CharField(_("academic_degree"),max_length=255,blank=True,default="")
     abbreviation = models.CharField(_("abbreviation"),max_length=255,blank=True,default="")
@@ -47,6 +46,13 @@ class User(SSCPATModel,AbstractUser):
             'unique': _('A user with  this email already exists.')
         },
     )
+
+    id_student = models.CharField(_("id student"),max_length=30,default="",blank=True)
+    id_teacher = models.CharField(_("id docente"),max_length=30,default="",blank=True)
+    id_people = models.CharField(_("id people"),max_length=30,unique=True)
+    from_server = models.BooleanField(_("from server"), default=False)
+
+
 
     def __str__(self):
         """Return first name and last name"""

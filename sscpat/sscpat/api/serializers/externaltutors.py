@@ -36,7 +36,7 @@ class ExternalTutorModelSerializer(ModelSerializer):
             "last_name2",
             "CI",
             "RU",
-            "ID_TUTOR",
+
             "position",
             "academic_degree",
             "abbreviation",

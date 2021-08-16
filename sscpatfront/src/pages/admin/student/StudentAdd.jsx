@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addTutor, removeTutor, searchTutor } from "../../../actions/tutors";
+import { addTutor, removeTutor, getTutorServer as searchTutor } from "../../../actions/tutors";
 
 class StudentAdd extends React.Component {
   static propTypes = {
@@ -77,7 +77,7 @@ class StudentAdd extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.props.tutorSearch.map((tutor, index) => (
+                    {/* {this.props.tutorSearch.map((tutor, index) => (
                       <tr key={index}>
                         <th scope="row">{tutor.ci}</th>
                         <td>{tutor.first_name}</td>
@@ -92,7 +92,7 @@ class StudentAdd extends React.Component {
                           </button>
                         </td>
                       </tr>
-                    ))}
+                    ))} */}
                   </tbody>
                 </table>
               </div>
