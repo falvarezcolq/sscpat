@@ -223,7 +223,6 @@ class TutorAdd extends React.Component {
                               >
                                 Actualizar datos desde el servidor  central
                               </button>
-
                               </>
                             )}
 

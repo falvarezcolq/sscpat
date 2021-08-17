@@ -107,6 +107,41 @@ const ProgresCard = (props) => {
             <div className="body">
               <div className="row">
                 <div className="col-lg-12">
+                  {progress.files.map((file) => (
+                    <div key={file.id} style={{display:"inline-block"}}>
+                      <div className="link-container">
+                        <a
+                          className="file-link"
+                          href={filePath(file.path)}
+                          title={file.title}
+                        > 
+                          <div className="image-link">
+                            <img
+                              className=""
+                              src={
+                                file.format === "application/pdf"
+                                  ? pdf_image
+                                  : file.thumbnail
+                              }
+                              aria-hidden="true"
+                              role="presentation"
+                              data-mime-type="image/jpeg"
+                              alt=""
+                            />
+                          </div>
+                          <div className="text-link">
+                            <div className="text-link-title">{file.title}</div>
+                            <div className="">
+                              <div className="">{getTypeFile(file.format)}</div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+             
+                <div className="col-lg-12">
                   <div
                     style={{
                       whiteSpace: "pre-wrap",
@@ -153,40 +188,6 @@ const ProgresCard = (props) => {
                       Informe de la institución
                     </TextCheck>
                   )}
-                </div>
-                <div className="col-lg-6">
-                  {progress.files.map((file) => (
-                    <div key={file.id}>
-                      <div className="link-container">
-                        <a
-                          className="file-link"
-                          href={filePath(file.path)}
-                          title={file.title}
-                        > 
-                          <div className="image-link">
-                            <img
-                              className=""
-                              src={
-                                file.format === "application/pdf"
-                                  ? pdf_image
-                                  : file.thumbnail
-                              }
-                              aria-hidden="true"
-                              role="presentation"
-                              data-mime-type="image/jpeg"
-                              alt=""
-                            />
-                          </div>
-                          <div className="text-link">
-                            <div className="text-link-title">{file.title}</div>
-                            <div className="">
-                              <div className="">{getTypeFile(file.format)}</div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
 

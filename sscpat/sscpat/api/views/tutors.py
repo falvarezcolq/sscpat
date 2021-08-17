@@ -208,8 +208,6 @@ class AddTutorFromServer(APIView):
         id_persona = str(data['id'])
 
         try:
-
-
             user = User.objects.get(id_people=id_persona)
             user.first_name = data["first_name"]
             user.last_name = data["last_name"]
