@@ -30,7 +30,7 @@ export default function CardTutor({ tutor }) {
 
                 {  AuthHandler.isTutor() && 
                 <>
-                <li><Link to={Config.aUsersUrl+"/"+tutor.id}> Ver mi informacion</Link></li> 
+                <li><Link to={Config.aUsersUrl+"/"+tutor.id}> Ver mi información</Link></li> 
                 <li><Link to={Config.updateMyPasswordUrl}> Actualizar mi contraseña</Link></li>
                 </>
                 } 

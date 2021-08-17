@@ -123,7 +123,7 @@ const ListCard = (props) => {
                         <thead>
                           <tr>
                             <th>Documento</th>
-                            <th>Descripcion</th>
+                            <th>Descripción</th>
                             <th>Tiempo de entrega</th>
                             <th>Registrado</th>
                             <th>Opciones</th>

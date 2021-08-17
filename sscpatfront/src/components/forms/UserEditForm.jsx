@@ -8,24 +8,8 @@ import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../../components/atoms/Spinner"
+import AlertMessage from "../atoms/AlertMessage";
 
-// const initialValues = {
-//   username: "",
-//   password: "",
-//   type: "",
-//   email: "",
-//   first_name: "",
-//   last_name: "",
-//   last_name2: "",
-//   CI: "",
-//   RU: "",
-//   ID_TUTOR: "",
-//   position: "",
-//   academic_degree: "",
-//   abbreviation: "",
-//   phone: "",
-//   telf: "",
-// };
 
 const validate = {
   username: {
@@ -61,7 +45,7 @@ const validate = {
     max_length: 30,
   },
   RU: {},
-  ID_TUTOR: {},
+
   position: {},
   academic_degree: {},
   abbreviation: {},
@@ -75,7 +59,7 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [focus, setFocus] = useState({});
-  // const { id } = useParams();
+
 
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
@@ -179,122 +163,11 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
   return (  
     <form onSubmit={onSubmit}>
       
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="align-center bg-indigo">
-            <div className="color-name">Credenciales</div>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="username">
-              Usuario <strong style={{ color: "red" }}>*</strong>
-            </label>
-
-            <div className={focus.username ? "form-line focused" : "form-line"}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Ingrese usuario"
-                id="username"
-                name="username"
-                value={values.username}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-                disabled={true}
-              />
-            </div>
-            {touched.username && errors.username ? (
-              <label id="username-error" className="error" htmlFor="username">
-                {errors.username}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="password">
-              Password<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <div className={focus.password ? "form-line focused" : "form-line"}>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Ingrese contraseña"
-                id="password"
-                name="password"
-                value="******"
-                disabled={true}
-              />
-            </div>
-            <Link to={Config.aUsersUrl+"/"+id+"/password"} >Actualizar contraseña</Link>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="type">
-              Tipo de usuario<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <select
-              name="type"
-              className="form-control show-tick"
-              tabIndex="-98"
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              value={values.type}
-            >
-              <option value="">-- Por favor seleccione --</option>
-              <option value="ADMIN">Administrador</option>
-              <option value="TUTOR">Tutor</option>
-              <option value="EXTERNAL_TUTOR">Tutor Externo</option>
-              <option value="STUDENT">Estudiante</option>
-            </select>
-            {touched.type && errors.type ? (
-              <label id="type-error" className="error" htmlFor="type">
-                {errors.type}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </div>
-
+      
       <div className="row">
         <div className="col-lg-12">
           <div className="align-center bg-indigo">
             <div className="color-name">Información de usuario</div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="form-group">
-            <label htmlFor="email">
-              email<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <div className={focus.email ? "form-line focused" : "form-line"}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Ingrese correo electrónico"
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-              />
-            </div>
-            {touched.email && errors.email ? (
-              <label id="email-error" className="error" htmlFor="email">
-                {errors.email}
-              </label>
-            ) : (
-              ""
-            )}
           </div>
         </div>
         <div className="col-lg-4">
@@ -417,7 +290,6 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
             )}
           </div>
         </div>
-
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="RU">Registro universitario R.U.</label>
@@ -443,32 +315,34 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
             )}
           </div>
         </div>
-
         <div className="col-lg-4">
           <div className="form-group">
-            <label htmlFor="ID_TUTOR">ID tutor</label>
-            <div className={focus.ID_TUTOR ? "form-line focused" : "form-line"}>
+            <label htmlFor="email">
+              email<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <div className={focus.email ? "form-line focused" : "form-line"}>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese ID TUTOR"
-                id="ID_TUTOR"
-                name="ID_TUTOR"
-                value={values.ID_TUTOR}
+                placeholder="Ingrese correo electrónico"
+                id="email"
+                name="email"
+                value={values.email}
                 onChange={onChange}
                 onBlur={onBlur}
                 onFocus={onFocus}
               />
             </div>
-            {touched.ID_TUTOR && errors.ID_TUTOR ? (
-              <label id="ID_TUTOR-error" className="error" htmlFor="ID_TUTOR">
-                {errors.ID_TUTOR}
+            {touched.email && errors.email ? (
+              <label id="email-error" className="error" htmlFor="email">
+                {errors.email}
               </label>
             ) : (
               ""
             )}
           </div>
         </div>
+        
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="position">Posicion</label>
@@ -615,9 +489,7 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
         
         <div className="col-lg-4">
           <InputForm
-             
              name="address"
-        
              focus={focus.address}
              placeholder="Ingrese dirección del usuario"
              value={values.address}
@@ -630,6 +502,96 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
           />
         </div>
 
+        
+      </div>
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="align-center bg-indigo">
+            <div className="color-name">Credenciales</div>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="username">
+              Usuario <strong style={{ color: "red" }}>*</strong>
+            </label>
+
+            <div className={focus.username ? "form-line focused" : "form-line"}>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ingrese usuario"
+                id="username"
+                name="username"
+                value={values.username}
+                onChange={onChange}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                disabled={true}
+              />
+            </div>
+            {touched.username && errors.username ? (
+              <label id="username-error" className="error" htmlFor="username">
+                {errors.username}
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="password">
+              Password<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <div className={focus.password ? "form-line focused" : "form-line"}>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Ingrese contraseña"
+                id="password"
+                name="password"
+                value="******"
+                disabled={true}
+              />
+            </div>
+            <Link to={Config.aUsersUrl+"/"+id+"/password"} >Actualizar contraseña</Link>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="type">
+              Tipo de usuario<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <select
+              name="type"
+              className="form-control show-tick"
+              tabIndex="-98"
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              value={values.type}
+            >
+              <option value="">-- Por favor seleccione --</option>
+              <option value="ADMIN">Administrador</option>
+              <option value="TUTOR">Tutor</option>
+              <option value="EXTERNAL_TUTOR">Tutor Externo</option>
+              <option value="STUDENT">Estudiante</option>
+            </select>
+            {touched.type && errors.type ? (
+              <label id="type-error" className="error" htmlFor="type">
+                {errors.type}
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+
+        <div className="col-lg-12 align-center">
+          <AlertMessage/>
+        </div>
+        
         <div className="col-lg-12 align-center">
           <button
             type="submit"
@@ -640,6 +602,7 @@ const UserEditForm = ({ id, isLoading, getUser ,updateUser,results}) => {
           </button>
         </div>
       </div>
+ 
     </form>
   );
 };

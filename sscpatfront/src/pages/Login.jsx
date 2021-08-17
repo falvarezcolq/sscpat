@@ -80,7 +80,7 @@ class Login extends React.Component {
           <div className="logo">
             <h1 style={{ color: "#fff", textAlign: "center" }}>SSCPAT</h1>
             <small>
-              Sistema de seguimiento y control de proyectos de titulacion
+              Sistema de seguimiento y control de proyectos académicos de titulación
             </small>
           </div>
           <div className="card">

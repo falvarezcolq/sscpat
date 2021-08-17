@@ -17,7 +17,6 @@ const initialValues = {
   last_name2: "",
   CI: "",
   RU: "",
-  ID_TUTOR: "",
   position: "",
   academic_degree: "",
   abbreviation: "",
@@ -61,7 +60,7 @@ const validate = {
     min_length:5
   },
   RU: {},
-  ID_TUTOR: {},
+
   position: {},
   academic_degree: {},
   abbreviation: {},
@@ -175,128 +174,11 @@ const UserNewForm = ({ isLoading, addUser }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="align-center bg-indigo">
-            <div className="color-name">Credenciales</div>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="username">
-              Usuario <strong style={{ color: "red" }}>*</strong>
-            </label>
-
-            <div className={focus.username ? "form-line focused" : "form-line"}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Ingrese usuario"
-                id="username"
-                name="username"
-                value={values.username}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-              />
-            </div>
-            {touched.username && errors.username ? (
-              <label id="username-error" className="error" htmlFor="username">
-                {errors.username}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="password">
-              Password<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <div className={focus.password ? "form-line focused" : "form-line"}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Ingrese contraseña"
-                id="password"
-                name="password"
-                value={values.password}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-              />
-            </div>
-            {touched.password && errors.password ? (
-              <label id="password-error" className="error" htmlFor="password">
-                {errors.password}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="type">
-              Tipo de usuario<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <select
-              name="type"
-              className="form-control show-tick"
-              tabIndex="-98"
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            >
-              <option value="">-- Por favor seleccione --</option>
-              <option value="ADMIN">Administrador</option>
-              <option value="TUTOR">Tutor</option>
-              <option value="EXTERNAL_TUTOR">Tutor Externo</option>
-              <option value="STUDENT">Estudiante</option>
-            </select>
-            {touched.type && errors.type ? (
-              <label id="type-error" className="error" htmlFor="type">
-                {errors.type}
-              </label>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </div>
 
       <div className="row">
         <div className="col-lg-12">
           <div className="align-center bg-indigo">
             <div className="color-name">Información de usuario</div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="form-group">
-            <label htmlFor="email">
-              email<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <div className={focus.email ? "form-line focused" : "form-line"}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Ingrese correo electrónico"
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-              />
-            </div>
-            {touched.email && errors.email ? (
-              <label id="email-error" className="error" htmlFor="email">
-                {errors.email}
-              </label>
-            ) : (
-              ""
-            )}
           </div>
         </div>
         <div className="col-lg-4">
@@ -390,7 +272,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
             )}
           </div>
         </div>
-
+        
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="CI">
@@ -445,32 +327,35 @@ const UserNewForm = ({ isLoading, addUser }) => {
             )}
           </div>
         </div>
-
         <div className="col-lg-4">
           <div className="form-group">
-            <label htmlFor="ID_TUTOR">ID tutor</label>
-            <div className={focus.ID_TUTOR ? "form-line focused" : "form-line"}>
+            <label htmlFor="email">
+              email<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <div className={focus.email ? "form-line focused" : "form-line"}>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese ID TUTOR"
-                id="ID_TUTOR"
-                name="ID_TUTOR"
-                value={values.ID_TUTOR}
+                placeholder="Ingrese correo electrónico"
+                id="email"
+                name="email"
+                value={values.email}
                 onChange={onChange}
                 onBlur={onBlur}
                 onFocus={onFocus}
               />
             </div>
-            {touched.ID_TUTOR && errors.ID_TUTOR ? (
-              <label id="ID_TUTOR-error" className="error" htmlFor="ID_TUTOR">
-                {errors.ID_TUTOR}
+            {touched.email && errors.email ? (
+              <label id="email-error" className="error" htmlFor="email">
+                {errors.email}
               </label>
             ) : (
               ""
             )}
           </div>
         </div>
+        
+      
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="position">Posicion</label>
@@ -630,6 +515,100 @@ const UserNewForm = ({ isLoading, addUser }) => {
              title="Dirección"
           />
         </div>
+        
+      </div>
+
+
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="align-center bg-indigo">
+            <div className="color-name">Credenciales</div>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="username">
+              Usuario <strong style={{ color: "red" }}>*</strong>
+            </label>
+
+            <div className={focus.username ? "form-line focused" : "form-line"}>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ingrese usuario"
+                id="username"
+                name="username"
+                value={values.username}
+                onChange={onChange}
+                onBlur={onBlur}
+                onFocus={onFocus}
+              />
+            </div>
+            {touched.username && errors.username ? (
+              <label id="username-error" className="error" htmlFor="username">
+                {errors.username}
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="password">
+              Password<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <div className={focus.password ? "form-line focused" : "form-line"}>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ingrese contraseña"
+                id="password"
+                name="password"
+                value={values.password}
+                onChange={onChange}
+                onBlur={onBlur}
+                onFocus={onFocus}
+              />
+            </div>
+            {touched.password && errors.password ? (
+              <label id="password-error" className="error" htmlFor="password">
+                {errors.password}
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="type">
+              Tipo de usuario<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <select
+              name="type"
+              className="form-control show-tick"
+              tabIndex="-98"
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+            >
+              <option value="">-- Por favor seleccione --</option>
+              <option value="ADMIN">Administrador</option>
+              <option value="TUTOR">Tutor</option>
+              <option value="EXTERNAL_TUTOR">Tutor Externo</option>
+              <option value="STUDENT">Estudiante</option>
+            </select>
+            {touched.type && errors.type ? (
+              <label id="type-error" className="error" htmlFor="type">
+                {errors.type}
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+
         <div className="col-lg-12 align-center">
           <AlertMessage/>
         </div>
@@ -643,7 +622,9 @@ const UserNewForm = ({ isLoading, addUser }) => {
             {isLoading ? "Registrando..." : "Registrar"}
           </button>
         </div>
+
       </div>
+ 
     </form>
   );
 };

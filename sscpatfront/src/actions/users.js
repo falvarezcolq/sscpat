@@ -122,7 +122,7 @@ export const updateUser = (id,user) => async (dispatch)=>{
             dispatch({type:FORM_SUCCESS})
             dispatch({
                 type:MESSAGE_SUCCESS,
-                payload:{detail:`La informacion del usuario ${username} fue actualizado correctamente`}
+                payload:{detail:`La información del usuario ${username} fue actualizado correctamente`}
             });
             return {res: res.data , error:null}
           }).catch((err) =>{

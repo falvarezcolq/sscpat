@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 // import { addTutor, removeTutor, searchTutor } from "../../../actions/tutors";
 // import UserNewForm from "../../../components/forms/UserNewForm";
 import Alert from "../../../components/atoms/Alert";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 import UserEditForm from "../../../components/forms/UserEditForm";
 import UserEditRestrictForm from "../../../components/forms/UserEditRestrictForm";
 
@@ -17,11 +18,7 @@ class UserEdit extends React.Component {
     const id = this.props.match.params.id;
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+        <AlertMessage/>
 
         <div className="container-fluid">
           <div className="block-header">
@@ -48,19 +45,10 @@ class UserEdit extends React.Component {
 
               <div className="body">
 
-
                 { AuthHandler.isAdmin() && <UserEditForm id={id}/> }
                 { AuthHandler.isTutor() && <UserEditRestrictForm id={id}/> }
-
                 { AuthHandler.isStudent() && <UserEditRestrictForm id={id}/> }
-                {messages.payload && messages.payload.detail ? (
-                  <Alert
-                    message={messages.payload.detail}
-                    color={messages.color}
-                  />
-                ) : (
-                  ""
-                )}
+               
               </div>
             </div>
           </div>

@@ -56,10 +56,10 @@ export default function CardTutor({ student }) {
                 } 
 
                 {  AuthHandler.isStudent() && 
-                <>
-                <li><Link to={Config.aUsersUrl+"/"+student.id}> Ver mi informacion</Link></li> 
-                <li><Link to={Config.updateMyPasswordUrl}> Actualizar mi contraseña</Link></li>
-                </>
+                  <>
+                  <li><Link to={Config.aUsersUrl+"/"+student.id}> Ver mi información</Link></li> 
+                  <li><Link to={Config.updateMyPasswordUrl}> Actualizar mi contraseña</Link></li>
+                  </>
                 } 
                   
             </HeaderDropdown>

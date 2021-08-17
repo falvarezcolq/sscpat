@@ -9,25 +9,9 @@ import Config from "../../utils/Config";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../../components/atoms/Spinner";
 import { getNameType } from "../../actions/helper";
-import AuthHandler  from "../../utils/AuthHandler";
+// import AuthHandler  from "../../utils/AuthHandler";
+import AlertMessage from "../atoms/AlertMessage";
 
-// const initialValues = {
-//   username: "",
-//   password: "",
-//   type: "",
-//   email: "",
-//   first_name: "",
-//   last_name: "",
-//   last_name2: "",
-//   CI: "",
-//   RU: "",
-//   ID_TUTOR: "",
-//   position: "",
-//   academic_degree: "",
-//   abbreviation: "",
-//   phone: "",
-//   telf: "",
-// };
 
 const validate = {
   username: {
@@ -63,7 +47,7 @@ const validate = {
     max_length: 30,
   },
   RU: {},
-  ID_TUTOR: {},
+
   position: {},
   academic_degree: {},
   abbreviation: {},
@@ -184,71 +168,11 @@ const UserEditResctrictForm = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="align-center bg-indigo">
-            <div className="color-name">Credenciales</div>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="username">Usuario</label>
-
-            <div className="form-line">
-              <label className="form-control">{values.username}</label>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="form-line">
-              <label className="form-control">*****</label>
-            </div>
-            <Link to={Config.updateMyPasswordUrl}>Actualizar contraseña</Link>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="form-group">
-            <label htmlFor="type">Tipo de usuario</label>
-            <div className="form-line">
-              <label className="form-control">{getNameType(values.type)}</label>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div className="row">
         <div className="col-lg-12">
           <div className="align-center bg-indigo">
             <div className="color-name">Información de usuario</div>
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="form-group">
-            <label htmlFor="email">
-              email<strong style={{ color: "red" }}>*</strong>
-            </label>
-            <div className={focus.email ? "form-line focused" : "form-line"}>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Ingrese correo electrónico"
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-              />
-            </div>
-            {touched.email && errors.email ? (
-              <label id="email-error" className="error" htmlFor="email">
-                {errors.email}
-              </label>
-            ) : (
-              ""
-            )}
           </div>
         </div>
         <div className="col-lg-4">
@@ -375,7 +299,6 @@ const UserEditResctrictForm = ({
             )}
           </div>
         </div>
-
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="RU">Registro universitario R.U.</label>
@@ -402,40 +325,38 @@ const UserEditResctrictForm = ({
             )}
           </div>
         </div>
-
-        {!AuthHandler.isStudent() && (
-          <div className="col-lg-4">
-            <div className="form-group">
-              <label htmlFor="ID_TUTOR">ID tutor</label>
-              <div
-                className={focus.ID_TUTOR ? "form-line focused" : "form-line"}
-              >
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Ingrese ID TUTOR"
-                  id="ID_TUTOR"
-                  name="ID_TUTOR"
-                  value={values.ID_TUTOR}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  onFocus={onFocus}
-                  disabled={true}
-                />
-              </div>
-              {touched.ID_TUTOR && errors.ID_TUTOR ? (
-                <label id="ID_TUTOR-error" className="error" htmlFor="ID_TUTOR">
-                  {errors.ID_TUTOR}
-                </label>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-        )}
         <div className="col-lg-4">
           <div className="form-group">
-            <label htmlFor="position">Posicion</label>
+            <label htmlFor="email">
+              email<strong style={{ color: "red" }}>*</strong>
+            </label>
+            <div className={focus.email ? "form-line focused" : "form-line"}>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ingrese correo electrónico"
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={onChange}
+                onBlur={onBlur}
+                onFocus={onFocus}
+              />
+            </div>
+            {touched.email && errors.email ? (
+              <label id="email-error" className="error" htmlFor="email">
+                {errors.email}
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        
+        
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="position">Posición</label>
             <div className={focus.position ? "form-line focused" : "form-line"}>
               <input
                 type="text"
@@ -491,7 +412,6 @@ const UserEditResctrictForm = ({
             )}
           </div>
         </div>
-
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="abbreviation">
@@ -576,7 +496,6 @@ const UserEditResctrictForm = ({
             )}
           </div>
         </div>
-
         <div className="col-lg-4">
           <InputForm
             name="address"
@@ -591,7 +510,42 @@ const UserEditResctrictForm = ({
             title="Dirección"
           />
         </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="align-center bg-indigo">
+            <div className="color-name">Credenciales</div>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="username">Usuario</label>
 
+            <div className="form-line">
+              <label className="form-control">{values.username}</label>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <div className="form-line">
+              <label className="form-control">*****</label>
+            </div>
+            <Link to={Config.updateMyPasswordUrl}>Actualizar contraseña</Link>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="form-group">
+            <label htmlFor="type">Tipo de usuario</label>
+            <div className="form-line">
+              <label className="form-control">{getNameType(values.type)}</label>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-12 align-center">
+          <AlertMessage/>
+        </div>  
         <div className="col-lg-12 align-center">
           <button
             type="submit"
@@ -602,6 +556,7 @@ const UserEditResctrictForm = ({
           </button>
         </div>
       </div>
+
     </form>
   );
 };
@@ -614,8 +569,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getUser,
   updateUser,
-  // removeTutor,
-  // searchTutor,
 };
 
 export default connect(

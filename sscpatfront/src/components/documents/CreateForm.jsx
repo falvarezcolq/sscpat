@@ -206,7 +206,7 @@ const CreateForm = (props) => {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Ingrese descripcion del documento"
+                        placeholder="Ingrese descripción del documento"
                         id="description"
                         name="description"
                         value={values.description}

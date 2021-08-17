@@ -124,10 +124,10 @@ export const getTypeTracing = (type) => {
     case "INSTITUTION_REPORT":
       return "Reporte de la institución";
     case "INTERNAL_TUTOR":
-      return "Revision del tutor";
+      return "Revisión del tutor";
     case "EXTERNAL_TUTOR":
       return "Revisión del tutor externo";
-    case "Revisión de Direccion de Carrera":
+    case "Revisión de Dirección de Carrera":
       return "Revisión del tutor externo";
     default:
       return "";
