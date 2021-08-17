@@ -21,8 +21,8 @@ class Navbar extends React.Component {
             {/* <a href="#" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a> */}
             <div className="bars" onClick={this.props.onBarClick}></div>
             <Link className="navbar-brand" to={Config.HomeUrl}>
-              SISTEMA DE SEGUIMIENTO Y CONTROL DE PROYECTOS ACADEMICOS DE
-              TITULACION
+              SISTEMA DE SEGUIMIENTO Y CONTROL DE PROYECTOS ACADÉMICOS DE
+              TITULACIÓN
             </Link>
           </div>
 

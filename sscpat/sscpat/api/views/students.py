@@ -208,7 +208,6 @@ class SearchStudentFromServer(APIView):
 
 
 
-import time
 class AddStudentFromServer(APIView):
     # authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [IsAuthenticated,IsAccountAdmin,]
@@ -218,7 +217,6 @@ class AddStudentFromServer(APIView):
         Return a studenr
         """
 
-        time.sleep(3)
         serializer = StudentAddSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         token = request.data['key']
