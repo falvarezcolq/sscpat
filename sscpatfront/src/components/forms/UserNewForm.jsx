@@ -612,7 +612,6 @@ const UserNewForm = ({ isLoading, addUser }) => {
         <div className="col-lg-12 align-center">
           <AlertMessage/>
         </div>
-
         <div className="col-lg-12 align-center">
           <button
             type="submit"

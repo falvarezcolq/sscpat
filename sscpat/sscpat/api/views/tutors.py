@@ -208,11 +208,34 @@ class AddTutorFromServer(APIView):
         id_persona = str(data['id'])
 
         try:
+
+
             user = User.objects.get(id_people=id_persona)
-            msg = _("User already registered")
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.last_name2 = data["last_name2"]
+            user.CI = data["CI"]
+            user.RU = data["RU"]
+            user.position = data["position"]
+            user.academic_degree = data["academic_degree"]
+            user.abbreviation = data["abbreviation"]
+            user.phone = data["phone"]
+            user.telf = data["telf"]
+            user.address = data["address"]
+            user.email = data["email"]
+            user.type = User.TUTOR
+            user.id_student = data["RU"]
+            user.id_teacher = data["RU"]
+            user.username = data["RU"]
+            user.is_active = True
+            user.active = True
+            user.set_password(data['CI'])
+            user.save()
+
+            msg = _("User was updated from server")
 
             data = {
-                "user": None,
+                "user": TutorModelSerializer(user).data,
                 "value":2,
                 "detail": msg,
             }

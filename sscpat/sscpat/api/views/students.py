@@ -160,7 +160,7 @@ class StudentByTutorViewSet(mixins.RetrieveModelMixin,
 
 
 class SearchStudentFromServer(APIView):
-    # authentication_classes = [authentication.TokenAuthentication]
+
     permission_classes = [IsAuthenticated,IsAccountAdmin,]
 
     def post(self, request, format=None):
@@ -209,14 +209,13 @@ class SearchStudentFromServer(APIView):
 
 
 class AddStudentFromServer(APIView):
-    # authentication_classes = [authentication.TokenAuthentication]
+
     permission_classes = [IsAuthenticated,IsAccountAdmin,]
 
     def post(self, request, format=None):
         """
         Return a studenr
         """
-
         serializer = StudentAddSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         token = request.data['key']
@@ -241,14 +240,36 @@ class AddStudentFromServer(APIView):
 
         try:
             user = User.objects.get(id_people=id_persona)
-            msg = _("User already registered")
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.last_name2 = data["last_name2"]
+            user.CI = data["CI"]
+            user.RU = data["RU"]
+            user.position = data["position"]
+            user.academic_degree = data["academic_degree"]
+            user.abbreviation = data["abbreviation"]
+            user.phone = data["phone"]
+            user.telf = data["telf"]
+            user.address = data["address"]
+            user.email = data["email"]
+            user.type = User.STUDENT
+            user.id_student = data["RU"]
+            user.id_teacher = data["RU"]
+            user.username = data["RU"]
+            user.is_active = True
+            user.active=True
+            user.set_password(data['CI'])
+            user.save()
+
+            msg = _("User was updated from server")
 
             data = {
-                "user": None,
+                "user":StudentModelSerializer(user).data,
                 "value":2,
                 "detail": msg,
             }
             return Response(data)
+
         except User.DoesNotExist:
             pass
 
@@ -282,3 +303,4 @@ class AddStudentFromServer(APIView):
             "detail": _("Tutor added"),
         }
         return Response(data)
+
