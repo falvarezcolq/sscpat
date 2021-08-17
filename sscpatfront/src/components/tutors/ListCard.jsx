@@ -179,7 +179,7 @@ const ListCard = (props) => {
                       value={values.academic_period}
                       error={errors.academic_period}
                       onChange={onChange}
-                      title="Periodo academico"
+                      title="Periodo académico"
                       reload={props.listAcademicPeriods}
                     >
                       {props.academicperiods.length > 0 ? (
@@ -268,7 +268,7 @@ const ListCard = (props) => {
                           <thead>
                             <tr>
                               <th>Autor</th>
-                              <th>Periodo academico</th>
+                              <th>Periodo académico</th>
                               <th>Nombre del proyecto</th>
                               <th>Estado</th>
                               <th>Modalidad</th>

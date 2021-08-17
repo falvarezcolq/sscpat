@@ -24,7 +24,7 @@ class ProjectsDetail extends Component {
       <section className="content">
         <div className="container-fluid">
           <div className="block-header">
-            <h2>Proyecto academico actual del estudiante </h2>
+            <h2>Proyecto académico actual del estudiante </h2>
           </div>
 
           <DetailCard id={id} />

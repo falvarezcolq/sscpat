@@ -94,8 +94,8 @@ const ListCard = (props) => {
               <h2>
                 Instituciones
                 <small>
-                  Los proyectos academicos trabajas con instituciones que
-                  respaldan su investigacion y trabajo que realizan{" "}
+                  Los proyectos académicos trabajas con instituciones que
+                  respaldan su investigación y trabajo que realizan{" "}
                 </small>
               </h2>
               <ul className="header-dropdown m-r--5">

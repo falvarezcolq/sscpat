@@ -68,7 +68,7 @@ export const validateInput = (fieldName, fieldValue,rules)=>{
     // email 
     if(state.select){
         if(state.not_valid_value ===  fieldValue){
-            return "Seleccione un opcion válida"
+            return "Seleccione un opción válida"
         }
     }
 

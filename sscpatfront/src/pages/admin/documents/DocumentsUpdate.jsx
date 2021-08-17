@@ -24,7 +24,7 @@ class DocumentsUpdate extends Component {
                 title="Volver atras"
               >
                 <i className="material-icons">arrow_back</i>
-              </button> Documentos academicos</h2>
+              </button> Documentos académicos</h2>
           </div>
         </div>
         <UpdateForm  id={id} /> 

@@ -127,7 +127,7 @@ const UpdateForm = (props) => {
           <div className="header">
             <h2>
               Institución
-              <small> Actualizar informacion de la institución</small>
+              <small> Actualizar información de la institución</small>
             </h2>
           </div>
 

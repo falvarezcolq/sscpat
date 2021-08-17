@@ -35,7 +35,7 @@ class Tutors extends Component {
               <div className="header">
                 <h2>
                   Tutores (Tutor interno)
-                  <small>Los tutores estan encargados de la revision y el avance de los proyectos a su cargo</small>
+                  <small>Los tutores estan encargados de la revisión y el avance de los proyectos a su cargo</small>
                 </h2>
                 <Link to={Config.aTutorNewUrl} className="btn btn-default pull-right m-t--25"> + Agregar tutor interno</Link>
               </div>

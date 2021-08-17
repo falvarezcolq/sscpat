@@ -158,7 +158,7 @@ const DetailCard = (props) => {
                       className="icon-name"
                       style={{ position: "relative", top: "-6px" }}
                     >
-                      Revision de los tutores
+                      Revisión de los tutores
                     </span>
                     <br />
                   </>
@@ -172,7 +172,7 @@ const DetailCard = (props) => {
                       className="icon-name"
                       style={{ position: "relative", top: "-6px" }}
                     >
-                      Revision de los tutores externoss
+                      Revisión de los tutores externoss
                     </span>
                     <br />
                   </>

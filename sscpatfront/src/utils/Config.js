@@ -84,9 +84,9 @@ class Config{
     static aUserIdEditUrl                   ="/usuarios/:id";
     static aUserIdUpdatePasswordtUrl         ="/usuarios/:id/password";
 
-    static aPeriodsUrl                      ="/periodo_academico";
-    static aPeriodsNewUrl                      ="/periodo_academico_nuevo";
-    static aPeriodsIdUrl                      ="/periodo_academico/:id";
+    static aPeriodsUrl                      ="/periodo_académico";
+    static aPeriodsNewUrl                      ="/periodo_académico_nuevo";
+    static aPeriodsIdUrl                      ="/periodo_académico/:id";
    
 
     static aModalitiesUrl                       ="/modalidad";

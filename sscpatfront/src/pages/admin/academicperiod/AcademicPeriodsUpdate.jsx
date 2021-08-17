@@ -29,7 +29,7 @@ class AcademicPeriodsUpdate extends Component {
               >
                 <i className="material-icons">arrow_back</i>
               </button> 
-              Periodos academicos</h2>
+              Periodos académicos</h2>
           </div>
         </div>
         <UpdateForm  id={id} /> 

@@ -70,7 +70,7 @@ const StateForm = (props) => {
       ) : (
         <div className="card animated fadeIn">
           <div className="header">
-            <h2>Actualizar estado del proyecto academico:</h2>
+            <h2>Actualizar estado del proyecto académico:</h2>
             <h2>Título: {object.title_academic_project}</h2>
           </div>
 

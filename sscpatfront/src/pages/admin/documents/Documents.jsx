@@ -14,7 +14,7 @@ class Documents extends Component {
       <section className="content">
         <div className="container-fluid">
           <div className="block-header">
-            <h2>Documentos academicos</h2>
+            <h2>Documentos académicos</h2>
           </div>
         </div>
         

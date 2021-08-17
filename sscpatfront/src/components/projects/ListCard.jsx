@@ -154,11 +154,11 @@ const ListCard = (props) => {
           <div className="card">
             <div className="header">
               <h2>
-                Proyectos academicos de titulación
+                Proyectos académicos de titulación
                 <small>
-                  Los proyectos academicos son los trabajos que desarrollan
+                  Los proyectos académicos son los trabajos que desarrollan
                   estudiantes en las modalidades de titulaciónLa modalidades de
-                  titulacion define las reglas de titulación
+                  titulación define las reglas de titulación
                 </small>
               </h2>
             </div>
@@ -197,7 +197,7 @@ const ListCard = (props) => {
                       value={values.academic_period}
                       error={errors.academic_period}
                       onChange={onChange}
-                      title="Periodo academico"
+                      title="Periodo académico"
                       reload={props.listAcademicPeriods}
                     >
                       {props.academicperiods.length > 0 ? (
@@ -281,7 +281,7 @@ const ListCard = (props) => {
                           <table className="table table-hover">
                             <thead>
                               <tr>
-                                <th>Periodo academico</th>
+                                <th>Periodo académico</th>
                                 <th>Nombre del proyecto</th>
                                 <th>Estado</th>
                                 <th>Modalidad</th>

@@ -27,7 +27,7 @@ class ProjectsCreate extends Component {
                 title="Volver atras"
               >
                 <i className="material-icons">arrow_back</i>
-              </button> Inscribir estudiante a una modalidad de titulacion </h2>
+              </button> Inscribir estudiante a una modalidad de titulación </h2>
           </div>
         </div>
         

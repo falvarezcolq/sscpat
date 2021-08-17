@@ -372,7 +372,7 @@ const UpdateForm = (props) => {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Ingrese descripcion de la modalidad de titulación"
+                        placeholder="Ingrese descripción de la modalidad de titulación"
                         id="description"
                         name="description"
                         value={values.description}
@@ -463,7 +463,7 @@ const UpdateForm = (props) => {
                   <SelectForm
                     name="documents"
                     onChange={onChangeDocumentOfModality}
-                    title="Documentos academicos a elaborar en esta modalidad:"
+                    title="Documentos académicos a elaborar en esta modalidad:"
                     addUrl={Config.aDocumentsNewUrl}
                     reload={props.listDocuments}
                   >
@@ -511,7 +511,7 @@ const UpdateForm = (props) => {
                   <SelectForm
                     name="documents_of_inscription"
                     onChange={onChangeDocumentOfInscription}
-                    title=" Documentos solicitados para la inscripcion del
+                    title=" Documentos solicitados para la inscripción del
                     estudiante a la modalidad:"
                     addUrl={Config.aDocumentsNewUrl}
                     reload={props.listDocuments}
@@ -630,7 +630,7 @@ const UpdateForm = (props) => {
                       <input
                         type="number"
                         className="form-control-line pull-right"
-                        placeholder="Ingrese descripcion de la modalidad de titulación"
+                        placeholder="Ingrese descripción de la modalidad de titulación"
                         id="month_duration"
                         name="month_duration"
                         value={values.month_duration}
@@ -674,7 +674,7 @@ const UpdateForm = (props) => {
                       <input
                         type="number"
                         className="form-control-line pull-right"
-                        placeholder="Ingrese descripcion de la modalidad de titulación"
+                        placeholder="Ingrese descripción de la modalidad de titulación"
                         id="month_max_duration"
                         name="month_max_duration"
                         value={values.month_max_duration}
@@ -706,7 +706,7 @@ const UpdateForm = (props) => {
                     value={values.has_time_extension}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    Solicitud de extension del tiempo:
+                    Solicitud de extensión del tiempo:
                   </RadioButton>
                 </div>
 
@@ -728,7 +728,7 @@ const UpdateForm = (props) => {
                       <input
                         type="number"
                         className="form-control-line pull-right"
-                        placeholder="Ingrese descripcion de la modalidad de titulación"
+                        placeholder="Ingrese descripción de la modalidad de titulación"
                         id="month_extension"
                         name="month_extension"
                         value={values.month_extension}
@@ -805,7 +805,7 @@ const UpdateForm = (props) => {
                   style={{ marginBottom: "0" }}
                 >
                   <h2 className="card-inside-title">
-                    Configuracion de seguimiento y control de la modalidad
+                    Configuración de seguimiento y control de la modalidad
                   </h2>
                 </div>
 
@@ -818,7 +818,7 @@ const UpdateForm = (props) => {
                     value={values.mandatory_month_report_progress_student}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    Es obligatorio el envio del avance del proyecto por el
+                    Es obligatorio el envío del avance del proyecto por el
                     estudiante
                   </RadioButton>
                 </div>
@@ -836,7 +836,7 @@ const UpdateForm = (props) => {
                       }
                     >
                       <label htmlFor="frequency_report_student">
-                        Frencuencia de envio de avance del estudiante:
+                        Frencuencia de envío de avance del estudiante:
                       </label>
 
                       <select
@@ -874,7 +874,7 @@ const UpdateForm = (props) => {
                     value={values.mandatory_month_report_tutor}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    Revision obligatoria del avance por el tutor
+                    Revisión obligatoria del avance por el tutor
                   </RadioButton>
                 </div>
 
@@ -891,7 +891,7 @@ const UpdateForm = (props) => {
                       }
                     >
                       <label htmlFor="frequency_report_tutor">
-                        Frencuencia de revision del tutor
+                        Frencuencia de revisión del tutor
                       </label>
 
                       <select
@@ -929,7 +929,7 @@ const UpdateForm = (props) => {
                     value={values.mandatory_month_report_external_tutor}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    Revision obligatoria del avance por el tutor externo
+                    Revisión obligatoria del avance por el tutor externo
                   </RadioButton>
                 </div>
 
@@ -946,7 +946,7 @@ const UpdateForm = (props) => {
                       }
                     >
                       <label htmlFor="frequency_report_external_tutor">
-                        Frecuencia de revision por el tutor externo
+                        Frecuencia de revisión por el tutor externo
                       </label>
 
                       <select
@@ -1033,7 +1033,7 @@ const UpdateForm = (props) => {
                 <div className="col-md-12 col-lg-12">
                   <div className="align-center bg-primary">
                     <div className="color-name">
-                      Configuracion de finalizacion de modalidad
+                      Configuración de finalización de modalidad
                     </div>
                   </div>
                 </div>
@@ -1047,7 +1047,7 @@ const UpdateForm = (props) => {
                     value={values.send_final_document}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    La modalidad requiere el envio de documento final
+                    La modalidad requiere el envío de documento final
                   </RadioButton>
                 </div>
 
@@ -1073,7 +1073,7 @@ const UpdateForm = (props) => {
                     value={values.send_resolution_commission_aproval}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    La modalidad requiere una resolucion de aprobacion por la
+                    La modalidad requiere una resolución de aprobación por la
                     comision encargada
                   </RadioButton>
                 </div>

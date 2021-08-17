@@ -139,7 +139,7 @@ export const update = (id,obj) => async (dispatch)=>{
         .then((res) => {
           dispatch({
             type:MESSAGE_SUCCESS,
-            payload:{detail:`El periodo academico ${res.data.title} fue actualizado con éxito`}
+            payload:{detail:`El periodo académico ${res.data.title} fue actualizado con éxito`}
            })
           dispatch({
               type:UPDATE_ACADEMIC_PERIOD,

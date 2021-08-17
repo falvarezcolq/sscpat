@@ -50,7 +50,7 @@ const initialFormValues = [
     id:"q3",
     title:"3. Manejo Teórico/ Antecedentes / recursos bibliográficos",
     name:"q3",
-    placeholder:"Revisión de los conceptos, redaccion , desarrollo la estructura conceptual del tema.",
+    placeholder:"Revisión de los conceptos, redacción , desarrollo la estructura conceptual del tema.",
     value:"",
   },
   {
@@ -148,14 +148,14 @@ const TracingProgressForm = (props) => {
           Revisión del tutor ( Formulario) .
         </option>
       );
-      titleBtn = "Redactar revision del avance estudiante o dejar comentario ";
+      titleBtn = "Redactar revisión del avance estudiante o dejar comentario ";
     } else if (auth.type === EXTERNAL_TUTOR) {
       typeTracingValues.push(
         <option key={"inst_report"} value={optionValues.externalTutor}>
           Revisión del tutor
         </option>
       );
-      titleBtn = "Redactar revision del avance estudiante o dejar comentario ";
+      titleBtn = "Redactar revisión del avance estudiante o dejar comentario ";
     }
   }
 
@@ -372,7 +372,7 @@ const TracingProgressForm = (props) => {
                         cols="30"
                         rows="5"
                         className="form-control text-area-style"
-                        placeholder="Comenta o realiza una accion como revision del avance... "
+                        placeholder="Comenta o realiza una acción como revisión del avance... "
                         value={values.description}
                         onChange={onChange}
                         onBlur={onBlur}

@@ -59,7 +59,7 @@ const NotificationText = (props) => {
     case PROJECT_ASSIGNED:
       return (
          <Link  to={Config.aProjectsUrl +"/"+ inscription.id } className="notification-link">
-          Usted tiene asignado un proyecto academico:{" "}
+          Usted tiene asignado un proyecto académico:{" "}
           <strong>{inscription.title_academic_project}</strong>
         </Link>
       );
@@ -94,7 +94,7 @@ const NotificationText = (props) => {
         else  if (tracing_progress.typetracing === INTERNAL_TUTOR) {
             
         return ( <Link  to={Config.aProgressUrl +"/"+ tracing_student.id } className="notification-link">
-            <strong>{name_user_action}</strong> ha subido revision como tutor, al mes de <strong>{getNameMonth(tracing_student.month)}</strong>, proyecto:  <strong>{inscription.title_academic_project}</strong>
+            <strong>{name_user_action}</strong> ha subido revisión como tutor, al mes de <strong>{getNameMonth(tracing_student.month)}</strong>, proyecto:  <strong>{inscription.title_academic_project}</strong>
         </Link>);
       }
       else  if (tracing_progress.typetracing === INSTITUTION_REPORT) {

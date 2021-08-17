@@ -140,12 +140,11 @@ const ListCard = (props) => {
           <div className="card">
             <div className="header">
               <h2>
-                Proyectos academicos de {student.abbreviation}{" "}
+                Proyectos académicos de {student.abbreviation}{" "}
                 {student.last_name} {student.last_name2} {student.first_name}
                 <small>
-                  Los proyectos academicos son los trabajos que desarrollan
-                  estudiantes en las modalidades de titulaciónLa modalidades de
-                  titulacion define las reglas de titulación
+                  Los proyectos académicos son los trabajos que desarrollan
+                  estudiantes en las modalidades de titulación.
                 </small>
               </h2>
               <button
@@ -153,7 +152,6 @@ const ListCard = (props) => {
                 className="btn btn-default pull-right m-t--25"
                 onClick={toggleFilter}
               >
-                {" "}
                 Filtrar
               </button>
             </div>
@@ -200,7 +198,7 @@ const ListCard = (props) => {
                       value={values.academic_period}
                       error={errors.academic_period}
                       onChange={onChange}
-                      title="Periodo academico"
+                      title="Periodo académico"
                       reload={props.listAcademicPeriods}
                     >
                       {props.academicperiods.length > 0 ? (
@@ -299,7 +297,7 @@ const ListCard = (props) => {
                           <thead>
                             <tr>
                              
-                              <th>Periodo academico</th>
+                              <th>Periodo académico</th>
                               <th>Nombre del proyecto</th>
                               <th>Estado</th>
                               <th>Modalidad</th>

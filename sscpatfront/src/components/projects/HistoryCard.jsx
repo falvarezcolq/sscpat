@@ -9,7 +9,7 @@ const HistoryCard = (props) => {
                     {/* <h3>
                       Ultima entrega <strong>5 Marzo</strong> 
                       <br/>
-                      <small>Observacion del tutor</small>
+                      <small>Observación del tutor</small>
                     
                     </h3> */}
 

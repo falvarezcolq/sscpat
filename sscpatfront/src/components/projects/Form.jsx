@@ -239,7 +239,7 @@ const Form = (props) => {
       <div className="row">
         <div className="col-md-12 col-lg-12">
           <div className="align-center bg-primary">
-            <div className="color-name">Informacion del postulante</div>
+            <div className="color-name">Información del postulante</div>
           </div>
         </div>
         <div className="col-md-12 col-lg-6">
@@ -293,7 +293,7 @@ const Form = (props) => {
         <div className="col-md-12 col-lg-12">
           <div className="align-center bg-primary">
             <div className="color-name">
-              Informacion del proyecto académico de titulación
+              Información del proyecto académico de titulación
             </div>
           </div>
         </div>
@@ -306,11 +306,11 @@ const Form = (props) => {
             error={errors.title_academic_project}
             focus={focus.title_academic_project}
             required={true}
-            placeholder="Ingrese titulo del proyecto academico"
+            placeholder="Ingrese titulo del proyecto académico"
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            title="Título del proyecto academico:"
+            title="Título del proyecto académico:"
           />
         </div>
 
@@ -323,11 +323,11 @@ const Form = (props) => {
             error={errors.description_project}
             focus={focus.description_project}
             required={false}
-            placeholder="Ingrese descripcion del proyecto"
+            placeholder="Ingrese descripción del proyecto"
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            title="Descripcion general del proyecto"
+            title="Descripción general del proyecto"
           />
         </div>
 
@@ -340,7 +340,7 @@ const Form = (props) => {
             focus={focus.academic_period}
             required={true}
             onChange={onChangePeriod}
-            title="Periodo academico"
+            title="Periodo académico"
             addUrl={Config.aPeriodsNewUrl}
             reload={props.listAcademicPeriods}
             
@@ -375,7 +375,7 @@ const Form = (props) => {
             touched={touched.modality}
             error={errors.modality}
             required={true}
-            placeholder="Ingrese titulo del proyecto academico"
+            placeholder="Ingrese titulo del proyecto académico"
             onChange={onChangeModality}
             title="Modalidad de titulación"
             addUrl={Config.aModalitiesNewUrl}
@@ -403,7 +403,7 @@ const Form = (props) => {
             <div className="col-md-12 col-lg-12">
               <div className="align-center bg-primary">
                 <div className="color-name">
-                  Informacion requerida por la modalidad
+                  Información requerida por la modalidad
                 </div>
               </div>
             </div>
@@ -479,7 +479,7 @@ const Form = (props) => {
                 <SelectForm
                   name="institution"
                   onChange={onChange}
-                  title="Institucion del proyecto"
+                  title="Institución del proyecto"
                   required={true} 
                   value={values.institution }
                   addUrl={Config.aInstitutionsNewUrl}

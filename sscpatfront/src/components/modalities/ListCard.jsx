@@ -91,9 +91,9 @@ const ListCard = (props) => {
             <div className="header">
               <h2>
                 Modalidades de Titulación
-                <small>
-                  La modalidades de titulacion define las reglas de titulación
-                </small>
+                {/* <small>
+                  La modalidades de titulación son la forma com
+                </small> */}
               </h2>
               <ul className="header-dropdown m-r--5">
                 <li>

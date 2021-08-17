@@ -29,7 +29,7 @@ class ProjectsUpdate extends Component {
               >
                 <i className="material-icons">arrow_back</i>
               </button>
-              Actualizar informacion del estudiante en la modalidad de titulación
+              Actualizar información del estudiante en la modalidad de titulación
             </h2>
           </div>
         </div>

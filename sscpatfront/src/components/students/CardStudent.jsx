@@ -88,7 +88,7 @@ export default function CardTutor({ student }) {
                 <br />
                 Grado Academico: {student.academic_degree}
                 <br />
-                Correo electronico: {student.email} <code>!</code>
+                Correo electrónico: {student.email} <code>!</code>
                 <br />
                 Telefono: {student.telf}
                 <br />

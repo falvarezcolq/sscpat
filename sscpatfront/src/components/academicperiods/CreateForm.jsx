@@ -140,8 +140,8 @@ const CreateForm = (props) => {
         <div className="card">
           <div className="header">
             <h2>
-              Periodo academico Nuevo
-              <small> Registra nuevo periodo academico</small>
+              Periodo académico Nuevo
+              <small> Registra nuevo periodo académico</small>
             </h2>
           </div>
 
@@ -150,7 +150,7 @@ const CreateForm = (props) => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="align-center bg-indigo">
-                    <div className="color-name">Periodo academico  nuevo</div>
+                    <div className="color-name">Periodo académico  nuevo</div>
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-12">

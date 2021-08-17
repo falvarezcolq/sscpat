@@ -89,7 +89,7 @@ const ProjectDocumentsDetail = (props) => {
 
               {documents.length>0&&(
                 <tr>
-                  <td colSpan="2" className="align-center font-bold col-teal"> <strong>Documentos elaboracion de la modalidad (Entrega de documentos finales)</strong> </td>
+                  <td colSpan="2" className="align-center font-bold col-teal"> <strong>Documentos elaboración de la modalidad (Entrega de documentos finales)</strong> </td>
                 </tr>
               )}
               {documents.map((doc) => 
@@ -115,7 +115,7 @@ const ProjectDocumentsDetail = (props) => {
 
               {initialDocuments.length>0&&(
                 <tr>
-                  <td colSpan="2" className="align-center font-bold col-cyan"> <strong>Documentos de inscripcion a la modalidad</strong> </td>
+                  <td colSpan="2" className="align-center font-bold col-cyan"> <strong>Documentos de inscripción a la modalidad</strong> </td>
                 </tr>
               )}
               {initialDocuments.map((doc,index) => 

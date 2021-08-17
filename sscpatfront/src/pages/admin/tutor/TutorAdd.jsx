@@ -55,7 +55,7 @@ class TutorAdd extends React.Component {
     e.preventDefault();
     const search = this.state.search;
     this.setLoadingSearch(true);
-    await this.props.searchTutor(this.state);
+    await this.props.searchTutor({search:search});
     this.setLoadingSearch(false);
   };
 
@@ -123,7 +123,7 @@ class TutorAdd extends React.Component {
                   Agregar Tutores al sistema desde el sistema principal
                   <small>
                     El sistema hace una busqueda de los docentes de la Carrera
-                    de Administracion de empresas, para que participen como
+                    de Administración de empresas, para que participen como
                     tutores.
                   </small>
                 </h2>
@@ -137,7 +137,7 @@ class TutorAdd extends React.Component {
                             type="text"
                             name="search"
                             className="form-control"
-                            placeholder="Ingrese numero de CI:"
+                            placeholder="Ingrese número de CI:"
                             onChange={this.onChange}
                             value={this.state.search}
                           />
@@ -179,7 +179,7 @@ class TutorAdd extends React.Component {
                             <button className="btn btn-primary btn-xs ">
                               <i className="material-icons">info</i>
                             </button>
-                            {this.props.tutorSearch.value == 1 && (
+                            {this.props.tutorSearch.value === 1 && (
                               <button
                                 className="btn btn-default btn-xs"
                                 onClick={this.show_confirm.bind(
@@ -193,7 +193,7 @@ class TutorAdd extends React.Component {
                               </button>
                             )}
 
-                            {this.props.tutorSearch.value == 2 && (
+                            {this.props.tutorSearch.value === 2 && (
                               <button
                                 className="btn btn-default btn-xs"
                                 onClick={this.props.addTutor.bind(

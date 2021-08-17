@@ -103,7 +103,7 @@ const TimeForm = (props) => {
       {showForm && object ?  (
         <div className="card animated fadeIn">
           <div className="header">
-            <h2>Extender tiempo de desarrollo del proyecto academico:</h2>
+            <h2>Extender tiempo de desarrollo del proyecto académico:</h2>
             <h2>Título: {object.title_academic_project}</h2>
           </div>
 

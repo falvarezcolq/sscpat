@@ -6,7 +6,7 @@ import { validateInput } from "../../utils/Validations";
 import { Link } from "react-router-dom";
 import InputForm from "../atoms/InputForm";
 import Spinner from "../atoms/Spinner";
-import PercentBar from "../../components/atoms/PercentBar";
+
 import NavPagination from "../tables/NavPagination";
 import {getNameDateMonth} from "../../actions/helper";
 

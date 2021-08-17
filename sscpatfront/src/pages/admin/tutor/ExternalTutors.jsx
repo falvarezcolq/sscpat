@@ -30,7 +30,7 @@ class ExternalTutors extends Component {
               <div className="header">
                 <h2>
                   Tutores (Tutor Externos)
-                  <small>Los tutores externos son aquellos profesionales que son externos a la carrera de Administracion de Empresas</small>
+                  <small>Los tutores externos son aquellos profesionales que son externos a la carrera de Administración de Empresas</small>
                 </h2>
                 
                 <Link to={Config.aUserNewUrl} className="btn btn-default pull-right m-t--25"> + Agregar tutor externo</Link>

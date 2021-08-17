@@ -35,7 +35,7 @@ export const add = (obj) => async (dispatch) =>{
          
           dispatch({
               type:MESSAGE_SUCCESS,
-              payload:{detail: <p>La institucion <strong>{res.data.name}</strong> fue registrado con éxito</p> }
+              payload:{detail: <p>La institución <strong>{res.data.name}</strong> fue registrado con éxito</p> }
           })
 
           dispatch({

@@ -194,7 +194,7 @@ const ProgresUpdateForm = (props) => {
                       cols="30"
                       rows="10"
                       className="form-control text-area-style"
-                      placeholder="Ingresar descripcion de avance... "
+                      placeholder="Ingresar descripción de avance... "
                       value={values.description}
                       onChange={onChange}
                       onBlur={onBlur}

@@ -221,7 +221,7 @@ const UserEditResctrictForm = ({
       <div className="row">
         <div className="col-lg-12">
           <div className="align-center bg-indigo">
-            <div className="color-name">Informacion de usuario</div>
+            <div className="color-name">Información de usuario</div>
           </div>
         </div>
         <div className="col-lg-12">
@@ -233,7 +233,7 @@ const UserEditResctrictForm = ({
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese correo electroónico"
+                placeholder="Ingrese correo electrónico"
                 id="email"
                 name="email"
                 value={values.email}
@@ -469,7 +469,7 @@ const UserEditResctrictForm = ({
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese grado academico"
+                placeholder="Ingrese grado académico"
                 id="academic_degree"
                 name="academic_degree"
                 value={values.academic_degree}
@@ -581,7 +581,7 @@ const UserEditResctrictForm = ({
           <InputForm
             name="address"
             focus={focus.address}
-            placeholder="Ingrese direccion del usuario"
+            placeholder="Ingrese dirección del usuario"
             value={values.address}
             onBlur={onBlur}
             onChange={onChange}

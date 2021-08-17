@@ -269,7 +269,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
       <div className="row">
         <div className="col-lg-12">
           <div className="align-center bg-indigo">
-            <div className="color-name">Informacion de usuario</div>
+            <div className="color-name">Información de usuario</div>
           </div>
         </div>
         <div className="col-lg-12">
@@ -281,7 +281,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese correo electroónico"
+                placeholder="Ingrese correo electrónico"
                 id="email"
                 name="email"
                 value={values.email}
@@ -498,7 +498,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
         </div>
         <div className="col-lg-4">
           <div className="form-group">
-            <label htmlFor="academic_degree">Grado academico</label>
+            <label htmlFor="academic_degree">Grado académico</label>
             <div
               className={
                 focus.academic_degree ? "form-line focused" : "form-line"
@@ -507,7 +507,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese grado academico"
+                placeholder="Ingrese grado académico"
                 id="academic_degree"
                 name="academic_degree"
                 value={values.academic_degree}
@@ -533,7 +533,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
         <div className="col-lg-4">
           <div className="form-group">
             <label htmlFor="abbreviation">
-              Abreviación del grado academico
+              Abreviación del grado académico
             </label>
             <div
               className={focus.abbreviation ? "form-line focused" : "form-line"}
@@ -541,7 +541,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Ingrese abreviación del grado academico ( opcional )"
+                placeholder="Ingrese abreviación del grado académico ( opcional )"
                 id="abbreviation"
                 name="abbreviation"
                 value={values.abbreviation}
@@ -620,7 +620,7 @@ const UserNewForm = ({ isLoading, addUser }) => {
              name="address"
         
              focus={focus.address}
-             placeholder="Ingrese direccion del usuario"
+             placeholder="Ingrese dirección del usuario"
              value={values.address}
              onBlur={onBlur}
              onChange={onChange}

@@ -27,7 +27,7 @@ class AcademicPeriodsCreate extends Component {
                 title="Volver atras"
               >
                 <i className="material-icons">arrow_back</i>
-              </button> Periodos academicos</h2>
+              </button> Periodos académicos</h2>
           </div>
         </div>
 

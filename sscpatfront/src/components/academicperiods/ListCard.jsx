@@ -66,7 +66,7 @@ const ListCard = (props) => {
   const showDetail = (id) => {
     const obj = results.find((obj) => obj.id === id);
     setModal({
-      title: "Peroiodo academico",
+      title: "Peroiodo académico",
       message: (
         <p>
           Periodo: {obj.title} <br />
@@ -95,7 +95,7 @@ const ListCard = (props) => {
           <div className="card">
             <div className="header">
               <h2>
-                Periodo academico
+                Periodo académico
                 <small>Indica el periodo que se esta trabajando</small>
               </h2>
             </div>

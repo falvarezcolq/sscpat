@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
   addStudent,
-  removeStudent,
+  // removeStudent,
   getStudentServer as searchStudent,
 } from "../../../actions/students";
 import Modal from "../../../components/atoms/Modal";
@@ -98,7 +98,7 @@ class StudentAdd extends React.Component {
 
 
   render() {
-    // studentSearch = {};
+  
     const modal  = this.state.modal;
     return (
       <section className="content">
@@ -116,7 +116,7 @@ class StudentAdd extends React.Component {
                   Agregar estudiante al sistema desde el sistema principal
                   <small>
                     El sistema hace una busqueda de los estudiantes de la Carrera
-                    de Administracion de empresas, para que participen como
+                    de Administración de empresas, para que participen como
                     estudiante con proyecto en alguna modalidad de titulación.
                   </small>
                 </h2>
@@ -130,7 +130,7 @@ class StudentAdd extends React.Component {
                             type="text"
                             name="search"
                             className="form-control"
-                            placeholder="Ingrese numero de CI:"
+                            placeholder="Ingrese número de CI:"
                             onChange={this.onChange}
                             value={this.state.search}
                           />
@@ -173,7 +173,7 @@ class StudentAdd extends React.Component {
                             <button className="btn btn-primary btn-xs ">
                               <i className="material-icons">info</i>
                             </button>
-                            {this.props.studentSearch.value == 1 && (
+                            {this.props.studentSearch.value === 1 && (
                               <button
                                 className="btn btn-default btn-xs"
                                 // onClick={this.props.addStudent.bind(
@@ -187,7 +187,7 @@ class StudentAdd extends React.Component {
                               </button>
                             )}
 
-                            {this.props.studentSearch.value == 2 && (
+                            {this.props.studentSearch.value === 2 && (
                               <button
                                 className="btn btn-default btn-xs"
                                 onClick={this.props.addStudent.bind(

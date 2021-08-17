@@ -34,7 +34,7 @@ class ProjectState extends Component {
               >
                 <i className="material-icons">arrow_back</i>
               </button>
-              Proyectos academicos </h2>
+              Proyectos académicos </h2>
           </div>
 
           <StateForm project_id={id} />
