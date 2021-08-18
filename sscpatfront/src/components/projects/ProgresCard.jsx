@@ -75,7 +75,7 @@ const ProgresCard = (props) => {
             <div className="header">
               <h2>
                 <Link to={Config.aProgressUrl + "/" + progress.id}>
-                  Entrega de avance nro: <strong>{progress.number}</strong>{" "}
+                  Avance nro: <strong>{progress.number}</strong>{" "}
                   correspondiente al mes de{" "}
                   <strong>{getNameDateMonth(progress.date_month)}</strong>
                   <br />
@@ -103,8 +103,9 @@ const ProgresCard = (props) => {
                   </span>
                 </li>
               </HeaderDropdown>
-            </div>
-            <div className="body">
+              <br />
+            {/* </div>
+            <div className="body"> */}
               <div className="row">
                 <div className="col-lg-12">
                   {progress.files.map((file) => (
@@ -154,19 +155,19 @@ const ProgresCard = (props) => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-lg-6">
+                <div className="col-lg-12" style={{marginBottom:"0px"}}>
                   {/* {progress.require_admin_review && (
-                <>
-                  {iconDone(progress.reviewed_by_admin)}
-                  <span
-                    className="icon-name"
-                    style={{ position: "relative", top: "-6px" }}
-                  >
-                    Dirección de carrera
-                  </span>
-                  <br />
-                </>
-              )} */}
+                    <>
+                      {iconDone(progress.reviewed_by_admin)}
+                      <span
+                        className="icon-name"
+                        style={{ position: "relative", top: "-6px" }}
+                      >
+                        Dirección de carrera
+                      </span>
+                      <br />
+                    </>
+                  )} */}
 
                   {progress.require_tutor_review && (
                     <TextCheck check={progress.reviewed_by_tutor}>
@@ -191,7 +192,7 @@ const ProgresCard = (props) => {
                 </div>
               </div>
 
-              <br />
+
             </div>
           </div>
         ))

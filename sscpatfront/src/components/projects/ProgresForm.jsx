@@ -76,6 +76,7 @@ const ProgresForm = (props) => {
   };
 
   const onChangeSelect = (e) => {
+    console.log(e.target.value)
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
@@ -112,10 +113,23 @@ const ProgresForm = (props) => {
   };
 
   const insertFiles = () => {
+    
+    // validate date month
+    var month = null
+    if (values.date_month in date_months){
+      month = values.date_month
+    }else{
+      if ( date_months.length > 0 ){
+        month = date_months[0]
+      }else{
+        month = values.date_month
+      }
+    }
+    
     const f = new FormData();
     f.append("inscription", values.inscription);
     f.append("description", values.description);
-    f.append("date_month", values.date_month);
+    f.append("date_month", month);
     f.append("is_final_document", values.is_final_document);
     for (let index = 0; index < files.length; index++) {
       f.append(`files[${index}]`, files[index]);
@@ -131,7 +145,7 @@ const ProgresForm = (props) => {
 
   const formSubmit = async () => {
     if (formValidation()) {
-      let res;
+      let res;    
       const requestValues = insertFiles();
       res = await add(project_id, requestValues);
       if (res) {

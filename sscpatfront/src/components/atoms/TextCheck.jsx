@@ -16,7 +16,7 @@ const iconDone = (bool) => {
 const TextCheck = (props) => {
     const { children, check } = props
     return (
-        <>
+        <div style={{fontSize:"1rem",display:"inline-block",marginRight:"10px"}}>
         {iconDone(check)}
         <span
           className="icon-name"
@@ -25,7 +25,7 @@ const TextCheck = (props) => {
           {children}
         </span>
         <br />
-      </>
+      </div>
     )
 }
 

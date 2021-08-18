@@ -177,7 +177,7 @@ const UpdatePasswordForm = (props) => {
                 <div className="col-md-12 col-lg-12">
                   <InputForm
                     type="password"
-                    name="new_password"
+                    name="new_password" 
                     required={true}
                     focus={focus.new_password}
                     placeholder="Contraseña nueva..."

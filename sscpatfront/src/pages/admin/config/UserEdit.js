@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 // import PropTypes from "prop-types";
 // import { addTutor, removeTutor, searchTutor } from "../../../actions/tutors";
 // import UserNewForm from "../../../components/forms/UserNewForm";
-import Alert from "../../../components/atoms/Alert";
 import AlertMessage from "../../../components/atoms/AlertMessage";
 import UserEditForm from "../../../components/forms/UserEditForm";
 import UserEditRestrictForm from "../../../components/forms/UserEditRestrictForm";
@@ -14,7 +13,7 @@ import AuthHandler from  "../../../utils/AuthHandler";
 
 class UserEdit extends React.Component {
   render() {
-    const messages = this.props.messages;
+  
     const id = this.props.match.params.id;
     return (
       <section className="content">
