@@ -30,7 +30,7 @@ import time
 
 def send_email(subject, content,emailSend):
     emailToSend = []
-    emailToSend.append('aeumsa.tec  h@gmail.com')
+    emailToSend.append('aeumsa.tech@gmail.com')
     # emailToSend.append(emailSend)
     from_email = 'Carrera de Administración de Empresas UMSA <noreply@aeumsa.com>'
 
