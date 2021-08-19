@@ -118,6 +118,7 @@ class TracingStudentWithFileModelSerializer(ModelSerializer):
 
     files = TracingStudentFileModelSerializer(many=True)
     created_by = SerializerMethodField()
+    tracingcount = SerializerMethodField()
 
     class Meta:
         model = TracingStudent
@@ -139,7 +140,8 @@ class TracingStudentWithFileModelSerializer(ModelSerializer):
             "institution_report_was_sent",
             "files",
             "created_at",
-            "created_by"
+            "created_by",
+            "tracingcount",
             ]
 
         read_only_fields = [
@@ -153,7 +155,8 @@ class TracingStudentWithFileModelSerializer(ModelSerializer):
             "institution_report_was_sent",
             "files",
             "created_at",
-            "created_by"
+            "created_by",
+            "tracingcount",
         ]
 
     def get_created_by(self, obj):
@@ -166,12 +169,17 @@ class TracingStudentWithFileModelSerializer(ModelSerializer):
             pass
         return None
 
+    def get_tracingcount(self,obj):
+        return obj.tracingprogress.filter(active=True).count()
+
 
 class TracingStudentCompleteModelSerializer(ModelSerializer):
 
     files = TracingStudentFileModelSerializer(many=True)
     inscription = InscriptionCompleteModelSerializer(many=False)
     created_by = SerializerMethodField()
+
+
     class Meta:
         model = TracingStudent
         fields =[
@@ -192,7 +200,7 @@ class TracingStudentCompleteModelSerializer(ModelSerializer):
             "institution_report_was_sent",
             "files",
             "created_at",
-            "created_by"
+            "created_by",
             ]
 
     def get_created_by(self, obj):

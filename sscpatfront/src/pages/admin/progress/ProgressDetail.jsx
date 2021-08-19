@@ -37,7 +37,7 @@ class ProgressDetail extends Component {
               >
                 <i className="material-icons">arrow_back</i>
               </button> 
-              Avance del projecto</h2>
+              Avance del proyecto</h2>
           </div>
 
           <ProgressDetailCard id={id} />

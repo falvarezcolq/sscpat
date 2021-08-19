@@ -275,7 +275,7 @@ const ListCard = (props) => {
                   ) : (
                     <div className="table-responsive">
                       {projects.results.length === 0 ? (
-                        <h4> No existe projectos registrados</h4>
+                        <h4> No existe proyectos registrados</h4>
                       ) : (
                         <>
                           <table className="table table-hover">

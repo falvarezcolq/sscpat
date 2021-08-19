@@ -122,7 +122,7 @@ export const getTypeTracing = (type) => {
     case "COMMENT":
       return "Comentario";
     case "INSTITUTION_REPORT":
-      return "Reporte de la institución";
+      return "Informe de la institución";
     case "INTERNAL_TUTOR":
       return "Revisión del tutor";
     case "EXTERNAL_TUTOR":
@@ -130,7 +130,7 @@ export const getTypeTracing = (type) => {
     case "Revisión de Dirección de Carrera":
       return "Revisión del tutor externo";
     default:
-      return "";
+      return "";  
   }
 }
 
@@ -159,4 +159,14 @@ export const filePath=(path)=>{
       return HOST+path
     }
     return path;
+}
+
+
+export const getFirstCharacter=(cad)=>{
+  var list_of_words = cad.split(" ")
+  var word_characters  = ""
+  for (var i = 0 ;i<list_of_words.length;i++){
+    word_characters += list_of_words[i].charAt(0)
+  }
+  return word_characters
 }

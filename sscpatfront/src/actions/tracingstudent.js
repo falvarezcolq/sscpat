@@ -9,6 +9,9 @@ import {
   GET_TRACINGSTUDENT,
   MESSAGE_SUCCESS,
   LIST_TRACINGSTUDENT_REPORT,
+  TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS,
+  TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_LOADING,
+  TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_RESULTS,
 } from "./types";
 
 import {acceptErrors,acceptErrorsWhenIsDelete } from '../actions/messages';
@@ -196,3 +199,48 @@ export const update = (project_id,id,obj) => async (dispatch)=>{
       })
       return res
   }
+
+
+
+// ADD state list tracing_progress 
+export const addListTracing = ( id) => (dispatch)=>{
+  dispatch({
+    type: TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS,
+    payload:{id:id}
+  })
+}
+
+
+
+// set loading  true on list_tracing_progress
+export const setLoadingListTracing = (id,value) => (dispatch)=>{
+  dispatch({
+    type: TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_LOADING,
+    payload:{id:id,loading:value}
+  })
+}
+
+
+// GET LIST OF TRACING_PROGRESS
+export const getListTracing = (id) => async (dispatch)=>{
+
+  const url = Config.TracingStudentApiUrl+id+"/tracingprogress/"
+  dispatch({type:MESSAGE_DEFAULT})
+  const config = await getAuthHeader()
+
+  const res = await axios
+      .get(url,config)
+      .then((res) => {
+        dispatch({
+            type:TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_RESULTS,
+            payload:{id:id,results:res.data}
+        });
+      }).catch((err)=>{
+        return acceptErrors({
+            err:err,
+            dispatch:dispatch,
+            type:FORM_FAILED,
+        })
+    })
+    return res
+}

@@ -5,6 +5,9 @@ import {
   UPDATE_TRACINGSTUDENT,
   GET_TRACINGSTUDENT,
   LIST_TRACINGSTUDENT_REPORT,
+  TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS,
+  TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_LOADING,
+  TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_RESULTS,
 } from "../../actions/types";
 
 const initialState = {
@@ -49,6 +52,59 @@ export default function tracingstudent(state = initialState, action) {
         }),
         object: action.payload,
       };
+
+
+
+    case TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS:
+      return {
+        ...state,
+        results: state.results.map((obj) => {
+          return obj.id === action.payload.id ? 
+          {
+            ...obj,
+            list_tracing_progress:{
+              loading:false,
+              results:[]
+            }
+          } 
+          : obj;
+        }),
+        
+      };
+
+    case TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_LOADING:
+      return {
+        ...state,
+        results: state.results.map((obj) => {
+          return obj.id === action.payload.id ? 
+          {
+            ...obj,
+            list_tracing_progress:{
+              loading: action.payload.loading,
+              results:[]
+            }
+          } 
+          : obj;
+        }),
+       
+      };
+
+      case TRACINGSTUDENT_ADD_LISTTRACINGPROGRESS_RESULTS:
+        return {
+          ...state,
+          results: state.results.map((obj) => {
+            return obj.id === action.payload.id ? 
+            {
+              ...obj,
+              list_tracing_progress:{
+                loading:false,
+                results:action.payload.results
+              }
+            } 
+            : obj;
+          }),
+        };
+
 
     case DELETE_TRACINGSTUDENT:
       return {

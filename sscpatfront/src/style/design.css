@@ -136,6 +136,7 @@ body {
   position: relative;
 }
 
+
 .link-container{
   /* border-radius: 0.5rem; */
   background-color: #fff;
@@ -152,6 +153,18 @@ body {
   display:inline-block;
 }
 .image-link >img{
+  height: 100%;
+}
+
+.image-link-small{
+  margin-right:1rem;
+  height: 2.375rem;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  display:inline-block;
+}
+.image-link-small >img{
   height: 100%;
 }
 
@@ -203,4 +216,50 @@ body {
 
 .item-link:hover{
  background-color: #eee ;
+}
+
+
+/* .tracing-progress-box{
+  position: relative;
+} */
+.tracing-progress-image-letter{
+  float:left;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: cornflowerblue;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  padding-top: 8px; 
+  /* display:inline-block ; */
+}
+
+.tracing-progress-card{
+
+  margin-left: 48px;
+  padding: 5px; 
+  border-radius: 10px; 
+  box-shadow: 1px 1px 5px #ccc; 
+  height: auto;
+}
+
+.tracing-progress-text{ 
+  /* background-color: cyan; */
+  /* margin-right: 200px;   */
+  /* display: inline-block */
+  /* right: 100px; */
+  /* width: 80%; */
+  /* display: inline-block; */
+  /* float: left; */
+}
+
+.tracing-progress-file{
+  /* float:right;   */
+  /* width: 200px; */
+  /* background-color: darkcyan; */
+  /* display: inline-block; */
+  /* right: 0px; */
+  /* float:right; */
 }
