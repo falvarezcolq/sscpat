@@ -30,6 +30,7 @@ from sscpat.sscpat.models.inscriptioninitialdocuments import InscriptionInitialD
 from sscpat.sscpat.api.serializers.inscriptions import (
     InscriptionModelSerializer,
     InscriptionCompleteModelSerializer,
+    InscriptionModelSerializerForTutor,
 )
 from sscpat.sscpat.api.serializers.report_inscriptions import InscriptionReportModelSerializer
 from sscpat.sscpat.api.serializers.institutions import InstitutionModelSerializer
@@ -44,7 +45,7 @@ import datetime
 
 
 # Permissions
-from sscpat.sscpat.permissions import IsAccountAdmin
+from sscpat.sscpat.permissions import IsAccountAdmin,IsAccountAdminOrTutor
 
 # Action
 
@@ -250,7 +251,7 @@ class InscriptionByTutorsViewSet(
                             viewsets.GenericViewSet):
     """User viewset """
     queryset =  Inscription.objects.filter(active=True)
-    serializer_class = InscriptionCompleteModelSerializer
+    serializer_class = InscriptionModelSerializerForTutor
     pagination_class = CustomPagination
 
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
@@ -258,6 +259,8 @@ class InscriptionByTutorsViewSet(
     ordering_fields = ('title_academic_project', 'created_at')
     search_fields = ('title_academic_project','student__first_name','student__last_name')
     filterset_fields = ['academic_period','modality','state']
+
+    permission_classes = [IsAuthenticated,IsAccountAdminOrTutor]
 
     def dispatch(self, request, *args, **kwargs):
         """Verify that the circle exists."""
@@ -297,6 +300,8 @@ class InscriptionByStudentViewSet(
     ordering_fields = ('title_academic_project', 'created_at')
     search_fields = ('title_academic_project',)
     filterset_fields = ['academic_period','modality','state']
+
+
 
     def dispatch(self, request, *args, **kwargs):
         """Verify that the circle exists."""

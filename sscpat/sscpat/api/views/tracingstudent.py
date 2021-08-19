@@ -188,11 +188,9 @@ class TracingStudentReportViewSet(#mixins.RetrieveModelMixin,
     """Report student progress view set """
     queryset =  TracingStudent.objects.filter(active=True)
     serializer_class = TracingStudentReportModelSerializer
-
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
     ordering = ('created_at')
     ordering_fields = ('created_at')
-
 
 
     def dispatch(self, request, *args, **kwargs):

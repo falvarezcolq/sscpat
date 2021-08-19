@@ -28,18 +28,7 @@ const DetailCard = (props) => {
     // setLoading(false);
   };
 
-  const iconDone = (bool) => {
-    return bool ? (
-      <i className="material-icons col-green" title="completado">
-        done
-      </i>
-    ) : (
-      <i className="material-icons col-orange" title="No realizado">
-        error_outline
-      </i>
-    );
-  };
-
+  
   if (!progress || progress.id + "" !== id + "") {
     return (
       <div className="row clearfix">
@@ -111,8 +100,7 @@ const DetailCard = (props) => {
               </h2>
             )}
 
-            {/* <HeaderDropdown>
-            </HeaderDropdown> */}
+            {/* <HeaderDropdown></HeaderDropdown> */}
           </div>
 
           <div className="header">
