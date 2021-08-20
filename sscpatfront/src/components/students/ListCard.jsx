@@ -303,6 +303,8 @@ const ListCard = (props) => {
                               <th>Modalidad</th>
                               <th>Avance</th>
                               <th>Asignado en</th>
+                              <th>Sin revisi&oacute;n del tutor</th>
+                              <th>Sin informe de avace</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -325,8 +327,12 @@ const ListCard = (props) => {
                                 <td>{LabelStatus(project.state)}</td>
                                 <td>{project.modality.title}</td>
 
-                                <td>0</td>
+                                <td>{project.progress}</td>
                                 <td>{new Date(project.created_at).toLocaleDateString("es-ES")}</td>
+                                <td>{project.without_review}</td>
+                                <td>{project.without_report_institution > 0 && (
+                                  <div className="col-red">{project.without_report_institution}</div>
+                                )}</td>
                               </tr>
                             ))}
                           </tbody>

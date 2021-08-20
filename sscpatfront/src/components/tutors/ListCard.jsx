@@ -42,35 +42,33 @@ const validate = {
 // };
 
 const ListCard = (props) => {
-  const {tutor, projects } = props  
-  const url = Config.ProjectsApiUrl+tutor.id+"/bytutors/"
+  const { tutor, projects } = props;
+  const url = Config.ProjectsApiUrl + tutor.id + "/bytutors/";
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   // const [openModal, setOpenModal] = useState(false);
   // const [modal, setModal] = useState(modalValues);
   // const [isDeleting, setIsDeleting] = useState(false);
   const [loadingTable, setLoadingTable] = useState(false);
-  const [filter,setFilter]=useState(false)
+  const [filter, setFilter] = useState(false);
 
-  const toggleFilter =()=>setFilter(!filter)
+  const toggleFilter = () => setFilter(!filter);
 
   useEffect(() => {
-    
     loadTable();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const loadData = async () =>{
+  const loadData = async () => {
     await props.list(url);
-    setLoadingTable(false)
-  }
-  const loadTable = async () => {    
+    setLoadingTable(false);
+  };
+  const loadTable = async () => {
     props.listModalities();
     props.listAcademicPeriods();
-    setLoadingTable(true)
-    loadData()
+    setLoadingTable(true);
+    loadData();
   };
 
-  
   // const deleteObj = async (obj) => {
   //   setIsDeleting(true);
   //   const res = await props.remove(obj.id);
@@ -100,12 +98,12 @@ const ListCard = (props) => {
     e.preventDefault();
     if (Object.values(errors).every((t) => t === null)) {
       props.list(url, values);
-     
     }
   };
 
   const percentBar = (progress) => {
-    const percentage = progress > 12 ? 100 : progress === 0 ? 10 : (progress / 12) * 100;
+    const percentage =
+      progress > 12 ? 100 : progress === 0 ? 10 : (progress / 12) * 100;
 
     return (
       <>
@@ -115,7 +113,9 @@ const ListCard = (props) => {
         >
           <div
             className={
-              progress === 0 ? "progress-bar bg-orange" : "progress-bar bg-green"
+              progress === 0
+                ? "progress-bar bg-orange"
+                : "progress-bar bg-green"
             }
             style={{ width: percentage + "%" }}
           >
@@ -126,8 +126,6 @@ const ListCard = (props) => {
     );
   };
 
- 
-
   return (
     <>
       <div className="row clearfix">
@@ -135,45 +133,54 @@ const ListCard = (props) => {
           <div className="card">
             <div className="header">
               <h2>
-                Proyectos académicos asignados a {tutor.abbreviation} {tutor.last_name} {tutor.last_name2} {tutor.first_name}
+                Proyectos académicos asignados a {tutor.abbreviation}{" "}
+                {tutor.last_name} {tutor.last_name2} {tutor.first_name}
                 <small>
                   Los proyectos académicos son los trabajos que desarrollan
                   estudiantes en las modalidades de titulación
                 </small>
               </h2>
 
-              <button type="button" className="btn btn-default pull-right m-t--25" onClick={toggleFilter}> Filtrar</button>
+              <button
+                type="button"
+                className="btn btn-default pull-right m-t--25"
+                onClick={toggleFilter}
+              >
+                {" "}
+                Filtrar
+              </button>
             </div>
 
             <div className="body">
-              <div className="row" style={{display: filter ?"block":"none" }}>
+              <div
+                className="row"
+                style={{ display: filter ? "block" : "none" }}
+              >
                 <form onSubmit={onSubmit}>
-                  <div className="col-md-4 col-lg-3 m-0 p-0" >
+                  <div className="col-md-4 col-lg-3 m-0 p-0">
                     <InputForm
                       name="search"
                       value={values.search}
                       error={errors.search}
                       placeholder="Buscar proyecto..."
-                      onChange={onChange} 
+                      onChange={onChange}
                       title="Buscar:"
                     />
                   </div>
 
-                  <div className="col-md-4 col-lg-3 m-0 p-0" >
+                  <div className="col-md-4 col-lg-3 m-0 p-0">
                     <InputForm
                       type="number"
                       name="size"
                       value={values.size}
-                    
                       error={errors.size}
-                     
                       placeholder="Cantidad"
                       onChange={onChange}
                       title="Cantidad"
                     />
                   </div>
 
-                  <div className="col-md-4 col-lg-2 m-0 p-0" >
+                  <div className="col-md-4 col-lg-2 m-0 p-0">
                     <SelectForm
                       name="academic_period"
                       value={values.academic_period}
@@ -197,9 +204,7 @@ const ListCard = (props) => {
                     </SelectForm>
                   </div>
 
-                 
-
-                  <div className="col-md-4 col-lg-2 m-0 p-0" >
+                  <div className="col-md-4 col-lg-2 m-0 p-0">
                     <SelectForm
                       name="modality"
                       value={values.modality}
@@ -223,8 +228,7 @@ const ListCard = (props) => {
                     </SelectForm>
                   </div>
 
-
-                  <div className="col-md-4 col-lg-2 m-0 p-0" >
+                  <div className="col-md-4 col-lg-2 m-0 p-0">
                     <SelectForm
                       name="state"
                       value={values.state}
@@ -232,17 +236,16 @@ const ListCard = (props) => {
                       onChange={onChange}
                       title="Estado del proyecto"
                     >
-                      
                       <option value="">Todos</option>
                       <option value="UNDER_DEVELOPMENT">En desarrollo</option>
-                      <option value="CONCLUDED_SUCCESSFULLY">Concluidos con exito</option>
+                      <option value="CONCLUDED_SUCCESSFULLY">
+                        Concluidos con exito
+                      </option>
                       <option value="ABANDONED">Cerrado</option>
-                    
                     </SelectForm>
                   </div>
 
-
-                  <div className="col-md-4 col-lg-2 m-0 p-0" >
+                  <div className="col-md-4 col-lg-2 m-0 p-0">
                     <div className="form-group">
                       <button type="submit" className="btn btn-primary pt-20">
                         Buscar
@@ -255,39 +258,32 @@ const ListCard = (props) => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="table-responsive">
-                    { loadingTable ?
-                      <div className="align-center"><Spinner/></div>
-                      
-                    :
-                    
-                    projects.results.length === 0 ? (
-                      <h4> El docente no tiene proyectos  bajo su tutor&iacute;a</h4>
+                    {loadingTable ? (
+                      <div className="align-center">
+                        <Spinner />
+                      </div>
+                    ) : projects.results.length === 0 ? (
+                      <h4>
+                        {" "}
+                        El docente no tiene proyectos bajo su tutor&iacute;a
+                      </h4>
                     ) : (
                       <>
                         <table className="table table-hover">
                           <thead>
                             <tr>
-                              <th>Autor</th>
                               <th>Periodo académico</th>
                               <th>Nombre del proyecto</th>
                               <th>Estado</th>
                               <th>Modalidad</th>
                               <th>Avance</th>
+                              <th>Sin revisi&oacute;n</th>
+                              <th>Autor</th>
                             </tr>
                           </thead>
                           <tbody>
                             {projects.results.map((project) => (
                               <tr key={project.id}>
-                                <td>
-                                  <Link
-                                    to={Config.aStudentsUrl+ "/" + project.student.id}
-                                  >
-                                    {project.student.last_name +" "+project.student.last_name2 +" "+project.student.first_name}
-                               
-                                </Link>
-                                </td>
-
-                                
                                 <td>
                                   {project.academic_period
                                     ? project.academic_period.title
@@ -298,14 +294,39 @@ const ListCard = (props) => {
                                     to={Config.aProjectsUrl + "/" + project.id}
                                   >
                                     {project.title_academic_project}
-                               
-                                </Link>
+                                  </Link>
                                 </td>
 
                                 <td>{LabelStatus(project.state)}</td>
                                 <td>{project.modality.title}</td>
 
                                 <td>{percentBar(project.progress)}</td>
+                                <td>
+                                  {project.without_review > 0 ? (
+                                    <div className="label bg-red">
+                                      {project.without_review} Avance
+                                      {project.without_review != 1 && "s"}
+                                    </div>
+                                  ) : (
+                                    <div className="col-green">OK</div>
+                                  )}
+                                </td>
+
+                                <td>
+                                  <Link
+                                    to={
+                                      Config.aStudentsUrl +
+                                      "/" +
+                                      project.student.id
+                                    }
+                                  >
+                                    {project.student.last_name +
+                                      " " +
+                                      project.student.last_name2 +
+                                      " " +
+                                      project.student.first_name}
+                                  </Link>
+                                </td>
                               </tr>
                             ))}
                           </tbody>
@@ -323,47 +344,6 @@ const ListCard = (props) => {
           </div>
         </div>
       </div>
-
-      {/* <Modal open={openModal}>
-        <div className="modal-header">
-          <h4 className="modal-title" id="defaultModalLabel">
-            {modal.title}
-          </h4>
-        </div>
-        <div className="modal-body">{modal.message}</div>
-        <div className="modal-footer">
-          {modal.cancel && (
-            <button
-              type="button"
-              className="btn btn-link waves-effect pull-left"
-              onClick={modal.cancel}
-            >
-              Cancelar
-            </button>
-          )}
-
-          {modal.confirm && (
-            <button
-              type="button"
-              className="btn btn-success waves-effect"
-              onClick={modal.confirm}
-            >
-              Confirmar
-            </button>
-          )}
-
-          {modal.accept && (
-            <button
-              type="button"
-              className="btn btn-primary waves-effect"
-              onClick={modal.accept}
-            >
-              Aceptar
-            </button>
-          )}
-        </div>
-      </Modal>
-     */}
     </>
   );
 };

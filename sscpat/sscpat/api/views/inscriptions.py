@@ -31,6 +31,7 @@ from sscpat.sscpat.api.serializers.inscriptions import (
     InscriptionModelSerializer,
     InscriptionCompleteModelSerializer,
     InscriptionModelSerializerForTutor,
+    InscriptionModelSerializerForStudent,
 )
 from sscpat.sscpat.api.serializers.report_inscriptions import InscriptionReportModelSerializer
 from sscpat.sscpat.api.serializers.institutions import InstitutionModelSerializer
@@ -284,15 +285,12 @@ class InscriptionByTutorsViewSet(
 
 
 class InscriptionByStudentViewSet(
-    # mixins.CreateModelMixin,
                             mixins.RetrieveModelMixin,
-                            # mixins.UpdateModelMixin,
-                            # mixins.DestroyModelMixin,
                             mixins.ListModelMixin,
                             viewsets.GenericViewSet):
     """User viewset """
     queryset =  Inscription.objects.filter(active=True)
-    serializer_class = InscriptionCompleteModelSerializer
+    serializer_class = InscriptionModelSerializerForStudent
     pagination_class = CustomPagination
 
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
@@ -300,8 +298,7 @@ class InscriptionByStudentViewSet(
     ordering_fields = ('title_academic_project', 'created_at')
     search_fields = ('title_academic_project',)
     filterset_fields = ['academic_period','modality','state']
-
-
+    permission_classes = [IsAuthenticated]
 
     def dispatch(self, request, *args, **kwargs):
         """Verify that the circle exists."""
@@ -312,8 +309,6 @@ class InscriptionByStudentViewSet(
     def get_queryset(self):
         student = self.student
         return student.projects.filter(active=True)
-
-
 
 
 class InscriptionReportViewSet(mixins.ListModelMixin,

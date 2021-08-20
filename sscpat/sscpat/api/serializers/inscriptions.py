@@ -165,6 +165,52 @@ class InscriptionModelSerializerForTutor(ModelSerializer):
 
 
 
+class InscriptionModelSerializerForStudent(ModelSerializer):
+
+    student = UserModelSerializer(many=False)
+    tutors = TutorMinimalListModelSerializer(many=True)
+    external_tutors = TutorMinimalListModelSerializer(many=True)
+    institution = InstitutionModelSerializer(many=False)
+    modality = ModalityModelSerializer(many=False)
+    academic_period = AcademicPeriodModelSerializer(many=False)
+    progress = SerializerMethodField()
+    without_review = SerializerMethodField()
+    without_report_institution = SerializerMethodField()
+
+    def get_progress(self,obj):
+        return obj.tracingstudents.filter(active=True).count()
+
+    def get_without_review(self,obj):
+        return obj.tracingstudents.filter(active=True,require_tutor_review=True,reviewed_by_tutor=False).count()
+
+    def get_without_report_institution(self,obj):
+        return obj.tracingstudents.filter(active=True,require_institution_report=True,institution_report_was_sent=False).count()
+
+    class Meta:
+        model = Inscription
+        fields =[
+            "id",
+            "student",
+            "modality",
+            "academic_period",
+            "state",
+            "tutors",
+            "external_tutors",
+            "institution",
+            "title_academic_project",
+            "description_project",
+            "date_init",
+            "date_end",
+            "date_end_old",
+            "extended",
+            "created_at",
+            "progress",
+            "without_review",
+            "without_report_institution",
+    ]
+
+
+
 class InscriptionStatiticsModelSerializer(ModelSerializer):
     # institution = InstitutionModelSerializer(many=False)
     progress = SerializerMethodField()
