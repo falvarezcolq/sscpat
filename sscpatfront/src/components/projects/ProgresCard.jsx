@@ -134,7 +134,7 @@ const ProgresCard = (props) => {
                     </Link>
                   )}
 
-                {AuthHandler.isTutor() &&
+                {AuthHandler.isInternalTutor() &&
                   progress.require_tutor_review &&
                   !progress.reviewed_by_tutor && (
                     <Link

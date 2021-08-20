@@ -56,12 +56,10 @@ class InscriptionModelSerializer(ModelSerializer):
             "date_end",
             "date_end_old",
             "extended",
-
             "month_duration",
             "month_max_duration",
             "has_time_extension",
             "month_extension",
-
             "created_at",
             ]
 
@@ -134,12 +132,16 @@ class InscriptionModelSerializerForTutor(ModelSerializer):
     academic_period = AcademicPeriodModelSerializer(many=False)
     progress = SerializerMethodField()
     without_review = SerializerMethodField()
+    without_review_by_etutor = SerializerMethodField()
 
     def get_progress(self,obj):
         return obj.tracingstudents.filter(active=True).count()
 
     def get_without_review(self,obj):
         return obj.tracingstudents.filter(active=True,require_tutor_review=True,reviewed_by_tutor=False).count()
+
+    def get_without_review_by_etutor(self, obj):
+        return obj.tracingstudents.filter(active=True, require_external_tutor_review=True, reviewed_by_external_tutor=False).count()
 
     class Meta:
         model = Inscription
@@ -161,6 +163,7 @@ class InscriptionModelSerializerForTutor(ModelSerializer):
             "created_at",
             "progress",
             "without_review",
+            "without_review_by_etutor",
     ]
 
 

@@ -44,7 +44,7 @@ class Login extends React.Component {
           window.location = Config.tHomeUrl;
           break;
         case "EXTERNAL_TUTOR":
-          window.location = Config.HomeUrl;
+          window.location = Config.etHomeUrl;
           break;
         case "STUDENT":
           window.location = Config.sHomeUrl;

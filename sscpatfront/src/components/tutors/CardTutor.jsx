@@ -73,9 +73,10 @@ export default function CardTutor({ tutor }) {
               Concluido: {tutor.complete} <br />
               Abandonados:{tutor.abandoned} <br /> 
               Revisiones pendientes: {tutor.pending_reviews} <br />
+              
               En desarrollo: {tutor.under_development} <br />
 
-              
+              Revisados:  {tutor.under_development - tutor.pending_reviews}  de {tutor.under_development} <br />
               {PercentBar(
                                 tutor.under_development,
                                 tutor.pending_reviews

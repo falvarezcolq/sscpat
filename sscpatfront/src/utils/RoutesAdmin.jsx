@@ -32,6 +32,7 @@ import ProjectsUpdate from "../pages/admin/projects/ProjectsUpdate";
 
 //tutor
 import TDetail from '../pages/tutors/tutors/TutorDetail';
+import ETDetail from '../pages/etutor/tutors/TutorDetail';
 
 //student
 import SDetail from "../pages/student/student/StudentDetail";
@@ -42,6 +43,7 @@ import CurrentProject from "../pages/student/projects/CurrentProject";
 import ProgressDetail from "../pages/admin/progress/ProgressDetail";
 import ListStudents from "../pages/tutors/students/ListStudents";
 import ListProjects from "../pages/tutors/projects/ListProjects";
+import ETListProjects from "../pages/etutor/projects/ListProjects";
 import ExternalTutorDetail from "../pages/admin/tutor/ExternalTutorDetail";
 import ProjectState from "../pages/admin/projects/ProjectState";
 import ProjectsTimeExtended from "../pages/admin/projects/ProjectsTimeExtended";
@@ -210,10 +212,6 @@ const RoutesAdmin = () => {
         activepage2="40"
         page={ProgressDetail}
       />
-
-
-
-
 
       {/* Routes Config active page:5 */}
 
@@ -407,6 +405,25 @@ const RoutesAdmin = () => {
         activepage2="0"
         page={ListProjects}
       />
+
+      {/*//////////////////// External Tutor Pages //////////////////////*/}
+      <PrivateRoute
+        exact
+        path={Config.etHomeUrl}
+        activepage="0"
+        activepage2="0"
+        page={ETDetail}
+      />
+
+      <PrivateRoute
+        exact
+        path={Config.etProjectsUrl}
+        activepage="4"
+        activepage2="0"
+        page={ETListProjects}
+      />
+
+
       
       {/*//////////////////// StudentPage //////////////////////*/}
       <PrivateRoute

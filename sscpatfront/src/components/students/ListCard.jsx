@@ -304,7 +304,7 @@ const ListCard = (props) => {
                               <th>Avance</th>
                               <th>Asignado en</th>
                               <th>Sin revisi&oacute;n del tutor</th>
-                              <th>Sin informe de avace</th>
+                              <th>Sin informe de la institución</th>
                             </tr>
                           </thead>
                           <tbody>

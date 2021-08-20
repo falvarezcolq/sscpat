@@ -55,7 +55,6 @@ class ExternalTutorListSerializer(ModelSerializer):
     under_development = SerializerMethodField()
     abandoned = SerializerMethodField()
     total = SerializerMethodField()
-
     pending_reviews = SerializerMethodField()
 
     def get_complete(self, tutor):
@@ -71,18 +70,14 @@ class ExternalTutorListSerializer(ModelSerializer):
         return tutor.etutor_projects.filter(active=True).count()
 
     def get_pending_reviews(self, tutor):
-
         projects = tutor.etutor_projects.filter(active=True, state=Inscription.UNDER_DEVELOPMENT)
         pending_review = 0
-
         for project in projects:
-
-            last_tracingstudent = project.tracingstudents.filter(active=True).last()
-
-            if last_tracingstudent:
-                if last_tracingstudent.tracingprogress.filter(active=True, user=tutor).count() == 0:
-                    pending_review = pending_review + 1
-
+            not_reviewed_by_tutor_count = project.tracingstudents.filter(active=True,
+                                                                         require_external_tutor_review=True,
+                                                                         reviewed_by_external_tutor=False).count()
+            if not_reviewed_by_tutor_count > 0:
+                pending_review = pending_review + 1
         return pending_review
 
     class Meta:

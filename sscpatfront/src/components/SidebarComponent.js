@@ -62,10 +62,13 @@ class Sidebar extends React.Component {
     if (this.props.type === ADMIN) {
       sidebarItem = Config.sidebarAdminItem;
     } else if (
-      this.props.type === TUTOR ||
-      this.props.type === EXTERNAL_TUTOR
+      this.props.type === TUTOR 
     ) {
       sidebarItem = Config.sidebarTutorItem;
+    } else if (
+      this.props.type === EXTERNAL_TUTOR
+    ) {
+      sidebarItem = Config.sidebarETutorItem;
     } else if (this.props.type === STUDENT) {
       sidebarItem = Config.sidebarStudentItem;
     }

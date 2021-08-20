@@ -302,14 +302,27 @@ const ListCard = (props) => {
 
                                 <td>{percentBar(project.progress)}</td>
                                 <td>
-                                  {project.without_review > 0 ? (
+                                  {tutor.type === "EXTERNAL_TUTOR" ? 
+                                  
+                                  project.without_review_by_etutor > 0 ? (
+                                    <div className="label bg-red">
+                                      {project.without_review_by_etutor} Avance
+                                      {project.without_review_by_etutor != 1 && "s"}
+                                    </div>
+                                  ) : (
+                                    <div className="col-green">OK</div>
+                                  )
+                                  : project.without_review > 0 ? (
                                     <div className="label bg-red">
                                       {project.without_review} Avance
                                       {project.without_review != 1 && "s"}
                                     </div>
                                   ) : (
                                     <div className="col-green">OK</div>
-                                  )}
+                                  )
+                                  
+                                  }
+                                 
                                 </td>
 
                                 <td>

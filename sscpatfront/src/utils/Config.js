@@ -118,6 +118,9 @@ class Config{
     static tStudentAdvanceReportUrl="/tutor/estudiantes/avance/revision";
     static tProjectsUrl="/tutor/proyectosasignados";
 
+    static etHomeUrl="/etutor/";
+    static etProjectsUrl="/etutor/proyectosasignados";
+
 
     static sHomeUrl="/home/";   
     static sProjectUrl="/myproject";
@@ -157,9 +160,17 @@ class Config{
     ]
 
     static sidebarTutorItem=[
-        {"index":"0","title":"Escritorios","url":this.tHomeUrl,"icon":"home","subItems":[]},
+        {"index":"0","title":"Escritorio","url":this.tHomeUrl,"icon":"home","subItems":[]},
         {"index":"3","title":"Estudiantes","url":this.tStudentsUrl,"icon":"face","subItems":[]},
         {"index":"4","title":"Proyectos","url":this.tProjectsUrl,"icon":"class","subItems":[]},
+        // {"index":"5","title":"Configuracion","url":this.aConfigUrl,"icon":"settings","subItems":[]},
+        // {"index":"6","title":"Reportes","url":this.aReportsUrl,"icon":"account_balance","subItems":[]},
+    ]
+
+    static sidebarETutorItem=[
+        {"index":"0","title":"Escritorio","url":this.etHomeUrl,"icon":"home","subItems":[]},
+        {"index":"3","title":"Estudiantes","url":this.tStudentsUrl,"icon":"face","subItems":[]},
+        {"index":"4","title":"Proyectos","url":this.etProjectsUrl,"icon":"class","subItems":[]},
         // {"index":"5","title":"Configuracion","url":this.aConfigUrl,"icon":"settings","subItems":[]},
         // {"index":"6","title":"Reportes","url":this.aReportsUrl,"icon":"account_balance","subItems":[]},
     ]
