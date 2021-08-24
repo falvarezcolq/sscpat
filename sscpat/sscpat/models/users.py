@@ -39,13 +39,7 @@ class User(SSCPATModel,AbstractUser):
     telf = models.CharField(_("phone"),max_length=255,blank=True,default="")
     address = models.CharField(_("address"),max_length=1024,blank=True,default="")
 
-    email = models.EmailField(
-        _("email"),
-        unique=True,
-        error_messages={
-            'unique': _('A user with  this email already exists.')
-        },
-    )
+    email = models.EmailField( _("email"), )
 
     id_student = models.CharField(_("id student"),max_length=30,default="",blank=True)
     id_teacher = models.CharField(_("id docente"),max_length=30,default="",blank=True)
