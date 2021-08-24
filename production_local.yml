@@ -41,7 +41,7 @@ services:
   traefik:
     build:
       context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
+      dockerfile: ./compose/production/traefik/Dockerfile_prod_local
     image: sscpat_production_traefik
     depends_on:
       - django
