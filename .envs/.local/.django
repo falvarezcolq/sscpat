@@ -30,5 +30,6 @@ SMTP_PORT=587
 # external server
 EXTERNAL_HOST=https://ssalab.aeumsa.com
 
+
 # cipher key
 CIPHER_KEY=JD21SQ0h6iiclkAdNd_0--ltxGFnN0HdsQExd7APDV0=

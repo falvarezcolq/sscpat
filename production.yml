@@ -17,8 +17,8 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     image: sscpat_production_django
-#    volumes:
-#      - .:/app
+    volumes:
+      - .:/app
     depends_on:
       - postgres
       - redis
