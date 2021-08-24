@@ -66,7 +66,6 @@ class UserSignUpSerializer(serializers.ModelSerializer):
                 "type",
                 "CI",
                 "RU",
-
                 "position",
                 "academic_degree",
                 "abbreviation",
@@ -75,8 +74,12 @@ class UserSignUpSerializer(serializers.ModelSerializer):
                 "address",
         ]
 
+
+
     def create(self, data):
         """Handle user and profile creation."""
+        data['id_people'] = data['CI']
+        data['from_server'] = False
         user = User.objects.create_user(**data)
         return user
 
