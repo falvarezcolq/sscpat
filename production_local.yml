@@ -9,7 +9,7 @@ services:
   react:
     build:
       context: .
-      dockerfile: ./compose/production/react/Dockerfile
+      dockerfile: ./compose/production/react/Dockerfile_prod_local
     image: sscpat_production_react
 
   django: &django
@@ -17,8 +17,8 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     image: sscpat_production_django
-#    volumes:
-#      - .:/app
+    volumes:
+      - .:/app
     depends_on:
       - postgres
       - redis
