@@ -140,12 +140,12 @@ class SearchTutorFromServer(APIView):
         serializer = TutorSearchSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         search = request.data['search']
-        url = "{}/api/tutor/{}/".format(
+
+        url = "{}/docente/{}".format(
             settings.EXTERNAL_HOST,
             search
         )
         result = requests.get(url)
-
         if result.status_code == 404:
             data = {
                 "user": None,
@@ -154,27 +154,49 @@ class SearchTutorFromServer(APIView):
             }
             return Response(data)
 
-        user = json.loads(result._content)
-        id_persona = str(user['id'])
-        id_encrypt = str_encrypt(id_persona)
 
-        msg = _("User isn't registered")
-        value = 1
+        results = json.loads(result._content)
 
-        try:
-            user_on_db = User.objects.get(id_people=id_persona)
-            msg = _("User is registered")
-            value=2
-        except User.DoesNotExist:
-            pass
+        if result.status_code == 200:
 
-        data = {
-            "user":user,
-            "value":value,
-            "key":id_encrypt,
-            "detail": msg,
-        }
-        return Response(data)
+            if len(results) == 0 :
+                data = {
+                    "user": None,
+                    "value": 0,
+                    "detail": _("not found"),
+                }
+                return Response(data)
+
+            user = results[0][0]
+            ci = str(user['ci'])
+            id_persona = str(user['Id_persona'])
+            id_encrypt = str_encrypt(ci)
+            msg = _("User isn't registered")
+            value = 1
+
+            try:
+                user_on_db = User.objects.get(id_people=id_persona)
+                msg = _("User is registered")
+                value=2
+            except User.DoesNotExist:
+                pass
+
+            data = {
+                "user":
+                {
+                    "email" : user["Correo"],
+                    "CI" : user["ci"],
+                    "first_name" : user["nombres"],
+                    "last_name" : user["paterno"],
+                    "last_name2": user["materno"],
+                },
+                "value":value,
+                "key":id_encrypt,
+                "detail": msg,
+            }
+            return Response(data)
+
+
 
 class AddTutorFromServer(APIView):
     # authentication_classes = [authentication.TokenAuthentication]
@@ -188,11 +210,11 @@ class AddTutorFromServer(APIView):
         serializer = TutorAddSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         token = request.data['key']
-        id_persona = str_decrypt(token)
+        ci = str_decrypt(token)
 
-        url = "{}/api/people/{}/".format(
+        url = "{}/docente/{}".format(
             settings.EXTERNAL_HOST,
-            id_persona
+            ci
         )
         result = requests.get(url)
 
@@ -204,30 +226,36 @@ class AddTutorFromServer(APIView):
             }
             return Response(data)
 
-        data = json.loads(result._content)
-        id_persona = str(data['id'])
+        results = json.loads(result._content)
+
+
+        if result.status_code == 200 and len(results) == 0:
+            data = {
+                "user": None,
+                "value": 0,
+                "detail": _("not found"),
+            }
+            return Response(data)
+
+        data = results[0][0]
+        id_persona = str(data['Id_persona'])
 
         try:
             user = User.objects.get(id_people=id_persona)
-            user.first_name = data["first_name"]
-            user.last_name = data["last_name"]
-            user.last_name2 = data["last_name2"]
-            user.CI = data["CI"]
-            user.RU = data["RU"]
-            user.position = data["position"]
-            user.academic_degree = data["academic_degree"]
-            user.abbreviation = data["abbreviation"]
-            user.phone = data["phone"]
-            user.telf = data["telf"]
-            user.address = data["address"]
-            user.email = data["email"]
+            user.first_name = data["nombres"]
+            user.last_name = data["paterno"]
+            user.last_name2 = data["materno"]
+            user.CI = data["ci"]
+            user.RU = data["ci"]
+            user.phone = data["celular"]
+            user.telf = data["telefono"]
+            user.email = data["Correo"]
             user.type = User.TUTOR
-            user.id_student = data["RU"]
-            user.id_teacher = data["RU"]
-            user.username = data["RU"]
+            user.id_teacher = data["iddocente"]
+            user.username = data["iddocente"]
             user.is_active = True
             user.active = True
-            user.set_password(data['CI'])
+            user.set_password(data['ci'])
             user.save()
 
             msg = _("User was updated from server")
@@ -242,27 +270,22 @@ class AddTutorFromServer(APIView):
             pass
 
         new_user = User.objects.create(
-                first_name=data['first_name'],
-                last_name=data['last_name'],
-                last_name2=data['last_name2'],
-                CI=data['CI'],
-                RU=data['RU'],
-                position=data['position'],
-                academic_degree=data['academic_degree'],
-                abbreviation=data['abbreviation'],
-                phone=data['phone'],
-                telf=data['telf'],
-                address=data['address'],
-                email=data['email'],
+                first_name=data['nombres'],
+                last_name=data['paterno'],
+                last_name2=data['materno'],
+                CI=data['ci'],
+                RU=data['ci'],
+                phone=data['celular'],
+                telf=data['telefono'],
+                email=data['Correo'],
                 type=User.TUTOR,
-                id_student=data['RU'],
-                id_teacher=data['RU'],
+                id_teacher=data['iddocente'],
                 id_people=id_persona,
                 from_server=True,
-                username=data['RU'],
+                username=data['iddocente'],
         )
 
-        new_user.set_password(data['CI'])
+        new_user.set_password(data['ci'])
         new_user.save()
 
         data = {

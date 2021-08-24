@@ -176,42 +176,59 @@ class SearchStudentFromServer(APIView):
         serializer = StudentSearchSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         search = request.data['search']
-        url = "{}/api/student/{}/".format(
+
+        url = "{}/alumno/{}".format(
             settings.EXTERNAL_HOST,
             search
         )
         result = requests.get(url)
-
         if result.status_code == 404:
             data = {
                 "user": None,
-                "value":0,
+                "value": 0,
                 "detail": _("not found"),
             }
             return Response(data)
 
-        user = json.loads(result._content)
-        id_persona = str(user['id'])
-        id_encrypt = str_encrypt(id_persona)
+        if result.status_code == 200:
+            results = json.loads(result._content)
 
-        msg = _("User isn't registered")
-        value = 1
+            if len(results) == 0:
+                data = {
+                    "user": None,
+                    "value": 0,
+                    "detail": _("not found"),
+                }
+                return Response(data)
 
-        try:
-            user_on_db = User.objects.get(id_people=id_persona)
-            msg = _("User is registered")
-            value=2
-        except User.DoesNotExist:
-            pass
+            user = results[0][0]
+            ci = str(user['ci'])
+            id_persona = str(user['Id_persona'])
+            id_encrypt = str_encrypt(ci)
+            msg = _("User isn't registered")
+            value = 1
 
-        data = {
-            "user":user,
-            "value":value,
-            "key":id_encrypt,
-            "detail": msg,
-        }
-        return Response(data)
+            try:
+                user_on_db = User.objects.get(id_people=id_persona)
+                msg = _("User is registered")
+                value = 2
+            except User.DoesNotExist:
+                pass
 
+            data = {
+                "user":
+                    {
+                        "email": user["Correo"],
+                        "CI": user["ci"],
+                        "first_name": user["nombres"],
+                        "last_name": user["paterno"],
+                        "last_name2": user["materno"],
+                    },
+                "value": value,
+                "key": id_encrypt,
+                "detail": msg,
+            }
+            return Response(data)
 
 
 class AddStudentFromServer(APIView):
@@ -220,92 +237,90 @@ class AddStudentFromServer(APIView):
 
     def post(self, request, format=None):
         """
-        Return a studenr
+        Return a tutor
         """
+
         serializer = StudentAddSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         token = request.data['key']
-        id_persona = str_decrypt(token)
+        ci = str_decrypt(token)
 
-        url = "{}/api/people/{}/".format(
+        url = "{}/alumno/{}".format(
             settings.EXTERNAL_HOST,
-            id_persona
+            ci
         )
         result = requests.get(url)
 
         if result.status_code == 404:
             data = {
                 "user": None,
-                "value":0,
+                "value": 0,
                 "detail": _("not found on external  general server"),
             }
             return Response(data)
 
-        data = json.loads(result._content)
-        id_persona = str(data['id'])
+        results = json.loads(result._content)
+
+        if result.status_code == 200 and len(results) == 0:
+            data = {
+                "user": None,
+                "value": 0,
+                "detail": _("not found"),
+            }
+            return Response(data)
+
+        data = results[0][0]
+        id_persona = str(data['Id_persona'])
 
         try:
             user = User.objects.get(id_people=id_persona)
-            user.first_name = data["first_name"]
-            user.last_name = data["last_name"]
-            user.last_name2 = data["last_name2"]
-            user.CI = data["CI"]
-            user.RU = data["RU"]
-            user.position = data["position"]
-            user.academic_degree = data["academic_degree"]
-            user.abbreviation = data["abbreviation"]
-            user.phone = data["phone"]
-            user.telf = data["telf"]
-            user.address = data["address"]
-            user.email = data["email"]
+            user.first_name = data["nombres"]
+            user.last_name = data["paterno"]
+            user.last_name2 = data["materno"]
+            user.CI = data["ci"]
+            user.RU = data["reguniv"]
+            user.phone = data["celular"]
+            user.telf = data["telefono"]
+            user.email = data["Correo"]
             user.type = User.STUDENT
-            user.id_student = data["RU"]
-            user.id_teacher = data["RU"]
-            user.username = data["RU"]
+            user.username = data["reguniv"]
             user.is_active = True
-            user.active=True
-            user.set_password(data['CI'])
+            user.active = True
+            user.set_password(data['ci'])
             user.save()
 
             msg = _("User was updated from server")
 
             data = {
-                "user":StudentModelSerializer(user).data,
-                "value":2,
+                "user": StudentModelSerializer(user).data,
+                "value": 2,
                 "detail": msg,
             }
             return Response(data)
-
         except User.DoesNotExist:
             pass
 
         new_user = User.objects.create(
-                first_name=data['first_name'],
-                last_name=data['last_name'],
-                last_name2=data['last_name2'],
-                CI=data['CI'],
-                RU=data['RU'],
-                position=data['position'],
-                academic_degree=data['academic_degree'],
-                abbreviation=data['abbreviation'],
-                phone=data['phone'],
-                telf=data['telf'],
-                address=data['address'],
-                email=data['email'],
-                type=User.STUDENT,
-                id_student=data['RU'],
-                id_teacher=data['RU'],
-                id_people=id_persona,
-                from_server=True,
-                username=data['RU'],
+            first_name=data['nombres'],
+            last_name=data['paterno'],
+            last_name2=data['materno'],
+            CI=data['ci'],
+            RU=data['reguniv'],
+            phone=data['celular'],
+            telf=data['telefono'],
+            email=data['Correo'],
+            type=User.STUDENT,
+            id_people=id_persona,
+            from_server=True,
+            username=data['reguniv'],
         )
 
-        new_user.set_password(data['CI'])
+        new_user.set_password(data['ci'])
         new_user.save()
 
         data = {
-            "user":StudentModelSerializer(new_user).data,
-            "value":1,
+            "user": StudentModelSerializer(new_user).data,
+            "value": 1,
             "detail": _("Tutor added"),
         }
         return Response(data)

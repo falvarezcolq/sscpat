@@ -28,7 +28,8 @@ SMTP_URL=email-smtp.us-east-1.amazonaws.com
 SMTP_PORT=587
 
 # external server
-EXTERNAL_HOST=https://ssalab.aeumsa.com
+#EXTERNAL_HOST=https://ssalab.aeumsa.com
+EXTERNAL_HOST=http://200.7.160.49:8080
 
 # cipher key
 CIPHER_KEY=JD21SQ0h6iiclkAdNd_0--ltxGFnN0HdsQExd7APDV0=
