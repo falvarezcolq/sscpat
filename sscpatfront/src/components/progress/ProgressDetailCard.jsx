@@ -140,6 +140,8 @@ const DetailCard = (props) => {
                         className="file-link"
                         href={file.path}
                         title={file.title}
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <div className="image-link">
                           <img

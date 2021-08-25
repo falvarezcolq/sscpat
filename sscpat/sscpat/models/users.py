@@ -12,7 +12,6 @@ from sscpat.sscpat.utils.models import SSCPATModel
 
 
 class User(SSCPATModel,AbstractUser):
-
     """ User Model.
     Extends from Django's abstract user and SSCPAT base model,
     """

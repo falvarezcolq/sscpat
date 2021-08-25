@@ -1,23 +1,18 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import Alert from "../../../components/atoms/Alert";
 import CreateForm from "../../../components/projects/CreateForm";
+import AlertMessage from "../../../components/atoms/AlertMessage";
 
 
 class ProjectsCreate extends Component {
 
   render() {
-    const { messages } = this.props; 
     const id = this.props.match.params.id;
 
     return (
       <section className="content">
-        {messages.payload && messages.payload.detail ? (
-          <Alert message={messages.payload.detail} color={messages.color} />
-        ) : (
-          ""
-        )}
+        <AlertMessage/>
         <div className="container-fluid">
           <div className="block-header">
             <h2>  <button

@@ -51,6 +51,8 @@ const TracingProgressCard = (props) => {
                     className="file-link"
                     href={filePath(file.path)}
                     title={file.title}
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <div className="image-link">
                       <img
