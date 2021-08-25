@@ -12,6 +12,7 @@ from sscpat.sscpat.utils.models import SSCPATModel
 
 
 class User(SSCPATModel,AbstractUser):
+
     """ User Model.
     Extends from Django's abstract user and SSCPAT base model,
     """
@@ -37,7 +38,9 @@ class User(SSCPATModel,AbstractUser):
     phone = models.CharField(_("phone"),max_length=255,blank=True,default="")
     telf = models.CharField(_("phone"),max_length=255,blank=True,default="")
     address = models.CharField(_("address"),max_length=1024,blank=True,default="")
-    email = models.EmailField( _("email"), )
+
+    email = models.EmailField( _("email"),)
+
     id_student = models.CharField(_("id student"),max_length=30,default="",blank=True)
     id_teacher = models.CharField(_("id docente"),max_length=30,default="",blank=True)
     id_people = models.CharField(_("id people"),max_length=30,unique=True)
