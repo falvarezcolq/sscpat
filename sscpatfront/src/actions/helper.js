@@ -155,6 +155,7 @@ export const getTimeSendDocument = (time) => {
 
 
 export const filePath=(path)=>{
+    console.log(path)
     if(!path.includes(HOST)){
       return HOST+path
     }

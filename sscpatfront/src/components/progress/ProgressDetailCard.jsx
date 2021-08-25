@@ -10,6 +10,7 @@ import {
   getNameDateMonth,
   getDateTime,
   getTypeFile,
+  filePath,
 } from "../../actions/helper";
 import pdf_image from "../../img/pdf_icon.png";
 import TextCheck from "../atoms/TextCheck";
@@ -138,7 +139,7 @@ const DetailCard = (props) => {
                     <div className="link-container">
                       <a
                         className="file-link"
-                        href={file.path}
+                        href={filePath(file.path)}
                         title={file.title}
                         target="_blank"
                         rel="noreferrer"

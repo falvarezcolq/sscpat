@@ -9,6 +9,7 @@ import {
   getTypeTracing,
   getTypeFile,
   getNameMonth,
+  filePath,
 } from "../../actions/helper";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
@@ -154,7 +155,7 @@ const ProgresCard = (props) => {
                             <div className="link-container">
                               <a
                                 className="file-link"
-                                href={file.path}
+                                href={filePath(file.path)}
                                 title={file.title}
                                 target="_blank"
                                 rel="noreferrer"
@@ -246,7 +247,7 @@ const ProgresCard = (props) => {
                                 <div className="link-container">
                                   <a
                                     className="file-link"
-                                    href={file.path}
+                                    href={filePath(file.path)}
                                     title={file.title}
                                     target="_blank"
                                     rel="noreferrer"
@@ -316,7 +317,7 @@ const ProgresCard = (props) => {
                               <div className="link-container">
                                 <a
                                   className="file-link"
-                                  href={file.path}
+                                  href={filePath(file.path)}
                                   title={file.title}
                                   target="_blank"
                                   rel="noreferrer"

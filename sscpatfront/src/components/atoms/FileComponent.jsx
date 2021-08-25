@@ -3,7 +3,7 @@ import pdf_image from "../../img/pdf_icon.png";
 import {
 
     getTypeFile,
-  
+    filePath,
   } from "../../actions/helper";
 
 const FileComponent = (props) => {
@@ -12,8 +12,10 @@ const FileComponent = (props) => {
         <div className="link-container">
             <a
             className="file-link"
-            href={file.path}
+            href={filePath(file.path)}
             title={file.title}
+            target="_blank"
+            rel="noreferrer"
             >
             <div className="image-link">
                 <img
