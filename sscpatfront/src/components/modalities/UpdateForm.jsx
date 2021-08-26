@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { validateInput } from "../../utils/Validations";
-import { get,update } from "../../actions/modalities";
+import { get, update } from "../../actions/modalities";
 import { list as listDocuments } from "../../actions/documents";
 import { useHistory } from "react-router-dom";
 import RadioButton from "../../components/atoms/RadioButton";
@@ -45,37 +45,62 @@ const initialValues = {
 const validate = {
   title: {
     is_required: true,
-    max_length: 30,
+    max_length: 255,
     min_lenght: 2,
   },
   description: {
     is_required: false,
     max_length: 1024,
   },
+  max_author: {
+    is_required: true,
+    integer: true,
+    max_integer: 2,
+    min_integer: 1,
+  },
+  month_duration: {
+    is_required: true,
+    integer: true,
+    max_integer: 12,
+    min_integer: 1,
+  },
+  month_max_duration: {
+    is_required: true,
+    integer: true,
+    max_integer: 12,
+    min_integer: 1,
+  },
+  month_extension: {
+    is_required: true,
+    integer: true,
+    max_integer: 6,
+    min_integer: 0,
+  },
 };
 
 const UpdateForm = (props) => {
-  const {resultsDocuments } = props;
+  const { resultsDocuments } = props;
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [focus, setFocus] = useState({});
   const [loading, setLoading] = useState(false);
-  const [errorFormMessage,setErrorFormMessage] = useState(false)
+  const [errorFormMessage, setErrorFormMessage] = useState(false);
   const history = useHistory();
   const [uploadError, setUploadError] = useState(null);
 
   const [normatives, setNormatives] = useState([]);
-  const [files,setFiles]=useState([]);
-  const [deleted, setDeleted]=useState([]);
-
+  const [files, setFiles] = useState([]);
+  const [deleted, setDeleted] = useState([]);
 
   const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
     const value = type === "number" ? +newValue : newValue;
     setValues({ ...values, [name]: value });
     const error = validateInput(name, value, validate[name]);
-    if(!error) { setErrorFormMessage(false)}
+    if (!error) {
+      setErrorFormMessage(false);
+    }
     setErrors({ ...errors, [name]: error });
   };
 
@@ -96,11 +121,9 @@ const UpdateForm = (props) => {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
-
-
   const uploadFile = (e) => {
     const file = e.target.files[0];
-  
+
     if (file) {
       if ("application/pdf" === file.type) {
         setNormatives([...normatives, file]);
@@ -109,7 +132,6 @@ const UpdateForm = (props) => {
         setUploadError("El archivo debe ser en formato PDF");
       }
     }
-
   };
   /** Remove files on list files */
   const removeFile = (name) => {
@@ -118,7 +140,7 @@ const UpdateForm = (props) => {
 
   const removeFileOnFiles = (id) => {
     setFiles(files.filter((f) => f.id !== id));
-    setDeleted([...deleted,id])
+    setDeleted([...deleted, id]);
   };
 
   const formValidation = () => {
@@ -146,9 +168,11 @@ const UpdateForm = (props) => {
     setTouched(formValidate.touched);
 
     // return if has an error in form
-    const hasNotError = Object.values(formValidate.errors).every((t) => t === null)
-    setErrorFormMessage(!hasNotError)
-    return hasNotError
+    const hasNotError = Object.values(formValidate.errors).every(
+      (t) => t === null
+    );
+    setErrorFormMessage(!hasNotError);
+    return hasNotError;
   };
 
   const loadErrorForm = (res) => {
@@ -186,10 +210,11 @@ const UpdateForm = (props) => {
     if (formValidation()) {
       let res;
       const requestValues = insertFiles();
-      res = await props.update(values.id,requestValues);
-      if (res) { 
-        setErrorFormMessage(true)
-        loadErrorForm(res)}
+      res = await props.update(values.id, requestValues);
+      if (res) {
+        setErrorFormMessage(true);
+        loadErrorForm(res);
+      }
     }
     setLoading(false);
   };
@@ -197,50 +222,75 @@ const UpdateForm = (props) => {
   const insertFiles = () => {
     const f = new FormData();
 
-    f.append('title',values.title);
-    f.append('modality',props.id);
-    f.append('description',values.description);
-    f.append('documents',JSON.stringify(values.documents));
-   
-    f.append('document_inscription',JSON.stringify(values.document_inscription));
-    f.append('max_author',values.max_author);
-    f.append('month_duration',values.month_duration);
-    f.append('month_max_duration',values.month_max_duration);
-    f.append('has_time_extension',values.has_time_extension);
-    f.append('month_extension',values.month_extension);
-    f.append('has_tutors',values.has_tutors);
-    f.append('has_institution',values.has_institution);
-    f.append('mandatory_month_report_progress_student',values.mandatory_month_report_progress_student);
-    f.append('frequency_report_student',values.frequency_report_student);
-    f.append('mandatory_month_report_tutor',values.mandatory_month_report_tutor);
-    f.append('frequency_report_tutor',values.frequency_report_tutor);
-    f.append('mandatory_month_report_external_tutor',values.mandatory_month_report_external_tutor);
-    f.append('frequency_report_external_tutor',values.frequency_report_external_tutor);
-    f.append('mandatory_month_report_institution',values.mandatory_month_report_institution);
-    f.append('frequency_report_institution',values.frequency_report_institution);
-    f.append('send_final_document',values.send_final_document);
-    f.append('send_abstract_final_document',values.send_abstract_final_document);
-    f.append('send_resolution_commission_aproval',values.send_resolution_commission_aproval);
-    f.append('deleted',JSON.stringify(deleted));
-    
+    f.append("title", values.title);
+    f.append("modality", props.id);
+    f.append("description", values.description);
+    f.append("documents", JSON.stringify(values.documents));
+
+    f.append(
+      "document_inscription",
+      JSON.stringify(values.document_inscription)
+    );
+    f.append("max_author", values.max_author);
+    f.append("month_duration", values.month_duration);
+    f.append("month_max_duration", values.month_max_duration);
+    f.append("has_time_extension", values.has_time_extension);
+    f.append("month_extension", values.month_extension);
+    f.append("has_tutors", values.has_tutors);
+    f.append("has_institution", values.has_institution);
+    f.append(
+      "mandatory_month_report_progress_student",
+      values.mandatory_month_report_progress_student
+    );
+    f.append("frequency_report_student", values.frequency_report_student);
+    f.append(
+      "mandatory_month_report_tutor",
+      values.mandatory_month_report_tutor
+    );
+    f.append("frequency_report_tutor", values.frequency_report_tutor);
+    f.append(
+      "mandatory_month_report_external_tutor",
+      values.mandatory_month_report_external_tutor
+    );
+    f.append(
+      "frequency_report_external_tutor",
+      values.frequency_report_external_tutor
+    );
+    f.append(
+      "mandatory_month_report_institution",
+      values.mandatory_month_report_institution
+    );
+    f.append(
+      "frequency_report_institution",
+      values.frequency_report_institution
+    );
+    f.append("send_final_document", values.send_final_document);
+    f.append(
+      "send_abstract_final_document",
+      values.send_abstract_final_document
+    );
+    f.append(
+      "send_resolution_commission_aproval",
+      values.send_resolution_commission_aproval
+    );
+    f.append("deleted", JSON.stringify(deleted));
+
     for (let index = 0; index < normatives.length; index++) {
       f.append(`normatives[${index}]`, normatives[index]);
     }
     return f;
   };
 
-
-  const loadingData = async () =>{
+  const loadingData = async () => {
     const id = props.id;
-    const object = await props.get(id)
+    const object = await props.get(id);
     setValues({
       ...values,
       ...object,
-      ...object.config
-    }) 
+      ...object.config,
+    });
     setFiles(object.normatives);
-
-  }
+  };
 
   const onChangeDocumentOfModality = (e) => {
     const selectId = e.target.value;
@@ -258,12 +308,9 @@ const UpdateForm = (props) => {
   };
 
   const removeDocOnModality = (id) => {
- 
     setValues({
       ...values,
-      documents: values.documents.filter(
-        (doc) => doc.id !== id
-      ),
+      documents: values.documents.filter((doc) => doc.id !== id),
     });
   };
 
@@ -283,7 +330,6 @@ const UpdateForm = (props) => {
   };
 
   const removeDocOnInscription = (id) => {
-  
     setValues({
       ...values,
       document_inscription: values.document_inscription.filter(
@@ -293,11 +339,9 @@ const UpdateForm = (props) => {
   };
 
   useEffect(() => {
-    loadingData()
+    loadingData();
     props.listDocuments();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  
 
   return (
     <div className="row clearfix">
@@ -305,7 +349,7 @@ const UpdateForm = (props) => {
         <div className="card">
           <div className="header">
             <h2>
-              Nueva Modalidad de titulación
+              Actualizar Modalidad de titulación
               <small> </small>
             </h2>
           </div>
@@ -316,7 +360,7 @@ const UpdateForm = (props) => {
                 <div className="col-md-12 col-lg-12">
                   <div className="align-center bg-primary">
                     <div className="color-name">
-                      Nueva modalidad de titulación
+                      Actualizar modalidad de titulación
                     </div>
                   </div>
                 </div>
@@ -408,15 +452,21 @@ const UpdateForm = (props) => {
                   style={{ marginBottom: "0" }}
                 >
                   <div className="form-group">
-                    <div className= "form-line" >
-                      <label htmlFor="files" >
+                    <div className="form-line">
+                      <label htmlFor="files">
                         Reglamento de la modalidad:{" "}
-                        <span className="btn-link" style={{color:"#aa0000",cursor:"pointer"}}>
-                          <i className="material-icons">attach_file</i>  Subir archivo
+                        <span
+                          className="btn-link"
+                          style={{ color: "#aa0000", cursor: "pointer" }}
+                        >
+                          <i className="material-icons">attach_file</i> Subir
+                          archivo
                         </span>
                       </label>
                       <br />
-                      {uploadError && (  <span className="col-red"> {uploadError}</span>)}
+                      {uploadError && (
+                        <span className="col-red"> {uploadError}</span>
+                      )}
                     </div>
 
                     {files.map((file, index) => (
@@ -430,7 +480,16 @@ const UpdateForm = (props) => {
                               className="btn-link"
                               title="Borrar"
                             >
-                              <span style={{ fontSize: "18x", color: "blue", fontWeight: "bold" }}> x </span>
+                              <span
+                                style={{
+                                  fontSize: "18x",
+                                  color: "blue",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {" "}
+                                x{" "}
+                              </span>
                             </button>
                           </span>
                         </h4>
@@ -456,8 +515,6 @@ const UpdateForm = (props) => {
                     className="input-file"
                   />
                 </div>
-
-
 
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
                   <SelectForm
@@ -506,7 +563,6 @@ const UpdateForm = (props) => {
                   </div>
                 </div>
 
-
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
                   <SelectForm
                     name="documents_of_inscription"
@@ -526,7 +582,6 @@ const UpdateForm = (props) => {
                         ))}
                       </>
                     ) : (
-                      
                       <option value="">Cargando..</option>
                     )}
                   </SelectForm>
@@ -541,7 +596,10 @@ const UpdateForm = (props) => {
                             {doc.title}
                             <button
                               type="button"
-                              onClick={removeDocOnInscription.bind(this, doc.id)}
+                              onClick={removeDocOnInscription.bind(
+                                this,
+                                doc.id
+                              )}
                               className="btn-link"
                               title="Borrar"
                             >
@@ -710,46 +768,51 @@ const UpdateForm = (props) => {
                   </RadioButton>
                 </div>
 
-                <div
-                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
-                  style={{ marginBottom: "0" }}
-                >
-                  <div className="form-group">
-                    <div
-                      className={
-                        focus.month_extension
-                          ? "form-line focused"
-                          : "form-line"
-                      }
-                    >
-                      <label style={{ width: "80%" }} htmlFor="month_extension">
-                        month_extension
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control-line pull-right"
-                        placeholder="Ingrese descripción de la modalidad de titulación"
-                        id="month_extension"
-                        name="month_extension"
-                        value={values.month_extension}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        onFocus={onFocus}
-                      />
-                    </div>
-                    {touched.month_extension && errors.month_extension ? (
-                      <label
-                        id="month_extension-error"
-                        className="error"
-                        htmlFor="month_extension"
+                {values.has_time_extension && (
+                  <div
+                    className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                    style={{ marginBottom: "0" }}
+                  >
+                    <div className="form-group">
+                      <div
+                        className={
+                          focus.month_extension
+                            ? "form-line focused"
+                            : "form-line"
+                        }
                       >
-                        {errors.month_extension}
-                      </label>
-                    ) : (
-                      ""
-                    )}
+                        <label
+                          style={{ width: "80%" }}
+                          htmlFor="month_extension"
+                        >
+                          month_extension
+                        </label>
+                        <input
+                          type="number"
+                          className="form-control-line pull-right"
+                          placeholder="Ingrese descripción de la modalidad de titulación"
+                          id="month_extension"
+                          name="month_extension"
+                          value={values.month_extension}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          onFocus={onFocus}
+                        />
+                      </div>
+                      {touched.month_extension && errors.month_extension ? (
+                        <label
+                          id="month_extension-error"
+                          className="error"
+                          htmlFor="month_extension"
+                        >
+                          {errors.month_extension}
+                        </label>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="col-md-12 col-lg-12">
                   <div className="align-center bg-primary">
@@ -823,158 +886,170 @@ const UpdateForm = (props) => {
                   </RadioButton>
                 </div>
 
-                <div
-                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
-                  style={{ marginBottom: "0" }}
-                >
-                  <div className="form-group">
-                    <div
-                      className={
-                        focus.frequency_report_student
-                          ? "form-line focused"
-                          : "form-line"
-                      }
-                    >
-                      <label htmlFor="frequency_report_student">
-                        Frencuencia de envío de avance del estudiante:
-                      </label>
-
-                      <select
-                        name="frequency_report_student"
-                        className="form-control show-tick"
-                        tabIndex="-98"
-                        onChange={onChange}
-                      >
-                        <option value="1">Mensual </option>
-                        <option value="2">Cada 2 meses</option>
-                        <option value="3">Cada 3 meses</option>
-                      </select>
-                    </div>
-                    {touched.frequency_report_student &&
-                    errors.frequency_report_student ? (
-                      <label
-                        id="frequency_report_student-error"
-                        className="error"
-                        htmlFor="frequency_report_student"
-                      >
-                        {errors.frequency_report_student}
-                      </label>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
-
-                <div
-                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
-                  style={{ marginBottom: "0" }}
-                >
-                  <RadioButton
-                    name="mandatory_month_report_tutor"
-                    value={values.mandatory_month_report_tutor}
-                    onChangeRadioButton={onChangeRadioButton}
+                {values.mandatory_month_report_progress_student && (
+                  <div
+                    className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                    style={{ marginBottom: "0" }}
                   >
-                    Revisión obligatoria del avance por el tutor
-                  </RadioButton>
-                </div>
-
-                <div
-                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
-                  style={{ marginBottom: "0" }}
-                >
-                  <div className="form-group">
-                    <div
-                      className={
-                        focus.frequency_report_tutor
-                          ? "form-line focused"
-                          : "form-line"
-                      }
-                    >
-                      <label htmlFor="frequency_report_tutor">
-                        Frencuencia de revisión del tutor
-                      </label>
-
-                      <select
-                        name="frequency_report_institution"
-                        className="form-control show-tick"
-                        tabIndex="-98"
-                        onChange={onChange}
+                    <div className="form-group">
+                      <div
+                        className={
+                          focus.frequency_report_student
+                            ? "form-line focused"
+                            : "form-line"
+                        }
                       >
-                        <option value="1">Mensual </option>
-                        <option value="2">Cada 2 meses</option>
-                        <option value="3">Cada 3 meses</option>
-                      </select>
+                        <label htmlFor="frequency_report_student">
+                          Frencuencia de envío de avance del estudiante:
+                        </label>
+
+                        <select
+                          name="frequency_report_student"
+                          className="form-control show-tick"
+                          tabIndex="-98"
+                          onChange={onChange}
+                        >
+                          <option value="1">Mensual </option>
+                          <option value="2">Cada 2 meses</option>
+                          <option value="3">Cada 3 meses</option>
+                        </select>
+                      </div>
+                      {touched.frequency_report_student &&
+                      errors.frequency_report_student ? (
+                        <label
+                          id="frequency_report_student-error"
+                          className="error"
+                          htmlFor="frequency_report_student"
+                        >
+                          {errors.frequency_report_student}
+                        </label>
+                      ) : (
+                        ""
+                      )}
                     </div>
-                    {touched.frequency_report_tutor &&
-                    errors.frequency_report_tutor ? (
-                      <label
-                        id="frequency_report_tutor-error"
-                        className="error"
-                        htmlFor="frequency_report_tutor"
-                      >
-                        {errors.frequency_report_tutor}
-                      </label>
-                    ) : (
-                      ""
-                    )}
                   </div>
-                </div>
+                )}
 
-                <div
-                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
-                  style={{ marginBottom: "0" }}
-                >
-                  <RadioButton
-                    name="mandatory_month_report_external_tutor"
-                    value={values.mandatory_month_report_external_tutor}
-                    onChangeRadioButton={onChangeRadioButton}
+                {values.has_tutors && (
+                  <div
+                    className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                    style={{ marginBottom: "0" }}
                   >
-                    Revisión obligatoria del avance por el tutor externo
-                  </RadioButton>
-                </div>
-
-                <div
-                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
-                  style={{ marginBottom: "0" }}
-                >
-                  <div className="form-group">
-                    <div
-                      className={
-                        focus.frequency_report_external_tutor
-                          ? "form-line focused"
-                          : "form-line"
-                      }
+                    <RadioButton
+                      name="mandatory_month_report_tutor"
+                      value={values.mandatory_month_report_tutor}
+                      onChangeRadioButton={onChangeRadioButton}
                     >
-                      <label htmlFor="frequency_report_external_tutor">
-                        Frecuencia de revisión por el tutor externo
-                      </label>
-
-                      <select
-                        name="frequency_report_external_tutor"
-                        className="form-control show-tick"
-                        tabIndex="-98"
-                        onChange={onChange}
-                      >
-                        <option value="1">Mensual </option>
-                        <option value="2">Cada 2 meses</option>
-                        <option value="3">Cada 3 meses</option>
-                      </select>
-                    </div>
-                    {touched.frequency_report_external_tutor &&
-                    errors.frequency_report_external_tutor ? (
-                      <label
-                        id="frequency_report_external_tutor-error"
-                        className="error"
-                        htmlFor="frequency_report_external_tutor"
-                      >
-                        {errors.frequency_report_external_tutor}
-                      </label>
-                    ) : (
-                      ""
-                    )}
+                      Revisión obligatoria del avance por el tutor
+                    </RadioButton>
                   </div>
-                </div>
+                )}
 
+                {values.has_tutors && values.mandatory_month_report_tutor && (
+                  <div
+                    className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                    style={{ marginBottom: "0" }}
+                  >
+                    <div className="form-group">
+                      <div
+                        className={
+                          focus.frequency_report_tutor
+                            ? "form-line focused"
+                            : "form-line"
+                        }
+                      >
+                        <label htmlFor="frequency_report_tutor">
+                          Frencuencia de revisión del tutor
+                        </label>
+
+                        <select
+                          name="frequency_report_institution"
+                          className="form-control show-tick"
+                          tabIndex="-98"
+                          onChange={onChange}
+                        >
+                          <option value="1">Mensual </option>
+                          <option value="2">Cada 2 meses</option>
+                          <option value="3">Cada 3 meses</option>
+                        </select>
+                      </div>
+                      {touched.frequency_report_tutor &&
+                      errors.frequency_report_tutor ? (
+                        <label
+                          id="frequency_report_tutor-error"
+                          className="error"
+                          htmlFor="frequency_report_tutor"
+                        >
+                          {errors.frequency_report_tutor}
+                        </label>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {values.has_tutors && (
+                  <div
+                    className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                    style={{ marginBottom: "0" }}
+                  >
+                    <RadioButton
+                      name="mandatory_month_report_external_tutor"
+                      value={values.mandatory_month_report_external_tutor}
+                      onChangeRadioButton={onChangeRadioButton}
+                    >
+                      Revisión obligatoria del avance por el tutor externo
+                    </RadioButton>
+                  </div>
+                )}
+
+                {values.has_tutors &&
+                  values.mandatory_month_report_external_tutor && (
+                    <div
+                      className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                      style={{ marginBottom: "0" }}
+                    >
+                      <div className="form-group">
+                        <div
+                          className={
+                            focus.frequency_report_external_tutor
+                              ? "form-line focused"
+                              : "form-line"
+                          }
+                        >
+                          <label htmlFor="frequency_report_external_tutor">
+                            Frecuencia de revisión por el tutor externo
+                          </label>
+
+                          <select
+                            name="frequency_report_external_tutor"
+                            className="form-control show-tick"
+                            tabIndex="-98"
+                            onChange={onChange}
+                          >
+                            <option value="1">Mensual </option>
+                            <option value="2">Cada 2 meses</option>
+                            <option value="3">Cada 3 meses</option>
+                          </select>
+                        </div>
+                        {touched.frequency_report_external_tutor &&
+                        errors.frequency_report_external_tutor ? (
+                          <label
+                            id="frequency_report_external_tutor-error"
+                            className="error"
+                            htmlFor="frequency_report_external_tutor"
+                          >
+                            {errors.frequency_report_external_tutor}
+                          </label>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                {values.has_institution && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -987,7 +1062,9 @@ const UpdateForm = (props) => {
                     Envío de reporte obligatorio por parte de la institución
                   </RadioButton>
                 </div>
+                )}
 
+                {values.has_institution &&  values.mandatory_month_report_institution && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -1029,8 +1106,9 @@ const UpdateForm = (props) => {
                     )}
                   </div>
                 </div>
+                )}
 
-                <div className="col-md-12 col-lg-12">
+                {/* <div className="col-md-12 col-lg-12">
                   <div className="align-center bg-primary">
                     <div className="color-name">
                       Configuración de finalización de modalidad
@@ -1076,25 +1154,22 @@ const UpdateForm = (props) => {
                     La modalidad requiere una resolución de aprobación por la
                     comision encargada
                   </RadioButton>
+                </div> */}
+
+                <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
+                  <AlertMessage />
                 </div>
 
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
-                  <AlertMessage/>
-                </div>
+                  {errorFormMessage && (
+                    <>
+                      <label className="bg-red">
+                        Error: Revise el formulario
+                      </label>
+                      <br />
+                    </>
+                  )}
 
-                <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
-                {errorFormMessage &&
-                      (<>
-                        <label
-                         className="bg-red"
-                        >
-                          Error: Revise el formulario 
-                        </label>
-                        <br/>
-                        </>
-                    )}
-
-                  
                   <button
                     type="button"
                     className="btn btn-default "

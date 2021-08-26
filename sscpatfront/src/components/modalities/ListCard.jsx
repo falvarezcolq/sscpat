@@ -6,18 +6,23 @@ import Config from "../../utils/Config";
 
 import Modal from "../../components/atoms/Modal";
 import Spinner from "../atoms/Spinner";
+import { 
+  filePath,
+
+} from "../../actions/helper";
+import pdf_image from "../../img/pdf_icon.png";
 
 const ListCard = (props) => {
   const { results } = props;
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     loadTable();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadTable = async () => {
     await props.list();
-    setLoading(false)
+    setLoading(false);
   };
 
   const [modal, setModal] = useState({
@@ -41,10 +46,14 @@ const ListCard = (props) => {
     if (res) {
       setModal({
         title: "Restricción",
-        message: (<>
-          <p>No se puede eliminar el documento: <strong>{obj.title}</strong></p>
-          <p style={{color:"red"}}>{res.detail}</p>
-          </>),
+        message: (
+          <>
+            <p>
+              No se puede eliminar el documento: <strong>{obj.title}</strong>
+            </p>
+            <p style={{ color: "red" }}>{res.detail}</p>
+          </>
+        ),
         cancel: null,
         confirm: null,
         accept: setOpenModal.bind(this, false),
@@ -65,23 +74,109 @@ const ListCard = (props) => {
     setOpenModal(true);
   };
 
-  // const showDetail = (id) => {
-  //   const obj = results.find((obj) => obj.id === id);
-  //   setModal({
-  //     title: "Modalidad de Titulación",
-  //     message: (
-  //       <p>
-  //         Modalidad de titulación: {obj.title} <br />
-  //         Descripción: {obj.description} <br />
-  //         Creado en {new Date(obj.created_at).toLocaleDateString("es-ES")}
-  //       </p>
-  //     ),
-  //     cancel: null,
-  //     confirm: null,
-  //     accept: setOpenModal.bind(this, false),
-  //   });
-  //   setOpenModal(true);
-  // };
+  const showDetail = (id) => {
+    const obj = results.find((obj) => obj.id === id);
+    setModal({
+      title: (<div>
+        <span className="col-blue-grey font-bold" style={{fontSize:"1.3rem"}}>Modalidad de Titulación: </span> <br />
+        <span className="col-blue"> {obj.title}</span>
+      </div>),
+      message: (
+      
+
+        <div className="row">
+          <div className="col-lg-12">
+            <p><span className="col-blue-grey font-bold">Descripción: </span> <br /><span> {obj.description}</span></p>
+          </div>
+          <div className="col-lg-6">
+            <span className="col-blue-grey font-bold">Documentos de inscripción a la modalidad:</span> <br />
+            <ul className="list-group">
+            {obj.document_inscription.map((d,index)=>(
+              <><li key={index}  className="list-group-item"> {d.title}</li>
+              </>
+            ))}
+            </ul>
+          </div>
+          <div className="col-lg-6">
+            <span className="col-blue-grey font-bold"> Documentos a elaborar:</span> <br />
+            <ul className="list-group">
+            {obj.documents.map((d,index)=>(
+              <><li key={index}  className="list-group-item"> {d.title}</li>
+              </>
+            ))}
+            </ul>
+            
+          </div>
+         
+          <div className="col-lg-12">
+            <span className="col-blue-grey font-bold" >Reglamentos de la modalidad: </span> <br />
+            { obj.normatives.length > 0 ? obj.normatives.map((file)=>(
+              <div key={file.id}>
+              <div className="link-container">
+                <a
+                  className="file-link"
+                  href={filePath(file.path)}
+                  title={file.title}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="image-link-small">
+                    <img
+                      className=""
+                      src={
+                        file.format ===
+                        "application/pdf"
+                          ? pdf_image
+                          : file.thumbnail
+                      }
+                      alt="presentation"
+                    />
+                  </div>
+                  <div className="text-link">
+                    <div className="text-link-title">
+                      {file.title}
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            )): "-- No tiene reglamentos subidos --"}
+            <br />
+          </div>
+          {/* <div className="col-lg-12">
+           <span className="col-blue-grey font-bold" >Configuración: </span> <br />
+            <ul className="list-group">
+            
+
+            <li className="list-group-item"><span className="col-blue-grey">Nro </span> : {obj.config.max_author} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"month_duration"</span> : {obj.config.month_duration} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"month_max_duration"</span> : {obj.config.month_max_duration} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"has_time_extension"</span> : {obj.config.has_time_extension} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"month_extension"</span> : {obj.config.month_extension} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"has_tutors"</span> : {obj.config.has_tutors} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"has_institution"</span> : {obj.config.has_institution} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_progress_student"</span> : {obj.config.mandatory_month_report_progress_student} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_student"</span> : {obj.config.frequency_report_student} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_tutor"</span> : {obj.config.mandatory_month_report_tutor} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_tutor"</span> : {obj.config.frequency_report_tutor} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_external_tutor"</span> : {obj.config.mandatory_month_report_external_tutor} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_external_tutor"</span> : {obj.config.frequency_report_external_tutor} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_institution"</span> : {obj.config.mandatory_month_report_institution} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_institution"</span> : {obj.config.frequency_report_institution} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"send_final_document"</span> : {obj.config.send_final_document} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"send_abstract_final_document"</span> : {obj.config.send_abstract_final_document} </li>
+            <li className="list-group-item"><span className="col-blue-grey">"send_resolution_commission_aproval"</span> : {obj.config.send_resolution_commission_aproval} </li>
+            
+            </ul>    
+          </div> */}
+        </div>
+      ),
+      cancel: null,
+      confirm: null,
+      accept: setOpenModal.bind(this, false),
+    });
+    setOpenModal(true);
+  };
 
   return (
     <>
@@ -109,7 +204,9 @@ const ListCard = (props) => {
 
             <div className="body">
               {loading ? (
-                <div className="align-center"><Spinner /></div>
+                <div className="align-center">
+                  <Spinner />
+                </div>
               ) : (
                 <div className="table-responsive">
                   {results.length === 0 ? (
@@ -136,11 +233,13 @@ const ListCard = (props) => {
                                 )}{" "}
                               </td>
                               <td>
-                                {/* <button className="btn btn-default btn-xs btn-circle"
-                              title="Detalle"
-                              onClick={showDetail.bind(this,obj.id)}>
-                                <i className="material-icons">info</i>
-                              </button> */}
+                                <button
+                                  className="btn btn-default btn-xs btn-circle"
+                                  title="Detalle"
+                                  onClick={showDetail.bind(this, obj.id)}
+                                >
+                                  <i className="material-icons">info</i>
+                                </button>
 
                                 <Link
                                   to={Config.aModalitiesUrl + "/" + obj.id}
@@ -197,7 +296,7 @@ const ListCard = (props) => {
               onClick={modal.confirm}
               disabled={isDeleting}
             >
-              {isDeleting ? "Borrando.. ":"Comfirmar"}
+              {isDeleting ? "Borrando.. " : "Comfirmar"}
             </button>
           )}
 

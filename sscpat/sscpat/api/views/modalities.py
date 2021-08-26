@@ -94,7 +94,6 @@ class ModalityViewSet(mixins.CreateModelMixin,
         # data['modality'] = modality.pk
         serializerConfig = ModalityConfigModelSerializer(data=self.request.data)
         serializerConfig.is_valid(raise_exception=True)
-
         ModalityConfig.objects.create(modality=modality,**serializerConfig.data)
 
 
@@ -168,13 +167,10 @@ class ModalityViewSet(mixins.CreateModelMixin,
             for normative_id in deleted:
                 try:
                     normative = instance.normatives.get(id=normative_id)
-                    normative.active =False;
+                    normative.active = False ;
                     normative.save()
                 except Normative.DoesNotExist:
                     pass
-
-
-
 
         if 'documents' in data:
             documents =  json.loads(data['documents'])

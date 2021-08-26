@@ -49,8 +49,33 @@ const validate = {
   },
   description: {
     is_required: false,
-    max_length: 255,
+    max_length: 1024,
   },
+  max_author:{
+    is_required:true,
+    integer:true,
+    max_integer:2,
+    min_integer:1,
+  },
+  month_duration:{
+    is_required:true,
+    integer:true,
+    max_integer:12,
+    min_integer:1,
+  },
+  month_max_duration:{
+    is_required:true,
+    integer:true,
+    max_integer:12,
+    min_integer:1,
+  },
+  month_extension:{
+    is_required:true,
+    integer:true,
+    max_integer:6,
+    min_integer:0,
+  }
+
 };
 
 const CreateForm = (props) => {
@@ -545,8 +570,15 @@ const CreateForm = (props) => {
                       }
                     >
                       <label style={{ width: "80%" }} htmlFor="max_author">
-                        Cantida máxima de autores:
+                        Cantidad máxima de autores:
                       </label>
+                      {/* <select 
+                      name="max_author" id="max_author"
+                      className="form-control-line pull-right"
+                      >
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                      </select> */}
                       <input
                         type="number"
                         className="form-control-line pull-right"
@@ -677,6 +709,7 @@ const CreateForm = (props) => {
                   </RadioButton>
                 </div>
 
+                {values.has_time_extension && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -717,6 +750,7 @@ const CreateForm = (props) => {
                     )}
                   </div>
                 </div>
+                )}
 
                 <div className="col-md-12 col-lg-12">
                   <div className="align-center bg-primary">
@@ -785,11 +819,11 @@ const CreateForm = (props) => {
                     value={values.mandatory_month_report_progress_student}
                     onChangeRadioButton={onChangeRadioButton}
                   >
-                    Es obligatorio el envío del avance del proyecto por el
-                    estudiante
+                    Es obligatorio el envío del avance del proyecto por el estudiante
                   </RadioButton>
                 </div>
-
+                
+                {values.mandatory_month_report_progress_student && ( 
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -831,7 +865,10 @@ const CreateForm = (props) => {
                     )}
                   </div>
                 </div>
+                )}
 
+
+                {values.has_tutors && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -844,7 +881,9 @@ const CreateForm = (props) => {
                     Revisión obligatoria del avance por el tutor
                   </RadioButton>
                 </div>
-
+                )}
+              
+                {values.has_tutors && values.mandatory_month_report_tutor && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -886,6 +925,10 @@ const CreateForm = (props) => {
                     )}
                   </div>
                 </div>
+                )}
+
+
+                {values.has_tutors && (
 
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
@@ -899,7 +942,9 @@ const CreateForm = (props) => {
                     Revisión obligatoria del avance por el tutor externo
                   </RadioButton>
                 </div>
+                )}
 
+                {values.has_tutors && values.mandatory_month_report_external_tutor && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -941,7 +986,10 @@ const CreateForm = (props) => {
                     )}
                   </div>
                 </div>
+                )}
 
+
+                {values.has_institution && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -954,7 +1002,9 @@ const CreateForm = (props) => {
                     Envío de reporte obligatorio por parte de la institución
                   </RadioButton>
                 </div>
+                )}
 
+                {values.mandatory_month_report_institution && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -996,16 +1046,17 @@ const CreateForm = (props) => {
                     )}
                   </div>
                 </div>
+                )}
 
-                <div className="col-md-12 col-lg-12">
+                {/* <div className="col-md-12 col-lg-12">
                   <div className="align-center bg-primary">
                     <div className="color-name">
                       Configuración de finalización de modalidad
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <div
+                {/* <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
                 >
@@ -1016,9 +1067,9 @@ const CreateForm = (props) => {
                   >
                     La modalidad requiere el envío de documento final
                   </RadioButton>
-                </div>
+                </div> */}
 
-                <div
+                {/* <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
                 >
@@ -1029,9 +1080,9 @@ const CreateForm = (props) => {
                   >
                     La modalidad requiere un resumen del documento final
                   </RadioButton>
-                </div>
+                </div> */}
 
-                <div
+                {/* <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
                 >
@@ -1043,7 +1094,7 @@ const CreateForm = (props) => {
                     La modalidad requiere una resolución de aprobación por la
                     comision encargada
                   </RadioButton>
-                </div>
+                </div> */}
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
                   <AlertMessage/>
                 </div>

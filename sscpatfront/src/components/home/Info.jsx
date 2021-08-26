@@ -57,6 +57,7 @@ const Info = (props) => {
         </Link>
       </div>
       <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <Link to={Config.aTutorUrl} className="btn-link">
         <div className="info-box bg-cyan hover-expand-effect">
           <div className="icon">
             <i className="material-icons">help</i>
@@ -74,8 +75,10 @@ const Info = (props) => {
             </div>
           </div>
         </div>
+        </Link>
       </div>
       <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <Link to={Config.aReportsProjectsUrl} className="btn-link">
         <div className="info-box bg-light-green hover-expand-effect">
           <div className="icon">
             <i className="material-icons">forum</i>
@@ -93,8 +96,10 @@ const Info = (props) => {
             </div>
           </div>
         </div>
+        </Link>
       </div>
       <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <Link to={Config.aReportsTutorsUrl} className="btn-link">
         <div className="info-box bg-orange hover-expand-effect">
           <div className="icon">
             <i className="material-icons">person_add</i>
@@ -112,7 +117,9 @@ const Info = (props) => {
             </div>
           </div>
         </div>
+        </Link>
       </div>
+    
     </div>
   );
 };

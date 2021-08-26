@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { list, remove } from "../../actions/documents";
+import { get, list, remove } from "../../actions/documents";
 import { Link } from "react-router-dom";
 import Config from "../../utils/Config";
 
 import Modal from "../../components/atoms/Modal";
 import Spinner from "../atoms/Spinner";
-import { getTimeSendDocument } from "../../actions/helper";
+import { getDate, getTimeSendDocument } from "../../actions/helper";
 
 const ListCard = (props) => {
   const { results } = props;
@@ -71,9 +71,11 @@ const ListCard = (props) => {
       title: "Documento",
       message: (
         <p>
-          Nombre del documento: {obj.title} <br />
-          Descripción: {obj.description} <br />
-          Creado en {new Date(obj.created_at).toLocaleDateString("es-ES")}
+          <span className="col-blue-grey">Nombre del documento: </span>{obj.title} <br />
+          <span className="col-blue-grey">Descripción: </span>{obj.description} <br />
+          <span className="col-blue-grey">Entregar: </span>{getTimeSendDocument(obj.time_send)} <br />
+          <span className="col-blue-grey">Creado en:  </span>{getDate(obj.created_at)}
+
         </p>
       ),
       cancel: null,
@@ -147,7 +149,7 @@ const ListCard = (props) => {
                                   onClick={showDetail.bind(this, obj.id)}
                                 >
                                   <i className="material-icons">info</i>
-                                </button>
+                                </button> 
 
                                 <Link
                                   to={Config.aDocumentsUrl + "/" + obj.id}
