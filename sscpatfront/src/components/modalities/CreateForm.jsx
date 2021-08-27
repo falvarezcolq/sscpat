@@ -88,7 +88,6 @@ const CreateForm = (props) => {
   const [errorFormMessage, setErrorFormMessage] = useState(false);
   const history = useHistory();
   const [uploadError, setUploadError] = useState(null);
-
   const [normatives, setNormatives] = useState([]);
   // const [modalityDocuments, setModalityDocuments] = useState([]);
   // const [inscriptionDocuments, setInscriptionDocuments] = useState([]);
@@ -1004,7 +1003,7 @@ const CreateForm = (props) => {
                 </div>
                 )}
 
-                {values.mandatory_month_report_institution && (
+                {values.has_institution &&  values.mandatory_month_report_institution && (
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
@@ -1096,7 +1095,7 @@ const CreateForm = (props) => {
                   </RadioButton>
                 </div> */}
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
-                  <AlertMessage/>
+                  <AlertMessage/> 
                 </div>
 
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">

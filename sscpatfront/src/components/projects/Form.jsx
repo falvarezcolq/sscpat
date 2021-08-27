@@ -14,6 +14,7 @@ import { initialValues, validate } from "./states";
 import ListNames from "../atoms/ListNames";
 import Config from "../../utils/Config";
 import AlertMessage from "../../components/atoms/AlertMessage";
+import { getDate } from "../../actions/helper";
 
 const Form = (props) => {
 
@@ -359,16 +360,57 @@ const Form = (props) => {
             )}
           </SelectForm>
           
+          
           { values.date_init &&
-          <h5>Fecha de inicio: {new Date(values.date_init).toLocaleDateString("es-ES")}</h5>
+          <h5>Fecha de inicio: { getDate(values.date_init)} 
+            {/* {new Date(values.date_init).toLocaleDateString("es-ES")} */}
+            {/* {" "}  */}
+          </h5>
           }
           {values.date_end && 
-          <h5>Fecha de finalizacion: {new Date(values.date_end).toLocaleDateString("es-ES")}</h5>
+          <h5>Fecha de finalizacion:  { getDate(values.date_end)} 
+          {/* {new Date(values.date_end).toLocaleDateString("es-ES")} */}
+          </h5>
           }
-
         </div>
+        { values.date_init &&
+        <div className="col-lg-4">
+          <InputForm
+            name="date_init"
+            value={values.date_init}
+            touched={touched.date_init}
+            error={errors.date_init}
+            focus={focus.date_init}
+            required={true}
+            type="date"
+            placeholder="Fecha de inicio"
+            onChange={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            title="Fecha de inicio "
+          />
+        </div>
+        }
 
-        <div className="col-lg-8 col-md-8">
+        { values.date_end &&
+                <div className="col-lg-4">
+                  <InputForm
+                    name="date_end"
+                    value={values.date_end}
+                    touched={touched.date_end}
+                    error={errors.date_end}
+                    focus={focus.date_end}
+                    required={true}
+                    type="date"
+                    placeholder="Fecha de finalización"
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    onFocus={onFocus}
+                    title="Fecha de finalización "
+                  />
+                </div>
+        }
+        <div className="col-lg-12 col-md-12">
           <SelectForm
             name="modality"
             value={values.modality}

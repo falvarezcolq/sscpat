@@ -93,7 +93,8 @@ export const getDateTime = (dateTime)=>{
 
 
 export const getDate = (datetimes)=>{
-  const date =  new Date(datetimes)
+  var  date =  new Date(datetimes)
+  date.setUTCHours(4)
   return (
     date.getDate() + " de " +
     getNameMonth( date.getMonth() +1).toLocaleLowerCase() + " " +

@@ -137,7 +137,7 @@ const ReportInscriptionTable = (props) => {
                             <td>
                               <Link to={Config.aProjectsUrl+"/"+project.id}>
                                 {project.title_academic_project}
-                                <br /> <small> {project.modality.title}</small>
+                                <br /> <small className="col-blue-grey"> {project.modality.title}</small>
                               </Link>
                             </td>   
                             <td><Link to={Config.aStudentsUrl+"/"+project.student.id}>

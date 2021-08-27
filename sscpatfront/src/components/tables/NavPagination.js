@@ -3,6 +3,10 @@ import React from "react";
 
 const NavPagination = ({ context , loadList}) => {
 
+  // NavPaginations was created for table list with 
+  // multiple pageXOffset, this shows links that 
+  // leads to the different pages.
+
   return (
     <nav aria-label="...">
       <ul className="pagination">
