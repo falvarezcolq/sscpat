@@ -16,6 +16,7 @@ from rest_framework.permissions import IsAuthenticated,IsAdminUser,AllowAny
 from rest_framework.response import  Response
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.serializers import ValidationError
 
 
 
@@ -27,6 +28,8 @@ from sscpat.sscpat.models.inscriptioninitialdocuments import InscriptionInitialD
 
 
 # Serializers
+
+from sscpat.sscpat.api.serializers.users import UserCheckStudentSerializer,ArrayStudentSerializer
 from sscpat.sscpat.api.serializers.inscriptions import (
     InscriptionModelSerializer,
     InscriptionCompleteModelSerializer,
@@ -56,7 +59,11 @@ from sscpat.sscpat.actions.notifications import (
     assign_project_to_tutor_notification,
 )
 
-from sscpat.taskapp.tasks import send_assign_project_to_student,send_assign_project_to_tutor
+from sscpat.taskapp.tasks import (
+    send_assign_project_to_student,
+    send_assign_project_to_tutor,
+    send_email_disassociate_project_to_tutor,
+)
 
 class InscriptionViewSet(mixins.CreateModelMixin,
                             mixins.RetrieveModelMixin,
@@ -130,7 +137,6 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                     assign_project_to_tutor_notification(inscription_id=instance.id, tutor_id=t.id, user_action_id=user.id)
                     send_assign_project_to_tutor.delay(inscription_pk=instance.id,tutor_pk=t.id)
                 except Tutor.DoesNotExist:
-
                     pass
 
         if 'external_tutors' in data:
@@ -164,7 +170,6 @@ class InscriptionViewSet(mixins.CreateModelMixin,
 
         send_assign_project_to_student.delay(inscription_pk=instance.id)
 
-
         return instance
 
     def update(self, request, *args, **kwargs):
@@ -181,28 +186,57 @@ class InscriptionViewSet(mixins.CreateModelMixin,
 
     def perform_update(self, serializer,instance):
         serializer.save()
-
         data = self.request.data
 
         if 'tutors' in data:
             tutors = data['tutors']
-            instance.tutors.clear()
+            not_delete_tutors = [] # save array id from tutors registereds
             for tutor in tutors:
                 try:
-                    t = Tutor.objects.get(id=tutor['id'],active=True)
-                    instance.tutors.add(t)
+                    if not instance.tutors.filter(pk=tutor['id']).exists():
+                        new_tutor = Tutor.objects.get(id=tutor['id'], active=True)
+                        instance.tutors.add(new_tutor)
+                        not_delete_tutors.append(tutor['id'])
+                        ## send email
+                        send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=new_tutor.id)
+                    else:
+                        not_delete_tutors.append(tutor['id'])
+
                 except Tutor.DoesNotExist:
                     pass
+
+            for remove_tutor in instance.tutors.exclude(pk__in=not_delete_tutors):
+                # send email down project to tutor
+                send_email_disassociate_project_to_tutor(inscription_pk=instance.id, tutor_pk=remove_tutor.id)
+                # send_email_down
+                instance.tutors.remove(remove_tutor)
+
+
 
         if 'external_tutors' in data:
             external_tutors = data['external_tutors']
             instance.external_tutors.clear()
+            not_delete_etutors = []
+
             for tutor in external_tutors:
                 try:
-                    t = ExternalTutor.objects.get(id=tutor['id'],active=True)
-                    instance.external_tutors.add(t)
+                    if not instance.external_tutors.filter(pk=tutor['id']).exists():
+                        new_tutor = ExternalTutor.objects.get(id=tutor['id'],active=True)
+                        instance.external_tutors.add(new_tutor)
+                        not_delete_etutors.append(tutor['id'])
+                        # send mail
+                        send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=new_tutor.id)
+                    else:
+                        not_delete_etutors.append(tutor['id'])
+
                 except Tutor.DoesNotExist:
                     pass
+
+            for remove_tutor in instance.external_tutors.exclude(pk__in=not_delete_etutors):
+
+                send_email_disassociate_project_to_tutor(inscription_pk=instance.id, tutor_pk=remove_tutor.id)
+                # send email down project to tutor
+                instance.external_tutors.remove(remove_tutor)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -237,10 +271,59 @@ class InscriptionViewSet(mixins.CreateModelMixin,
         }
         return Response(data)
 
+    @action(detail=True,methods=["POST"])
+    def add_author(self,request,*args,**kwargs):
+        inscription = self.get_object()
+        serializer = UserCheckStudentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        author = Student.objects.get(pk=request.data["user"])
+        inscription.authors.add(author)
+        return Response(InscriptionCompleteModelSerializer(inscription).data)
 
+    @action(detail=True,methods=["POST"])
+    def remove_author(self,request,*args,**kwargs):
+        inscription = self.get_object()
+        serializer = ArrayStudentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        author = Student.objects.get(pk=request.data["user"])
+        inscription.authors.remove(author)
+        return Response(InscriptionCompleteModelSerializer(inscription).data)
 
+    @action(detail=True,methods=['POST'])
+    def add_authors(self,request,*args,**kwargs):
+        inscription = self.get_object()
+        serializer = ArrayStudentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        id_students = sorted(set(request.data['users']))
 
+        if len(id_students) > inscription.modality.config.max_author :
+            return Response({'detail':_("Not allowed more authors.")},status.HTTP_400_BAD_REQUEST)
 
+        if len(id_students) == 0 :
+            return Response({'detail': _("At least one user.")}, status.HTTP_400_BAD_REQUEST)
+
+        not_delete_authors=[]
+        for id in id_students:
+
+            try:
+                if not inscription.authors.filter(pk=4).exists():
+                    author = Student.objects.get(pk=str(id), active=True)
+                    inscription.authors.add(author)
+                    not_delete_authors.append(id)
+                    # send mail
+                    # send_assign_project_to_student.delay(inscription_pk=inscription.id, user_pk=author.id)
+                else:
+                    not_delete_authors.append(id)
+
+            except Student.DoesNotExist:
+                pass
+        #
+        for remove_author in inscription.authors.exclude(pk__in=not_delete_authors):
+            # send_email_disassociate_project_to_tutor(inscription_pk=instance.id, tutor_pk=remove_tutor.id)
+            # send email down project to tutor
+            inscription.authors.remove(remove_author)
+
+        return Response(InscriptionCompleteModelSerializer(inscription).data)
 
 
 class InscriptionByTutorsViewSet(

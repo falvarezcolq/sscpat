@@ -229,4 +229,25 @@ class UserShortDetailSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "last_name2",
+            "CI",
         ]
+
+
+class UserCheckStudentSerializer(serializers.Serializer):
+    user = serializers.IntegerField()
+
+    def validate_user(self, data):
+        try:
+            user = User.objects.get(pk=data,active=True,type=User.STUDENT);
+        except User.DoesNotExist:
+            raise exceptions.ValidationError(_("User not valid"))
+
+        return data
+
+
+
+class ArrayStudentSerializer(serializers.Serializer):
+
+    users = serializers.ListField(
+        child=serializers.IntegerField(min_value=1)
+    )

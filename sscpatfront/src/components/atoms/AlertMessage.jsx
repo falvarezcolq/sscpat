@@ -24,6 +24,7 @@ const AlertMessage = (props) => {
           <span aria-hidden="true">×</span>
         </button>
         {messages.payload.detail}
+        {/* {messages.payload} */}
       </div>
     </>
   );

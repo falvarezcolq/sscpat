@@ -115,7 +115,7 @@ const ListCard = (props) => {
                             <th>Año</th>
                             <th>Semestre</th>
                             <th>Fecha de inicio</th>
-                            <th>Fecha de finalizacion</th>
+                            <th>Fecha de finalización</th>
                             <th>Registrado</th>
                             <th>Opciones</th>
                           </tr>

@@ -2,7 +2,9 @@ import {
   MESSAGE_INFO,
    MESSAGE_DANGER,
     GET_ERRORS,
-  MESSAGE_DEFAULT, } from "./types";
+  MESSAGE_DEFAULT,
+  MESSAGE_ALERT
+ } from "./types";
 
 // INFORMATION
 export const messageInfo = (msg) => {
@@ -12,6 +14,14 @@ export const messageInfo = (msg) => {
   };
 };
 
+
+// warning
+export const messageWarning = (msg) => {
+  return {
+    type: MESSAGE_ALERT,
+    payload: msg,
+  };
+};
 // DANGER
 
 export const messageDanger = (msg) => {

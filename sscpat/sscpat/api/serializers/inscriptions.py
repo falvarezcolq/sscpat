@@ -20,8 +20,8 @@ from rest_framework import serializers
 # from sscpat.sscpat.api.serializers.students import StudentModelSerializer
 from sscpat.sscpat.api.serializers.institutions import InstitutionModelSerializer
 from sscpat.sscpat.api.serializers.tutors import TutorMinimalListModelSerializer
-from sscpat.sscpat.api.serializers.users import  UserModelSerializer
-from sscpat.sscpat.api.serializers.modalities import ModalityModelSerializer
+from sscpat.sscpat.api.serializers.users import  UserModelSerializer,UserShortDetailSerializer
+from sscpat.sscpat.api.serializers.modalities import ModalityModelSerializer,ModalityModelConfigSerializer
 from sscpat.sscpat.api.serializers.academicperiods import AcademicPeriodModelSerializer
 
 
@@ -75,8 +75,10 @@ class InscriptionModelSerializer(ModelSerializer):
         validated_data['month_max_duration'] = config.month_max_duration
         validated_data['has_time_extension'] = config.has_time_extension
         validated_data['month_extension'] = config.month_extension
-
-        return Inscription.objects.create(**validated_data);
+        instance = Inscription.objects.create(**validated_data)
+        instance.authors.add(validated_data['student'])
+        instance.save()
+        return instance;
 
 
 
@@ -90,9 +92,10 @@ class InscriptionCompleteModelSerializer(ModelSerializer):
     tutors = TutorMinimalListModelSerializer(many=True)
     external_tutors = TutorMinimalListModelSerializer(many=True)
     institution = InstitutionModelSerializer(many=False)
-    modality = ModalityModelSerializer(many=False)
+    modality = ModalityModelConfigSerializer(many=False)
     academic_period = AcademicPeriodModelSerializer(many=False)
     progress = SerializerMethodField()
+    authors = UserShortDetailSerializer(many=True)
 
     def get_progress(self,obj):
         return obj.tracingstudents.filter(active=True).count()
@@ -102,6 +105,7 @@ class InscriptionCompleteModelSerializer(ModelSerializer):
         fields =[
             "id",
             "student",
+            "authors",
             "modality",
             "academic_period",
             "state",

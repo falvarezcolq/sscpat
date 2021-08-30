@@ -12,6 +12,8 @@ import {
   // GET_ACADEMIC_PERIOD,
   GET_DOCUMENT_PROJECT,
   DATE_MONTHS,
+  ADD_USER_TO_AUTHOR_LIST,
+  REMOVE_USER_TO_AUTHOR_LIST,
 } from "./types";
 
 import { acceptErrors, acceptErrorsWhenIsDelete } from "../actions/messages";
@@ -242,6 +244,59 @@ export const getMonths = (id) => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: DATE_MONTHS,
+        payload: res.data,
+      });
+      return res.data;
+    })
+    .catch((err) => {
+      return acceptErrors({
+        err: err,
+        dispatch: dispatch,
+        type: FORM_FAILED,
+      });
+    });
+  return res;
+};
+
+
+
+export const add_to_author_list = (id) => (dispatch,getState) =>{
+  const students = getState().students.results;
+  const project  = getState().projects.object;
+  const student  = students.find((obj)=> {return obj.id == id});
+  if (student && project){
+    dispatch({
+      type: ADD_USER_TO_AUTHOR_LIST,
+      payload: student,
+    });
+  } 
+}
+
+export const remove_author_list = (id) => (dispatch) =>{
+
+  dispatch({
+    type: REMOVE_USER_TO_AUTHOR_LIST,
+    payload: id,
+  });
+  
+}
+
+
+
+// GET months of develop for project
+export const add_authors = (id,users) => async (dispatch) => {
+  dispatch({ type: MESSAGE_DEFAULT });
+  const config = await getAuthHeader();
+
+  const res = await axios
+    .post(ConfigUrl + id + "/add_authors/", users , config)
+    .then((res) => {
+      dispatch({
+        type: MESSAGE_SUCCESS,
+        payload: { detail: `Los autores fueron agregados con éxito` },
+      });
+      dispatch({
+        type: GET_PROJECT,
         payload: res.data,
       });
       return res.data;

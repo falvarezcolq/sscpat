@@ -1,3 +1,4 @@
+import { object } from "prop-types";
 import {
   ADD_PROJECT,
   LIST_PROJECT,
@@ -9,6 +10,8 @@ import {
   UPDATE_DOCUMENT_LIST,
   UPDATE_DOCUMENT_INSCRIPTION_LIST,
   DATE_MONTHS,
+  ADD_USER_TO_AUTHOR_LIST,
+  REMOVE_USER_TO_AUTHOR_LIST,
 } from "../../actions/types";
 
 const initialState = {
@@ -20,6 +23,7 @@ const initialState = {
   results: [],
   context: {},
   object: null,
+  authors:[],
   list: [],
   documentList:[],
   initialDocumentList:[],
@@ -97,6 +101,24 @@ export default function projects(state = initialState, action) {
       return {
         ...state,
         date_months:[...action.payload.months],
+      };
+    
+    case ADD_USER_TO_AUTHOR_LIST:
+      return {
+        ...state,
+        object:{
+          ...state.object,
+          authors:[...state.object.authors.filter((obj) => obj.id !== action.payload.id),action.payload]
+        }
+      };
+    
+    case REMOVE_USER_TO_AUTHOR_LIST:
+      return {
+        ...state,
+        object:{
+          ...state.object,
+          authors:[...state.object.authors.filter((obj) => obj.id !== action.payload)]
+        }
       };
     default:
       return state;

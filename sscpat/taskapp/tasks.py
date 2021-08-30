@@ -87,7 +87,7 @@ def send_welcome_email(user_pk):
 
 
 @task(name='send_assign_project_to_student', max_retries=3)
-def send_assign_project_to_student(inscription_pk):
+def send_assign_project_to_student(inscription_pk,student_pk):
     """Assign project to student"""
     time.sleep(3)
     inscription = Inscription.objects.get(pk=inscription_pk)
@@ -141,6 +141,28 @@ def send_assign_project_to_tutor(inscription_pk,tutor_pk):
     send_email(subject, content, tutor.email)
 
 
+
+@task(name='send_email_disassociate_project_to_tutor', max_retries=3)
+def send_email_disassociate_project_to_tutor(inscription_pk,tutor_pk):
+    """Assign priject to tutor"""
+    time.sleep(3)
+    inscription = Inscription.objects.get(pk=inscription_pk)
+    tutor = User.objects.get(pk=tutor_pk)
+    student = inscription.student
+    tutors = ", ".join([ x.abbreviation + " "+str(x) for x in inscription.tutors.all()])
+    external_tutors = ", ".join([x.abbreviation + " "+str(x) for x in inscription.external_tutors.all()])
+
+    subject = '¡Proyecto fuera de su tutoría! El proyecto académico ya no esta bajo su tutoría:  '  + inscription.academic_period.title +' '+ inscription.title_academic_project
+
+    content = render_to_string(
+        'emails/users/account_disassociate_project_to_tutor.html',
+        {
+            'tutor':tutor,
+            'student': student,
+            'inscription': inscription,
+        }
+    )
+    send_email(subject, content, tutor.email)
 
 @task(name='send_uploaded_tracing_student', max_retries=3)
 def send_uploaded_tracing_student(tracing_student_pk,user_pk):

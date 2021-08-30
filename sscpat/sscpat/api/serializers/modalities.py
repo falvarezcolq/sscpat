@@ -66,3 +66,18 @@ class ModalityModelCompleteSerializer(ModelSerializer):
             "normatives",
             "config",
         ]
+
+
+class ModalityModelConfigSerializer(ModelSerializer):
+
+    config = ModalityConfigModelSerializer(many=False)
+
+    class Meta:
+        model = Modality
+        fields =[
+            "id",
+            "title",
+            "description",
+            "created_at",
+            "config",
+    ]
