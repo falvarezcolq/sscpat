@@ -55,7 +55,7 @@ class StudentListModelSerializer(ModelSerializer):
     total_current = SerializerMethodField()
 
     def get_current_project(self,student):
-        inscription = student.projects.filter(state=Inscription.UNDER_DEVELOPMENT,active=True).last()
+        inscription = student.sprojects.filter(state=Inscription.UNDER_DEVELOPMENT,active=True).last()
         if inscription:
             return InscriptionStatiticsModelSerializer(inscription).data
         return None
@@ -67,7 +67,7 @@ class StudentListModelSerializer(ModelSerializer):
         return 0
 
     def get_total(self,student):
-        return student.projects.filter(active=True).count()
+        return student.sprojects.filter(active=True).count()
 
     def get_total_current(self,obj):
         return 0

@@ -12,7 +12,7 @@ from rest_framework.serializers import (
 from sscpat.sscpat.models import Tutor,Inscription,TracingProgress,TracingStudent
 from rest_framework.exceptions import ValidationError
 # Serializers
-from sscpat.sscpat.api.serializers.users import UserModelSerializer
+from sscpat.sscpat.api.serializers.users import UserModelSerializer,UserShortDetailSerializer
 from sscpat.sscpat.api.serializers.academicperiods import AcademicPeriodModelSerializer
 from sscpat.sscpat.api.serializers.modalities import ModalityModelSerializer
 from sscpat.sscpat.utils.helper import get_date_months
@@ -25,6 +25,7 @@ class InscriptionReportModelSerializer(ModelSerializer):
     modality = ModalityModelSerializer(many=False)
     academic_period = AcademicPeriodModelSerializer(many=False)
     report = SerializerMethodField()
+    authors = UserShortDetailSerializer(many=True)
 
     def get_report(self,obj):
         tracingstudents =   obj.tracingstudents.filter(active=True)
@@ -58,6 +59,7 @@ class InscriptionReportModelSerializer(ModelSerializer):
         fields =[
             "id",
             "student",
+            "authors",
             "modality",
             "academic_period",
             "state",

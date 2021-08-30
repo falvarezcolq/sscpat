@@ -73,11 +73,11 @@ class AddUserProject extends React.Component {
 
   save_authors = async () => {
     const project = this.props.project;
+    const authors = this.props.authors;
     if (project) {
-      const { authors } = project;
-      if (project.authors.length <= project.modality.config.max_author) {
+     
+      if (authors.length <= project.modality.config.max_author) {
         const users = Array.from(authors, (obj) => obj.id);
-
         this.setLoading(true);
         await this.props.add_authors(project.id, { users: users });
         this.setLoading(false);
@@ -95,6 +95,7 @@ class AddUserProject extends React.Component {
   render() {
     const students = this.props.students;
     const project = this.props.project;
+    const authors = this.props.authors;
     const { results } = students;
     return (
       <div className="row">
@@ -234,7 +235,7 @@ class AddUserProject extends React.Component {
                             </tr>
                           </thead>
                           <tbody>
-                            {project.authors.map((user) => (
+                            {authors.map((user) => (
                               <tr key={user.id}>
                                 <td>{user.CI}</td>
                                 <td>
@@ -271,7 +272,7 @@ class AddUserProject extends React.Component {
                               className="btn btn-success"
                               onClick={this.save_authors}
                             >
-                              Registrar autores
+                              Registrar y/o guardar cambios de autores
                             </button>
                           </div>
                         )}
@@ -292,6 +293,7 @@ class AddUserProject extends React.Component {
 const mapStateToProps = (state) => ({
   students: state.students,
   project: state.projects.object,
+  authors: state.projects.authors,
 });
 
 const mapDispatchToProps = {

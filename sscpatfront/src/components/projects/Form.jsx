@@ -9,7 +9,7 @@ import { minimalList as minimalListExternalTutors } from "../../actions/external
 import { list as listModalities } from "../../actions/modalities";
 import { list as listAcademicPeriods } from "../../actions/academicsperiod";
 import { list as listInstitutions } from "../../actions/institutions";
-import { add , update } from "../../actions/projects";
+import { add, update } from "../../actions/projects";
 import { initialValues, validate } from "./states";
 import ListNames from "../atoms/ListNames";
 import Config from "../../utils/Config";
@@ -17,26 +17,24 @@ import AlertMessage from "../../components/atoms/AlertMessage";
 import { getDate } from "../../actions/helper";
 
 const Form = (props) => {
-
-  let { project, student } = props
-  let projectValues = {}
+  let { project, student } = props;
+  let projectValues = {};
 
   if (project) {
-    student = project.student
+    student = project.student;
     projectValues = {
       ...initialValues,
       ...project,
-      student:student.id,
-      modality: project.modality ? project.modality.id :"",
-      academic_period:project.academic_period? project.academic_period.id:"",
-      institution: project.institution ? project.institution.id: null,
-    }
-    
-  }else{
-    projectValues=initialValues
+      student: student.id,
+      modality: project.modality ? project.modality.id : "",
+      academic_period: project.academic_period
+        ? project.academic_period.id
+        : "",
+      institution: project.institution ? project.institution.id : null,
+    };
+  } else {
+    projectValues = initialValues;
   }
-
-
 
   const [values, setValues] = useState(projectValues);
   const [errors, setErrors] = useState({});
@@ -46,7 +44,7 @@ const Form = (props) => {
   const [modality, setModality] = useState(null);
   const history = useHistory();
 
-  const onChange = (e) => { 
+  const onChange = (e) => {
     const { name, value: newValue, type } = e.target;
     const value = type === "number" ? +newValue : newValue;
     setValues({ ...values, [name]: value });
@@ -54,23 +52,23 @@ const Form = (props) => {
     setErrors({ ...errors, [name]: error });
   };
 
-
   const onChangePeriod = (e) => {
-    const { name, value  } = e.target;
-    const a_period = props.academicperiods.find((ap) => ap.id+"" === value+"" )
-    
-    const date_init = a_period ? a_period.date_init :null;
-    const date_end  = a_period ? a_period.date_end:null;
-    
+    const { name, value } = e.target;
+    const a_period = props.academicperiods.find(
+      (ap) => ap.id + "" === value + ""
+    );
+
+    const date_init = a_period ? a_period.date_init : null;
+    const date_end = a_period ? a_period.date_end : null;
+
     setValues({
-       ...values, 
-       [name]: value ,
-       date_init:date_init,
-       date_end:date_end,
-      });
+      ...values,
+      [name]: value,
+      date_init: date_init,
+      date_end: date_end,
+    });
     const error = validateInput(name, value, validate[name]);
     setErrors({ ...errors, [name]: error });
- 
   };
   const onBlur = (e) => {
     const { name, value } = e.target;
@@ -145,14 +143,13 @@ const Form = (props) => {
 
   const formSubmit = async () => {
     if (formValidation()) {
-      let res
-      if(!project){
+      let res;
+      if (!project) {
         // ADD NEW PROJECT
-       res = await props.add(values)
-      }
-      else
-      { // UPDATE DATA
-       res = await props.update(project.id,values)
+        res = await props.add(values);
+      } else {
+        // UPDATE DATA
+        res = await props.update(project.id, values);
       }
 
       if (res) {
@@ -172,7 +169,7 @@ const Form = (props) => {
     props.listAcademicPeriods();
     props.minimalListExternalTutors();
     props.listInstitutions();
-    setValues({...values,student: student.id, });    
+    setValues({ ...values, student: student.id });
   };
 
   const onChangeTutors = (e) => {
@@ -221,75 +218,100 @@ const Form = (props) => {
     setValues({ ...values, [name]: value });
     const error = validateInput(name, value, validate[name]);
     setErrors({ ...errors, [name]: error });
-    const mod = props.modalities.find((m) => m.id+"" === value+"");
+    const mod = props.modalities.find((m) => m.id + "" === value + "");
     setModality(mod);
   };
 
- 
   // show config modality when is it updating
-  if ( props.modalities.length > 0 && !modality  && project ){  
-    const id = project.modality ? project.modality.id : ""
+  if (props.modalities.length > 0 && !modality && project) {
+    const id = project.modality ? project.modality.id : "";
     const mod = props.modalities.find((m) => m.id === id);
     setModality(mod);
   }
-
-
 
   return (
     <form onSubmit={onSubmit}>
       <div className="row">
         <div className="col-md-12 col-lg-12">
           <div className="align-center bg-primary">
-            <div className="color-name">Información del postulante</div>
-          </div>
-        </div>
-        <div className="col-md-12 col-lg-6">
-          <div className="form-group">
-            <label>Apellidos y nombres</label>
-            <div className="form-line">
-              <input
-                type="text"
-                className="form-control"
-                value={
-                  student.last_name +
-                  " " +
-                  student.last_name2 +
-                  " " +
-                  student.first_name
-                }
-                disabled={true}
-              />
-            </div>
+            <div className="color-name">Información del estudiante</div>
           </div>
         </div>
 
-        <div className="col-md-6 col-lg-3">
-          <div className="form-group">
-            <label> C.I. </label>
-            <div className="form-line">
-              <input
-                type="text"
-                className="form-control"
-                value={student.CI}
-                disabled={true}
-              />
-            </div>
-          </div>
+        <div className="col-lg-12">
+          {project && (
+            <>
+              <label>Apellidos y nombres de los autores</label>
+              {project.authors.map((author, index) => (
+                <div
+                  className="author-name col-blue-grey"
+                  style={{ fontSize: "1.6rem", marginLeft: "20px" }}
+                >
+                  {" "}
+                  <strong>
+                    {author.last_name +
+                      " " +
+                      author.last_name2 +
+                      " " +
+                      author.first_name}
+                  </strong>
+                </div>
+              ))}
+            </>
+          )}
         </div>
 
-        <div className="col-md-6 col-lg-3">
-          <div className="form-group">
-            <label>R.U.</label>
-            <div className="form-line">
-              <input
-                type="text"
-                className="form-control"
-                value={student.RU}
-                disabled={true}
-              />
+        {!project && (
+          <>
+            <div className="col-md-12 col-lg-6">
+              <div className="form-group">
+              <label>Apellidos y nombres</label>
+                <div className="form-line">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={
+                      student.last_name +
+                      " " +
+                      student.last_name2 +
+                      " " +
+                      student.first_name
+                    }
+                    disabled={true}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+
+            <div className="col-md-6 col-lg-3">
+              <div className="form-group">
+                <label> C.I. </label>
+                <div className="form-line">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={student.CI}
+                    disabled={true}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-6 col-lg-3">
+              <div className="form-group">
+                <label>R.U.</label>
+                <div className="form-line">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={student.RU}
+                    disabled={true}
+                  />
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
         <div className="col-md-12 col-lg-12">
           <div className="align-center bg-primary">
@@ -314,7 +336,6 @@ const Form = (props) => {
             title="Título del proyecto académico:"
           />
         </div>
-
 
         <div className="col-lg-12">
           <InputForm
@@ -344,7 +365,6 @@ const Form = (props) => {
             title="Periodo académico"
             addUrl={Config.aPeriodsNewUrl}
             reload={props.listAcademicPeriods}
-            
           >
             {props.academicperiods.length > 0 ? (
               <>
@@ -359,57 +379,58 @@ const Form = (props) => {
               <option value="">Cargando..</option>
             )}
           </SelectForm>
-          
-          
-          { values.date_init &&
-          <h5>Fecha de inicio: { getDate(values.date_init)} 
-            {/* {new Date(values.date_init).toLocaleDateString("es-ES")} */}
-            {/* {" "}  */}
-          </h5>
-          }
-          {values.date_end && 
-          <h5>Fecha de finalizacion:  { getDate(values.date_end)} 
-          {/* {new Date(values.date_end).toLocaleDateString("es-ES")} */}
-          </h5>
-          }
-        </div>
-        { values.date_init &&
-        <div className="col-lg-4">
-          <InputForm
-            name="date_init"
-            value={values.date_init}
-            touched={touched.date_init}
-            error={errors.date_init}
-            focus={focus.date_init}
-            required={true}
-            type="date"
-            placeholder="Fecha de inicio"
-            onChange={onChange}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            title="Fecha de inicio "
-          />
-        </div>
-        }
 
-        { values.date_end &&
-                <div className="col-lg-4">
-                  <InputForm
-                    name="date_end"
-                    value={values.date_end}
-                    touched={touched.date_end}
-                    error={errors.date_end}
-                    focus={focus.date_end}
-                    required={true}
-                    type="date"
-                    placeholder="Fecha de finalización"
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    onFocus={onFocus}
-                    title="Fecha de finalización "
-                  />
-                </div>
-        }
+          {values.date_init && (
+            <h5>
+              Fecha de inicio: {getDate(values.date_init)}
+              {/* {new Date(values.date_init).toLocaleDateString("es-ES")} */}
+              {/* {" "}  */}
+            </h5>
+          )}
+          {values.date_end && (
+            <h5>
+              Fecha de finalizacion: {getDate(values.date_end)}
+              {/* {new Date(values.date_end).toLocaleDateString("es-ES")} */}
+            </h5>
+          )}
+        </div>
+        {values.date_init && (
+          <div className="col-lg-4">
+            <InputForm
+              name="date_init"
+              value={values.date_init}
+              touched={touched.date_init}
+              error={errors.date_init}
+              focus={focus.date_init}
+              required={true}
+              type="date"
+              placeholder="Fecha de inicio"
+              onChange={onChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              title="Fecha de inicio "
+            />
+          </div>
+        )}
+
+        {values.date_end && (
+          <div className="col-lg-4">
+            <InputForm
+              name="date_end"
+              value={values.date_end}
+              touched={touched.date_end}
+              error={errors.date_end}
+              focus={focus.date_end}
+              required={true}
+              type="date"
+              placeholder="Fecha de finalización"
+              onChange={onChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              title="Fecha de finalización "
+            />
+          </div>
+        )}
         <div className="col-lg-12 col-md-12">
           <SelectForm
             name="modality"
@@ -437,8 +458,6 @@ const Form = (props) => {
             )}
           </SelectForm>
         </div>
-
-       
 
         {modality && (
           <>
@@ -515,15 +534,15 @@ const Form = (props) => {
                 remove={removeExternalTutors}
               />
             </div>
-            
+
             {modality.config.has_institution && (
               <div className="col-lg-offset-2 col-lg-8  col-md-12">
                 <SelectForm
                   name="institution"
                   onChange={onChange}
                   title="Institución del proyecto"
-                  required={true} 
-                  value={values.institution }
+                  required={true}
+                  value={values.institution}
                   addUrl={Config.aInstitutionsNewUrl}
                   reload={props.listInstitutions}
                 >
@@ -544,8 +563,9 @@ const Form = (props) => {
             )}
           </>
         )}
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><AlertMessage/></div>
-        
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+          <AlertMessage />
+        </div>
 
         <div className="col-lg-offset-2 col-lg-8  col-md-12">
           <button
@@ -561,11 +581,13 @@ const Form = (props) => {
             className="btn btn-primary pull-right"
             disabled={loading}
           >
-            {project?
-            loading ? "Actualizando..." : "Actualizar"
-          :  
-          loading ? "Registrando..." : "Registrar"
-          }
+            {project
+              ? loading
+                ? "Actualizando..."
+                : "Actualizar"
+              : loading
+              ? "Registrando..."
+              : "Registrar"}
           </button>
         </div>
       </div>

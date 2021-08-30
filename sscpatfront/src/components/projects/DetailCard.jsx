@@ -97,14 +97,22 @@ const DetailCard = (props) => {
               {project.modality.title}{" "}
               {project.academic_period && project.academic_period.title}
             </h2>
-            <h2>
-              Autor:{" "}
-              {project.student.last_name +
-                " " +
-                project.student.last_name2 +
-                " " +
-                project.student.first_name}
-            </h2>
+
+            
+              <h2 >
+                Autor(es): {" "} <br /> 
+                {project.authors.map((author, index) => (
+                  <>
+                  <span style={{fontSize:"1.4 rem"}}>
+                  {author.last_name + " "}
+                  {author.last_name2 + " "}
+                  {author.first_name + " "}
+                  </span> <br />
+                  </>
+                 ))}
+              </h2>
+           
+          
             <h4>{LabelStatus(project.state)}</h4>
 
             {project.tutors.map((tutor, index) => (
@@ -196,11 +204,23 @@ const DetailCard = (props) => {
               }
               {  AuthHandler.isAdmin && 
                 <li>
+                 <Link
+                  to={Config.aProjectsUrl+"/nuevo_autor/"+ project.id}
+                  className=" waves-effect waves-block"
+                >
+                  Agregar autores
+                </Link>
+                </li>
+              }
+              {  AuthHandler.isAdmin && 
+                <li>
                   <div className="item-link" onClick={()=>removeProject(project.id)}>
                   Borrar proyecto
                  </div>
                 </li>
               }
+
+
             </HeaderDropdown>
           </div>
            }

@@ -140,9 +140,15 @@ const ReportInscriptionTable = (props) => {
                                 <br /> <small className="col-blue-grey"> {project.modality.title}</small>
                               </Link>
                             </td>   
-                            <td><Link to={Config.aStudentsUrl+"/"+project.student.id}>
-                                {project.student.last_name +" "+project.student.last_name2 +" "+project.student.first_name}
-                                </Link></td>
+                            <td>
+                             
+                             
+                              {project.authors.map((author)=>(
+                                <Link to={Config.aStudentsUrl+"/"+author.id} key={author.id} style={{fontSize:"1.3rem"}}>
+                                {author.last_name +" "+author.last_name2 +" "+author.first_name} <br /> 
+                                </Link>
+                              ))}
+                              </td>
                             <td>{project.academic_period.title}</td>
                             <td>{project.date_init} {project.date_end}</td>
                             <td>{project.report.tracing_months.map((date)=>(

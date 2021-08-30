@@ -50,6 +50,7 @@ export default function projects(state = initialState, action) {
       return {
         ...state,
         object: action.payload,
+        authors:action.payload.authors,
       };
 
     case UPDATE_PROJECT:
@@ -59,6 +60,7 @@ export default function projects(state = initialState, action) {
           return obj.id === action.payload.id ? action.payload : obj;
         }),
         object: action.payload,
+        authors:action.payload.authors,
       };
 
     case DELETE_PROJECT:
@@ -106,19 +108,22 @@ export default function projects(state = initialState, action) {
     case ADD_USER_TO_AUTHOR_LIST:
       return {
         ...state,
-        object:{
-          ...state.object,
-          authors:[...state.object.authors.filter((obj) => obj.id !== action.payload.id),action.payload]
-        }
+        // object:{
+        //   ...state.object,
+        //   authors:[...state.object.authors.filter((obj) => obj.id !== action.payload.id),action.payload]
+        // },
+
+        authors:[...state.authors.filter((obj) => obj.id !== action.payload.id),action.payload]
       };
     
     case REMOVE_USER_TO_AUTHOR_LIST:
       return {
         ...state,
-        object:{
-          ...state.object,
-          authors:[...state.object.authors.filter((obj) => obj.id !== action.payload)]
-        }
+        // object:{
+        //   ...state.object,
+        //   authors:[...state.object.authors.filter((obj) => obj.id !== action.payload)]
+        // },
+        authors:[...state.authors.filter((obj) => obj.id !== action.payload)]
       };
     default:
       return state;

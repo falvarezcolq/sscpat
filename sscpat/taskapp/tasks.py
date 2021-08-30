@@ -90,8 +90,10 @@ def send_welcome_email(user_pk):
 def send_assign_project_to_student(inscription_pk,student_pk):
     """Assign project to student"""
     time.sleep(3)
+    user = User.objects.get(pk=student_pk)
+
     inscription = Inscription.objects.get(pk=inscription_pk)
-    student = inscription.student
+    students  = ", ".join([str(x) for x in inscription.authors.all()])
     tutors  =  ", ".join([str(x) for x in inscription.tutors.all()])
     external_tutors =  ", ".join([str(x) for x in inscription.external_tutors.all()])
 
@@ -100,15 +102,16 @@ def send_assign_project_to_student(inscription_pk,student_pk):
     content = render_to_string(
         'emails/users/account_add_project_to_student.html',
         {
-            'student': student,
+            'student': user,
+            'students':students,
             'inscription': inscription,
-            'tutors': tutors,
+            'tutors': tutors if tutors != "" else "--",
             'external_tutors': external_tutors if external_tutors != "" else "--",
             'date_init': inscription.date_init.strftime("%d/%m/%Y"),
             'date_end': inscription.date_end.strftime("%d/%m/%Y"),
         }
     )
-    send_email(subject, content, student.email)
+    send_email(subject, content, user.email)
 
 
 
@@ -121,6 +124,7 @@ def send_assign_project_to_tutor(inscription_pk,tutor_pk):
     inscription = Inscription.objects.get(pk=inscription_pk)
     tutor = User.objects.get(pk=tutor_pk)
     student = inscription.student
+    students = ", ".join([str(x) for x in inscription.authors.all()])
     tutors = ", ".join([ x.abbreviation + " "+str(x) for x in inscription.tutors.all()])
     external_tutors = ", ".join([x.abbreviation + " "+str(x) for x in inscription.external_tutors.all()])
 
@@ -131,8 +135,9 @@ def send_assign_project_to_tutor(inscription_pk,tutor_pk):
         {
             'tutor':tutor,
             'student': student,
+            'students':students,
             'inscription': inscription,
-            'tutors': tutors,
+            'tutors': tutors if tutors != "" else "--",
             'external_tutors':external_tutors if external_tutors != "" else "--" ,
             'date_init':inscription.date_init.strftime("%d/%m/%Y"),
             'date_end':inscription.date_end.strftime("%d/%m/%Y"),
@@ -149,6 +154,7 @@ def send_email_disassociate_project_to_tutor(inscription_pk,tutor_pk):
     inscription = Inscription.objects.get(pk=inscription_pk)
     tutor = User.objects.get(pk=tutor_pk)
     student = inscription.student
+    students = ", ".join([str(x) for x in inscription.authors.all()])
     tutors = ", ".join([ x.abbreviation + " "+str(x) for x in inscription.tutors.all()])
     external_tutors = ", ".join([x.abbreviation + " "+str(x) for x in inscription.external_tutors.all()])
 
@@ -159,6 +165,7 @@ def send_email_disassociate_project_to_tutor(inscription_pk,tutor_pk):
         {
             'tutor':tutor,
             'student': student,
+            'students': students,
             'inscription': inscription,
         }
     )

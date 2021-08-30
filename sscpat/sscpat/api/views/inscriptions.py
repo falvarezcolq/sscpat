@@ -163,12 +163,14 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                                                deadline_date= self.get_date(instance.date_init,instance.date_end,document.time_send),
                                                )
 
-        # when the project is created other self user's projects will be closed
-        Inscription.objects.filter(student=instance.student,
+        # # when the project is created other self user's projects will be closed
+        # Inscription.objects.filter(student=instance.student,
+        #                            state=Inscription.UNDER_DEVELOPMENT
+        #                    ).exclude(pk=instance.pk).update(state=Inscription.ABANDONED)
+        instance.student.sprojects.filter(
                                    state=Inscription.UNDER_DEVELOPMENT
                            ).exclude(pk=instance.pk).update(state=Inscription.ABANDONED)
-
-        send_assign_project_to_student.delay(inscription_pk=instance.id)
+        send_assign_project_to_student.delay(inscription_pk=instance.id,student_pk=instance.student.pk)
 
         return instance
 
@@ -311,7 +313,7 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                     inscription.authors.add(author)
                     not_delete_authors.append(id)
                     # send mail
-                    # send_assign_project_to_student.delay(inscription_pk=inscription.id, user_pk=author.id)
+                    send_assign_project_to_student.delay(inscription_pk=inscription.id, student_pk=author.id)
                 else:
                     not_delete_authors.append(id)
 
@@ -324,6 +326,13 @@ class InscriptionViewSet(mixins.CreateModelMixin,
             inscription.authors.remove(remove_author)
 
         return Response(InscriptionCompleteModelSerializer(inscription).data)
+
+    @action(detail=False,methods=['POST'])
+    def update_projects(self, request, *args, **kwargs):
+        queryset = Inscription.objects.all()
+        for instance in queryset:
+            instance.authors.add(instance.student)
+        return Response({'detail':"ok"})
 
 
 class InscriptionByTutorsViewSet(
@@ -391,7 +400,7 @@ class InscriptionByStudentViewSet(
 
     def get_queryset(self):
         student = self.student
-        return student.projects.filter(active=True)
+        return student.sprojects.filter(active=True)
 
 
 class InscriptionReportViewSet(mixins.ListModelMixin,
@@ -404,7 +413,7 @@ class InscriptionReportViewSet(mixins.ListModelMixin,
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
     ordering = ('title_academic_project','-created_at',)
     ordering_fields = ('title_academic_project', 'created_at')
-    search_fields = ('title_academic_project',)
+    search_fields = ('title_academic_project','authors__last_name','authors__last_name2','authors__first_name','authors__CI')
     filterset_fields = ['academic_period','modality','state']
 
     # def dispatch(self, request, *args, **kwargs):
