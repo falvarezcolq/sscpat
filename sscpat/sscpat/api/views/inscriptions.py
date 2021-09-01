@@ -11,6 +11,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 from django.http import Http404
 
+
 # Django REST Framework
 from rest_framework.permissions import IsAuthenticated,IsAdminUser,AllowAny
 from rest_framework.response import  Response
@@ -125,7 +126,7 @@ class InscriptionViewSet(mixins.CreateModelMixin,
         data = self.request.data
         user = self.request.user
         instance = serializer.save()
-        assign_project_notification(inscription_id=instance.id,user_action_id=user.id)
+
 
 
         if 'tutors' in data:
@@ -151,6 +152,18 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                 except Tutor.DoesNotExist:
                     pass
 
+        # add notification
+        for student in instance.authors.filter(active=True).exclude(pk=user.id):
+            assign_project_notification(inscription_id=instance.id, student_id=student.id, user_action_id=user.id)
+            send_assign_project_to_student.delay(inscription_pk=instance.id, student_pk=student.id)
+
+
+            for old_project in student.sprojects.filter(state=Inscription.UNDER_DEVELOPMENT).exclude(pk=instance.pk):
+                if old_project.authors.count() == 1:
+                    old_project.state = Inscription.ABANDONED
+                    old_project.save()
+
+
         for document in instance.modality.documents.filter(active=True):
             InscriptionDocument.objects.create(inscription=instance,
                                                document=document,
@@ -163,14 +176,10 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                                                deadline_date= self.get_date(instance.date_init,instance.date_end,document.time_send),
                                                )
 
-        # # when the project is created other self user's projects will be closed
-        # Inscription.objects.filter(student=instance.student,
-        #                            state=Inscription.UNDER_DEVELOPMENT
-        #                    ).exclude(pk=instance.pk).update(state=Inscription.ABANDONED)
-        instance.student.sprojects.filter(
-                                   state=Inscription.UNDER_DEVELOPMENT
-                           ).exclude(pk=instance.pk).update(state=Inscription.ABANDONED)
-        send_assign_project_to_student.delay(inscription_pk=instance.id,student_pk=instance.student.pk)
+
+
+        #notification
+
 
         return instance
 

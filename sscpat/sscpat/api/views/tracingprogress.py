@@ -90,8 +90,8 @@ class TracingProgressViewSet(mixins.CreateModelMixin,
 
         inscription = instance.tracingstudent.inscription
 
-        if inscription.student != user_action:
-            send_uploaded_tracing_progress.delay(tracing_progress_pk=instance.pk,user_pk=inscription.student.pk)
+        for student in inscription.authors.filter(active=True).exclude(pk=user_action.pk):
+            send_uploaded_tracing_progress.delay(tracing_progress_pk=instance.pk, user_pk=student.pk)
 
         for tutor in inscription.tutors.filter(active=True).exclude(pk=user_action.pk):
             send_uploaded_tracing_progress.delay(tracing_progress_pk=instance.pk, user_pk=tutor.pk)

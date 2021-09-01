@@ -91,8 +91,8 @@ class TracingStudentViewSet(mixins.CreateModelMixin,
     def send_emal_notifications(instance,user_action):
         """ this function send ascincrnous email"""
         inscription = instance.inscription
-        if inscription.student != user_action:
-            send_uploaded_tracing_student.delay(tracing_student_pk=instance.pk, user_pk=inscription.student.pk)
+        for student in inscription.authors.filter(active=True).exclude(pk=user_action.pk):
+            send_uploaded_tracing_student.delay(tracing_student_pk=instance.pk, user_pk=student.pk)
 
         for tutor in inscription.tutors.filter(active=True).exclude(pk=user_action.pk):
             send_uploaded_tracing_student.delay(tracing_student_pk=instance.pk, user_pk=tutor.pk)

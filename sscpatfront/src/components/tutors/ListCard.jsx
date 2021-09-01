@@ -278,7 +278,7 @@ const ListCard = (props) => {
                               <th>Modalidad</th>
                               <th>Avance</th>
                               <th>Sin revisi&oacute;n</th>
-                              <th>Autor</th>
+                              <th>Autor(es)</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -326,19 +326,22 @@ const ListCard = (props) => {
                                 </td>
 
                                 <td>
-                                  <Link
+                                  {project.authors.map((student) => (
+                                    <Link
                                     to={
                                       Config.aStudentsUrl +
                                       "/" +
-                                      project.student.id
+                                      student.id
                                     }
+                                    style={{fontSize:"1.2rem"}}
                                   >
-                                    {project.student.last_name +
+                                    {student.last_name +
                                       " " +
-                                      project.student.last_name2 +
+                                      student.last_name2 +
                                       " " +
-                                      project.student.first_name}
+                                      student.first_name} <br />
                                   </Link>
+                                  ))}
                                 </td>
                               </tr>
                             ))}

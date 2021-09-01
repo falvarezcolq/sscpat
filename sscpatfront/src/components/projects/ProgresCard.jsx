@@ -7,6 +7,7 @@ import {
   getListTracing,
 } from "../../actions/tracingstudent";
 
+import { UNDER_DEVELOPMENT} from "../../actions/types";
 import Spinner from "../atoms/Spinner";
 import {
   getNameDateMonth,
@@ -26,6 +27,7 @@ import AuthHandler from "../../utils/AuthHandler";
 import { getFirstCharacter } from "../../actions/helper";
 
 const ProgresCard = (props) => {
+  const { project } = props
   const {
     project_id,
     results,
@@ -123,6 +125,9 @@ const ProgresCard = (props) => {
                   </small>
                 </Link>
 
+                { project && (project.state === UNDER_DEVELOPMENT ) &&(
+                   <>
+
                 {AuthHandler.isStudent() &&
                   progress.require_institution_report &&
                   !progress.institution_report_was_sent && (
@@ -155,6 +160,8 @@ const ProgresCard = (props) => {
                       Subir reporte de tutor
                     </Link>
                   )}
+                  </>
+                )}
               </h2>
 
               <HeaderDropdown>
@@ -223,20 +230,10 @@ const ProgresCard = (props) => {
 
               <div className="row">
                 <div className="col-lg-12" style={{ marginBottom: "0px" }}>
-                  {/* {progress.require_admin_review && (
-                    <>
-                      {iconDone(progress.reviewed_by_admin)}
-                      <span
-                        className="icon-name"
-                        style={{ position: "relative", top: "-6px" }}
-                      >
-                        Dirección de carrera
-                      </span>
-                      <br />
-                    </>
-                  )} */}
+                 
 
-                  {progress.require_tutor_review && (
+                
+                    {progress.require_tutor_review && (
                     <TextCheck check={progress.reviewed_by_tutor}>
                       {" "}
                       Revisado por el tutor
@@ -256,7 +253,6 @@ const ProgresCard = (props) => {
                       Informe de la institución
                     </TextCheck>
                   )}
-
                   {progress.tracingcount > 0 && (
                     <div className="pull-right">
                       <button
@@ -389,6 +385,7 @@ const ProgresCard = (props) => {
 
 const mapStateToProps = (state) => ({
   results: state.tracingstudent.results,
+  project: state.projects.object,
 });
 
 const mapDispatchToProps = {

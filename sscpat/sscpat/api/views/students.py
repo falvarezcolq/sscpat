@@ -156,10 +156,10 @@ class StudentByTutorViewSet(mixins.RetrieveModelMixin,
         # return S
 
         if self.tutor.type == User.TUTOR:
-            return Student.objects.filter(projects__tutors=self.tutor.id).distinct()
+            return Student.objects.filter(sprojects__tutors=self.tutor.id).distinct()
 
         elif self.tutor.type == User.EXTERNAL_TUTOR:
-            return Student.objects.filter(projects__external_tutors=self.tutor.id).distinct()
+            return Student.objects.filter(sprojects__external_tutors=self.tutor.id).distinct()
 
         return []
 

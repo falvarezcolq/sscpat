@@ -129,6 +129,7 @@ class InscriptionModelSerializerForTutor(ModelSerializer):
 
 
     student = UserModelSerializer(many=False)
+    authors = UserShortDetailSerializer(many=True)
     tutors = TutorMinimalListModelSerializer(many=True)
     external_tutors = TutorMinimalListModelSerializer(many=True)
     institution = InstitutionModelSerializer(many=False)
@@ -152,6 +153,7 @@ class InscriptionModelSerializerForTutor(ModelSerializer):
         fields =[
             "id",
             "student",
+            "authors",
             "modality",
             "academic_period",
             "state",

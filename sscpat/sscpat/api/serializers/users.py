@@ -233,6 +233,19 @@ class UserShortDetailSerializer(serializers.ModelSerializer):
         ]
 
 
+class UserDetailContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+           "id",
+            "first_name",
+            "last_name",
+            "last_name2",
+            "email",
+            "phone",
+            "telf"
+        ]
+
 class UserCheckStudentSerializer(serializers.Serializer):
     user = serializers.IntegerField()
 
