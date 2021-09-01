@@ -12,6 +12,7 @@ import {
   DATE_MONTHS,
   ADD_USER_TO_AUTHOR_LIST,
   REMOVE_USER_TO_AUTHOR_LIST,
+  GET_DATELOGS,
 } from "../../actions/types";
 
 const initialState = {
@@ -27,7 +28,8 @@ const initialState = {
   list: [],
   documentList:[],
   initialDocumentList:[],
-  date_months:[]
+  date_months:[],
+  datelogs:[],
 };
 
 export default function projects(state = initialState, action) {
@@ -115,6 +117,12 @@ export default function projects(state = initialState, action) {
 
         authors:[...state.authors.filter((obj) => obj.id !== action.payload.id),action.payload]
       };
+
+    case GET_DATELOGS:
+      return {
+        ...state,
+        datelogs:action.payload
+      }
     
     case REMOVE_USER_TO_AUTHOR_LIST:
       return {

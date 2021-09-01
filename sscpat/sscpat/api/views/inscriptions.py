@@ -26,6 +26,7 @@ from sscpat.sscpat.models.inscriptions import Inscription
 from sscpat.sscpat.models.users import Tutor,ExternalTutor,Student,User
 from sscpat.sscpat.models.inscriptiondocuments import InscriptionDocument
 from sscpat.sscpat.models.inscriptioninitialdocuments import InscriptionInitialDocument
+from sscpat.sscpat.models.datelog import DateLog
 
 
 # Serializers
@@ -36,11 +37,12 @@ from sscpat.sscpat.api.serializers.inscriptions import (
     InscriptionCompleteModelSerializer,
     InscriptionModelSerializerForTutor,
     InscriptionModelSerializerForStudent,
+    InscriptionDatelogSerializer,
 )
 from sscpat.sscpat.api.serializers.report_inscriptions import InscriptionReportModelSerializer
 from sscpat.sscpat.api.serializers.institutions import InstitutionModelSerializer
 from sscpat.sscpat.api.serializers.inscriptiondocuments import InscriptionInitialDocumentModelSerializer,InscriptionDocumentModelSerializer
-
+from sscpat.sscpat.api.serializers.datelog import DateLogModelSerializer
 
 # Utils
 
@@ -343,6 +345,37 @@ class InscriptionViewSet(mixins.CreateModelMixin,
             instance.authors.add(instance.student)
         return Response({'detail':"ok"})
 
+    @action(detail=True, methods=["POST"])
+    def update_dates(self, request, *args, **kwargs):
+        """ this method get all of documents """
+        inscription = self.get_object()
+        data = request.data
+        serializer = InscriptionDatelogSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+
+        DateLog.objects.create(inscription=inscription,
+                               date_init=data['date_init'],
+                               date_end=data['date_end'],
+                               date_init_old=inscription.date_init,
+                               date_end_old=inscription.date_end,
+                               note=data['note'],
+                               created_by = self.request.user.id ,
+                               )
+
+        inscription.date_end_old = inscription.date_end
+        inscription.date_init = data['date_init']
+        inscription.date_end = data['date_end']
+        inscription.extended = True
+        inscription.save()
+
+        return Response(InscriptionCompleteModelSerializer(inscription).data)
+
+    @action(detail=True, methods=["GET"])
+    def datelogs(self, request, *args, **kwargs):
+        """ this method get all of documents """
+        inscription = self.get_object()
+        return Response(DateLogModelSerializer(inscription.datelogs,many=True).data)
+
 
 class InscriptionByTutorsViewSet(
     # mixins.CreateModelMixin,
@@ -383,6 +416,7 @@ class InscriptionByTutorsViewSet(
         if tutor.type == User.EXTERNAL_TUTOR:
             return tutor.etutor_projects.filter(active=True)
         return []
+
 
 
 class InscriptionByStudentViewSet(

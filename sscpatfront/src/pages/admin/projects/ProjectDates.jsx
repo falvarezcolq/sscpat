@@ -10,16 +10,15 @@ import DetailCard from "../../../components/projects/DetailCard";
 // import HistoryCard from "../../../components/projects/HistoryCard";
 // import SelectForm from "../../../components/atoms/SelectForm";
 
-import ProgresForm from "../../../components/projects/ProgresForm";
-import { UNDER_DEVELOPMENT } from "../../../actions/types";
-import AuthHandler from "../../../utils/AuthHandler";
+
 import AlertMessage from "../../../components/atoms/AlertMessage";
 
-import Config from "../../../utils/Config";
 
-import AddUserToProject from "../../../components/projects/AddUserToProject";
 
-class ProjectsDetail extends Component {
+
+import ProjectListDates from "../../../components/projects/ProjectListDates";
+
+class ProjectsDates extends Component {
   componentDidMount() {
     // const id = this.props.match.params.id;
     // this.props.getTutor(id);
@@ -52,33 +51,19 @@ class ProjectsDetail extends Component {
               <div className="card">
                 <div className="header">
                   <h2>
-                    Agregar estudiante autor al proyecto
-                    <small>Los estudiantes deben estar registrados en el sistema SSCPAT</small>
+                    Fechas extendidas del proyeto
+                    <small>La extensión de la fecha es solicitada mediante nota extensión de fecha de finalizacion del proyecto</small>
                   </h2>
                 </div>
 
                 <div className="body">
-                  <AlertMessage />
-                  <AddUserToProject />
+                   <AlertMessage />
+                  <ProjectListDates id={id} />
                   <AlertMessage />
                 </div>
               </div>
             </div>
           </div>
-
-          {/* <Link to={Config.aProjectsReportUrl+id}>Modo reporte</Link> */}
-
-          {/* <div className="row clearfix">
-            <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-              <AlertMessage/> 
-
-              { (project && project.id+""===id && project.state === UNDER_DEVELOPMENT && (AuthHandler.isAdmin() || AuthHandler.isStudent())) && 
-                <ProgresForm project_id={id} />
-              }
-
-              <ProgresCard project_id={id} />
-            </div>
-          </div> */}
         </div>
       </section>
     );
@@ -97,4 +82,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(ProjectsDetail));
+)(withRouter(ProjectsDates));

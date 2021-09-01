@@ -27,7 +27,7 @@ from sscpat.sscpat.api.serializers.academicperiods import AcademicPeriodModelSer
 
 
 # models
-from sscpat.sscpat.models import Inscription
+from sscpat.sscpat.models import Inscription,DateLog
 from rest_framework.exceptions import ValidationError
 
 # utlis
@@ -253,4 +253,24 @@ class InscriptionShortDetailModelSerializer(ModelSerializer):
         fields = [
             "id",
             "title_academic_project",
+        ]
+
+
+
+class InscriptionDatelogSerializer(ModelSerializer):
+    # institution = InstitutionModelSerializer(many=False)
+    class Meta:
+        model = DateLog
+        fields = [
+            "date_init",
+            "date_end",
+            # "date_init_old"
+            # "date_end_old"
+           
+            "note",
+            # "title"
+            # "format"
+            # "path"
+            # "img_medium"
+            # "thumbnail"
         ]

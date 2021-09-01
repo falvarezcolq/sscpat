@@ -54,6 +54,7 @@ import Reports from "../pages/admin/Reports/Reports";
 import TutorsReport from "../pages/admin/Reports/TutorsReport";
 import InscriptionsReport from "../pages/admin/Reports/InscriptionsReport";
 import ProjectAddAuthor from "../pages/admin/projects/ProjectAddAuthor";
+import ProjectDates from "../pages/admin/projects/ProjectDates";
 
 
 const RoutesAdmin = () => {
@@ -146,6 +147,14 @@ const RoutesAdmin = () => {
         activepage="3"
         activepage2="31"
         page={ProjectAddAuthor}
+      />
+
+      <PrivateRoute
+        exact
+        path={Config.aProjectsDatesIdUrl}
+        activepage="3"
+        activepage2="31"
+        page={ProjectDates}
       />
 
       {/* Routes Proyects active page:4 */}

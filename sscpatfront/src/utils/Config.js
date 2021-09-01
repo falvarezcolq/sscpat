@@ -66,6 +66,9 @@ class Config{
     static aProjectsAddUserUrl              ="/proyectos/nuevo_autor/";
     static aProjectsAddUserIdUrl              ="/proyectos/nuevo_autor/:id";
 
+    static aProjectsDatesUrl                ="/proyectos/fechas/historial/";
+    static aProjectsDatesIdUrl              ="/proyectos/fechas/historial/:id";
+
     static aProjectsUpdateIdUrl             ="/proyectos/actualizar/:id";
     static aProjectsUpdateUrl               ="/proyectos/actualizar/";
     static aProjectsIdUrl                   ="/proyectos/:id";

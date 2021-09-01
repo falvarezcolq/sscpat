@@ -212,6 +212,17 @@ const DetailCard = (props) => {
                 </Link>
                 </li>
               }
+
+              
+                <li>
+                  <Link
+                  to={Config.aProjectsDatesUrl+ project.id}
+                  className=" waves-effect waves-block"
+                >
+                 Historial de fechas 
+                </Link>
+                </li>
+              
               {  AuthHandler.isAdmin && 
                 <li>
                   <div className="item-link" onClick={()=>removeProject(project.id)}>

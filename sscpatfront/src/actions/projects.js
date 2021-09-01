@@ -14,6 +14,7 @@ import {
   DATE_MONTHS,
   ADD_USER_TO_AUTHOR_LIST,
   REMOVE_USER_TO_AUTHOR_LIST,
+  GET_DATELOGS,
 } from "./types";
 
 import { acceptErrors, acceptErrorsWhenIsDelete } from "../actions/messages";
@@ -208,6 +209,32 @@ export const patch = (id, obj) => async (dispatch) => {
 
 
 
+export const updateDates = (id, obj) => async (dispatch) => {
+  dispatch({ type: MESSAGE_DEFAULT });
+  const config = await getAuthHeader();
+  const res = await axios
+    .post(ConfigUrl + id + "/update_dates/", obj, config)
+    .then((res) => {
+      dispatch({
+        type: MESSAGE_SUCCESS,
+        payload: { detail: `Las fechas del proyecto fueron actualizadas` },
+      });
+      dispatch({
+        type: UPDATE_PROJECT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      return acceptErrors({
+        err: err,
+        dispatch: dispatch,
+        type: FORM_FAILED,
+      });
+    });
+  return res;
+};
+
+
 
 // GET DOCUMENTS PROJECT
 export const getDocuments = (id) => async (dispatch) => {
@@ -297,6 +324,31 @@ export const add_authors = (id,users) => async (dispatch) => {
       });
       dispatch({
         type: GET_PROJECT,
+        payload: res.data,
+      });
+      return res.data;
+    })
+    .catch((err) => {
+      return acceptErrors({
+        err: err,
+        dispatch: dispatch,
+        type: FORM_FAILED,
+      });
+    });
+  return res;
+};
+
+
+
+// GET DATE LOGS FROM PROJECT
+export const getDateLogs = (id) => async (dispatch) => {
+  dispatch({ type: MESSAGE_DEFAULT });
+  const config = await getAuthHeader();
+  const res = await axios
+    .get(ConfigUrl + id + "/datelogs/", config)
+    .then((res) => {
+      dispatch({
+        type: GET_DATELOGS,
         payload: res.data,
       });
       return res.data;

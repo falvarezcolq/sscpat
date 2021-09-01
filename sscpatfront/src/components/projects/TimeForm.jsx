@@ -7,7 +7,7 @@ import {
   validateInput,
   // loadGeneralErrorForm,
 } from "../../utils/Validations";
-import { get, patch } from "../../actions/projects";
+import { get, updateDates } from "../../actions/projects";
 import Spinner from "../atoms/Spinner";
 // import { ACCEPTED_FILES } from "../../actions/types";
 // import SelectForm from "../atoms/SelectForm";
@@ -19,12 +19,13 @@ const initialValues = {
   date_init: null,
   date_end: null,
   extended: null,
+  note:"",
 };  
 
 const validate = {};
 
 const TimeForm = (props) => {
-  const { project_id, object, get, patch } = props;
+  const { project_id, object, get,updateDates } = props;
 
   let project = {
     ...initialValues,
@@ -67,14 +68,16 @@ const TimeForm = (props) => {
   //   };
 
   const onSubmit = async (e) => {
+
     e.preventDefault();
+    console.log(values)
     setLoading(true);
     formSubmit();
   };
 
   const formSubmit = async () => {
     // if (formValidation()) {
-    await patch(project_id, values);
+    await updateDates(project_id, values);
     //   if (res) {
     //     loadGeneralErrorForm(res, setErrors);
     //   }
@@ -93,6 +96,7 @@ const TimeForm = (props) => {
       setValues({ 
         date_init: new_values.date_init ,
         date_end: new_values.date_end ,
+        note:"",
       });
     }
     setShowForm(true);
@@ -145,6 +149,23 @@ const TimeForm = (props) => {
                   />
                 </div>
 
+                <div className="col-lg-12">
+                  <InputForm
+                    name="note"
+                    type="text"
+                    value={values.note}
+                    touched={touched.note}
+                    error={errors.note}
+                    focus={focus.note}
+                    required={true}
+                    placeholder="Ingrese hoja de ruta"
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    onFocus={onFocus}
+                    title="Hoja de ruta de autorizacion"
+                  />
+                </div>
+
                
                 {loading && 
                 <div className="col-lg-12 align-center">
@@ -181,7 +202,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   get,
-  patch,
+  updateDates,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimeForm);
