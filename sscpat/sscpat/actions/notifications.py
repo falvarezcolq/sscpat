@@ -43,7 +43,7 @@ def assign_project_notification(inscription_id, student_id, user_action_id):
         user_action = User.objects.get(pk=user_action_id)
         student = User.objects.get(pk=student_id)
         if student != user_action:
-            notification = Notification.objects.create(
+            Notification.objects.create(
                 user=student,
                 user_action=user_action,
                 format=Notification.PROJECT_ASSIGNED,
