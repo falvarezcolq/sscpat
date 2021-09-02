@@ -77,20 +77,22 @@ def progress_upload_notification(tracingstudent_id,user_action_id):
         inscription = tracingstudent.inscription
 
         # send notification to student project
-        if inscription.student != user_action:
-            notification = Notification.objects.create(
-                user=inscription.student ,
-                user_action=user_action,
-                format=Notification.PROGRESS_PROJECT_UPLOADED,
-                inscription=inscription,
-                tracing_student=tracingstudent
-            )
+
+        for student in inscription.authors.all():
+            if student.pk != user_action.pk:
+                Notification.objects.create(
+                    user=student,
+                    user_action=user_action,
+                    format=Notification.PROGRESS_PROJECT_UPLOADED,
+                    inscription=inscription,
+                    tracing_student=tracingstudent
+                )
 
 
         # send notifications to tutor of project
         for tutor in inscription.tutors.all():
             if tutor != user_action:
-                notification = Notification.objects.create(
+                Notification.objects.create(
                     user=tutor,
                     user_action=user_action,
                     format=Notification.PROGRESS_PROJECT_UPLOADED,
@@ -102,7 +104,7 @@ def progress_upload_notification(tracingstudent_id,user_action_id):
         # send notification to external tutors of project
         for tutor in inscription.external_tutors.all():
             if tutor != user_action:
-                notification = Notification.objects.create(
+                Notification.objects.create(
                     user=tutor,
                     user_action=user_action,
                     format=Notification.PROGRESS_PROJECT_UPLOADED,
@@ -124,20 +126,21 @@ def tracing_of_progress_notification(tracingprogress_id, user_action_id):
         inscription = tracingstudent.inscription
 
         # send notification to student project
-        if inscription.student != user_action:
-            notification = Notification.objects.create(
-                user=inscription.student,
-                user_action=user_action,
-                format=Notification.TRACING_PROGRESS_UPLOADED,
-                inscription=inscription,
-                tracing_student=tracingstudent,
-                tracing_progress=tracingprogress,
-            )
+        for student in inscription.authors.all():
+            if student.pk != user_action.pk:
+                Notification.objects.create(
+                    user=student,
+                    user_action=user_action,
+                    format=Notification.TRACING_PROGRESS_UPLOADED,
+                    inscription=inscription,
+                    tracing_student=tracingstudent,
+                    tracing_progress=tracingprogress,
+                )
 
 
         for tutor in inscription.tutors.all():
-            if tutor != user_action:
-                notification = Notification.objects.create(
+            if tutor.pk != user_action.pk:
+                Notification.objects.create(
                     user=tutor,
                     user_action=user_action,
                     format=Notification.TRACING_PROGRESS_UPLOADED,
@@ -146,8 +149,8 @@ def tracing_of_progress_notification(tracingprogress_id, user_action_id):
                     tracing_progress=tracingprogress,
                 )
         for tutor in inscription.external_tutors.all():
-            if tutor != user_action:
-                notification = Notification.objects.create(
+            if tutor.pk != user_action.pk:
+                Notification.objects.create(
                     user=tutor,
                     user_action=user_action,
                     format=Notification.TRACING_PROGRESS_UPLOADED,
