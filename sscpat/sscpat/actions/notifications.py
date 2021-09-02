@@ -36,14 +36,15 @@ def create_welcome_notification(user_id, user_action_id):
         pass
 
 
-def assign_project_notification(inscription_id, user_action_id):
+def assign_project_notification(inscription_id, student_id, user_action_id):
     """Create and send notifiacion assign project to student"""
     try:
         inscription = Inscription.objects.get(pk=inscription_id)
         user_action = User.objects.get(pk=user_action_id)
-        if inscription.student != user_action:
+        student = User.objects.get(pk=student_id)
+        if student != user_action:
             notification = Notification.objects.create(
-                user=inscription.student,
+                user=student,
                 user_action=user_action,
                 format=Notification.PROJECT_ASSIGNED,
                 inscription=inscription
