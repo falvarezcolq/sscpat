@@ -84,7 +84,7 @@ class ProjectListDates extends React.Component {
                     <table className="table table-hover">
                       <thead>
                         <tr>
-                          <th>Fecha del registro</th>
+                          <th>Realizado en </th>
                           <th>Fechas anteriores</th>
                           <th>Fechas nuevas del proyecto</th>
                           <th>Realizado por</th>
@@ -93,7 +93,7 @@ class ProjectListDates extends React.Component {
                       <tbody>
                         {datelogs.map((date) => (
                           <tr key={date.id}>
-                            <td>{date.created_at}</td>
+                            <td>{getDate(date.created_at)}</td>
                             <td>{getDate(date.date_init_old)+ " / "+getDate(date.date_end_old)}</td>
                             <td>{getDate(date.date_init)+ " / "+getDate(date.date_end)}</td>
                             <td>

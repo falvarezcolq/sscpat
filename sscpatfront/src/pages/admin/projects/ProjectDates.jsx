@@ -51,13 +51,13 @@ class ProjectsDates extends Component {
               <div className="card">
                 <div className="header">
                   <h2>
-                    Fechas extendidas del proyeto
+                    Fechas extendidas del proyecto
                     <small>La extensión de la fecha es solicitada mediante nota extensión de fecha de finalizacion del proyecto</small>
                   </h2>
                 </div>
 
                 <div className="body">
-                   <AlertMessage />
+                  <AlertMessage />
                   <ProjectListDates id={id} />
                   <AlertMessage />
                 </div>
