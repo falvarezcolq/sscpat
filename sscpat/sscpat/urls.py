@@ -1,4 +1,4 @@
-""" Routes DogCenter """
+""" Routes SSCPAT """
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
@@ -7,7 +7,6 @@ from rest_framework_simplejwt.views import  TokenRefreshView
 
 from sscpat.sscpat.api.views import *
 from sscpat.sscpat import views
-
 
 router = DefaultRouter()
 

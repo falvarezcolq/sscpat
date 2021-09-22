@@ -31,6 +31,8 @@ class ModalityConfigModelSerializer(ModelSerializer):
           "has_time_extension",
           "month_extension",
           "has_tutors",
+          "has_review_commission",
+          "has_evaluating_court",
           "has_institution",
           "mandatory_month_report_progress_student",
           "frequency_report_student",

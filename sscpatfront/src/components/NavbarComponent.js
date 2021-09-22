@@ -62,6 +62,13 @@ class Navbar extends React.Component {
                 >
                   <li>
                     <Link to={Config.updateMyPasswordUrl}> Cambiar mi contraseña </Link>
+                    <Link
+                      to={Config.logoutPageUrl}
+                      className=" waves-effect waves-block"
+                      ref={this.divref2}
+                    >
+                      <i className="material-icons">input</i>Cerrar sesión
+                    </Link>
                   </li>
                  
                 </ul>

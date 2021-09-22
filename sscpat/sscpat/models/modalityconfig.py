@@ -30,6 +30,8 @@ class ModalityConfig(SSCPATModel):
 
     # Implicated
     has_tutors = models.BooleanField(_("has tutors"), default=True);
+    has_review_commission = models.BooleanField(_("has review commission "), default=True);
+    has_evaluating_court = models.BooleanField(_("has evaluating court"), default=True);
     has_institution =  models.BooleanField(_("has institution"), default=False);
 
     # Inscription requirements

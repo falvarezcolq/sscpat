@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import {
   addTutor,
   removeTutor,
@@ -9,6 +10,7 @@ import {
 import Modal from "../../../components/atoms/Modal";
 import Spinner from "../../../components/atoms/Spinner";
 import AlertMessage from "../../../components/atoms/AlertMessage";
+import Config from "../../../utils/Config";
 
 class TutorAdd extends React.Component {
   static propTypes = {
@@ -55,14 +57,14 @@ class TutorAdd extends React.Component {
     e.preventDefault();
     const search = this.state.search;
     this.setLoadingSearch(true);
-    await this.props.searchTutor({search:search});
+    await this.props.searchTutor({ search: search });
     this.setLoadingSearch(false);
   };
 
   action_confirm = async (key) => {
     this.setState({
       ...this.state,
-      loadingSave:true,
+      loadingSave: true,
       modal: {
         title: "",
         message: "",
@@ -71,10 +73,10 @@ class TutorAdd extends React.Component {
         accept: null,
         open: false,
       },
-    })
-   
+    });
+
     await this.props.addTutor(key);
-  
+
     this.setLoadingSave(false);
   };
 
@@ -102,24 +104,32 @@ class TutorAdd extends React.Component {
     });
   };
 
-  show_confirm_update = (student_data) =>{
-    const {user,key} = student_data
-    this.setState(
-      { ...this.state,
-        modal:{
-          title: "Confirmar actualización",
-          message:  (<> La información del tutor:
-            <p style={{color:"blue"}}> {user.first_name +" "+user.last_name+" "+user.last_name2}</p>
-             será actualizada con los datos del servidor central, el usuario y contraseña volverán a los que son por defecto, si el usuario estaba borrado del SSCPAT este volverá a ser habilidado
-            </>),
-          cancel:  this.closeModal,
-          confirm: this.action_confirm.bind(this,key),
-          accept: null,
-          open:true,
-        }
-      }
-    )
-  }
+  show_confirm_update = (student_data) => {
+    const { user, key } = student_data;
+    this.setState({
+      ...this.state,
+      modal: {
+        title: "Confirmar actualización",
+        message: (
+          <>
+            {" "}
+            La información del tutor:
+            <p style={{ color: "blue" }}>
+              {" "}
+              {user.first_name + " " + user.last_name + " " + user.last_name2}
+            </p>
+            será actualizada con los datos del servidor central, el usuario y
+            contraseña volverán a los que son por defecto, si el usuario estaba
+            borrado del SSCPAT este volverá a ser habilidado
+          </>
+        ),
+        cancel: this.closeModal,
+        confirm: this.action_confirm.bind(this, key),
+        accept: null,
+        open: true,
+      },
+    });
+  };
 
   render() {
     // tutorSearch = {};
@@ -212,24 +222,25 @@ class TutorAdd extends React.Component {
                               </button>
                             )}
 
-                           
                             {this.props.tutorSearch.value === 2 && (
                               <>
-                              <p>Usuario ya registrado en SSCPAT</p>
-                              <button
-                                className="btn btn-default btn-xs"
-                                onClick={this.show_confirm_update.bind(this,this.props.tutorSearch)}
-                                style={{ marginLeft: "10px" }}
-                              >
-                                Actualizar datos desde el servidor  central
-                              </button>
+                                <p>Usuario ya registrado en SSCPAT</p>
+                                <button
+                                  className="btn btn-default btn-xs"
+                                  onClick={this.show_confirm_update.bind(
+                                    this,
+                                    this.props.tutorSearch
+                                  )}
+                                  style={{ marginLeft: "10px" }}
+                                >
+                                  Actualizar datos desde el servidor central
+                                </button>
                               </>
                             )}
 
                             {this.state.loadingSave && (
                               <div className="">
-                          
-                                <div className='preloader pl-size-sm'>
+                                <div className="preloader pl-size-sm">
                                   <div className="spinner-layer pl-white">
                                     <div className="circle-clipper left">
                                       <div className="circle"></div>
@@ -268,9 +279,7 @@ class TutorAdd extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Nombre</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
+                      <th>Apellidos y nombres</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -278,27 +287,22 @@ class TutorAdd extends React.Component {
                     {this.props.tutorAddedList.map((tutor, index) => (
                       <tr key={index}>
                         <th scope="row">{tutor.user.CI}</th>
-                        <td>{tutor.user.first_name}</td>
-                        <td>{tutor.user.last_name}</td>
-                        <td>{tutor.user.last_name2}</td>
-                        <td>
-                          <button
-                            className="btn btn-danger btn-xs "
-                            onClick={this.props.removeTutor.bind(
-                              this,
-                              tutor.id
-                            )}
-                            style={{ marginLeft: "20px" }}
-                          >
-                            <i className="material-icons">delete</i>
-                          </button>
 
-                          <button
-                            className="btn btn-default btn-xs"
-                            style={{ marginLeft: "20px" }}
-                          >
-                            <i className="material-icons">info</i>
-                          </button>
+                        <Link to={Config.aTutorUrl + "/" + tutor.user.id}>
+                          {tutor.user.last_name +
+                            " " +
+                            tutor.user.last_name2 +
+                            " " +
+                            tutor.user.first_name}
+                        </Link>
+
+                        <td>
+                       
+
+                        <Link to={Config.aUsersUrl + "/" + tutor.user.id}>
+                        <i className="material-icons">edit</i> Editar
+                        </Link>
+                         
                         </td>
                       </tr>
                     ))}

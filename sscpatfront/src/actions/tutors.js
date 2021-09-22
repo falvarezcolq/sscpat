@@ -162,7 +162,7 @@ export const addTutor = (key) => async (dispatch, getState) =>{
         })
         dispatch({
           type: TUTOR_ADDED,  
-          payload: tutorSearch,
+          payload: res.data,
         }); 
         return res.data
       }).catch((err) =>{

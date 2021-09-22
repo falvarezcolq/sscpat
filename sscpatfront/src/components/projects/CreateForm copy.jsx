@@ -31,12 +31,12 @@ const CreateForm = (props) => {
     <div className="row clearfix">
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div className="card">
-          {/* <div className="header">
+          <div className="header">
             <h2>
-                Registra nuevo Proyecto
+                  
               <small> </small>
             </h2>
-          </div> */}
+          </div>
 
           <div className="body">
 

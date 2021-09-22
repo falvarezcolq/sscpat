@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import InputForm from "../../components/atoms/InputForm";
 import SelectForm from "../../components/atoms/SelectForm";
-import SelectFormRight from "../../components/atoms/SelectFormRight";
 import { validateInput } from "../../utils/Validations";
 import { useHistory } from "react-router-dom";
 import { minimalListTutors } from "../../actions/tutors";
@@ -233,48 +232,14 @@ const Form = (props) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="row">
-        {/* <div className="col-md-12 col-lg-12">
+        <div className="col-md-12 col-lg-12">
           <div className="align-center bg-primary">
             <div className="color-name">Información del estudiante</div>
           </div>
-        </div> */}
-        <div
-          className="col-lg-12 col-md-12 col-sm-12"
-          style={{ margin: "0px" }}
-        >
-          <h2 className="pull-left" style={{ fontSize: "1.6rem" }}>
-            Registra nuevo proyecto bajo la modalidad:{" "}
-          </h2>
-          <div className="pull-left">
-            <SelectFormRight
-              name="modality"
-              value={values.modality}
-              touched={touched.modality}
-              error={errors.modality}
-              placeholder="Ingrese titulo del proyecto académico"
-              onChange={onChangeModality}
-              // required={true}
-              // title="Modalidad de titulación"
-              // addUrl={Config.aModalitiesNewUrl}
-              // reload={props.listModalities}
-            >
-              {props.modalities.length > 0 ? (
-                <>
-                  <option value="">--Seleccione--</option>
-                  {props.modalities.map((mod) => (
-                    <option key={mod.id} value={mod.id}>
-                      {mod.title}
-                    </option>
-                  ))}
-                </>
-              ) : (
-                <option value="">Cargando..</option>
-              )}
-            </SelectFormRight>
-          </div>
         </div>
-        {project && (
-          <div className="col-lg-12">
+
+        <div className="col-lg-12">
+          {project && (
             <>
               <label>Apellidos y nombres de los autores</label>
               {project.authors.map((author, index) => (
@@ -293,116 +258,142 @@ const Form = (props) => {
                 </div>
               ))}
             </>
-          </div>
-        )}
+          )}
+        </div>
 
         {!project && (
           <>
             <div className="col-md-12 col-lg-6">
               <div className="form-group">
-                <div>
-                  Asignado al estudiante:{" "}
-                  {student.last_name +
-                    " " +
-                    student.last_name2 +
-                    " " +
-                    student.first_name}
+              <label>Apellidos y nombres</label>
+                <div className="form-line">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={
+                      student.last_name +
+                      " " +
+                      student.last_name2 +
+                      " " +
+                      student.first_name
+                    }
+                    disabled={true}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-6 col-lg-3">
+              <div className="form-group">
+                <label> C.I. </label>
+                <div className="form-line">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={student.CI}
+                    disabled={true}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="col-md-6 col-lg-3">
+              <div className="form-group">
+                <label>R.U.</label>
+                <div className="form-line">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={student.RU}
+                    disabled={true}
+                  />
                 </div>
               </div>
             </div>
           </>
         )}
 
-        {modality && (
-          <div className="col-md-12 col-lg-12">
-            <div className="align-center bg-primary">
-              <div className="color-name">
-                Información del proyecto académico de titulación
-              </div>
+        <div className="col-md-12 col-lg-12">
+          <div className="align-center bg-primary">
+            <div className="color-name">
+              Información del proyecto académico de titulación
             </div>
           </div>
-        )}
+        </div>
 
-        {modality && (
-          <div className="col-lg-12">
-            <InputForm
-              name="title_academic_project"
-              value={values.title_academic_project}
-              touched={touched.title_academic_project}
-              error={errors.title_academic_project}
-              focus={focus.title_academic_project}
-              required={true}
-              placeholder="Ingrese titulo del proyecto académico"
-              onChange={onChange}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              title="Título del proyecto académico:"
-            />
-          </div>
-        )}
+        <div className="col-lg-12">
+          <InputForm
+            name="title_academic_project"
+            value={values.title_academic_project}
+            touched={touched.title_academic_project}
+            error={errors.title_academic_project}
+            focus={focus.title_academic_project}
+            required={true}
+            placeholder="Ingrese titulo del proyecto académico"
+            onChange={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            title="Título del proyecto académico:"
+          />
+        </div>
 
-        {/* {modality && (
-          <div className="col-lg-12">
-            <InputForm
-              name="description_project"
-              value={values.description_project}
-              touched={touched.description_project}
-              error={errors.description_project}
-              focus={focus.description_project}
-              required={false}
-              placeholder="Ingrese descripción del proyecto"
-              onChange={onChange}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              title="Descripción general del proyecto"
-            />
-          </div>
-        )} */}
+        <div className="col-lg-12">
+          <InputForm
+            name="description_project"
+            value={values.description_project}
+            touched={touched.description_project}
+            error={errors.description_project}
+            focus={focus.description_project}
+            required={false}
+            placeholder="Ingrese descripción del proyecto"
+            onChange={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            title="Descripción general del proyecto"
+          />
+        </div>
 
-        {modality && (
-          <div className="col-lg-4 col-md-4">
-            <SelectForm
-              name="academic_period"
-              value={values.academic_period}
-              touched={touched.academic_period}
-              error={errors.academic_period}
-              focus={focus.academic_period}
-              required={true}
-              onChange={onChangePeriod}
-              title="Periodo académico"
-              addUrl={Config.aPeriodsNewUrl}
-              reload={props.listAcademicPeriods}
-            >
-              {props.academicperiods.length > 0 ? (
-                <>
-                  <option value="">--Seleccione--</option>
-                  {props.academicperiods.map((ap) => (
-                    <option key={ap.id} value={ap.id}>
-                      {ap.title}
-                    </option>
-                  ))}
-                </>
-              ) : (
-                <option value="">Cargando..</option>
-              )}
-            </SelectForm>
-
-            {values.date_init && (
-              <h5>
-                Fecha de inicio: {getDate(values.date_init)}
-                {/* {new Date(values.date_init).toLocaleDateString("es-ES")} */}
-                {/* {" "}  */}
-              </h5>
+        <div className="col-lg-4 col-md-4">
+          <SelectForm
+            name="academic_period"
+            value={values.academic_period}
+            touched={touched.academic_period}
+            error={errors.academic_period}
+            focus={focus.academic_period}
+            required={true}
+            onChange={onChangePeriod}
+            title="Periodo académico"
+            addUrl={Config.aPeriodsNewUrl}
+            reload={props.listAcademicPeriods}
+          >
+            {props.academicperiods.length > 0 ? (
+              <>
+                <option value="">--Seleccione--</option>
+                {props.academicperiods.map((ap) => (
+                  <option key={ap.id} value={ap.id}>
+                    {ap.title}
+                  </option>
+                ))}
+              </>
+            ) : (
+              <option value="">Cargando..</option>
             )}
-            {values.date_end && (
-              <h5>
-                Fecha de finalizacion: {getDate(values.date_end)}
-                {/* {new Date(values.date_end).toLocaleDateString("es-ES")} */}
-              </h5>
-            )}
-          </div>
-        )}
+          </SelectForm>
 
+          {values.date_init && (
+            <h5>
+              Fecha de inicio: {getDate(values.date_init)}
+              {/* {new Date(values.date_init).toLocaleDateString("es-ES")} */}
+              {/* {" "}  */}
+            </h5>
+          )}
+          {values.date_end && (
+            <h5>
+              Fecha de finalizacion: {getDate(values.date_end)}
+              {/* {new Date(values.date_end).toLocaleDateString("es-ES")} */}
+            </h5>
+          )}
+        </div>
         {values.date_init && (
           <div className="col-lg-4">
             <InputForm
@@ -440,6 +431,33 @@ const Form = (props) => {
             />
           </div>
         )}
+        <div className="col-lg-12 col-md-12">
+          <SelectForm
+            name="modality"
+            value={values.modality}
+            touched={touched.modality}
+            error={errors.modality}
+            required={true}
+            placeholder="Ingrese titulo del proyecto académico"
+            onChange={onChangeModality}
+            title="Modalidad de titulación"
+            addUrl={Config.aModalitiesNewUrl}
+            reload={props.listModalities}
+          >
+            {props.modalities.length > 0 ? (
+              <>
+                <option value="">--Seleccione--</option>
+                {props.modalities.map((mod) => (
+                  <option key={mod.id} value={mod.id}>
+                    {mod.title}
+                  </option>
+                ))}
+              </>
+            ) : (
+              <option value="">Cargando..</option>
+            )}
+          </SelectForm>
+        </div>
 
         {modality && (
           <>
@@ -545,36 +563,33 @@ const Form = (props) => {
             )}
           </>
         )}
-
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
           <AlertMessage />
         </div>
 
-        {modality && (
-          <div className="col-lg-offset-2 col-lg-8  col-md-12">
-            <button
-              type="button"
-              className="btn btn-default "
-              onClick={history.goBack}
-            >
-              Regresar
-            </button>
+        <div className="col-lg-offset-2 col-lg-8  col-md-12">
+          <button
+            type="button"
+            className="btn btn-default "
+            onClick={history.goBack}
+          >
+            Regresar
+          </button>
 
-            <button
-              type="submit"
-              className="btn btn-primary pull-right"
-              disabled={loading}
-            >
-              {project
-                ? loading
-                  ? "Actualizando..."
-                  : "Actualizar"
-                : loading
-                ? "Registrando..."
-                : "Registrar"}
-            </button>
-          </div>
-        )}
+          <button
+            type="submit"
+            className="btn btn-primary pull-right"
+            disabled={loading}
+          >
+            {project
+              ? loading
+                ? "Actualizando..."
+                : "Actualizar"
+              : loading
+              ? "Registrando..."
+              : "Registrar"}
+          </button>
+        </div>
       </div>
     </form>
   );
