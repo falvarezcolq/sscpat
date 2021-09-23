@@ -20,6 +20,13 @@ import { getDate } from "../../actions/helper";
 const Form = (props) => {
   let { project, student } = props;
   let projectValues = {};
+  let configValues = {
+    has_tutor: false,
+    has_external_tutor: false,
+    has_review_commission: false,
+    has_evaluating_court: false,
+    has_institution: false,
+  };
 
   if (project) {
     student = project.student;
@@ -38,6 +45,7 @@ const Form = (props) => {
   }
 
   const [values, setValues] = useState(projectValues);
+  const [config, setConfig] = useState(configValues);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [focus, setFocus] = useState({});
@@ -147,6 +155,8 @@ const Form = (props) => {
       let res;
       if (!project) {
         // ADD NEW PROJECT
+
+        console.log(values)
         res = await props.add(values);
       } else {
         // UPDATE DATA
@@ -214,6 +224,52 @@ const Form = (props) => {
     });
   };
 
+  const onChangeTutorsReview = (e) => {
+    const selectId = e.target.value;
+    if (
+      selectId !== "" &&
+      values.tutors_review_commission.every((d) => d.id !== Number(selectId))
+    ) {
+      const tutor = props.tutors.find((t) => t.id === Number(selectId));
+      setValues({
+        ...values,
+        tutors_review_commission: [...values.tutors_review_commission, tutor],
+      });
+    }
+  };
+
+  const removeTutorsReview = (id) => {
+    setValues({
+      ...values,
+      tutors_review_commission: values.tutors_review_commission.filter(
+        (t) => t.id !== id
+      ),
+    });
+  };
+
+  const onChangeTutorsCourt = (e) => {
+    const selectId = e.target.value;
+    if (
+      selectId !== "" &&
+      values.tutors_evaluating_court.every((d) => d.id !== Number(selectId))
+    ) {
+      const tutor = props.tutors.find((t) => t.id === Number(selectId));
+      setValues({
+        ...values,
+        tutors_evaluating_court: [...values.tutors_evaluating_court, tutor],
+      });
+    }
+  };
+
+  const removeTutorsCourt = (id) => {
+    setValues({
+      ...values,
+      tutors_evaluating_court: values.tutors_evaluating_court.filter(
+        (t) => t.id !== id
+      ),
+    });
+  };
+
   const onChangeModality = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -276,7 +332,7 @@ const Form = (props) => {
         {project && (
           <div className="col-lg-12">
             <>
-              <label>Apellidos y nombres de los autores</label>
+              <label>Apellidos y nombres de los estudiantes</label>
               {project.authors.map((author, index) => (
                 <div
                   className="author-name col-blue-grey"
@@ -452,72 +508,218 @@ const Form = (props) => {
             </div>
 
             <div className="col-lg-offset-2 col-lg-8  col-md-12">
-              <SelectForm
-                name="tutors"
-                onChange={onChangeTutors}
-                required={true}
-                title="Tutores internos"
-                addUrl={Config.aTutorNewUrl}
-                reload={props.minimalListTutors}
-              >
-                {props.tutors.length > 0 ? (
-                  <>
-                    <option value="">--Seleccione--</option>
-                    {props.tutors.map((t) => (
-                      <option key={t.id} value={t.id}>
-                        {t.abbreviation +
-                          " " +
-                          t.last_name +
-                          " " +
-                          t.last_name2 +
-                          " " +
-                          t.first_name}
-                      </option>
-                    ))}
-                  </>
-                ) : (
-                  <option value="">Cargando..</option>
-                )}
-              </SelectForm>
+              {!(modality.config.has_tutors || config.has_tutor || values.tutors.length > 0 ) && (
+                <button
+                  className="btn btn-sm btn-link col-blue-grey"
+                  style={{ marginRight: "5px" }}
+                  onClick={() => setConfig({ ...config, has_tutor: true })}
+                >
+                  Agregar tutores
+                </button>
+              )}
+              {!(config.has_external_tutor || values.external_tutors.length>0 )&& (
+                <button
+                  className="btn btn-sm btn-link col-blue-grey"
+                  style={{ marginRight: "5px" }}
+                  onClick={() =>
+                    setConfig({ ...config, has_external_tutor: true })
+                  }
+                >
+                  Agregar Tutores externos
+                </button>
+              )}
 
-              <ListNames list={values.tutors} remove={removeTutors} />
+              {!(
+                modality.config.has_review_commission ||
+                config.has_review_commission ||
+                values.tutors_review_commission.length>0
+              ) && (
+                <button
+                  className="btn btn-sm btn-link col-blue-grey"
+                  style={{ marginRight: "5px" }}
+                  onClick={() =>
+                    setConfig({ ...config, has_review_commission: true })
+                  }
+                >
+                  Agregar comision revisora
+                </button>
+              )}
+
+              {!(
+                modality.config.has_evaluating_court ||
+                config.has_evaluating_court ||
+                values.tutors_evaluating_court.length > 0
+              ) && (
+                <button
+                  className="btn btn-sm btn-link col-blue-grey"
+                  style={{ marginRight: "5px" }}
+                  onClick={() =>
+                    setConfig({ ...config, has_evaluating_court: true })
+                  }
+                >
+                  Agregar Tribunal
+                </button>
+              )}
+              {!(modality.config.has_institution || config.has_institution || values.institution ) && (
+                <button
+                  className="btn btn-sm btn-link col-blue-grey"
+                  style={{ marginRight: "5px" }}
+                  onClick={() =>
+                    setConfig({ ...config, has_institution: true })
+                  }
+                >
+                  Agregar Instituci&oacute;n
+                </button>
+              )}
             </div>
 
-            <div className="col-lg-offset-2 col-lg-8  col-md-12">
-              <SelectForm
-                name="tutors"
-                onChange={onChangeExternalTutors}
-                title="Tutores externos"
-                addUrl={Config.aUserNewUrl}
-                reload={props.minimalListExternalTutors}
-              >
-                {props.externaltutors.length > 0 ? (
-                  <>
-                    <option value="">--Seleccione--</option>
-                    {props.externaltutors.map((et) => (
-                      <option key={et.id} value={et.id}>
-                        {et.abbreviation +
-                          " " +
-                          et.last_name +
-                          " " +
-                          et.last_name +
-                          " " +
-                          et.first_name}
-                      </option>
-                    ))}
-                  </>
-                ) : (
-                  <option value="">Cargando..</option>
-                )}
-              </SelectForm>
+            {(modality.config.has_tutors ||
+              config.has_tutor || values.tutors.length > 0 ) && (
+                <div className="col-lg-offset-2 col-lg-8  col-md-12">
+                  <SelectForm
+                    name="tutors"
+                    onChange={onChangeTutors}
+                    required={true}
+                    title="Tutores"
+                    addUrl={Config.aTutorNewUrl}
+                    reload={props.minimalListTutors}
+                  >
+                    {props.tutors.length > 0 ? (
+                      <>
+                        <option value="">--Seleccione--</option>
+                        {props.tutors.map((t) => (
+                          <option key={t.id} value={t.id}>
+                            {t.abbreviation +
+                              " " +
+                              t.last_name +
+                              " " +
+                              t.last_name2 +
+                              " " +
+                              t.first_name}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <option value="">Cargando..</option>
+                    )}
+                  </SelectForm>
+                  <ListNames list={values.tutors} remove={removeTutors} />
+                </div>
+              )}
 
-              <ListNames
-                list={values.external_tutors}
-                remove={removeExternalTutors}
-              />
-            </div>
+            {(config.has_external_tutor || values.external_tutors.length > 0) && (
+              <div className="col-lg-offset-2 col-lg-8  col-md-12">
+                <SelectForm
+                  name="tutors"
+                  onChange={onChangeExternalTutors}
+                  title="Tutores externos"
+                  addUrl={Config.aUserNewUrl}
+                  reload={props.minimalListExternalTutors}
+                >
+                  {props.externaltutors.length > 0 ? (
+                    <>
+                      <option value="">--Seleccione--</option>
+                      {props.externaltutors.map((et) => (
+                        <option key={et.id} value={et.id}>
+                          {et.abbreviation +
+                            " " +
+                            et.last_name +
+                            " " +
+                            et.last_name +
+                            " " +
+                            et.first_name}
+                        </option>
+                      ))}
+                    </>
+                  ) : (
+                    <option value="">Cargando..</option>
+                  )}
+                </SelectForm>
 
-            {modality.config.has_institution && (
+                <ListNames
+                  list={values.external_tutors}
+                  remove={removeExternalTutors}
+                />
+              </div>
+            )}
+
+            {(modality.config.has_review_commission ||
+            config.has_review_commission || values.tutors_review_commission.length > 0 ) && (
+              <div className="col-lg-offset-2 col-lg-8  col-md-12">
+                <SelectForm
+                  name="tutors_review_commission"
+                  onChange={onChangeTutorsReview}
+                  required={true}
+                  title="Comisión de revisión"
+                  addUrl={Config.aTutorNewUrl}
+                  reload={props.minimalListTutors}
+                >
+                  {props.tutors.length > 0 ? (
+                    <>
+                      <option value="">--Seleccione--</option>
+                      {props.tutors.map((t) => (
+                        <option key={t.id} value={t.id}>
+                          {t.abbreviation +
+                            " " +
+                            t.last_name +
+                            " " +
+                            t.last_name2 +
+                            " " +
+                            t.first_name}
+                        </option>
+                      ))}
+                    </>
+                  ) : (
+                    <option value="">Cargando..</option>
+                  )}
+                </SelectForm>
+
+                <ListNames
+                  list={values.tutors_review_commission}
+                  remove={removeTutorsReview}
+                />
+              </div>
+            )}
+
+            {(modality.config.has_evaluating_court ||
+            config.has_evaluating_court || values.tutors_evaluating_court.length > 0) && (
+              <div className="col-lg-offset-2 col-lg-8  col-md-12">
+                <SelectForm
+                  name="tutors_evaluating_court"
+                  onChange={onChangeTutorsCourt}
+                  required={true}
+                  title="Tribunal de evaluación"
+                  addUrl={Config.aTutorNewUrl}
+                  reload={props.minimalListTutors}
+                >
+                  {props.tutors.length > 0 ? (
+                    <>
+                      <option value="">--Seleccione--</option>
+                      {props.tutors.map((t) => (
+                        <option key={t.id} value={t.id}>
+                          {t.abbreviation +
+                            " " +
+                            t.last_name +
+                            " " +
+                            t.last_name2 +
+                            " " +
+                            t.first_name}
+                        </option>
+                      ))}
+                    </>
+                  ) : (
+                    <option value="">Cargando..</option>
+                  )}
+                </SelectForm>
+
+                <ListNames
+                  list={values.tutors_evaluating_court}
+                  remove={removeTutorsCourt}
+                />
+              </div>
+            )}
+
+            {(modality.config.has_institution || config.has_institution || values.institution ) && (
               <div className="col-lg-offset-2 col-lg-8  col-md-12">
                 <SelectForm
                   name="institution"

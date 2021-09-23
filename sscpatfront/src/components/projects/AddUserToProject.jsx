@@ -86,7 +86,7 @@ class AddUserProject extends React.Component {
           detail:
             "¡No esta permitido registrar mas de " +
             project.modality.config.max_author +
-            " autor(es)  en esta modalidad!",
+            " estudiante(s)  en esta modalidad!",
         });
       }
     }
@@ -210,10 +210,10 @@ class AddUserProject extends React.Component {
             {project && (
               <>
                 <div className="col-lg-12">
-                  <h2>Agregar autor</h2>
+                  <h2>Agregar Estudiante</h2>
                   Tema: {project.title_academic_project} <br />
                   Modalidad: {project.modality.title} <br />
-                  Cantidad de m&aacute;xima de autores:{" "}
+                  Cantidad de m&aacute;xima de estudiantes:{" "}
                   {project.modality.config.max_author}
                 </div>
 
@@ -223,7 +223,7 @@ class AddUserProject extends React.Component {
                     style={{ boxShadow: "0px 0px 2px 5px rgba(0, 0, 0, 0.2)" }}
                   >
                     {project.authors.length === 0 ? (
-                      <h4> No se ha agregado autores </h4>
+                      <h4> No se ha agregado ningun estudiante </h4>
                     ) : (
                       <>
                         <table className="table table-hover">

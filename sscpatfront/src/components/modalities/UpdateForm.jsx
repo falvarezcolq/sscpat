@@ -623,7 +623,7 @@ const UpdateForm = (props) => {
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
                 >
-                  <h2 className="card-inside-title">Autores</h2>
+                  <h2 className="card-inside-title">Estudiantes</h2>
                 </div>
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
@@ -636,7 +636,7 @@ const UpdateForm = (props) => {
                       }
                     >
                       <label style={{ width: "80%" }} htmlFor="max_author">
-                        Cantida máxima de autores:
+                        Cantida máxima de estudiantes:
                       </label>
                       <input
                         type="number"

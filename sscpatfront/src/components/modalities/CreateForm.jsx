@@ -558,7 +558,7 @@ const CreateForm = (props) => {
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
                   style={{ marginBottom: "0" }}
                 >
-                  <h2 className="card-inside-title">Autores</h2>
+                  <h2 className="card-inside-title">Estudiantes</h2>
                 </div>
                 <div
                   className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
@@ -571,7 +571,7 @@ const CreateForm = (props) => {
                       }
                     >
                       <label style={{ width: "80%" }} htmlFor="max_author">
-                        Cantidad máxima de autores:
+                        Cantidad máxima de estudiantes:
                       </label>
                       {/* <select 
                       name="max_author" id="max_author"

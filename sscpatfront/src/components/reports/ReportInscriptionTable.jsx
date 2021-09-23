@@ -123,7 +123,7 @@ const ReportInscriptionTable = (props) => {
                       <thead>
                         <tr>
                           <th>Titulo</th>
-                          <th>Autor</th>
+                          <th>Estudiante</th>
                           <th>Gestion</th>
                           <th>Inicio-Finalizacion</th>
                           <th>Avances entregados</th>

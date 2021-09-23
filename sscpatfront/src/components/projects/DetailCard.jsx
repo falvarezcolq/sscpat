@@ -100,7 +100,7 @@ const DetailCard = (props) => {
 
             
               <h2 >
-                Autor(es): {" "} <br /> 
+                Estudiante(s): {" "} <br /> 
                 {project.authors.map((author, index) => (
                   <>
                   <span style={{fontSize:"1.4 rem"}}>
@@ -208,7 +208,7 @@ const DetailCard = (props) => {
                   to={Config.aProjectsUrl+"/nuevo_autor/"+ project.id}
                   className=" waves-effect waves-block"
                 >
-                  Agregar autores
+                  Agregar Estudiantes
                 </Link>
                 </li>
               }

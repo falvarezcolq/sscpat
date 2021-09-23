@@ -129,8 +129,6 @@ class InscriptionViewSet(mixins.CreateModelMixin,
         user = self.request.user
         instance = serializer.save()
 
-
-
         if 'tutors' in data:
             tutors = data['tutors']
             for tutor in tutors:
@@ -151,6 +149,30 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                     assign_project_to_tutor_notification(inscription_id=instance.id, tutor_id=t.id,
                                                          user_action_id=user.id)
                     send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=t.id)
+                except Tutor.DoesNotExist:
+                    pass
+
+        if 'tutors_review_commission' in data:
+            tutors = data['tutors_review_commission']
+            for tutor in tutors:
+                try:
+                    t = Tutor.objects.get(id=tutor['id'], active=True)
+                    instance.tutors_review_commission.add(t)
+                    # assign_project_to_tutor_notification(inscription_id=instance.id, tutor_id=t.id,
+                    #                                      user_action_id=user.id)
+                    # send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=t.id)
+                except Tutor.DoesNotExist:
+                    pass
+
+        if 'tutors_evaluating_court' in data:
+            tutors = data['tutors_evaluating_court']
+            for tutor in tutors:
+                try:
+                    t = Tutor.objects.get(id=tutor['id'], active=True)
+                    instance.tutors_evaluating_court.add(t)
+                    # assign_project_to_tutor_notification(inscription_id=instance.id, tutor_id=t.id,
+                    #                                      user_action_id=user.id)
+                    # send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=t.id)
                 except Tutor.DoesNotExist:
                     pass
 
@@ -251,6 +273,54 @@ class InscriptionViewSet(mixins.CreateModelMixin,
                 # send email down project to tutor
                 instance.external_tutors.remove(remove_tutor)
 
+
+        if 'tutors_review_commission' in data:
+            tutors = data['tutors_review_commission']
+            not_delete_tutors = [] # save array id from tutors registereds
+            for tutor in tutors:
+                try:
+                    if not instance.tutors.filter(pk=tutor['id']).exists():
+                        new_tutor = Tutor.objects.get(id=tutor['id'], active=True)
+                        instance.tutors_review_commission.add(new_tutor)
+                        not_delete_tutors.append(tutor['id'])
+                        ## send email
+                        # send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=new_tutor.id)
+                    else:
+                        not_delete_tutors.append(tutor['id'])
+
+                except Tutor.DoesNotExist:
+                    pass
+
+            for remove_tutor in instance.tutors.exclude(pk__in=not_delete_tutors):
+                # send email down project to tutor
+                # send_email_disassociate_project_to_tutor(inscription_pk=instance.id, tutor_pk=remove_tutor.id)
+                # send_email_down
+                instance.tutors_review_commission.remove(remove_tutor)
+
+        if 'tutors_evaluating_court' in data:
+            tutors = data['tutors_evaluating_court']
+            not_delete_tutors = [] # save array id from tutors registereds
+            for tutor in tutors:
+                try:
+                    if not instance.tutors.filter(pk=tutor['id']).exists():
+                        new_tutor = Tutor.objects.get(id=tutor['id'], active=True)
+                        instance.tutors_evaluating_court.add(new_tutor)
+                        not_delete_tutors.append(tutor['id'])
+                        ## send email
+                        # send_assign_project_to_tutor.delay(inscription_pk=instance.id, tutor_pk=new_tutor.id)
+                    else:
+                        not_delete_tutors.append(tutor['id'])
+
+                except Tutor.DoesNotExist:
+                    pass
+
+            for remove_tutor in instance.tutors.exclude(pk__in=not_delete_tutors):
+                # send email down project to tutor
+                # send_email_disassociate_project_to_tutor(inscription_pk=instance.id, tutor_pk=remove_tutor.id)
+                # send_email_down
+                instance.tutors_evaluating_court.remove(remove_tutor)
+
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         # if instance :
@@ -317,7 +387,6 @@ class InscriptionViewSet(mixins.CreateModelMixin,
 
         not_delete_authors=[]
         for id in id_students:
-
             try:
                 if not inscription.authors.filter(pk=4).exists():
                     author = Student.objects.get(pk=str(id), active=True)

@@ -60,7 +60,7 @@ class ProjectListDates extends React.Component {
           detail:
             "¡No esta permitido registrar mas de " +
             project.modality.config.max_author +
-            " autor(es)  en esta modalidad!",
+            " estudiante(s)  en esta modalidad!",
         });
       }
     }

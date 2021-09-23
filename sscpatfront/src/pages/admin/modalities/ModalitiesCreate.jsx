@@ -23,10 +23,7 @@ class ModalitiesCreate extends Component {
               </button> Modalidad de titulaci&oacute;n Nuevo</h2>
           </div>
         </div>
-        
         <CreateForm /> 
-
-       
       </section>
     );
   }

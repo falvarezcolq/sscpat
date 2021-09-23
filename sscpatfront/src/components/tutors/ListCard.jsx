@@ -278,7 +278,7 @@ const ListCard = (props) => {
                               <th>Modalidad</th>
                               <th>Avance</th>
                               <th>Sin revisi&oacute;n</th>
-                              <th>Autor(es)</th>
+                              <th>Estudiante(s)</th>
                             </tr>
                           </thead>
                           <tbody>

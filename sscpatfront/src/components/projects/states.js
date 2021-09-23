@@ -7,6 +7,8 @@ export const initialValues = {
     // date_end:"2020-06-01",
     tutors: [],
     external_tutors: [],
+    tutors_review_commission:[],
+    tutors_evaluating_court:[],
     institution:"",
 };
 

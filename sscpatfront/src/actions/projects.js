@@ -320,7 +320,7 @@ export const add_authors = (id,users) => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: MESSAGE_SUCCESS,
-        payload: { detail: `Los autores fueron agregados con éxito` },
+        payload: { detail: `Los estudiantes fueron agregados con éxito` },
       });
       dispatch({
         type: GET_PROJECT,

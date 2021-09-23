@@ -241,7 +241,7 @@ const Form = (props) => {
         <div className="col-lg-12">
           {project && (
             <>
-              <label>Apellidos y nombres de los autores</label>
+              <label>Apellidos y nombres de los estudiantes</label>
               {project.authors.map((author, index) => (
                 <div
                   className="author-name col-blue-grey"
