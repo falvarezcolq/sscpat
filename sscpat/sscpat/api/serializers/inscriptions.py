@@ -49,6 +49,8 @@ class InscriptionModelSerializer(ModelSerializer):
             "state",
             "tutors",
             "external_tutors",
+            "tutors_review_commission",
+            "tutors_evaluating_court",
             "institution",
             "title_academic_project",
             "description_project",
@@ -66,6 +68,8 @@ class InscriptionModelSerializer(ModelSerializer):
         read_only_fields=[
             "tutors",
             "external_tutors",
+            "tutors_review_commission",
+            "tutors_evaluating_court",
         ]
 
 
@@ -90,6 +94,8 @@ class InscriptionCompleteModelSerializer(ModelSerializer):
 
     student = UserModelSerializer(many=False)
     tutors = TutorMinimalListModelSerializer(many=True)
+    tutors_review_commission = TutorMinimalListModelSerializer(many=True)
+    tutors_evaluating_court = TutorMinimalListModelSerializer(many=True)
     external_tutors = TutorMinimalListModelSerializer(many=True)
     institution = InstitutionModelSerializer(many=False)
     modality = ModalityModelConfigSerializer(many=False)
@@ -111,6 +117,8 @@ class InscriptionCompleteModelSerializer(ModelSerializer):
             "state",
             "tutors",
             "external_tutors",
+            "tutors_review_commission",
+            "tutors_evaluating_court",
             "institution",
             "title_academic_project",
             "description_project",

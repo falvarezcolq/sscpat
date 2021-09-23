@@ -36,6 +36,9 @@ class Inscription(SSCPATModel):
 
     tutors = models.ManyToManyField(Tutor,related_name="tutor_projects")
     external_tutors = models.ManyToManyField(ExternalTutor,related_name="etutor_projects")
+    tutors_review_commission = models.ManyToManyField(Tutor, related_name="projects_review")
+    tutors_evaluating_court = models.ManyToManyField(Tutor, related_name="projects_court")
+
     authors = models.ManyToManyField( Student, related_name="sprojects" )
 
     title_academic_project = models.TextField(_("title of academic project"), max_length=1024,unique=True)

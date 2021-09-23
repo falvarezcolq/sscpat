@@ -847,6 +847,32 @@ const UpdateForm = (props) => {
                   style={{ marginBottom: "0" }}
                 >
                   <RadioButton
+                    name="has_review_commission"
+                    value={values.has_review_commission}
+                    onChangeRadioButton={onChangeRadioButton}
+                  >
+                    La modalidad posee comisi&oacute;n revisora:
+                  </RadioButton>
+                </div>
+
+                <div
+                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                  style={{ marginBottom: "0" }}
+                >
+                  <RadioButton
+                    name="has_evaluating_court"
+                    value={values.has_evaluating_court}
+                    onChangeRadioButton={onChangeRadioButton}
+                  >
+                    La modalidad tribunal de evaluaci&oacute;n:
+                  </RadioButton>
+                </div>
+
+                <div
+                  className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10"
+                  style={{ marginBottom: "0" }}
+                >
+                  <RadioButton
                     name="has_institution"
                     value={values.has_institution}
                     onChangeRadioButton={onChangeRadioButton}
