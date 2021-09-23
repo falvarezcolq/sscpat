@@ -26,6 +26,8 @@ const initialValues = {
   month_extension: "0",
 
   has_tutors: true,
+  has_review_commission:true,
+  has_evaluating_court:true,
   has_institution: false,
 
   mandatory_month_report_progress_student: false,
@@ -237,6 +239,9 @@ const UpdateForm = (props) => {
     f.append("has_time_extension", values.has_time_extension);
     f.append("month_extension", values.month_extension);
     f.append("has_tutors", values.has_tutors);
+    f.append("has_review_commission",values.has_review_commission);
+    f.append("has_evaluating_court",values.has_evaluating_court);
+   
     f.append("has_institution", values.has_institution);
     f.append(
       "mandatory_month_report_progress_student",
