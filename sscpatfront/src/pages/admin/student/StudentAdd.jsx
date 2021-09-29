@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import {
   addStudent,
   // removeStudent,
@@ -8,6 +9,7 @@ import {
 } from "../../../actions/students";
 import Modal from "../../../components/atoms/Modal";
 import Spinner from "../../../components/atoms/Spinner";
+import Config from "../../../utils/Config";
 
 class StudentAdd extends React.Component {
   static propTypes = {
@@ -259,37 +261,26 @@ class StudentAdd extends React.Component {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Nombre</th>
-                      <th>Apellido Paterno</th>
-                      <th>Apellido Materno</th>
+                      <th>Nombres y apellidos</th>
+                     
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.props.studentAddedList.map((student, index) => (
                       <tr key={index}>
-                        <th scope="row">{student.user.CI}</th>
-                        <td>{student.user.first_name}</td>
-                        <td>{student.user.last_name}</td>
-                        <td>{student.user.last_name2}</td>
+                        <th scope="row">{student.CI}</th>
                         <td>
-                          <button
-                            className="btn btn-danger btn-xs "
-                            // onClick={this.props.removeStudent.bind(
-                            //   this,
-                            //   student.id
-                            // )}
-                            style={{ marginLeft: "20px" }}
-                          >
-                            <i className="material-icons">delete</i>
-                          </button>
-
-                          <button
-                            className="btn btn-default btn-xs"
-                            style={{ marginLeft: "20px" }}
-                          >
-                            <i className="material-icons">info</i>
-                          </button>
+                        <Link to={Config.aStudentsUrl + "/" + student.id}>
+                          {student.first_name +" "+student.last_name +" "+student.last_name2}
+                        </Link>
+                        
+                        </td>
+                        <td>
+                    
+                        <Link to={Config.aProjectsNewUrl +  student.id} className="btn btn-sm btn-warning"> 
+                          Nuevo
+                        </Link>
                         </td>
                       </tr>
                     ))}

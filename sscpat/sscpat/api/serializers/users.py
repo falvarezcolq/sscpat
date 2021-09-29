@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate
 # Django REST Framework
 from rest_framework import serializers,exceptions
 
-
 # models
 from sscpat.sscpat.models import User
 from rest_framework.serializers import ValidationError

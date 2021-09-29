@@ -31,6 +31,7 @@ class DateLogModelSerializer(ModelSerializer):
             return UserShortDetailSerializer(User.objects.get(id=obj.created_by)).data
         except User.DoesNotExist:
             return None
+
     class Meta:
         model = DateLog
         fields =[

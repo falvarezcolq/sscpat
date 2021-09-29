@@ -149,7 +149,7 @@ export const addStudent = (key) => async (dispatch, getState) =>{
         })
         dispatch({
           type: STUDENT_ADDED,  
-          payload: studentSearch,
+          payload: res.data.user,
         }); 
         return res.data
       }).catch((err) =>{
