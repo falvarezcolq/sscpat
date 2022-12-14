@@ -9,7 +9,6 @@ from sscpat.sscpat.utils.models import  SSCPATModel
 
 class AcademicProject(SSCPATModel):
     """Academic Project models.
-
     list academis projects
     """
     name = models.CharField(_("name"),max_length=255,unique=True)

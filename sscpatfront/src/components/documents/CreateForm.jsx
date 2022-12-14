@@ -197,7 +197,7 @@ const CreateForm = (props) => {
 
                 <div className="col-md-12 col-lg-12">
                   <div className="form-group">
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="description">Descripción</label>
                     <div
                       className={
                         focus.description ? "form-line focused" : "form-line"

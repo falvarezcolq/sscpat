@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 # Utilities
-from sscpat.sscpat.utils.models import  SSCPATModel
+from sscpat.sscpat.utils.models import SSCPATModel
 from .users import User
 from .inscriptions import  Inscription
 

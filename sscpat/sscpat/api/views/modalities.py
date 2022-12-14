@@ -96,9 +96,6 @@ class ModalityViewSet(mixins.CreateModelMixin,
         serializerConfig.is_valid(raise_exception=True)
         ModalityConfig.objects.create(modality=modality,**serializerConfig.data)
 
-
-        # import pdb;pdb.set_trace()
-
         files = []
         for key in self.request.data:
             if 'normatives' in key:
@@ -124,6 +121,12 @@ class ModalityViewSet(mixins.CreateModelMixin,
             for doc in documents:
                 d = Document.objects.get(id=doc['id'])
                 modality.document_inscription.add(d)
+
+        if 'document_student' in data:
+            documents = json.loads(data['document_student'])
+            for doc in documents:
+                d = Document.objects.get(id=doc['id'])
+                modality.document_student.add(d)
 
         return modality
 
@@ -189,6 +192,16 @@ class ModalityViewSet(mixins.CreateModelMixin,
                 try:
                     d = Document.objects.get(id=doc['id'])
                     instance.document_inscription.add(d)
+                except Document.DoesNotExist:
+                    pass
+
+        if 'document_student' in data:
+            documents = json.loads(data['document_student'])
+            instance.document_student.clear()
+            for doc in documents:
+                try:
+                    d = Document.objects.get(id=doc['id'])
+                    instance.document_student.add(d)
                 except Document.DoesNotExist:
                     pass
 

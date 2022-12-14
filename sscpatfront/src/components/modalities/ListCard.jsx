@@ -11,6 +11,7 @@ import {
 
 } from "../../actions/helper";
 import pdf_image from "../../img/pdf_icon.png";
+import { GeneralModality } from "../../models/modalities";
 
 const ListCard = (props) => {
   const { results } = props;
@@ -143,32 +144,7 @@ const ListCard = (props) => {
             )): "-- No tiene reglamentos subidos --"}
             <br />
           </div>
-          {/* <div className="col-lg-12">
-           <span className="col-blue-grey font-bold" >Configuración: </span> <br />
-            <ul className="list-group">
-            
-
-            <li className="list-group-item"><span className="col-blue-grey">Nro </span> : {obj.config.max_author} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"month_duration"</span> : {obj.config.month_duration} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"month_max_duration"</span> : {obj.config.month_max_duration} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"has_time_extension"</span> : {obj.config.has_time_extension} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"month_extension"</span> : {obj.config.month_extension} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"has_tutors"</span> : {obj.config.has_tutors} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"has_institution"</span> : {obj.config.has_institution} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_progress_student"</span> : {obj.config.mandatory_month_report_progress_student} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_student"</span> : {obj.config.frequency_report_student} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_tutor"</span> : {obj.config.mandatory_month_report_tutor} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_tutor"</span> : {obj.config.frequency_report_tutor} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_external_tutor"</span> : {obj.config.mandatory_month_report_external_tutor} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_external_tutor"</span> : {obj.config.frequency_report_external_tutor} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"mandatory_month_report_institution"</span> : {obj.config.mandatory_month_report_institution} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"frequency_report_institution"</span> : {obj.config.frequency_report_institution} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"send_final_document"</span> : {obj.config.send_final_document} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"send_abstract_final_document"</span> : {obj.config.send_abstract_final_document} </li>
-            <li className="list-group-item"><span className="col-blue-grey">"send_resolution_commission_aproval"</span> : {obj.config.send_resolution_commission_aproval} </li>
-            
-            </ul>    
-          </div> */}
+        
         </div>
       ),
       cancel: null,
@@ -217,16 +193,18 @@ const ListCard = (props) => {
                         <thead>
                           <tr>
                             <th>Modalidad</th>
-                            <th>Descripción</th>
+                            <th>Nombre de la modalidad </th>
+                            <th style={{width:"200px"}}>Descripción</th>
                             <th>Registrado</th>
-                            <th>Opciones</th>
+                            <th>Opciones</th> 
                           </tr>
                         </thead>
                         <tbody>
                           {results.map((obj) => (
                             <tr key={obj.id}>
+                              <td>{GeneralModality[obj.general_modality]}</td>
                               <td>{obj.title}</td>
-                              <td>{obj.description}</td>
+                              <td >{obj.description}</td>
                               <td>
                                 {new Date(obj.created_at).toLocaleDateString(
                                   "es-ES"

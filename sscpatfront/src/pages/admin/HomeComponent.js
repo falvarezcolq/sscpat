@@ -5,9 +5,7 @@ import Info from "../../components/home/Info";
 
 class HomeComponent extends React.Component {
   
-    render() {
-
-       
+    render() {       
     return (
       <section className="content">
         <div className="container-fluid">

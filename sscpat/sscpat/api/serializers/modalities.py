@@ -39,6 +39,7 @@ class ModalityModelSerializer(ModelSerializer):
             "title",
             "description",
             "created_at",
+            "general_modality",
     ]
 
 class ModalityModelCompleteSerializer(ModelSerializer):
@@ -46,13 +47,18 @@ class ModalityModelCompleteSerializer(ModelSerializer):
 
     documents = DocumentModelSerializer(many=True)
     document_inscription = DocumentModelSerializer(many=True)
+    document_student = DocumentModelSerializer(many=True)
+
     config = ModalityConfigModelSerializer(many=False)
     # normatives = NormativeModelSerializer(many=True)
     normatives = SerializerMethodField()
+    general_modality_name = SerializerMethodField()
 
     def get_normatives(self,modality):
         return NormativeModelSerializer(modality.normatives.filter(active=True),many=True).data
-
+    def get_general_modality_name(self,modality):
+        return ""
+        # return Modality.TYPE_MODALITIES[modality.general_modality]
 
     class Meta:
         model = Modality
@@ -63,8 +69,11 @@ class ModalityModelCompleteSerializer(ModelSerializer):
             "created_at",
             "documents",
             "document_inscription",
+            "document_student",
+            "general_modality",
             "normatives",
             "config",
+            "general_modality_name",
         ]
 
 
@@ -80,4 +89,5 @@ class ModalityModelConfigSerializer(ModelSerializer):
             "description",
             "created_at",
             "config",
+            "general_modality",
     ]

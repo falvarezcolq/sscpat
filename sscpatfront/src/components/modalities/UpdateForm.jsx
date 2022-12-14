@@ -8,77 +8,14 @@ import RadioButton from "../../components/atoms/RadioButton";
 import SelectedName from "../../components/atoms/SelectedName";
 import SelectForm from "../../components/atoms/SelectForm";
 import AlertMessage from "../../components/atoms/AlertMessage";
-import { getTimeSendDocument } from "../../actions/helper";
 import Config from "../../utils/Config";
+import DocSelected  from "../atoms/DocSelected";
+import { GeneralModality, Modality, ModalityValidate} from "../../models/modalities";
+import SelectFormRight from "../atoms/SelectFormRight";
+import { filePath } from "../../actions/helper";
 
-const initialValues = {
-  // data will be for ever strings
-  title: "",
-  description: "",
-
-  documents: [],
-  document_inscription: [],
-
-  max_author: "1",
-  month_duration: "6",
-  month_max_duration: "6",
-  has_time_extension: false,
-  month_extension: "0",
-
-  has_tutors: true,
-  has_review_commission:true,
-  has_evaluating_court:true,
-  has_institution: false,
-
-  mandatory_month_report_progress_student: false,
-  frequency_report_student: "1",
-  mandatory_month_report_tutor: false,
-  frequency_report_tutor: "1",
-  mandatory_month_report_external_tutor: false,
-  frequency_report_external_tutor: "1",
-  mandatory_month_report_institution: false,
-  frequency_report_institution: "1",
-
-  send_final_document: true,
-  send_abstract_final_document: true,
-  send_resolution_commission_aproval: false,
-};
-
-const validate = {
-  title: {
-    is_required: true,
-    max_length: 255,
-    min_lenght: 2,
-  },
-  description: {
-    is_required: false,
-    max_length: 1024,
-  },
-  max_author: {
-    is_required: true,
-    integer: true,
-    max_integer: 2,
-    min_integer: 1,
-  },
-  month_duration: {
-    is_required: true,
-    integer: true,
-    max_integer: 12,
-    min_integer: 1,
-  },
-  month_max_duration: {
-    is_required: true,
-    integer: true,
-    max_integer: 12,
-    min_integer: 1,
-  },
-  month_extension: {
-    is_required: true,
-    integer: true,
-    max_integer: 6,
-    min_integer: 0,
-  },
-};
+const initialValues = Modality
+const validate = ModalityValidate
 
 const UpdateForm = (props) => {
   const { resultsDocuments } = props;
@@ -228,11 +165,15 @@ const UpdateForm = (props) => {
     f.append("modality", props.id);
     f.append("description", values.description);
     f.append("documents", JSON.stringify(values.documents));
-
     f.append(
       "document_inscription",
       JSON.stringify(values.document_inscription)
     );
+    f.append(
+      "document_student",
+      JSON.stringify(values.document_student)
+    );
+    f.append('general_modality',values.general_modality);
     f.append("max_author", values.max_author);
     f.append("month_duration", values.month_duration);
     f.append("month_max_duration", values.month_max_duration);
@@ -342,6 +283,37 @@ const UpdateForm = (props) => {
       ),
     });
   };
+  const onChangeDocumentOfStudent = (e) => {
+    const selectId = e.target.value;
+    if (selectId !== "") {
+      if (values.document_student.every((d) => d.id !== Number(selectId))) {
+        const document = resultsDocuments.find(
+          (doc) => doc.id === Number(selectId)
+        );
+        setValues({
+          ...values,
+          document_student: [...values.document_student, document],
+        });
+      }
+    }
+  };
+
+  const removeDocOnStudent = (id) => {
+    setValues({
+      ...values,
+      document_student: values.document_student.filter(
+        (doc) => doc.id !== id
+      ),
+    });
+  };
+
+  const onChangeGeneralModality = (e)=>{
+    const selected = e.target.value;
+    setValues({
+      ...values,
+      general_modality : selected,
+    })  
+  }
 
   useEffect(() => {
     loadingData();
@@ -357,6 +329,21 @@ const UpdateForm = (props) => {
               Actualizar Modalidad de titulación
               <small> </small>
             </h2>
+            <div className="pull-left" style={{ marginTop: "-20px" }}>
+                <SelectFormRight
+                  name="general_modality"
+                  value={values.general_modality}
+                  onChange={onChangeGeneralModality}
+                >
+                     <option key="0" value="0">Tesis</option>
+                    <option key="1" value="1">Proyecto de grado</option>
+                    <option key="2" value="2">Examen de grado</option>
+                    <option key="3" value="3">Trabajo dirigido</option>
+                    <option key="4" value="4">Por excelencia</option>
+                    <option key="6" value="6">Modalidad Especial</option>
+
+                </SelectFormRight>
+              </div>
           </div>
 
           <div className="body">
@@ -478,7 +465,11 @@ const UpdateForm = (props) => {
                       <>
                         <h4 key={file.id}>
                           <span className="selected-name">
-                            {file.title}
+                            
+                            <a href={filePath(file.path)} 
+                            type="media_type"
+                            target="_blank"
+                            >{file.title}</a>
                             <button
                               type="button"
                               onClick={() => removeFileOnFiles(file.id)}
@@ -520,7 +511,7 @@ const UpdateForm = (props) => {
                     className="input-file"
                   />
                 </div>
-
+                {/* document of modality */}
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
                   <SelectForm
                     name="documents"
@@ -545,29 +536,15 @@ const UpdateForm = (props) => {
                   <div>
                     {values.documents.length > 0 &&
                       values.documents.map((doc, index) => (
-                        <h4 key={index}>
-                          <span
-                            className="label bg-light-blue"
-                            style={{ margin: "0px 5px" }}
-                          >
-                            {doc.title}
-                            <button
-                              type="button"
-                              onClick={removeDocOnModality.bind(this, doc.id)}
-                              className="btn-link"
-                              title="Borrar"
-                            >
-                              x
-                            </button>
-                          </span>
-                          <span style={{ fontSize: "1.2rem" }}>
-                            Entrega: {getTimeSendDocument(doc.time_send)}
-                          </span>
-                        </h4>
+                        <DocSelected
+                        key={index}
+                        doc={doc}
+                        remove={removeDocOnModality}
+                        />
                       ))}
                   </div>
                 </div>
-
+                {/* documento of initial inscription */}
                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
                   <SelectForm
                     name="documents_of_inscription"
@@ -593,28 +570,46 @@ const UpdateForm = (props) => {
                   <div>
                     {values.document_inscription.length > 0 &&
                       values.document_inscription.map((doc, index) => (
-                        <h4 key={index}>
-                          <span
-                            className="label bg-blue"
-                            style={{ margin: "0px 5px" }}
-                          >
-                            {doc.title}
-                            <button
-                              type="button"
-                              onClick={removeDocOnInscription.bind(
-                                this,
-                                doc.id
-                              )}
-                              className="btn-link"
-                              title="Borrar"
-                            >
-                              x
-                            </button>
-                          </span>
-                          <span style={{ fontSize: "1.2rem" }}>
-                            Entrega: {getTimeSendDocument(doc.time_send)}
-                          </span>
-                        </h4>
+                        <DocSelected
+                        key={index}
+                        doc={doc}
+                        remove={removeDocOnInscription}
+                        />
+                      ))}
+                  </div>
+                </div>
+                
+                {/* document of student */}
+                <div className="col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10">
+                  <SelectForm
+                    name="documents_of_student"
+                    onChange={onChangeDocumentOfStudent}
+                    title="Documentos personales por estudiante:"
+                    addUrl={Config.aDocumentsNewUrl}
+                    reload={props.listDocuments}
+                  >
+                    {resultsDocuments.length > 0 ? (
+                      <>
+                        <option value="">--Seleccione--</option>
+                        {resultsDocuments.map((doc) => (
+                          <option 
+                          key={doc.id} 
+                          value={doc.id}
+                          >{doc.title}</option>
+                        ))}
+                      </>
+                    ) : (
+                      <option value="">Cargando..</option>
+                    )}
+                  </SelectForm>
+                  <div>
+                    {values.document_student.length > 0 &&
+                      values.document_student.map((doc, index) => (
+                        <DocSelected
+                        key={index}
+                        doc={doc}
+                        remove={removeDocOnStudent}
+                        />
                       ))}
                   </div>
                 </div>
